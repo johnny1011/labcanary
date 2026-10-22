@@ -1,0 +1,44 @@
+[
+  {
+    "id": "C1",
+    "name": "No gag on criticism",
+    "standard": "No non-disparagement clause, or only a short, mutual one that never covers safety, ethics or legal concerns. Never for life.",
+    "why": "Staff and ex-staff are often the only people who can tell the public a lab is cutting corners."
+  },
+  {
+    "id": "C2",
+    "name": "Equity is never hostage",
+    "standard": "Vested equity and pay can't be cancelled, clawed back or blocked from sale because someone spoke out.",
+    "why": "Threatening vested equity turns a contract into a gag."
+  },
+  {
+    "id": "C3",
+    "name": "Protected disclosures carved out",
+    "standard": "The contract says in plain words that nothing in it stops reporting to regulators, government, law enforcement or a lawyer.",
+    "why": "Mirrors legal protections like California SB 53 and the UK's PIDA, so staff don't have to guess."
+  },
+  {
+    "id": "C4",
+    "name": "Whistleblowing policy is public",
+    "standard": "The full speak-up / whistleblowing policy is published, not just a code of conduct.",
+    "why": "Lets outsiders check the process actually exists and is any good."
+  },
+  {
+    "id": "C5",
+    "name": "Safe internal channel",
+    "standard": "An anonymous internal channel, a real anti-retaliation policy, and someone independent of leadership who sees reports.",
+    "why": "Most concerns should be fixable inside the company, if people trust the route."
+  },
+  {
+    "id": "C6",
+    "name": "Secrets means secrets",
+    "standard": "Confidentiality covers genuine secrets (model weights, code, unreleased research, customer data), not opinions about how the company behaves.",
+    "why": "Protects what labs legitimately need to protect, and nothing more."
+  },
+  {
+    "id": "C7",
+    "name": "No secret NDAs",
+    "standard": "Staff can say they signed an agreement and what kind it is.",
+    "why": "A gag you can't admit exists is the worst kind."
+  }
+]

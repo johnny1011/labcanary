@@ -1,0 +1,184 @@
+{
+  "updated": "2026-10-22",
+  "labs": [
+    "Anthropic",
+    "OpenAI",
+    "Google DeepMind",
+    "xAI",
+    "Meta"
+  ],
+  "optedIn": [],
+  "ratings": [
+    {
+      "lab": "Anthropic",
+      "clause": "C1",
+      "rating": "Partly",
+      "evidence": "Its Responsible Scaling Policy commits that any non-disparagement clause won't stop staff or ex-staff publicly raising safety concerns. It doesn't rule out such clauses for other criticism.",
+      "source": "Anthropic Responsible Scaling Policy v3.4",
+      "url": "https://www-cdn.anthropic.com/files/4zrzovbb/website/0bacdc8440ea96e62a8766d99ebe1d4eea6d5f3a.pdf",
+      "date": "2026-07-08"
+    },
+    {
+      "lab": "Anthropic",
+      "clause": "C2",
+      "rating": "Meets",
+      "evidence": "A co-founder said in 2024 that Anthropic never tied non-disparagement agreements to vested equity.",
+      "source": "Anthropic co-founder Sam McCandlish",
+      "url": "https://www.lesswrong.com/posts/EQJfdqSaMcJyR5k73/habryka-s-shortform-feed?commentId=ppZsFLzf8quBDwwRw",
+      "date": "2024-07-04"
+    },
+    {
+      "lab": "Anthropic",
+      "clause": "C3",
+      "rating": "Partly",
+      "evidence": "Its reporting policy says nothing in any Anthropic agreement stops staff reporting possible violations of law to government, without permission. Concerns that aren't about breaking the law aren't covered.",
+      "source": "Anthropic RSP noncompliance reporting policy",
+      "url": "https://www-cdn.anthropic.com/fcf136d0f2204e2184f73c6bd082bea27f2d631b/RSP%20Noncompliance%20Reporting%20and%20Anti-Retaliation%20Policy%20%28Final%202025.12.04%29.pdf",
+      "date": "2025-12-04"
+    },
+    {
+      "lab": "Anthropic",
+      "clause": "C4",
+      "rating": "Partly",
+      "evidence": "Published a whistleblowing policy in Dec 2025, but it only covers breaches of its Responsible Scaling Policy. Policies for other misconduct aren't public.",
+      "source": "AIWI",
+      "url": "https://aiwi.org/anthropic-publishes-their-partial-whistleblowing-policy-first-thoughts-and-context/",
+      "date": "2025-12-18"
+    },
+    {
+      "lab": "Anthropic",
+      "clause": "C5",
+      "rating": "Partly",
+      "evidence": "Anonymous reporting tool and a no-retaliation rule. Reports can go to an executive outside the safety officer's line, and the board gets quarterly updates. Not fully independent of leadership.",
+      "source": "Anthropic Responsible Scaling Policy v3.4",
+      "url": "https://www-cdn.anthropic.com/files/4zrzovbb/website/0bacdc8440ea96e62a8766d99ebe1d4eea6d5f3a.pdf",
+      "date": "2026-07-08"
+    },
+    {
+      "lab": "Anthropic",
+      "clause": "C7",
+      "rating": "Meets",
+      "evidence": "Its Responsible Scaling Policy says any non-disparagement clause won't stop someone saying the clause exists.",
+      "source": "Anthropic Responsible Scaling Policy v3.4",
+      "url": "https://www-cdn.anthropic.com/files/4zrzovbb/website/0bacdc8440ea96e62a8766d99ebe1d4eea6d5f3a.pdf",
+      "date": "2026-07-08"
+    },
+    {
+      "lab": "OpenAI",
+      "clause": "C1",
+      "rating": "Partly",
+      "evidence": "In 2024, exit agreements reportedly barred ex-staff from criticising OpenAI for life, at the risk of losing vested equity. In May 2024 OpenAI released most former staff and dropped these terms from exit paperwork, except where they're mutual.",
+      "source": "Bloomberg via BNN",
+      "url": "https://www.bnnbloomberg.ca/openai-releases-former-staffers-from-non-disparagement-clauses-1.2076978",
+      "date": "2024-05-23"
+    },
+    {
+      "lab": "OpenAI",
+      "clause": "C2",
+      "rating": "Meets",
+      "evidence": "May 2024: said it would not cancel any vested equity, even if former staff criticise the company.",
+      "source": "Bloomberg via BNN",
+      "url": "https://www.bnnbloomberg.ca/openai-releases-former-staffers-from-non-disparagement-clauses-1.2076978",
+      "date": "2024-05-23"
+    },
+    {
+      "lab": "OpenAI",
+      "clause": "C3",
+      "rating": "Partly",
+      "evidence": "Its Jan 2026 policy says staff are always free to report concerns to an outside authority, without telling OpenAI first. In 2024, whistleblowers told the SEC its old agreements discouraged this; OpenAI said its policy protects such disclosures.",
+      "source": "OpenAI Raising Concerns Policy",
+      "url": "https://cdn.openai.com/policies/openai-raising-concerns-policy.pdf",
+      "date": "2026-01-12"
+    },
+    {
+      "lab": "OpenAI",
+      "clause": "C4",
+      "rating": "Meets",
+      "evidence": "Published a Raising Concerns Policy in Oct 2024 and an expanded version in Jan 2026.",
+      "source": "AIWI",
+      "url": "https://aiwi.org/openai-whistleblowing-policy-aiwi-commentary/",
+      "date": "2026-01-27"
+    },
+    {
+      "lab": "OpenAI",
+      "clause": "C5",
+      "rating": "Partly",
+      "evidence": "Anonymous Integrity Line and a no-retaliation rule. Run by OpenAI's Compliance team; AI safety concerns can be escalated to the board's Safety and Security Committee.",
+      "source": "OpenAI Raising Concerns Policy",
+      "url": "https://cdn.openai.com/policies/openai-raising-concerns-policy.pdf",
+      "date": "2026-01-12"
+    },
+    {
+      "lab": "OpenAI",
+      "clause": "C6",
+      "rating": "Not public",
+      "evidence": "Contracts aren't public. In Oct 2026 OpenAI fired three staff for allegedly mishandling confidential information, some shared with an outside AI evaluation group. OpenAI says it wasn't about raising safety concerns.",
+      "source": "The Register",
+      "url": "https://www.theregister.com/ai-and-ml/2026/10/02/openai-shows-three-staff-the-door-over-alleged-information-misuse/5300820",
+      "date": "2026-10-02"
+    },
+    {
+      "lab": "OpenAI",
+      "clause": "C7",
+      "rating": "Not public",
+      "evidence": "Vox reported in 2024 that even admitting the old exit agreement existed counted as a breach. Current terms aren't public.",
+      "source": "Vox (Kelsey Piper)",
+      "url": "https://www.vox.com/future-perfect/2024/5/17/24158478/openai-departures-sam-altman-employees-chatgpt-release",
+      "date": "2024-05-17"
+    },
+    {
+      "lab": "Google DeepMind",
+      "clause": "C1",
+      "rating": "Falls short",
+      "evidence": "Staff told the BBC their contracts bar them from publicly criticising Google. A former research engineer said she's not allowed to criticise Google \"for the duration of my life\". Google didn't address the contract terms.",
+      "source": "BBC (republished on Yahoo News)",
+      "url": "https://www.yahoo.com/news/us/articles/google-experiences-resignation-backlash-over-154646801.html",
+      "date": "2026-10-21"
+    },
+    {
+      "lab": "Google DeepMind",
+      "clause": "C4",
+      "rating": "Falls short",
+      "evidence": "No public whistleblowing policy as of Dec 2025. Google's Code of Conduct covers reporting and no-retaliation.",
+      "source": "AIWI",
+      "url": "https://aiwi.org/publishyourpolicies/",
+      "date": "2025-12-08"
+    },
+    {
+      "lab": "Google DeepMind",
+      "clause": "C5",
+      "rating": "Partly",
+      "evidence": "Google says it has dedicated channels to raise concerns and anti-retaliation policies. Staff told the BBC people fear retaliation.",
+      "source": "BBC (republished on Yahoo News)",
+      "url": "https://www.yahoo.com/news/us/articles/google-experiences-resignation-backlash-over-154646801.html",
+      "date": "2026-10-21"
+    },
+    {
+      "lab": "xAI",
+      "clause": "C4",
+      "rating": "Falls short",
+      "evidence": "No public whistleblowing policy. Says staff can raise imminent safety threats with government agencies.",
+      "source": "FLI AI Safety Index",
+      "url": "https://futureoflife.org/wp-content/uploads/2025/11/Indicator-Whistleblowing_Policy_Transparency.pdf",
+      "date": "2025-11"
+    },
+    {
+      "lab": "Meta",
+      "clause": "C1",
+      "rating": "Falls short",
+      "evidence": "In 2025 Meta used a non-disparagement clause in a former policy director's severance agreement to win an arbitration order stopping her promoting her memoir, Careless People.",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2025/03/16/meta-takes-aim-at-ex-employees-memoir-careless-people",
+      "date": "2025-03-16"
+    },
+    {
+      "lab": "Meta",
+      "clause": "C4",
+      "rating": "Falls short",
+      "evidence": "Its Code of Conduct refers to a whistleblower policy that isn't publicly available.",
+      "source": "FLI AI Safety Index",
+      "url": "https://futureoflife.org/wp-content/uploads/2025/11/Indicator-Whistleblowing_Policy_Transparency.pdf",
+      "date": "2025-11"
+    }
+  ]
+}

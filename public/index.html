@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab Canary</title>
+<meta name="description" content="Can people at AI labs speak up? A scorecard of AI lab staff contracts against a simple standard: protect real secrets, never gag criticism or whistleblowing.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://labcanary.com/">
+<meta property="og:title" content="Lab Canary: can AI lab staff speak up?">
+<meta property="og:description" content="A scorecard of AI lab staff contracts against a simple standard: protect real secrets, never gag criticism or whistleblowing.">
+<meta property="og:image" content="https://labcanary.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lab Canary: can AI lab staff speak up?">
+<meta name="twitter:description" content="A scorecard of AI lab staff contracts against a simple standard: protect real secrets, never gag criticism or whistleblowing.">
+<meta name="twitter:image" content="https://labcanary.com/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230e1626'/%3E%3Ccircle cx='16' cy='16' r='8' fill='%23e8b21c'/%3E%3C/svg%3E">
+<style>
+/* Layout: one dark page. Heatmap left, explanation and detail panel right; sections stack below. */
+:root {
+  color-scheme: dark;
+  --bg: #0e1626; --panel: #151f33; --line: #24314a; --fg: #e7eaf0; --muted: #94a0b8; --link: #7fb0ff; --accent: #e8b21c;
+  --meets: #646214; --partly: #8c4a12; --short: #7c1f27; --np: #1d2639; --np2: #19212f;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html { background: var(--bg); }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.6 var(--sans); }
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+p { margin: 0; }
+h1, h2 { margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+.wrap { max-width: 78rem; margin: 0 auto; padding-block: clamp(20px, 4vw, 44px); padding-left: max(16px, 4vw); padding-right: max(16px, 4vw); display: flex; flex-direction: column; gap: 56px; }
+.top { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 16px; }
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(232,178,28,.18); flex: none; }
+.brand h1 { font-size: 1.5rem; font-weight: 700; }
+.brand small { color: var(--muted); font-size: .85rem; }
+nav { display: flex; gap: 20px; font-size: .9rem; flex-wrap: wrap; }
+nav a { color: var(--fg); }
+.hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 72px); align-items: start; }
+@media (max-width: 52rem) { .hero { grid-template-columns: minmax(0, 1fr); } }
+.hm-wrap { overflow-x: auto; }
+.hm { display: grid; grid-template-columns: minmax(8.5rem, 1.4fr) repeat(var(--cols, 5), minmax(3.2rem, 1fr)); gap: 6px; min-width: 26rem; }
+.hm-lab { font: 600 .74rem/1.2 var(--sans); text-align: center; align-self: end; color: var(--fg); padding: 0 0 6px; cursor: pointer; background: none; border: 0; }
+.hm-lab:hover, .hm-lab.on { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.hm-lab small { display: block; color: var(--accent); font-weight: 600; font-size: .65rem; }
+.hm-row { font-size: .85rem; font-weight: 600; display: flex; align-items: center; padding-right: 8px; min-height: 2.75rem; line-height: 1.25; }
+.hm-score { border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .88rem; color: #fff; min-height: 2.75rem; font-variant-numeric: tabular-nums; }
+.hm-gap { grid-column: 1 / -1; height: 6px; }
+.tile { border: 0; border-radius: 6px; min-height: 2.75rem; cursor: pointer; font: .7rem var(--sans); color: rgba(255,255,255,.9); display: flex; align-items: center; justify-content: center; padding: 4px; outline: 2px solid transparent; outline-offset: 1px; transition: transform .12s ease, outline-color .12s ease; }
+.tile:hover { transform: scale(1.04); }
+.tile:focus-visible, .tile.on { outline-color: #fff; }
+.t-meets { background: var(--meets); }
+.t-partly { background: var(--partly); }
+.t-short { background: var(--short); }
+.t-np { background: repeating-linear-gradient(135deg, var(--np) 0 6px, var(--np2) 6px 12px); }
+.tile.t-np { font-size: 0; }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 12px; font-size: .78rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+.hm-foot { margin-top: 8px; text-align: center; font-size: .78rem; font-style: italic; color: var(--muted); }
+.side { display: flex; flex-direction: column; gap: 16px; }
+.side .lead { font-weight: 600; }
+.detail { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; min-height: 11rem; }
+.detail .k { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.detail .t { font-size: 1.05rem; font-weight: 600; }
+.detail .small { font-size: .82rem; color: var(--muted); }
+.detail ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; font-size: .88rem; }
+.badge { display: inline-flex; align-items: center; white-space: nowrap; font-size: .75rem; font-weight: 600; padding: 3px 9px; border-radius: 999px; width: fit-content; color: #fff; }
+.b-meets { background: var(--meets); } .b-partly { background: var(--partly); } .b-short { background: var(--short); } .b-np { background: #2d374d; }
+.links { display: flex; flex-direction: column; gap: 8px; font-size: .92rem; }
+.sec { display: flex; flex-direction: column; gap: 18px; }
+.sec h2 { font-size: 1.6rem; }
+.sub { color: var(--muted); font-size: .92rem; }
+.std { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: 12px; }
+.std-c { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 6px; }
+.std-c .n { font-size: .72rem; color: var(--muted); letter-spacing: .08em; }
+.std-c h3 { margin: 0; font-size: 1rem; font-weight: 600; }
+.std-c .b { font-size: .88rem; line-height: 1.5; }
+.std-c .w { font-size: .8rem; color: var(--muted); line-height: 1.5; }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.filters button { font: .82rem var(--sans); padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--fg); cursor: pointer; }
+.filters button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.ev-wrap { overflow: auto; max-height: 34rem; border: 1px solid var(--line); border-radius: 10px; }
+table { border-collapse: collapse; width: 100%; font-size: .84rem; min-width: 44rem; }
+th, td { padding: 10px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+th { position: sticky; top: 0; background: var(--panel); font-weight: 600; color: var(--muted); font-size: .74rem; text-transform: uppercase; letter-spacing: .06em; }
+td.nowrap { white-space: nowrap; }
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: 16px; }
+.step { border-top: 2px solid var(--accent); padding-top: 12px; display: flex; flex-direction: column; gap: 6px; }
+.step h3 { margin: 0; font-size: 1rem; }
+.step p { font-size: .9rem; color: var(--muted); }
+footer { border-top: 1px solid var(--line); padding-top: 16px; font-size: .82rem; color: var(--muted); display: flex; flex-direction: column; gap: 6px; }
+.sk { background: var(--panel); border-radius: 6px; min-height: 2.75rem; }
+.err { color: #ffb4a8; }
+@media (max-width: 40rem) {
+  .hm { grid-template-columns: minmax(6.2rem, 1.2fr) repeat(var(--cols, 5), minmax(2.5rem, 1fr)); gap: 5px; min-width: 0; }
+  .hm-row { font-size: .76rem; padding-right: 4px; }
+  .hm-lab { font-size: .66rem; }
+  .tile { font-size: .6rem; padding: 2px; }
+  .hm-score { font-size: .78rem; }
+  table { min-width: 0; }
+  thead { display: none; }
+  tbody tr { display: grid; grid-template-columns: auto auto 1fr; align-items: center; gap: 6px 10px; padding: 12px; border-bottom: 1px solid var(--line); }
+  tbody td { border: 0; padding: 0; }
+  tbody td:nth-child(4), tbody td:nth-child(5) { grid-column: 1 / -1; }
+  tbody td:nth-child(6) { grid-column: 1 / -1; color: var(--muted); font-size: .78rem; }
+  tbody td[colspan] { grid-column: 1 / -1; }
+}
+@media (prefers-reduced-motion: reduce) { .tile { transition: none; } .tile:hover { transform: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><span class="brand-dot" aria-hidden="true"></span><div><h1>Lab Canary</h1><small>Speak-up scorecard for AI labs</small></div></div>
+    <nav aria-label="Sections"><a href="#scorecard">Scorecard</a><a href="#standard">The standard</a><a href="#evidence">Evidence</a><a href="#opt-in">Opt in</a></nav>
+  </header>
+
+  <main style="display:flex;flex-direction:column;gap:56px">
+    <section class="hero" id="scorecard">
+      <div>
+        <div class="hm-wrap"><div class="hm" id="hm" aria-label="Ratings by lab and clause"></div></div>
+        <div class="legend">
+          <span><i style="background:var(--meets)"></i>Meets</span>
+          <span><i style="background:var(--partly)"></i>Partly</span>
+          <span><i style="background:var(--short)"></i>Falls short</span>
+          <span><i style="background:repeating-linear-gradient(135deg,var(--np) 0 3px,var(--np2) 3px 6px);border:1px solid var(--line)"></i>Not public</span>
+        </div>
+        <p class="hm-foot" id="asof">Public evidence only</p>
+      </div>
+      <div class="side">
+        <p>Can people who work at AI labs tell the public when something's wrong? Lab Canary checks lab contracts against a simple standard: protect real secrets, never gag criticism or whistleblowing.</p>
+        <p id="takeaway"></p>
+        <p class="lead">Click a tile to see the evidence. Click a lab's name for its summary.</p>
+        <div class="detail" id="detail" aria-live="polite"></div>
+        <div class="links">
+          <a href="#standard">The model contract, in seven clauses →</a>
+          <a href="#evidence">All the evidence and sources →</a>
+          <a href="#opt-in">How a lab can opt in →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="standard">
+      <h2>The standard</h2>
+      <p class="sub">A model contract in seven clauses. A starting point for discussion, not legal advice.</p>
+      <div class="std" id="std"></div>
+    </section>
+
+    <section class="sec" id="evidence">
+      <h2>The evidence</h2>
+      <div class="filters" id="filters" role="group" aria-label="Filter by lab"></div>
+      <div class="ev-wrap">
+        <table>
+          <thead><tr><th>Lab</th><th>Clause</th><th>Rating</th><th>Evidence</th><th>Source</th><th>Date</th></tr></thead>
+          <tbody id="ev"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="sec" id="opt-in">
+      <h2>How opting in works</h2>
+      <div class="steps">
+        <div class="step"><h3>1. Publish your terms</h3><p>A lab shares its standard employment, exit and equity terms (redacted is fine) plus its speak-up policy.</p></div>
+        <div class="step"><h3>2. Get scored</h3><p>Each clause gets a rating, with the exact wording that earned it.</p></div>
+        <div class="step"><h3>3. Shown here</h3><p>Opted-in labs are marked. Everyone else stays rated on public evidence only.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Made by Jonathan Hind. Ratings use public evidence only, and "not public" means it can't be checked, not that it's bad. Score = clauses met, plus half for each partly met, out of seven.</p>
+    <p id="correct">Spot something wrong? Reply to <a href="https://x.com/import_hind">@import_hind</a> on X.</p>
+  </footer>
+</div>
+
+<script>
+// Set this to the GitHub repo URL once it exists, e.g. "https://github.com/yourname/labcanary".
+const REPO_URL = "https://github.com/johnny1011/labcanary";
+
+const CLS = { "Meets": "meets", "Partly": "partly", "Falls short": "short", "Not public": "np" };
+const NOT_PUBLIC = "Contracts aren't public, so there's no way to check.";
+let D = null, sel = null, labFilter = "All";
+
+const $ = (id) => document.getElementById(id);
+function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+const pct = (v) => Math.round(v * 100) + "%";
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+function fmtDate(s) {
+  if (!s) return "—";
+  const [y, m, d] = s.split("-").map(Number);
+  return (d ? d + " " : "") + MONTHS[m - 1] + " " + y;
+}
+function mix(a, b, t) {
+  const p = (h) => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+  const A = p(a), B = p(b);
+  return "rgb(" + A.map((v, i) => Math.round(v + (B[i] - v) * t)).join(",") + ")";
+}
+const scoreColor = (v) => mix("#e3321c", "#e88a0c", Math.min(1, v / 0.5));
+
+function cell(lab, clause) {
+  return D.ratings.find(r => r.lab === lab && r.clause === clause) ||
+    { lab, clause, rating: "Not public", evidence: NOT_PUBLIC, source: "", url: "", date: "" };
+}
+function tally(lab) {
+  const cells = D.criteria.map(c => cell(lab, c.id));
+  const n = (s) => cells.filter(x => x.rating === s).length;
+  const t = { meets: n("Meets"), partly: n("Partly"), short: n("Falls short"), np: n("Not public") };
+  t.score = (t.meets + 0.5 * t.partly) / D.criteria.length;
+  t.optedIn = (D.optedIn || []).includes(lab);
+  return t;
+}
+
+function drawHeatmap() {
+  const hm = $("hm");
+  hm.textContent = "";
+  hm.style.setProperty("--cols", D.labs.length);
+  hm.append(el("div"));
+  D.labs.forEach(l => {
+    const b = el("button", "hm-lab" + (sel && sel.lab === l && !sel.clause ? " on" : ""), l);
+    if (tally(l).optedIn) b.append(el("small", null, "opted in"));
+    b.addEventListener("click", () => { sel = { lab: l }; drawHeatmap(); drawDetail(); });
+    hm.append(b);
+  });
+  hm.append(el("div", "hm-row", "Score"));
+  D.labs.forEach(l => { const s = tally(l).score; const t = el("div", "hm-score", pct(s)); t.style.background = scoreColor(s); hm.append(t); });
+  hm.append(el("div", "hm-gap"));
+  D.criteria.forEach(c => {
+    hm.append(el("div", "hm-row", c.name));
+    D.labs.forEach(l => {
+      const r = cell(l, c.id);
+      const b = el("button", "tile t-" + CLS[r.rating] + (sel && sel.lab === l && sel.clause === c.id ? " on" : ""), r.rating);
+      b.setAttribute("aria-label", l + ", " + c.name + ": " + r.rating);
+      b.addEventListener("click", () => { sel = { lab: l, clause: c.id }; drawHeatmap(); drawDetail(); });
+      hm.append(b);
+    });
+  });
+}
+
+function drawTakeaway() {
+  const cells = D.labs.flatMap(l => D.criteria.map(c => cell(l, c.id)));
+  const np = cells.filter(x => x.rating === "Not public").length;
+  const full = D.labs.filter(l => tally(l).meets === D.criteria.length).length;
+  const t = $("takeaway");
+  t.textContent = "";
+  t.append(full ? full + " lab(s) meet the full standard. " : "No lab meets the full standard. ");
+  t.append(el("b", null, String(np)), " of ", el("b", null, String(cells.length)), " checks can't be made at all, because the contracts aren't public. That's the case for labs opting in.");
+}
+
+function drawDetail() {
+  const d = $("detail");
+  d.textContent = "";
+  if (!sel) { d.append(el("span", "k", "Details"), el("p", "small", "Pick a tile to see what's known about that lab and clause, with the source.")); return; }
+  if (sel.clause) {
+    const r = cell(sel.lab, sel.clause), c = D.criteria.find(x => x.id === sel.clause);
+    d.append(el("span", "k", sel.lab + " · " + c.id), el("span", "t", c.name), el("span", "badge b-" + CLS[r.rating], r.rating));
+    d.append(el("p", "small", "Standard: " + c.standard), el("p", null, r.evidence));
+    if (r.url) { const p = el("p", "small"); const a = el("a", null, r.source + " →"); a.href = r.url; a.target = "_blank"; a.rel = "noopener"; p.append(a, " " + fmtDate(r.date)); d.append(p); }
+    return;
+  }
+  const t = tally(sel.lab);
+  d.append(el("span", "k", "Lab summary"), el("span", "t", sel.lab));
+  d.append(el("p", null, "Score " + pct(t.score) + ": " + t.meets + " met, " + t.partly + " partly, " + t.short + " falling short, " + t.np + " not public. " + (t.optedIn ? "Opted in." : "Not opted in.")));
+  const ul = el("ul");
+  D.criteria.forEach(c => { const r = cell(sel.lab, c.id); if (r.url) ul.append(el("li", null, c.name + " (" + r.rating.toLowerCase() + "): " + r.evidence)); });
+  if (ul.childNodes.length) d.append(ul);
+}
+
+function drawStandard() {
+  const box = $("std");
+  box.textContent = "";
+  D.criteria.forEach(c => {
+    const card = el("div", "std-c");
+    card.append(el("span", "n", c.id), el("h3", null, c.name), el("p", "b", c.standard), el("p", "w", c.why));
+    box.append(card);
+  });
+}
+
+function drawFilters() {
+  const f = $("filters");
+  f.textContent = "";
+  ["All", ...D.labs].forEach(l => {
+    const b = el("button", null, l);
+    b.setAttribute("aria-pressed", String(labFilter === l));
+    b.addEventListener("click", () => { labFilter = l; drawFilters(); drawEvidence(); });
+    f.append(b);
+  });
+}
+
+function drawEvidence() {
+  const tb = $("ev");
+  tb.textContent = "";
+  const rows = labFilter === "All" ? D.ratings : D.criteria.map(c => cell(labFilter, c.id));
+  rows.forEach(r => {
+    const tr = el("tr");
+    tr.append(el("td", "nowrap", r.lab), el("td", null, r.clause));
+    const st = el("td"); st.append(el("span", "badge b-" + CLS[r.rating], r.rating)); tr.append(st);
+    tr.append(el("td", null, r.evidence));
+    const src = el("td");
+    if (r.url) { const a = el("a", null, r.source); a.href = r.url; a.target = "_blank"; a.rel = "noopener"; src.append(a); } else src.textContent = "—";
+    tr.append(src, el("td", "nowrap", fmtDate(r.date)));
+    tb.append(tr);
+  });
+  if (labFilter === "All") { const tr = el("tr"); const td = el("td", "sub", "Showing every rating with a public source. Pick a lab to see all seven clauses."); td.colSpan = 6; tr.append(td); tb.append(tr); }
+}
+
+async function load() {
+  try {
+    const [criteria, ratings] = await Promise.all([
+      fetch("criteria.json", { cache: "no-cache" }).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+      fetch("ratings.json", { cache: "no-cache" }).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+    ]);
+    D = { criteria, ...ratings };
+    $("asof").textContent = "Public evidence as of " + fmtDate(D.updated);
+    if (REPO_URL) { const p = $("correct"); p.textContent = ""; const a = el("a", null, "Suggest a correction on GitHub"); a.href = REPO_URL + "/issues"; const x = el("a", null, "@import_hind"); x.href = "https://x.com/import_hind"; p.append("Spot something wrong? ", a, " or reply to ", x, " on X."); }
+    const first = D.ratings.find(r => r.rating === "Falls short");
+    if (first) sel = { lab: first.lab, clause: first.clause };
+    drawHeatmap(); drawTakeaway(); drawDetail(); drawStandard(); drawFilters(); drawEvidence();
+  } catch (e) {
+    $("detail").replaceChildren(el("p", "err", "Couldn't load the scorecard data. Try refreshing the page."));
+  }
+}
+load();
+</script>
+</body>
+</html>
