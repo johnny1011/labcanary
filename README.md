@@ -11,6 +11,7 @@ Live at **https://labcanary.com**
 - **The standard** is seven clauses, in [`public/criteria.json`](public/criteria.json).
 - **The ratings** are in [`public/ratings.json`](public/ratings.json): one entry for each lab and clause where there's public evidence. Anything not listed shows as "Not public".
 - **The publicly evidenced score** is clauses met, plus half for each one partly met, out of seven.
+- Each clause has equal weight. Equal scores can combine different ratings and evidence gaps; they do not mean identical protections. The scorecard explains Anthropic and OpenAI's totals using the current ratings.
 - Both "Falls short" and "Not public" earn no points, but mean different things. "Not public" means there is not enough public evidence to check, not that a lab fails the criterion. Unknown counts appear beside each lab's score.
 - A "Meets" rating needs evidence for the complete criterion. Use "Partly" when the evidence supports only part of it.
 

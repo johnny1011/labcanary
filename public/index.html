@@ -48,6 +48,13 @@ nav a { color: var(--fg); }
 .hm-wrap { overflow-x: auto; max-width: 100%; padding: 3px; margin: -3px; }
 .scroll-cue { margin-top: 10px; color: var(--fg); font-size: .8rem; text-align: center; }
 .score-method { margin-top: 12px; color: var(--muted); font-size: .8rem; }
+.score-comparison { margin-top: 16px; padding: 14px 16px; border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 8px; background: var(--panel); font-size: .83rem; line-height: 1.5; }
+.score-comparison > * + * { margin-top: 10px; }
+.score-comparison h2 { font-size: 1rem; line-height: 1.35; }
+.score-comparison h3 { margin: 0 0 4px; font-size: .88rem; }
+.score-comparison .comparison-labs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); gap: 12px; }
+.score-comparison .comparison-lab { min-width: 0; }
+.score-comparison .comparison-maths { margin-top: 4px; color: var(--muted); font-variant-numeric: tabular-nums; }
 .hm { display: grid; grid-template-columns: minmax(8.5rem, 1.4fr) repeat(var(--cols, 5), minmax(3.2rem, 1fr)); gap: 6px; min-width: 26rem; }
 .hm-lab { font: 600 .74rem/1.2 var(--sans); text-align: center; align-self: end; color: var(--fg); padding: 0 0 6px; cursor: pointer; background: none; border: 0; }
 .hm-lab:hover, .hm-lab.on { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
@@ -138,6 +145,7 @@ footer { border-top: 1px solid var(--line); padding-top: 16px; font-size: .82rem
           <span><i style="background:var(--short)"></i>Falls short</span>
           <span><i style="background:repeating-linear-gradient(135deg,var(--np) 0 3px,var(--np2) 3px 6px);border:1px solid var(--line)"></i>Not public</span>
         </div>
+        <section class="score-comparison" id="score-comparison" aria-labelledby="score-comparison-title" hidden></section>
         <p class="score-method" id="score-method"></p>
         <p class="hm-foot" id="asof">Public evidence only</p>
       </div>
@@ -281,6 +289,46 @@ function updateSelection() {
   });
 }
 
+function drawScoreComparison() {
+  const box = $("score-comparison"), labs = ["Anthropic", "OpenAI"];
+  box.textContent = "";
+  box.hidden = !D.criteria.length || !labs.every(lab => D.labs.includes(lab));
+  if (box.hidden) return;
+
+  const summaries = labs.map(lab => ({ lab, ...tally(lab) }));
+  const points = summaries.map(t => t.meets + 0.5 * t.partly);
+  const equal = points[0] === points[1];
+  const heading = el("h2", null, equal
+    ? "Why Anthropic and OpenAI both score " + pct(summaries[0].score)
+    : "How Anthropic and OpenAI’s scores compare");
+  heading.id = "score-comparison-title";
+  box.append(heading);
+
+  const cards = el("div", "comparison-labs");
+  summaries.forEach((t, index) => {
+    const card = el("div", "comparison-lab");
+    const counts = [t.meets + " Meets", t.partly + " Partly", t.np + " Not public"];
+    if (t.short) counts.push(t.short + " Falls short");
+    card.append(el("h3", null, t.lab), el("p", null, counts.join(" + ")));
+    card.append(el("p", "comparison-maths", "(" + t.meets + " × 1) + (" + t.partly + " × ½) = " + points[index] + " points"));
+    cards.append(card);
+  });
+  box.append(cards);
+
+  box.append(el("p", null, equal
+    ? "Both earn " + points[0] + " of " + D.criteria.length + " possible points: " + pct(summaries[0].score) + ", rounded."
+    : summaries.map((t, index) => t.lab + ": " + points[index] + " of " + D.criteria.length + " points (" + pct(t.score) + ")").join(". ") + ". Percentages are rounded."));
+  const explanation = el("p");
+  explanation.append(el("strong", null, equal ? "Equal scores don’t mean identical protections." : "Totals do not show every difference in protection."),
+    " Each clause has equal weight. A total can hide different strengths and gaps in public evidence.");
+  box.append(explanation);
+
+  const example = D.criteria.find(c => c.id === "C4");
+  if (example && cell(labs[0], example.id).rating !== cell(labs[1], example.id).rating) {
+    box.append(el("p", null, "For “" + example.name + "”, Anthropic is rated " + cell(labs[0], example.id).rating + "; OpenAI is rated " + cell(labs[1], example.id).rating + "."));
+  }
+}
+
 function updateScrollCue() {
   const wrap = $("hm-wrap"), overflows = wrap.scrollWidth > wrap.clientWidth + 1;
   $("scroll-cue").hidden = !overflows;
@@ -394,7 +442,7 @@ async function load() {
     if (REPO_URL) { const p = $("correct"); p.textContent = ""; const a = el("a", null, "Suggest a correction on GitHub"); a.href = REPO_URL + "/issues"; const x = el("a", null, "@import_hind"); x.href = "https://x.com/import_hind"; p.append("Spot something wrong? ", a, " or reply to ", x, " on X."); }
     const first = D.ratings.find(r => r.rating === "Falls short");
     if (first) sel = { lab: first.lab, clause: first.clause };
-    drawHeatmap(); drawTakeaway(); drawDetail(); drawStandard(); drawFilters(); drawEvidence();
+    drawHeatmap(); drawScoreComparison(); drawTakeaway(); drawDetail(); drawStandard(); drawFilters(); drawEvidence();
     window.addEventListener("resize", updateScrollCue);
     if (typeof ResizeObserver !== "undefined") new ResizeObserver(updateScrollCue).observe($("hm-wrap"));
   } catch (e) {
