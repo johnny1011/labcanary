@@ -10,8 +10,9 @@ Live at **https://labcanary.com**
 
 - **The standard** is seven clauses, in [`public/criteria.json`](public/criteria.json).
 - **The ratings** are in [`public/ratings.json`](public/ratings.json): one entry for each lab and clause where there's public evidence. Anything not listed shows as "Not public".
-- **The score** is clauses met, plus half for each one partly met, out of seven.
-- Ratings use public evidence only. "Not public" means it can't be checked, not that it's bad.
+- **The publicly evidenced score** is clauses met, plus half for each one partly met, out of seven.
+- Both "Falls short" and "Not public" earn no points, but mean different things. "Not public" means there is not enough public evidence to check, not that a lab fails the criterion. Unknown counts appear beside each lab's score.
+- A "Meets" rating needs evidence for the complete criterion. Use "Partly" when the evidence supports only part of it.
 
 ## Suggest a correction
 
@@ -29,7 +30,7 @@ Each rating in `public/ratings.json` looks like this:
 {
   "lab": "OpenAI",
   "clause": "C2",
-  "rating": "Meets",
+  "rating": "Partly",
   "evidence": "One or two plain sentences on what the source shows.",
   "source": "Name of the source",
   "url": "https://...",
@@ -41,6 +42,22 @@ Each rating in `public/ratings.json` looks like this:
 - `date` is `YYYY-MM-DD`, or `YYYY-MM` if the source only gives a month.
 - Update `updated` at the top of the file whenever you change a rating.
 - Add a lab's name to `optedIn` once it has opted in.
+
+When a rating combines claims from different documents, keep the main source in `source`, `url` and `date`. Add the other sources in an optional `additionalSources` array:
+
+```json
+"additionalSources": [
+  {
+    "source": "Name of the supporting source",
+    "url": "https://...",
+    "date": "2026-07-11"
+  }
+]
+```
+
+The detail panel and evidence table display every source with its date. State whether evidence is a company commitment, a reported allegation, or an independent assessment. Date historical promises and attribute reported policy changes to their source.
+
+When scores or headline wording change, refresh `public/og.png` so social previews stay accurate.
 
 Changes pushed to `main` go live automatically.
 

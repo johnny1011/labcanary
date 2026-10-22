@@ -21,29 +21,48 @@
     {
       "lab": "Anthropic",
       "clause": "C2",
-      "rating": "Meets",
-      "evidence": "A co-founder said in 2024 that Anthropic never tied non-disparagement agreements to vested equity.",
+      "rating": "Partly",
+      "evidence": "A co-founder said vested equity was never tied to non-disparagement. Its RSP reporting policy prohibits retaliatory pay cuts and interference with earned benefits. These sources don't establish protection against blocked equity sales for all criticism.",
       "source": "Anthropic co-founder Sam McCandlish",
       "url": "https://www.lesswrong.com/posts/EQJfdqSaMcJyR5k73/habryka-s-shortform-feed?commentId=ppZsFLzf8quBDwwRw",
-      "date": "2024-07-04"
+      "date": "2024-07-04",
+      "additionalSources": [
+        {
+          "source": "Anthropic RSP reporting and anti-retaliation policy",
+          "url": "https://www-cdn.anthropic.com/b7a5629e40b391b2adfb4cc8c0888ac9d6bfddf6/RSP%20Noncompliance%20Reporting%20and%20Anti-Retaliation%20Policy.pdf",
+          "date": "2026-02"
+        }
+      ]
     },
     {
       "lab": "Anthropic",
       "clause": "C3",
       "rating": "Partly",
-      "evidence": "Its reporting policy says nothing in any Anthropic agreement stops staff reporting possible violations of law to government, without permission. Concerns that aren't about breaking the law aren't covered.",
-      "source": "Anthropic RSP noncompliance reporting policy",
-      "url": "https://www-cdn.anthropic.com/fcf136d0f2204e2184f73c6bd082bea27f2d631b/RSP%20Noncompliance%20Reporting%20and%20Anti-Retaliation%20Policy%20%28Final%202025.12.04%29.pdf",
-      "date": "2025-12-04"
+      "evidence": "Its reporting policy says nothing in any Anthropic agreement stops staff reporting possible violations of law to government, without permission. That external-reporting clause does not expressly cover other concerns.",
+      "source": "Anthropic RSP reporting and anti-retaliation policy",
+      "url": "https://www-cdn.anthropic.com/b7a5629e40b391b2adfb4cc8c0888ac9d6bfddf6/RSP%20Noncompliance%20Reporting%20and%20Anti-Retaliation%20Policy.pdf",
+      "date": "2026-02"
     },
     {
       "lab": "Anthropic",
       "clause": "C4",
       "rating": "Partly",
-      "evidence": "Published a whistleblowing policy in Dec 2025, but it only covers breaches of its Responsible Scaling Policy. Policies for other misconduct aren't public.",
-      "source": "AIWI",
-      "url": "https://aiwi.org/anthropic-publishes-their-partial-whistleblowing-policy-first-thoughts-and-context/",
-      "date": "2025-12-18"
+      "evidence": "Published an RSP whistleblowing policy in Dec 2025 and expanded reporting channels in Feb 2026. It covers RSP noncompliance; Anthropic says its broader reporting policy remains internal.",
+      "source": "Anthropic RSP reporting and anti-retaliation policy",
+      "url": "https://www-cdn.anthropic.com/b7a5629e40b391b2adfb4cc8c0888ac9d6bfddf6/RSP%20Noncompliance%20Reporting%20and%20Anti-Retaliation%20Policy.pdf",
+      "date": "2026-02",
+      "additionalSources": [
+        {
+          "source": "AIWI on Anthropic policy publication",
+          "url": "https://aiwi.org/anthropic-publishes-their-partial-whistleblowing-policy-first-thoughts-and-context/",
+          "date": "2025-12-18"
+        },
+        {
+          "source": "Anthropic survey response, FLI Summer 2026 (p. 111)",
+          "url": "https://futureoflife.org/wp-content/uploads/2026/07/AI-Safety-Index-Summer-2026-Digital-14-Jul.pdf#page=112",
+          "date": "2026-07"
+        }
+      ]
     },
     {
       "lab": "Anthropic",
@@ -57,8 +76,8 @@
     {
       "lab": "Anthropic",
       "clause": "C7",
-      "rating": "Meets",
-      "evidence": "Its Responsible Scaling Policy says any non-disparagement clause won't stop someone saying the clause exists.",
+      "rating": "Partly",
+      "evidence": "Its Responsible Scaling Policy permits disclosure of a non-disparagement clause's existence. The cited promise does not establish the same right for other types of agreement.",
       "source": "Anthropic Responsible Scaling Policy v3.4",
       "url": "https://www-cdn.anthropic.com/files/4zrzovbb/website/0bacdc8440ea96e62a8766d99ebe1d4eea6d5f3a.pdf",
       "date": "2026-07-08"
@@ -70,13 +89,20 @@
       "evidence": "Vox reported in 2024 that exit agreements barred ex-staff from criticising OpenAI for life, at the risk of losing vested equity. In May 2024 OpenAI released most former staff and dropped these terms from exit paperwork, except where they're mutual.",
       "source": "Bloomberg via BNN (archived)",
       "url": "https://web.archive.org/web/20240619194608/https://www.bnnbloomberg.ca/openai-releases-former-staffers-from-non-disparagement-clauses-1.2076978",
-      "date": "2024-05-23"
+      "date": "2024-05-23",
+      "additionalSources": [
+        {
+          "source": "Vox on the 2024 exit agreements",
+          "url": "https://www.vox.com/future-perfect/2024/5/17/24158478/openai-departures-sam-altman-employees-chatgpt-release",
+          "date": "2024-05-17"
+        }
+      ]
     },
     {
       "lab": "OpenAI",
       "clause": "C2",
-      "rating": "Meets",
-      "evidence": "May 2024: said it would not cancel any vested equity, even if former staff criticise the company.",
+      "rating": "Partly",
+      "evidence": "In May 2024, OpenAI said it would not cancel vested equity over criticism. That statement does not establish protection against withheld pay or blocked equity sales.",
       "source": "Bloomberg via BNN (archived)",
       "url": "https://web.archive.org/web/20240619194608/https://www.bnnbloomberg.ca/openai-releases-former-staffers-from-non-disparagement-clauses-1.2076978",
       "date": "2024-05-23"
@@ -85,10 +111,17 @@
       "lab": "OpenAI",
       "clause": "C3",
       "rating": "Partly",
-      "evidence": "Its Jan 2026 policy says staff are always free to report concerns to an outside authority, without telling OpenAI first. In 2024, whistleblowers told the SEC its old agreements discouraged this, AP reported; OpenAI said its policies protect such disclosures.",
+      "evidence": "Its Jan 2026 policy says staff are always free to report concerns to an outside authority, without telling OpenAI first. In 2024, whistleblowers alleged restrictive agreements hindered SEC reporting; OpenAI said its policy protected disclosures, TechCrunch reported.",
       "source": "OpenAI Raising Concerns Policy",
       "url": "https://cdn.openai.com/policies/openai-raising-concerns-policy.pdf",
-      "date": "2026-01-12"
+      "date": "2026-01-12",
+      "additionalSources": [
+        {
+          "source": "TechCrunch on the 2024 SEC complaint",
+          "url": "https://techcrunch.com/2024/07/13/whistleblowers-accuse-openai-of-illegally-restrictive-ndas/",
+          "date": "2024-07-13"
+        }
+      ]
     },
     {
       "lab": "OpenAI",
@@ -139,10 +172,10 @@
       "lab": "Google DeepMind",
       "clause": "C4",
       "rating": "Falls short",
-      "evidence": "No public whistleblowing policy as of Nov 2025. Google's Code of Conduct covers reporting and no-retaliation.",
-      "source": "FLI AI Safety Index",
-      "url": "https://futureoflife.org/wp-content/uploads/2025/11/Indicator-Whistleblowing_Policy_Transparency.pdf",
-      "date": "2025-11"
+      "evidence": "FLI's July 2026 review, using evidence up to 3 June, found no public whistleblowing policy. Google's Code of Conduct describes reporting channels and protection from retaliation.",
+      "source": "FLI AI Safety Index, Summer 2026 (p. 88)",
+      "url": "https://futureoflife.org/wp-content/uploads/2026/07/AI-Safety-Index-Summer-2026-Digital-14-Jul.pdf#page=89",
+      "date": "2026-07"
     },
     {
       "lab": "Google DeepMind",
@@ -157,10 +190,17 @@
       "lab": "xAI",
       "clause": "C4",
       "rating": "Falls short",
-      "evidence": "No public whistleblowing policy. Says staff can raise imminent safety threats with government agencies.",
-      "source": "FLI AI Safety Index",
-      "url": "https://futureoflife.org/wp-content/uploads/2025/11/Indicator-Whistleblowing_Policy_Transparency.pdf",
-      "date": "2025-11"
+      "evidence": "In July 2026, The Midas Project reported no public whistleblowing policy. It reported that xAI's June framework revision removed earlier language on whistleblower protections and anonymous reporting. The December 2025 framework contained those commitments.",
+      "source": "The Midas Project Watchtower",
+      "url": "https://www.themidasproject.com/watchtower/xai-07112026",
+      "date": "2026-07-11",
+      "additionalSources": [
+        {
+          "source": "xAI Frontier AI Framework, December 2025",
+          "url": "https://data.x.ai/2025-12-31-xai-frontier-artificial-intelligence-framework.pdf",
+          "date": "2025-12-30"
+        }
+      ]
     },
     {
       "lab": "Meta",
@@ -168,17 +208,24 @@
       "rating": "Falls short",
       "evidence": "In 2025 Meta used a non-disparagement clause in a former policy director's severance agreement to win an arbitration order stopping her promoting her memoir, Careless People.",
       "source": "TechCrunch",
-      "url": "https://techcrunch.com/2025/03/16/meta-takes-aim-at-ex-employees-memoir-careless-people",
+      "url": "https://techcrunch.com/2025/03/16/meta-takes-aim-at-ex-employees-memoir-careless-people/",
       "date": "2025-03-16"
     },
     {
       "lab": "Meta",
       "clause": "C4",
       "rating": "Falls short",
-      "evidence": "Its Code of Conduct refers to a whistleblower policy that isn't publicly available.",
-      "source": "FLI AI Safety Index",
-      "url": "https://futureoflife.org/wp-content/uploads/2025/11/Indicator-Whistleblowing_Policy_Transparency.pdf",
-      "date": "2025-11"
+      "evidence": "FLI's July 2026 review, using evidence up to 3 June, found Meta's full whistleblowing policy was not public. Its October framework says a policy exists and further AI reporting procedures are being developed; it does not publish the full policy.",
+      "source": "FLI AI Safety Index, Summer 2026 (p. 88)",
+      "url": "https://futureoflife.org/wp-content/uploads/2026/07/AI-Safety-Index-Summer-2026-Digital-14-Jul.pdf#page=89",
+      "date": "2026-07",
+      "additionalSources": [
+        {
+          "source": "Meta Superintelligence Scaling Framework v2.1 (section 2.3.1)",
+          "url": "https://research.meta.ai/static/meta-superintelligence-scaling-framework#page=12",
+          "date": "2026-10"
+        }
+      ]
     }
   ]
 }

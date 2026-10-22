@@ -9,11 +9,13 @@
 <meta property="og:url" content="https://labcanary.com/">
 <meta property="og:title" content="Lab Canary: can AI lab staff speak up?">
 <meta property="og:description" content="A scorecard of AI lab staff contracts against a simple standard: protect real secrets, never gag criticism or whistleblowing.">
-<meta property="og:image" content="https://labcanary.com/og.png">
+<meta property="og:image" content="https://labcanary.com/og.png?v=20261022-audit">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Lab Canary: can AI lab staff speak up?">
 <meta name="twitter:description" content="A scorecard of AI lab staff contracts against a simple standard: protect real secrets, never gag criticism or whistleblowing.">
-<meta name="twitter:image" content="https://labcanary.com/og.png">
+<meta name="twitter:image" content="https://labcanary.com/og.png?v=20261022-audit">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230e1626'/%3E%3Ccircle cx='16' cy='16' r='8' fill='%23e8b21c'/%3E%3C/svg%3E">
 <style>
 /* Layout: one dark page. Heatmap left, explanation and detail panel right; sections stack below. */
@@ -28,6 +30,8 @@ html { background: var(--bg); }
 body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.6 var(--sans); }
 a { color: var(--link); text-decoration: none; }
 a:hover { text-decoration: underline; }
+a:focus-visible, button:focus-visible, [tabindex="0"]:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 p { margin: 0; }
 h1, h2 { margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
 .wrap { max-width: 78rem; margin: 0 auto; padding-block: clamp(20px, 4vw, 44px); padding-left: max(16px, 4vw); padding-right: max(16px, 4vw); display: flex; flex-direction: column; gap: 56px; }
@@ -40,13 +44,17 @@ nav { display: flex; gap: 20px; font-size: .9rem; flex-wrap: wrap; }
 nav a { color: var(--fg); }
 .hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 72px); align-items: start; }
 @media (max-width: 52rem) { .hero { grid-template-columns: minmax(0, 1fr); } }
-.hm-wrap { overflow-x: auto; }
+.hero > div { min-width: 0; }
+.hm-wrap { overflow-x: auto; max-width: 100%; padding: 3px; margin: -3px; }
+.scroll-cue { margin-top: 10px; color: var(--fg); font-size: .8rem; text-align: center; }
+.score-method { margin-top: 12px; color: var(--muted); font-size: .8rem; }
 .hm { display: grid; grid-template-columns: minmax(8.5rem, 1.4fr) repeat(var(--cols, 5), minmax(3.2rem, 1fr)); gap: 6px; min-width: 26rem; }
 .hm-lab { font: 600 .74rem/1.2 var(--sans); text-align: center; align-self: end; color: var(--fg); padding: 0 0 6px; cursor: pointer; background: none; border: 0; }
 .hm-lab:hover, .hm-lab.on { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
 .hm-lab small { display: block; color: var(--accent); font-weight: 600; font-size: .65rem; }
 .hm-row { font-size: .85rem; font-weight: 600; display: flex; align-items: center; padding-right: 8px; min-height: 2.75rem; line-height: 1.25; }
 .hm-score { border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .88rem; color: #fff; min-height: 2.75rem; font-variant-numeric: tabular-nums; }
+.hm-unknown { position: relative; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: .78rem; font-variant-numeric: tabular-nums; }
 .hm-gap { grid-column: 1 / -1; height: 6px; }
 .tile { border: 0; border-radius: 6px; min-height: 2.75rem; cursor: pointer; font: .7rem var(--sans); color: rgba(255,255,255,.9); display: flex; align-items: center; justify-content: center; padding: 4px; outline: 2px solid transparent; outline-offset: 1px; transition: transform .12s ease, outline-color .12s ease; }
 .tile:hover { transform: scale(1.04); }
@@ -67,6 +75,8 @@ nav a { color: var(--fg); }
 .detail .t { font-size: 1.05rem; font-weight: 600; }
 .detail .small { font-size: .82rem; color: var(--muted); }
 .detail ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; font-size: .88rem; }
+.sources, .detail .sources { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: inherit; }
+.source-date { display: block; color: var(--muted); font-size: .78rem; }
 .badge { display: inline-flex; align-items: center; white-space: nowrap; font-size: .75rem; font-weight: 600; padding: 3px 9px; border-radius: 999px; width: fit-content; color: #fff; }
 .b-meets { background: var(--meets); } .b-partly { background: var(--partly); } .b-short { background: var(--short); } .b-np { background: #2d374d; }
 .links { display: flex; flex-direction: column; gap: 8px; font-size: .92rem; }
@@ -105,7 +115,6 @@ footer { border-top: 1px solid var(--line); padding-top: 16px; font-size: .82rem
   tbody tr { display: grid; grid-template-columns: auto auto 1fr; align-items: center; gap: 6px 10px; padding: 12px; border-bottom: 1px solid var(--line); }
   tbody td { border: 0; padding: 0; }
   tbody td:nth-child(4), tbody td:nth-child(5) { grid-column: 1 / -1; }
-  tbody td:nth-child(6) { grid-column: 1 / -1; color: var(--muted); font-size: .78rem; }
   tbody td[colspan] { grid-column: 1 / -1; }
 }
 @media (prefers-reduced-motion: reduce) { .tile { transition: none; } .tile:hover { transform: none; } }
@@ -121,13 +130,15 @@ footer { border-top: 1px solid var(--line); padding-top: 16px; font-size: .82rem
   <main style="display:flex;flex-direction:column;gap:56px">
     <section class="hero" id="scorecard">
       <div>
-        <div class="hm-wrap"><div class="hm" id="hm" aria-label="Ratings by lab and clause"></div></div>
+        <div class="hm-wrap" id="hm-wrap" role="region" aria-label="Ratings by lab and clause"><div class="hm" id="hm"></div></div>
+        <p class="scroll-cue" id="scroll-cue" hidden>Scroll sideways to see all five labs. Use the arrow keys when the grid is focused.</p>
         <div class="legend">
           <span><i style="background:var(--meets)"></i>Meets</span>
           <span><i style="background:var(--partly)"></i>Partly</span>
           <span><i style="background:var(--short)"></i>Falls short</span>
           <span><i style="background:repeating-linear-gradient(135deg,var(--np) 0 3px,var(--np2) 3px 6px);border:1px solid var(--line)"></i>Not public</span>
         </div>
+        <p class="score-method" id="score-method"></p>
         <p class="hm-foot" id="asof">Public evidence only</p>
       </div>
       <div class="side">
@@ -154,7 +165,7 @@ footer { border-top: 1px solid var(--line); padding-top: 16px; font-size: .82rem
       <div class="filters" id="filters" role="group" aria-label="Filter by lab"></div>
       <div class="ev-wrap">
         <table>
-          <thead><tr><th>Lab</th><th>Clause</th><th>Rating</th><th>Evidence</th><th>Source</th><th>Date</th></tr></thead>
+          <thead><tr><th scope="col">Lab</th><th scope="col">Clause</th><th scope="col">Rating</th><th scope="col">Evidence</th><th scope="col">Sources and dates</th></tr></thead>
           <tbody id="ev"></tbody>
         </table>
       </div>
@@ -167,6 +178,7 @@ footer { border-top: 1px solid var(--line); padding-top: 16px; font-size: .82rem
         <div class="step"><h3>2. Get scored</h3><p>Each clause gets a rating, with the exact wording that earned it.</p></div>
         <div class="step"><h3>3. Shown here</h3><p>Opted-in labs are marked. Everyone else stays rated on public evidence only.</p></div>
       </div>
+      <p><a href="https://github.com/johnny1011/labcanary/issues/new" id="submit-terms">Submit your published terms →</a></p>
     </section>
   </main>
 
@@ -181,7 +193,7 @@ footer { border-top: 1px solid var(--line); padding-top: 16px; font-size: .82rem
 const REPO_URL = "https://github.com/johnny1011/labcanary";
 
 const CLS = { "Meets": "meets", "Partly": "partly", "Falls short": "short", "Not public": "np" };
-const NOT_PUBLIC = "Contracts aren't public, so there's no way to check.";
+const NOT_PUBLIC = "There isn't enough public evidence to assess this clause.";
 let D = null, sel = null, labFilter = "All";
 
 const $ = (id) => document.getElementById(id);
@@ -198,7 +210,8 @@ function mix(a, b, t) {
   const A = p(a), B = p(b);
   return "rgb(" + A.map((v, i) => Math.round(v + (B[i] - v) * t)).join(",") + ")";
 }
-const scoreColor = (v) => mix("#e3321c", "#e88a0c", Math.min(1, v / 0.5));
+// Both ends of this gradient have at least 6.7:1 contrast with white text.
+const scoreColor = (v) => mix("#7c1f27", "#8c4a12", Math.min(1, v / 0.5));
 
 function cell(lab, clause) {
   return D.ratings.find(r => r.lab === lab && r.clause === clause) ||
@@ -219,24 +232,81 @@ function drawHeatmap() {
   hm.style.setProperty("--cols", D.labs.length);
   hm.append(el("div"));
   D.labs.forEach(l => {
-    const b = el("button", "hm-lab" + (sel && sel.lab === l && !sel.clause ? " on" : ""), l);
+    const b = el("button", "hm-lab", l);
+    b.dataset.lab = l;
+    b.setAttribute("aria-label", l + " summary");
+    b.setAttribute("aria-controls", "detail");
     if (tally(l).optedIn) b.append(el("small", null, "opted in"));
-    b.addEventListener("click", () => { sel = { lab: l }; drawHeatmap(); drawDetail(); });
+    b.addEventListener("click", () => { sel = { lab: l }; updateSelection(); drawDetail(); });
     hm.append(b);
   });
-  hm.append(el("div", "hm-row", "Score"));
-  D.labs.forEach(l => { const s = tally(l).score; const t = el("div", "hm-score", pct(s)); t.style.background = scoreColor(s); hm.append(t); });
+  hm.append(el("div", "hm-row", "Publicly evidenced score"));
+  D.labs.forEach(l => {
+    const s = tally(l).score, t = el("div", "hm-score", pct(s));
+    t.style.background = scoreColor(s);
+    t.setAttribute("role", "img");
+    t.setAttribute("aria-label", l + " publicly evidenced score: " + pct(s));
+    hm.append(t);
+  });
+  hm.append(el("div", "hm-row", "Not public"));
+  D.labs.forEach(l => {
+    const count = tally(l).np, t = el("div", "hm-unknown");
+    t.append(el("span", "sr-only", l + ": "), count + "/" + D.criteria.length, el("span", "sr-only", " clauses not public"));
+    hm.append(t);
+  });
   hm.append(el("div", "hm-gap"));
   D.criteria.forEach(c => {
     hm.append(el("div", "hm-row", c.name));
     D.labs.forEach(l => {
       const r = cell(l, c.id);
-      const b = el("button", "tile t-" + CLS[r.rating] + (sel && sel.lab === l && sel.clause === c.id ? " on" : ""), r.rating);
+      const b = el("button", "tile t-" + CLS[r.rating], r.rating);
+      b.dataset.lab = l;
+      b.dataset.clause = c.id;
       b.setAttribute("aria-label", l + ", " + c.name + ": " + r.rating);
-      b.addEventListener("click", () => { sel = { lab: l, clause: c.id }; drawHeatmap(); drawDetail(); });
+      b.setAttribute("aria-controls", "detail");
+      b.addEventListener("click", () => { sel = { lab: l, clause: c.id }; updateSelection(); drawDetail(); });
       hm.append(b);
     });
   });
+  updateSelection();
+  $("score-method").textContent = "Publicly evidenced score = (Meets + ½ × Partly) ÷ " + D.criteria.length + " × 100%, rounded to the nearest whole percent. “Not public” means unknown; “Falls short” means the evidence does not meet the clause. Both earn zero points.";
+  updateScrollCue();
+}
+
+function updateSelection() {
+  $("hm").querySelectorAll("button").forEach(b => {
+    const selected = Boolean(sel && sel.lab === b.dataset.lab && (sel.clause || "") === (b.dataset.clause || ""));
+    b.classList.toggle("on", selected);
+    b.setAttribute("aria-pressed", String(selected));
+  });
+}
+
+function updateScrollCue() {
+  const wrap = $("hm-wrap"), overflows = wrap.scrollWidth > wrap.clientWidth + 1;
+  $("scroll-cue").hidden = !overflows;
+  if (overflows) {
+    wrap.setAttribute("tabindex", "0");
+    wrap.setAttribute("aria-describedby", "scroll-cue");
+  } else {
+    wrap.removeAttribute("tabindex");
+    wrap.removeAttribute("aria-describedby");
+  }
+}
+
+function appendSources(container, rating) {
+  const sources = [rating, ...(rating.additionalSources || [])].filter(s => s.url);
+  if (!sources.length) return false;
+  const list = el("ul", "sources");
+  sources.forEach(source => {
+    const item = el("li"), a = el("a", null, source.source || "Source");
+    a.href = source.url;
+    a.target = "_blank";
+    a.rel = "noopener";
+    item.append(a, el("span", "source-date", fmtDate(source.date)));
+    list.append(item);
+  });
+  container.append(list);
+  return true;
 }
 
 function drawTakeaway() {
@@ -245,8 +315,8 @@ function drawTakeaway() {
   const full = D.labs.filter(l => tally(l).meets === D.criteria.length).length;
   const t = $("takeaway");
   t.textContent = "";
-  t.append(full ? full + " lab(s) meet the full standard. " : "No lab meets the full standard. ");
-  t.append(el("b", null, String(np)), " of ", el("b", null, String(cells.length)), " checks can't be made at all, because the contracts aren't public. That's the case for labs opting in.");
+  t.append(full ? full + (full === 1 ? " lab publicly demonstrates" : " labs publicly demonstrate") + " meeting the full standard. " : "No lab publicly demonstrates meeting the full standard. ");
+  t.append(el("b", null, String(np)), " of ", el("b", null, String(cells.length)), " checks lack enough public evidence to assess. Publishing the relevant terms would let us check them.");
 }
 
 function drawDetail() {
@@ -257,12 +327,13 @@ function drawDetail() {
     const r = cell(sel.lab, sel.clause), c = D.criteria.find(x => x.id === sel.clause);
     d.append(el("span", "k", sel.lab + " · " + c.id), el("span", "t", c.name), el("span", "badge b-" + CLS[r.rating], r.rating));
     d.append(el("p", "small", "Standard: " + c.standard), el("p", null, r.evidence));
-    if (r.url) { const p = el("p", "small"); const a = el("a", null, r.source + " →"); a.href = r.url; a.target = "_blank"; a.rel = "noopener"; p.append(a, " " + fmtDate(r.date)); d.append(p); }
+    const sources = el("div", "small");
+    if (appendSources(sources, r)) d.append(sources);
     return;
   }
   const t = tally(sel.lab);
   d.append(el("span", "k", "Lab summary"), el("span", "t", sel.lab));
-  d.append(el("p", null, "Score " + pct(t.score) + ": " + t.meets + " met, " + t.partly + " partly, " + t.short + " falling short, " + t.np + " not public. " + (t.optedIn ? "Opted in." : "Not opted in.")));
+  d.append(el("p", null, "Publicly evidenced score " + pct(t.score) + ": " + t.meets + " met, " + t.partly + " partly, " + t.short + " falling short, " + t.np + " not public. " + (t.optedIn ? "Opted in." : "Not opted in.")));
   const ul = el("ul");
   D.criteria.forEach(c => { const r = cell(sel.lab, c.id); if (r.url) ul.append(el("li", null, c.name + " (" + r.rating.toLowerCase() + "): " + r.evidence)); });
   if (ul.childNodes.length) d.append(ul);
@@ -283,8 +354,14 @@ function drawFilters() {
   f.textContent = "";
   ["All", ...D.labs].forEach(l => {
     const b = el("button", null, l);
+    b.dataset.lab = l;
     b.setAttribute("aria-pressed", String(labFilter === l));
-    b.addEventListener("click", () => { labFilter = l; drawFilters(); drawEvidence(); });
+    b.setAttribute("aria-controls", "ev");
+    b.addEventListener("click", () => {
+      labFilter = l;
+      f.querySelectorAll("button").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.lab === labFilter)));
+      drawEvidence();
+    });
     f.append(b);
   });
 }
@@ -299,11 +376,11 @@ function drawEvidence() {
     const st = el("td"); st.append(el("span", "badge b-" + CLS[r.rating], r.rating)); tr.append(st);
     tr.append(el("td", null, r.evidence));
     const src = el("td");
-    if (r.url) { const a = el("a", null, r.source); a.href = r.url; a.target = "_blank"; a.rel = "noopener"; src.append(a); } else src.textContent = "—";
-    tr.append(src, el("td", "nowrap", fmtDate(r.date)));
+    if (!appendSources(src, r)) src.textContent = "—";
+    tr.append(src);
     tb.append(tr);
   });
-  if (labFilter === "All") { const tr = el("tr"); const td = el("td", "sub", "Showing every rating with a public source. Pick a lab to see all seven clauses."); td.colSpan = 6; tr.append(td); tb.append(tr); }
+  if (labFilter === "All") { const tr = el("tr"); const td = el("td", "sub", "Showing every rating with a public source. Pick a lab to see all seven clauses."); td.colSpan = 5; tr.append(td); tb.append(tr); }
 }
 
 async function load() {
@@ -318,6 +395,8 @@ async function load() {
     const first = D.ratings.find(r => r.rating === "Falls short");
     if (first) sel = { lab: first.lab, clause: first.clause };
     drawHeatmap(); drawTakeaway(); drawDetail(); drawStandard(); drawFilters(); drawEvidence();
+    window.addEventListener("resize", updateScrollCue);
+    if (typeof ResizeObserver !== "undefined") new ResizeObserver(updateScrollCue).observe($("hm-wrap"));
   } catch (e) {
     $("detail").replaceChildren(el("p", "err", "Couldn't load the scorecard data. Try refreshing the page."));
   }
