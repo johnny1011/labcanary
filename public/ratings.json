@@ -163,10 +163,17 @@
       "lab": "Google DeepMind",
       "clause": "C1",
       "rating": "Falls short",
-      "evidence": "Staff told the BBC their contracts bar them from publicly criticising Google. A former research engineer said: \"In principle I'm not allowed to criticise Google for the duration of my life.\" Google didn't address the contract terms.",
+      "evidence": "Google employees told the BBC that their employment contracts stop staff publicly criticising the company. A Google DeepMind research engineer who had just resigned said: \"In principle I'm not allowed to criticise Google for the duration of my life.\" Google's statement to the BBC, as published, said staff have dedicated channels to raise concerns and that it prohibits retaliation. It didn't mention employment contracts. FLI's July 2026 index, partly using Google's private survey answers, gave Google 9 out of 10 for an explicit statement that NDAs and non-disparagement agreements can't stop safety-related whistleblowing. The contracts themselves aren't public.",
       "source": "BBC (republished on Yahoo News)",
       "url": "https://www.yahoo.com/news/us/articles/google-experiences-resignation-backlash-over-154646801.html",
-      "date": "2026-10-21"
+      "date": "2026-10-21",
+      "additionalSources": [
+        {
+          "source": "FLI AI Safety Index, Summer 2026 (p. 90)",
+          "url": "https://futureoflife.org/wp-content/uploads/2026/07/AI-Safety-Index-Summer-2026-Digital-14-Jul.pdf#page=91",
+          "date": "2026-07"
+        }
+      ]
     },
     {
       "lab": "Google DeepMind",
