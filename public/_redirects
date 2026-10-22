@@ -1,0 +1,12 @@
+# Short links for posts and replies. Each one lands on the home page with tracking tags PostHog can read.
+# Format: /short-path  destination  status
+/x1  /?utm_source=x&utm_medium=reply&utm_campaign=launch&utm_content=x1  302
+/x2  /?utm_source=x&utm_medium=reply&utm_campaign=launch&utm_content=x2  302
+/x3  /?utm_source=x&utm_medium=reply&utm_campaign=launch&utm_content=x3  302
+/x4  /?utm_source=x&utm_medium=reply&utm_campaign=launch&utm_content=x4  302
+/x5  /?utm_source=x&utm_medium=reply&utm_campaign=launch&utm_content=x5  302
+/x6  /?utm_source=x&utm_medium=reply&utm_campaign=launch&utm_content=x6  302
+/x7  /?utm_source=x&utm_medium=reply&utm_campaign=launch&utm_content=x7  302
+/x8  /?utm_source=x&utm_medium=reply&utm_campaign=launch&utm_content=x8  302
+/x9  /?utm_source=x&utm_medium=reply&utm_campaign=launch&utm_content=x9  302
+/x10  /?utm_source=x&utm_medium=reply&utm_campaign=launch&utm_content=x10  302
