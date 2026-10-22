@@ -42,6 +42,10 @@ h1, h2 { margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
 .brand small { color: var(--muted); font-size: .85rem; }
 nav { display: flex; gap: 20px; font-size: .9rem; flex-wrap: wrap; }
 nav a { color: var(--fg); }
+.draft { color: var(--accent); font-weight: 600; white-space: nowrap; }
+.note { margin-top: -28px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px; display: flex; flex-direction: column; gap: 4px; }
+.note p { max-width: 75ch; }
+.note .note-k { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
 .hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 72px); align-items: start; }
 @media (max-width: 52rem) { .hero { grid-template-columns: minmax(0, 1fr); } }
 .hero > div { min-width: 0; }
@@ -140,9 +144,14 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
 <body>
 <div class="wrap">
   <header class="top">
-    <div class="brand"><span class="brand-dot" aria-hidden="true"></span><div><h1>Lab Canary</h1><small>Speak-up scorecard for AI labs</small></div></div>
+    <div class="brand"><span class="brand-dot" aria-hidden="true"></span><div><h1>Lab Canary</h1><small>Speak-up scorecard for AI labs · <span class="draft">Rough first version</span></small></div></div>
     <nav aria-label="Sections"><a href="#scorecard">Scorecard</a><a href="#standard">The standard</a><a href="#evidence">Evidence</a><a href="#opt-in">Opt in</a></nav>
   </header>
+
+  <aside class="note" aria-label="Why I made this">
+    <p class="note-k">Why I made this</p>
+    <p>Hi, I'm Johnny. I made this after reading that Google DeepMind staff say their contracts stop them criticising the company for life, and wondering how the other labs compare. It's a rough first version that I built quickly with help from Claude. Every rating links to its source, but I'll have got some things wrong, so please tell me.</p>
+  </aside>
 
   <main style="display:flex;flex-direction:column;gap:56px">
     <section class="hero" id="scorecard">
@@ -202,7 +211,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
   </main>
 
   <footer>
-    <p>Made by Jonathan Hind. Ratings use public evidence only. "Not public" scores zero. That's a score for openness, not a finding that a lab's terms are bad. A lab that wants credit can publish its terms. Score = clauses met, plus half for each partly met, out of seven.</p>
+    <p>Made by Jonathan Hind, built with help from Claude. Ratings use public evidence only. "Not public" scores zero. That's a score for openness, not a finding that a lab's terms are bad. A lab that wants credit can publish its terms. Score = clauses met, plus half for each partly met, out of seven.</p>
     <p id="correct">Spot something wrong? Reply to <a href="https://x.com/import_hind">@import_hind</a> on X.</p>
   </footer>
 </div>
