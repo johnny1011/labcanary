@@ -145,7 +145,7 @@
       "lab": "OpenAI",
       "clause": "C6",
       "rating": "Not public",
-      "evidence": "Contracts aren't public. In Oct 2026 OpenAI fired three staff for allegedly mishandling confidential information, some shared with an outside AI evaluation group. OpenAI says it wasn't about raising safety concerns.",
+      "evidence": "Contracts aren't public. The Register reported on 2 Oct 2026 that OpenAI had dismissed three staff, saying they mishandled sensitive company information. Some of it was allegedly shared with an outside AI evaluation group. OpenAI says the dismissals weren't about raising safety concerns.",
       "source": "The Register",
       "url": "https://www.theregister.com/ai-and-ml/2026/10/02/openai-shows-three-staff-the-door-over-alleged-information-misuse/5300820",
       "date": "2026-10-02"
