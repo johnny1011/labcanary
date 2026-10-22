@@ -4,18 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lab Canary</title>
-<meta name="description" content="Can people at AI labs speak up? A scorecard of AI lab staff contracts against a simple standard: protect real secrets, never gag criticism or whistleblowing.">
+<meta name="description" content="Can people at AI labs speak up? A scorecard of what's publicly known about AI lab staff contracts against a simple standard: protect real secrets, never gag criticism or whistleblowing.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://labcanary.com/">
 <meta property="og:title" content="Lab Canary: can AI lab staff speak up?">
-<meta property="og:description" content="A scorecard of AI lab staff contracts against a simple standard: protect real secrets, never gag criticism or whistleblowing.">
-<meta property="og:image" content="https://labcanary.com/og.png?v=20261022-audit">
+<meta property="og:description" content="A scorecard of what's publicly known about AI lab staff contracts against a simple standard: protect real secrets, never gag criticism or whistleblowing.">
+<meta property="og:image" content="https://labcanary.com/og.png?v=20261022-legal">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Lab Canary: can AI lab staff speak up?">
-<meta name="twitter:description" content="A scorecard of AI lab staff contracts against a simple standard: protect real secrets, never gag criticism or whistleblowing.">
-<meta name="twitter:image" content="https://labcanary.com/og.png?v=20261022-audit">
+<meta name="twitter:description" content="A scorecard of what's publicly known about AI lab staff contracts against a simple standard: protect real secrets, never gag criticism or whistleblowing.">
+<meta name="twitter:image" content="https://labcanary.com/og.png?v=20261022-legal">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230e1626'/%3E%3Ccircle cx='16' cy='16' r='8' fill='%23e8b21c'/%3E%3C/svg%3E">
 <style>
 /* Layout: one dark page. Heatmap left, explanation and detail panel right; sections stack below. */
@@ -157,15 +157,16 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
         </div>
         <section class="score-comparison" id="score-comparison" aria-labelledby="score-comparison-title" hidden></section>
         <p class="score-method" id="score-method"></p>
+        <p class="score-method">“Meets” needs a written policy or the contract wording. One public statement, such as an interview comment or a statement reported in the press, earns “Partly” at most. “Falls short” can rest on credible reporting, such as a news report quoting staff. When it does, the evidence says so and includes the lab’s response.</p>
         <p class="hm-foot" id="asof">Public evidence only</p>
       </div>
       <div class="side">
-        <p>Can people who work at AI labs tell the public when something's wrong? Lab Canary checks lab contracts against a simple standard: protect real secrets, never gag criticism or whistleblowing.</p>
+        <p>Can people who work at AI labs tell the public when something's wrong? Lab Canary checks what's publicly known about lab contracts and speak-up policies against a simple standard: protect real secrets, never gag criticism or whistleblowing.</p>
         <p id="takeaway"></p>
         <p class="lead">Click a tile to see the evidence. Click a lab's name for its summary.</p>
         <div class="detail" id="detail" aria-live="polite"></div>
         <div class="links">
-          <a href="#standard">The model contract, in seven clauses →</a>
+          <a href="#standard">The standard, in seven clauses →</a>
           <a href="#evidence">All the evidence and sources →</a>
           <a href="#opt-in">How a lab can opt in →</a>
         </div>
@@ -174,7 +175,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
 
     <section class="sec" id="standard">
       <h2>The standard</h2>
-      <p class="sub">A model contract in seven clauses. A starting point for discussion, not legal advice.</p>
+      <p class="sub">Seven principles a lab's staff contracts should meet. They're the yardstick for this scorecard, not contract wording or legal advice. Employment law differs between countries, so anyone drafting or signing a contract should get their own lawyer.</p>
       <div class="std" id="std"></div>
     </section>
 
@@ -201,7 +202,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
   </main>
 
   <footer>
-    <p>Made by Jonathan Hind. Ratings use public evidence only, and "not public" means it can't be checked, not that it's bad. Score = clauses met, plus half for each partly met, out of seven.</p>
+    <p>Made by Jonathan Hind. Ratings use public evidence only. "Not public" scores zero. That's a score for openness, not a finding that a lab's terms are bad. A lab that wants credit can publish its terms. Score = clauses met, plus half for each partly met, out of seven.</p>
     <p id="correct">Spot something wrong? Reply to <a href="https://x.com/import_hind">@import_hind</a> on X.</p>
   </footer>
 </div>
@@ -287,7 +288,7 @@ function drawHeatmap() {
     });
   });
   updateSelection();
-  $("score-method").textContent = "Publicly evidenced score = (Meets + ½ × Partly) ÷ " + D.criteria.length + " × 100%, rounded to the nearest whole percent. “Not public” means unknown; “Falls short” means the evidence does not meet the clause. Both earn zero points.";
+  $("score-method").textContent = "Publicly evidenced score = (Meets + ½ × Partly) ÷ " + D.criteria.length + " × 100%, rounded to the nearest whole percent. “Not public” means there isn’t enough public evidence to check; “Falls short” means the public evidence shows it doesn’t meet the clause. Both score zero.";
   updateScrollCue();
 }
 
@@ -374,7 +375,7 @@ function drawTakeaway() {
   const t = $("takeaway");
   t.textContent = "";
   t.append(full ? full + (full === 1 ? " lab publicly demonstrates" : " labs publicly demonstrate") + " meeting the full standard. " : "No lab publicly demonstrates meeting the full standard. ");
-  t.append(el("b", null, String(np)), " of ", el("b", null, String(cells.length)), " checks lack enough public evidence to assess. Publishing the relevant terms would let us check them.");
+  t.append(el("b", null, String(np)), " of ", el("b", null, String(cells.length)), " checks lack enough public evidence to assess. “Not public” scores zero. A lab that wants credit can publish its terms.");
 }
 
 function drawDetail() {
@@ -450,8 +451,6 @@ async function load() {
     D = { criteria, ...ratings };
     $("asof").textContent = "Public evidence as of " + fmtDate(D.updated);
     if (REPO_URL) { const p = $("correct"); p.textContent = ""; const a = el("a", null, "Suggest a correction on GitHub"); a.href = REPO_URL + "/issues"; const x = el("a", null, "@import_hind"); x.href = "https://x.com/import_hind"; p.append("Spot something wrong? ", a, " or reply to ", x, " on X."); }
-    const first = D.ratings.find(r => r.rating === "Falls short");
-    if (first) sel = { lab: first.lab, clause: first.clause };
     drawHeatmap(); drawScoreComparison(); drawTakeaway(); drawDetail(); drawStandard(); drawFilters(); drawEvidence();
     window.addEventListener("resize", updateScrollCue);
     if (typeof ResizeObserver !== "undefined") new ResizeObserver(updateScrollCue).observe($("hm-wrap"));

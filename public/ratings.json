@@ -86,7 +86,7 @@
       "lab": "OpenAI",
       "clause": "C1",
       "rating": "Partly",
-      "evidence": "Vox reported in 2024 that exit agreements barred ex-staff from criticising OpenAI for life, at the risk of losing vested equity. In May 2024 OpenAI released most former staff and dropped these terms from exit paperwork, except where they're mutual.",
+      "evidence": "Vox reported in May 2024 that OpenAI's exit agreements barred ex-staff from criticising the company for life, at the risk of losing vested equity. OpenAI told Vox it had never cancelled anyone's vested equity. Days later, Bloomberg reported, OpenAI told former staff it would not cancel vested units, would release them from non-disparagement agreements unless the clause was mutual, and would remove the language from exit paperwork.",
       "source": "Bloomberg via BNN (archived)",
       "url": "https://web.archive.org/web/20240619194608/https://www.bnnbloomberg.ca/openai-releases-former-staffers-from-non-disparagement-clauses-1.2076978",
       "date": "2024-05-23",
@@ -130,7 +130,14 @@
       "evidence": "Published a Raising Concerns Policy in Oct 2024 and an expanded version in Jan 2026.",
       "source": "AIWI",
       "url": "https://aiwi.org/openai-whistleblowing-policy-aiwi-commentary/",
-      "date": "2026-01-27"
+      "date": "2026-01-27",
+      "additionalSources": [
+        {
+          "source": "OpenAI Raising Concerns Policy",
+          "url": "https://cdn.openai.com/policies/openai-raising-concerns-policy.pdf",
+          "date": "2026-01-12"
+        }
+      ]
     },
     {
       "lab": "OpenAI",
@@ -145,7 +152,7 @@
       "lab": "OpenAI",
       "clause": "C6",
       "rating": "Not public",
-      "evidence": "Contracts aren't public. In Oct 2026 OpenAI fired three staff for allegedly mishandling confidential information, some shared with an outside AI evaluation group. OpenAI says it wasn't about raising safety concerns.",
+      "evidence": "Contracts aren't public. The Register reported on 2 Oct 2026 that OpenAI had dismissed three staff, saying they mishandled sensitive company information. Some of it was allegedly shared with an outside AI evaluation group. OpenAI says the dismissals weren't about raising safety concerns.",
       "source": "The Register",
       "url": "https://www.theregister.com/ai-and-ml/2026/10/02/openai-shows-three-staff-the-door-over-alleged-information-misuse/5300820",
       "date": "2026-10-02"
@@ -163,10 +170,17 @@
       "lab": "Google DeepMind",
       "clause": "C1",
       "rating": "Falls short",
-      "evidence": "Staff told the BBC their contracts bar them from publicly criticising Google. A former research engineer said: \"In principle I'm not allowed to criticise Google for the duration of my life.\" Google didn't address the contract terms.",
+      "evidence": "Google employees told the BBC that their employment contracts stop staff publicly criticising the company. A Google DeepMind research engineer who had just resigned said: \"In principle I'm not allowed to criticise Google for the duration of my life.\" Google's statement to the BBC, as published, said staff have dedicated channels to raise concerns and that it prohibits retaliation. It didn't mention employment contracts. FLI's July 2026 index, partly using Google's private survey answers, gave Google 9 out of 10 for an explicit statement that NDAs and non-disparagement agreements can't stop safety-related whistleblowing. The contracts themselves aren't public.",
       "source": "BBC (republished on Yahoo News)",
       "url": "https://www.yahoo.com/news/us/articles/google-experiences-resignation-backlash-over-154646801.html",
-      "date": "2026-10-21"
+      "date": "2026-10-21",
+      "additionalSources": [
+        {
+          "source": "FLI AI Safety Index, Summer 2026 (p. 90)",
+          "url": "https://futureoflife.org/wp-content/uploads/2026/07/AI-Safety-Index-Summer-2026-Digital-14-Jul.pdf#page=91",
+          "date": "2026-07"
+        }
+      ]
     },
     {
       "lab": "Google DeepMind",
@@ -206,7 +220,7 @@
       "lab": "Meta",
       "clause": "C1",
       "rating": "Falls short",
-      "evidence": "In 2025 Meta used a non-disparagement clause in a former policy director's severance agreement to win an arbitration order stopping her promoting her memoir, Careless People.",
+      "evidence": "In March 2025, at Meta's request, an arbitrator issued an interim order temporarily barring a former Facebook director of global public policy from promoting her memoir, Careless People, while the arbitration continued. The arbitrator found Meta had a valid argument that she may have breached the non-disparagement agreement she signed when she left in 2017. Meta called the book a mix of out-of-date claims and false accusations. Meta's current terms aren't public.",
       "source": "TechCrunch",
       "url": "https://techcrunch.com/2025/03/16/meta-takes-aim-at-ex-employees-memoir-careless-people/",
       "date": "2025-03-16"
