@@ -130,7 +130,14 @@
       "evidence": "Published a Raising Concerns Policy in Oct 2024 and an expanded version in Jan 2026.",
       "source": "AIWI",
       "url": "https://aiwi.org/openai-whistleblowing-policy-aiwi-commentary/",
-      "date": "2026-01-27"
+      "date": "2026-01-27",
+      "additionalSources": [
+        {
+          "source": "OpenAI Raising Concerns Policy",
+          "url": "https://cdn.openai.com/policies/openai-raising-concerns-policy.pdf",
+          "date": "2026-01-12"
+        }
+      ]
     },
     {
       "lab": "OpenAI",
