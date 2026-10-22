@@ -67,9 +67,9 @@
       "lab": "OpenAI",
       "clause": "C1",
       "rating": "Partly",
-      "evidence": "In 2024, exit agreements reportedly barred ex-staff from criticising OpenAI for life, at the risk of losing vested equity. In May 2024 OpenAI released most former staff and dropped these terms from exit paperwork, except where they're mutual.",
-      "source": "Bloomberg via BNN",
-      "url": "https://www.bnnbloomberg.ca/openai-releases-former-staffers-from-non-disparagement-clauses-1.2076978",
+      "evidence": "Vox reported in 2024 that exit agreements barred ex-staff from criticising OpenAI for life, at the risk of losing vested equity. In May 2024 OpenAI released most former staff and dropped these terms from exit paperwork, except where they're mutual.",
+      "source": "Bloomberg via BNN (archived)",
+      "url": "https://web.archive.org/web/20240619194608/https://www.bnnbloomberg.ca/openai-releases-former-staffers-from-non-disparagement-clauses-1.2076978",
       "date": "2024-05-23"
     },
     {
@@ -77,15 +77,15 @@
       "clause": "C2",
       "rating": "Meets",
       "evidence": "May 2024: said it would not cancel any vested equity, even if former staff criticise the company.",
-      "source": "Bloomberg via BNN",
-      "url": "https://www.bnnbloomberg.ca/openai-releases-former-staffers-from-non-disparagement-clauses-1.2076978",
+      "source": "Bloomberg via BNN (archived)",
+      "url": "https://web.archive.org/web/20240619194608/https://www.bnnbloomberg.ca/openai-releases-former-staffers-from-non-disparagement-clauses-1.2076978",
       "date": "2024-05-23"
     },
     {
       "lab": "OpenAI",
       "clause": "C3",
       "rating": "Partly",
-      "evidence": "Its Jan 2026 policy says staff are always free to report concerns to an outside authority, without telling OpenAI first. In 2024, whistleblowers told the SEC its old agreements discouraged this; OpenAI said its policy protects such disclosures.",
+      "evidence": "Its Jan 2026 policy says staff are always free to report concerns to an outside authority, without telling OpenAI first. In 2024, whistleblowers told the SEC its old agreements discouraged this, AP reported; OpenAI said its policies protect such disclosures.",
       "source": "OpenAI Raising Concerns Policy",
       "url": "https://cdn.openai.com/policies/openai-raising-concerns-policy.pdf",
       "date": "2026-01-12"
@@ -130,7 +130,7 @@
       "lab": "Google DeepMind",
       "clause": "C1",
       "rating": "Falls short",
-      "evidence": "Staff told the BBC their contracts bar them from publicly criticising Google. A former research engineer said she's not allowed to criticise Google \"for the duration of my life\". Google didn't address the contract terms.",
+      "evidence": "Staff told the BBC their contracts bar them from publicly criticising Google. A former research engineer said: \"In principle I'm not allowed to criticise Google for the duration of my life.\" Google didn't address the contract terms.",
       "source": "BBC (republished on Yahoo News)",
       "url": "https://www.yahoo.com/news/us/articles/google-experiences-resignation-backlash-over-154646801.html",
       "date": "2026-10-21"
@@ -139,10 +139,10 @@
       "lab": "Google DeepMind",
       "clause": "C4",
       "rating": "Falls short",
-      "evidence": "No public whistleblowing policy as of Dec 2025. Google's Code of Conduct covers reporting and no-retaliation.",
-      "source": "AIWI",
-      "url": "https://aiwi.org/publishyourpolicies/",
-      "date": "2025-12-08"
+      "evidence": "No public whistleblowing policy as of Nov 2025. Google's Code of Conduct covers reporting and no-retaliation.",
+      "source": "FLI AI Safety Index",
+      "url": "https://futureoflife.org/wp-content/uploads/2025/11/Indicator-Whistleblowing_Policy_Transparency.pdf",
+      "date": "2025-11"
     },
     {
       "lab": "Google DeepMind",
