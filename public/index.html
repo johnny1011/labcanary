@@ -156,6 +156,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
         </div>
         <section class="score-comparison" id="score-comparison" aria-labelledby="score-comparison-title" hidden></section>
         <p class="score-method" id="score-method"></p>
+        <p class="score-method">“Meets” needs a written policy or the contract wording. One public statement, such as an interview comment or a statement reported in the press, earns “Partly” at most.</p>
         <p class="hm-foot" id="asof">Public evidence only</p>
       </div>
       <div class="side">
@@ -200,7 +201,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
   </main>
 
   <footer>
-    <p>Made by Jonathan Hind. Ratings use public evidence only, and "not public" means it can't be checked, not that it's bad. Score = clauses met, plus half for each partly met, out of seven.</p>
+    <p>Made by Jonathan Hind. Ratings use public evidence only. "Not public" scores zero. A lab that wants credit can publish its terms. Score = clauses met, plus half for each partly met, out of seven.</p>
     <p id="correct">Spot something wrong? Reply to <a href="https://x.com/import_hind">@import_hind</a> on X.</p>
   </footer>
 </div>
@@ -286,7 +287,7 @@ function drawHeatmap() {
     });
   });
   updateSelection();
-  $("score-method").textContent = "Publicly evidenced score = (Meets + ½ × Partly) ÷ " + D.criteria.length + " × 100%, rounded to the nearest whole percent. “Not public” means unknown; “Falls short” means the evidence does not meet the clause. Both earn zero points.";
+  $("score-method").textContent = "Publicly evidenced score = (Meets + ½ × Partly) ÷ " + D.criteria.length + " × 100%, rounded to the nearest whole percent. “Not public” means we couldn’t check; “Falls short” means we checked and it doesn’t meet the clause. Both score zero.";
   updateScrollCue();
 }
 
@@ -373,7 +374,7 @@ function drawTakeaway() {
   const t = $("takeaway");
   t.textContent = "";
   t.append(full ? full + (full === 1 ? " lab publicly demonstrates" : " labs publicly demonstrate") + " meeting the full standard. " : "No lab publicly demonstrates meeting the full standard. ");
-  t.append(el("b", null, String(np)), " of ", el("b", null, String(cells.length)), " checks lack enough public evidence to assess. Publishing the relevant terms would let us check them.");
+  t.append(el("b", null, String(np)), " of ", el("b", null, String(cells.length)), " checks lack enough public evidence to assess. “Not public” scores zero. A lab that wants credit can publish its terms.");
 }
 
 function drawDetail() {
