@@ -213,14 +213,14 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
 
   <footer>
     <p>Made by Jonathan Hind, built with help from Claude. Ratings use public evidence only. "Not public" scores zero. That's a score for openness, not a finding that a lab's terms are bad. A lab that wants credit can publish its terms. Score = clauses met, plus half for each partly met, out of seven.</p>
-    <p id="correct">Spot something wrong? Reply to <a href="https://x.com/import_hind">@import_hind</a> on X.</p>
+    <p id="correct"><strong>Spot something wrong?</strong> Email <a href="mailto:corrections@labcanary.com">corrections@labcanary.com</a>, suggest a correction on <a href="https://github.com/johnny1011/labcanary/issues">GitHub</a> (public), or reply to <a href="https://x.com/import_hind">@import_hind</a> on X. Emails come to me, Jonathan Hind, and aren't anonymous, so don't write from a work account or a work device.</p>
+    <p><strong>Please don't send me your contract, or tell me what's in it.</strong> I only use public evidence, so I'll delete anything confidential without using it, and sending it to a website probably isn't legally protected. Worried about your own terms? <a href="https://protect-advice.org.uk">Protect</a> gives free, confidential whistleblowing advice in the UK. Know a public source I've missed? Send me the link.</p>
     <p>Privacy: I count visits with Cloudflare Web Analytics and PostHog (EU-hosted, no cookies) to see which pages and links get used. I don't record individual sessions or sell anything.</p>
   </footer>
 </div>
 
 <script>
 // Set this to the GitHub repo URL once it exists, e.g. "https://github.com/yourname/labcanary".
-const REPO_URL = "https://github.com/johnny1011/labcanary";
 
 const CLS = { "Meets": "meets", "Partly": "partly", "Falls short": "short", "Not public": "np" };
 const NOT_PUBLIC = "There isn't enough public evidence to assess this clause.";
@@ -461,7 +461,6 @@ async function load() {
     ]);
     D = { criteria, ...ratings };
     $("asof").textContent = "Public evidence as of " + fmtDate(D.updated);
-    if (REPO_URL) { const p = $("correct"); p.textContent = ""; const a = el("a", null, "Suggest a correction on GitHub"); a.href = REPO_URL + "/issues"; const x = el("a", null, "@import_hind"); x.href = "https://x.com/import_hind"; p.append("Spot something wrong? ", a, " or reply to ", x, " on X."); }
     drawHeatmap(); drawScoreComparison(); drawTakeaway(); drawDetail(); drawStandard(); drawFilters(); drawEvidence();
     window.addEventListener("resize", updateScrollCue);
     if (typeof ResizeObserver !== "undefined") new ResizeObserver(updateScrollCue).observe($("hm-wrap"));
