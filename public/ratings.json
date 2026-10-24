@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-22",
+  "updated": "2026-10-24",
   "labs": [
     "Anthropic",
     "OpenAI",
@@ -170,17 +170,36 @@
       "lab": "Google DeepMind",
       "clause": "C1",
       "rating": "Falls short",
-      "evidence": "Google employees told the BBC that their employment contracts stop staff publicly criticising the company. A Google DeepMind research engineer who had just resigned said: \"In principle I'm not allowed to criticise Google for the duration of my life.\" Google's statement to the BBC, as published, said staff have dedicated channels to raise concerns and that it prohibits retaliation. It didn't mention employment contracts. FLI's July 2026 index, partly using Google's private survey answers, gave Google 9 out of 10 for an explicit statement that NDAs and non-disparagement agreements can't stop safety-related whistleblowing. The contracts themselves aren't public.",
-      "source": "BBC (republished on Yahoo News)",
-      "url": "https://www.yahoo.com/news/us/articles/google-experiences-resignation-backlash-over-154646801.html",
+      "evidence": "Andreas Kirsch, a former Google DeepMind research scientist, posted on X a clause from the Confidentiality and Proprietary Information Agreement he signed with Google in the UK in 2024. It says that \"at all times during employment and after the termination of employment\" staff must not make \"any statement\" to anyone \"criticising or disparaging Google\". He says it has no exemption for protected disclosures. Google employees also told the BBC that their contracts stop staff publicly criticising the company, and a research engineer who had just resigned said: \"In principle I'm not allowed to criticise Google for the duration of my life.\" Google's statement to the BBC, as published, said staff have dedicated channels to raise concerns and that it prohibits retaliation. It didn't mention employment contracts. FLI's July 2026 index, partly using Google's private survey answers, gave Google 9 out of 10 for an explicit statement that NDAs and non-disparagement agreements can't stop safety-related whistleblowing.",
+      "source": "Andreas Kirsch on X (the clause)",
+      "url": "https://x.com/BlackHC/status/2112946535877005776",
       "date": "2026-10-21",
       "additionalSources": [
+        {
+          "source": "Andreas Kirsch on X (no protected-disclosure exemption)",
+          "url": "https://x.com/BlackHC/status/2112946538074734633",
+          "date": "2026-10-21"
+        },
+        {
+          "source": "BBC (republished on Yahoo News)",
+          "url": "https://www.yahoo.com/news/us/articles/google-experiences-resignation-backlash-over-154646801.html",
+          "date": "2026-10-21"
+        },
         {
           "source": "FLI AI Safety Index, Summer 2026 (p. 90)",
           "url": "https://futureoflife.org/wp-content/uploads/2026/07/AI-Safety-Index-Summer-2026-Digital-14-Jul.pdf#page=91",
           "date": "2026-07"
         }
       ]
+    },
+    {
+      "lab": "Google DeepMind",
+      "clause": "C3",
+      "rating": "Not public",
+      "evidence": "The non-disparagement clause Andreas Kirsch posted from his 2024 Google UK agreement has no exemption for protected disclosures, he says. The rest of the agreement isn't public, so it can't be checked whether another section carves them out.",
+      "source": "Andreas Kirsch on X",
+      "url": "https://x.com/BlackHC/status/2112946538074734633",
+      "date": "2026-10-21"
     },
     {
       "lab": "Google DeepMind",
