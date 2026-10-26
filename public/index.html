@@ -43,8 +43,11 @@ h1, h2 { margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
 nav { display: flex; gap: 20px; font-size: .9rem; flex-wrap: wrap; }
 nav a { color: var(--fg); }
 .draft { color: var(--accent); font-weight: 600; white-space: nowrap; }
-.note { margin-top: -28px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px; display: flex; flex-direction: column; gap: 4px; }
+.note { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px; display: flex; flex-direction: column; gap: 4px; }
 .note p { max-width: 75ch; }
+.qa { display: flex; flex-direction: column; gap: 20px; max-width: 75ch; }
+.qa h3 { margin: 0 0 4px; font-size: 1rem; }
+.qa p { font-size: .92rem; }
 .note .note-k { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
 .hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 72px); align-items: start; }
 @media (max-width: 52rem) { .hero { grid-template-columns: minmax(0, 1fr); } }
@@ -146,13 +149,8 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
 <div class="wrap">
   <header class="top">
     <div class="brand"><span class="brand-dot" aria-hidden="true"></span><div><h1>Lab Canary</h1><small>Speak-up scorecard for AI labs · <span class="draft">Rough first version</span></small></div></div>
-    <nav aria-label="Sections"><a href="#scorecard">Scorecard</a><a href="#standard">The standard</a><a href="#evidence">Evidence</a><a href="#opt-in">Opt in</a></nav>
+    <nav aria-label="Sections"><a href="#scorecard">Scorecard</a><a href="#standard">The standard</a><a href="#evidence">Evidence</a><a href="#opt-in">Opt in</a><a href="#questions">Questions</a><a href="#about">About</a></nav>
   </header>
-
-  <aside class="note" aria-label="Why I made this">
-    <p class="note-k">Why I made this</p>
-    <p>Hi, I'm Johnny. I made this after reading a BBC report where a Google DeepMind engineer said, "In principle I'm not allowed to criticise Google for the duration of my life", and wondering how the other labs compare. It's a rough first version that I built quickly with help from Claude. To be upfront: I've applied for jobs and fellowships at Anthropic, OpenAI and Google DeepMind, and nobody pays for this site. Every lab is rated on public evidence under the same rules, and every rating links to its source, but I'll have got some things wrong, so please tell me.</p>
-  </aside>
 
   <main style="display:flex;flex-direction:column;gap:56px">
     <section class="hero" id="scorecard">
@@ -209,6 +207,24 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
       </div>
       <p><a href="https://github.com/johnny1011/labcanary/issues/new" id="submit-terms">Submit your published terms →</a></p>
     </section>
+
+    <section class="sec" id="questions">
+      <h2>Questions</h2>
+      <div class="qa">
+        <div><h3>“How is this different from AI Lab Watch, the FLI AI Safety Index or AIWI?”</h3><p>Those mostly look at policies and safety practice. This looks at what’s publicly known about the contracts: non-disparagement, equity, NDAs and confidentiality. AIWI’s Publish Your Policies campaign is the closest, and I cite it a lot.</p></div>
+        <div><h3>“Anthropic and OpenAI are top. Are you tied to them?”</h3><p>Fair question. I’ve applied for jobs and fellowships at Anthropic, OpenAI and Google DeepMind, and I say so in the <a href="#about">note at the bottom of this page</a>. Nobody pays for it. Both are only on 43%, and almost every rating is “Partly”. They’re top because they’ve published more, not because their terms are known to be good.</p></div>
+        <div><h3>“Not public = fail is unfair.”</h3><p>I went back and forth on it. Treating it as neutral rewards publishing nothing. It’s a score for openness, not a finding that the terms are bad, and the labs control what’s published, so they can fix it. The site shows “Not public” separately so you can see the gap.</p></div>
+        <div><h3>“Why these seven clauses?”</h3><p>They’re the bits of a contract that decide whether someone can speak up: what they can say, what they lose if they do, and who they can tell. Happy to hear if one’s unfair or something’s missing.</p></div>
+        <div><h3>“How can you rate contracts you haven’t seen?”</h3><p>Mostly I can’t, and the site says so. 18 of 35 are “Not public”. The rest come from published policies, public statements and reporting, each linked.</p></div>
+        <div><h3>“Why do Anthropic and OpenAI have the same score?”</h3><p>Equal weights. They get to 43% differently, and the site breaks it down.</p></div>
+        <div><h3>“US law already bans some of this.”</h3><p>Some of it, in some places, for some disclosures. A clause can be unenforceable and still stop people talking, because most people won’t test it. Saying it plainly in the contract is the point of C3.</p></div>
+      </div>
+    </section>
+
+    <aside class="note" id="about" aria-label="Why I made this">
+      <p class="note-k">Why I made this</p>
+      <p>Hi, I'm Johnny. I made this after reading a BBC report where a Google DeepMind engineer said, "In principle I'm not allowed to criticise Google for the duration of my life", and wondering how the other labs compare. It's a rough first version that I built quickly with help from Claude. To be upfront: I've applied for jobs and fellowships at Anthropic, OpenAI and Google DeepMind, and nobody pays for this site. Every lab is rated on public evidence under the same rules, and every rating links to its source, but I'll have got some things wrong, so please tell me.</p>
+    </aside>
   </main>
 
   <footer>
