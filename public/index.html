@@ -475,7 +475,10 @@ async function load() {
       fetch("ratings.json", { cache: "no-cache" }).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }),
     ]);
     D = { criteria, ...ratings };
-    $("asof").textContent = "Public evidence as of " + fmtDate(D.updated);
+    const checked = D.checked || D.updated;
+    let asof = "Ratings last changed " + fmtDate(D.updated) + " · Evidence last checked " + fmtDate(checked);
+    if ((Date.now() - new Date(checked)) / 864e5 > 45) asof += ". Not checked for over 45 days, so newer evidence may be missing.";
+    $("asof").textContent = asof;
     drawHeatmap(); drawScoreComparison(); drawTakeaway(); drawDetail(); drawStandard(); drawFilters(); drawEvidence();
     window.addEventListener("resize", updateScrollCue);
     if (typeof ResizeObserver !== "undefined") new ResizeObserver(updateScrollCue).observe($("hm-wrap"));

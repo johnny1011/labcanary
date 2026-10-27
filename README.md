@@ -42,6 +42,7 @@ Each rating in `public/ratings.json` looks like this:
 - `rating` is one of `Meets`, `Partly`, `Falls short` or `Not public`.
 - `date` is `YYYY-MM-DD`, or `YYYY-MM` if the source only gives a month.
 - Update `updated` at the top of the file whenever you change a rating.
+- Update `checked` whenever you review the evidence for every lab, even if no rating changes. The site shows both dates, and warns readers when `checked` is more than 45 days old.
 - Add a lab's name to `optedIn` once it has opted in.
 
 When a rating combines claims from different documents, keep the main source in `source`, `url` and `date`. Add the other sources in an optional `additionalSources` array:
