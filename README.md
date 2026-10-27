@@ -58,7 +58,7 @@ When a rating combines claims from different documents, keep the main source in 
 
 The detail panel and evidence table display every source with its date. State whether evidence is a company commitment, a reported allegation, or an independent assessment. Date historical promises and attribute reported policy changes to their source.
 
-When scores or headline wording change, refresh `public/og.png` so social previews stay accurate. The Questions section on the page quotes the Anthropic and OpenAI scores and the not-public count, so update it too.
+When scores or headline wording change, refresh `public/og.png` so social previews stay accurate. The Q&A section on the page quotes the Anthropic and OpenAI scores and the not-public count, so update it too.
 
 Changes pushed to `main` go live automatically.
 
