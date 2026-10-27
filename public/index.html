@@ -104,7 +104,6 @@ nav a { color: var(--fg); }
 .std-c .b { font-size: .88rem; line-height: 1.5; }
 .std-c .w { font-size: .8rem; color: var(--muted); line-height: 1.5; }
 .filters { display: flex; flex-wrap: wrap; gap: 8px; }
-.filters button { font: .82rem var(--sans); padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--fg); cursor: pointer; }
 .filters button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
 .ev-wrap { overflow: auto; max-height: 34rem; border: 1px solid var(--line); border-radius: 10px; }
 table { border-collapse: collapse; width: 100%; font-size: .84rem; min-width: 44rem; }
@@ -118,6 +117,43 @@ td.nowrap { white-space: nowrap; }
 footer { border-top: 1px solid var(--line); padding-top: 16px; font-size: .82rem; color: var(--muted); display: flex; flex-direction: column; gap: 6px; }
 .sk { background: var(--panel); border-radius: 6px; min-height: 2.75rem; }
 .err { color: #ffb4a8; }
+/* Phones: the detail panel opens inside the grid, under the row that was tapped. */
+.phone-only { display: none; }
+.intro { font-size: .95rem; margin-bottom: 14px; }
+.hm .detail { grid-column: 1 / -1; min-height: 0; margin: 2px 0 8px; }
+.detail-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.pill-btn, .filters button { font: .82rem var(--sans); padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--fg); cursor: pointer; }
+.fold > summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.fold > summary::-webkit-details-marker { display: none; }
+.fold-std > summary { color: var(--link); font-size: .92rem; }
+.fold-std[open] > summary { margin-bottom: 12px; }
+.qa .fold > summary h3 { margin: 0; }
+.qa .fold[open] > summary { margin-bottom: 4px; }
+/* Evidence timeline */
+.ev-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.tl-lanes { display: block; width: 100%; max-width: 40rem; }
+.tl-lanes .lane { cursor: pointer; outline: none; }
+.tl-lanes .lane:hover rect, .tl-lanes .lane:focus-visible rect { fill: var(--panel); }
+.tl-lanes .lane:focus-visible rect { stroke: var(--fg); }
+.tl-key { display: flex; gap: 16px; flex-wrap: wrap; font-size: .78rem; color: var(--muted); margin: 6px 0 10px; }
+.tl-key span { display: inline-flex; align-items: center; gap: 6px; }
+.tl-list { display: flex; flex-direction: column; max-width: 48rem; }
+.tl-year { position: sticky; top: 0; background: var(--bg); color: var(--accent); font-weight: 700; padding: 8px 0; z-index: 1; }
+.tl-item { display: grid; grid-template-columns: 3.4rem 14px minmax(0, 1fr); gap: 10px; }
+.tl-date { text-align: right; color: var(--muted); font-size: .78rem; padding-top: 14px; }
+.tl-rail { position: relative; }
+.tl-rail::before { content: ""; position: absolute; left: 6px; top: 0; bottom: 0; width: 2px; background: var(--line); }
+.tl-rail i { position: absolute; left: 2px; top: 17px; width: 10px; height: 10px; border-radius: 50%; }
+.tl-card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin: 4px 0; display: flex; flex-direction: column; gap: 6px; font-size: .86rem; min-width: 0; }
+.tl-card .small { font-size: .8rem; color: var(--muted); }
+.tl-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+@media (max-width: 52rem) {
+  .phone-only { display: revert; }
+  .wide-only { display: none; }
+  .fold > summary::after { content: "+"; color: var(--muted); font-size: 1.1rem; }
+  .fold[open] > summary::after { content: "−"; }
+}
+@media (min-width: 52.01rem) { .fold-std > summary { display: none; } }
 @media (max-width: 40rem) {
   .hm { grid-template-columns: minmax(6.2rem, 1.2fr) repeat(var(--cols, 5), minmax(2.5rem, 1fr)); gap: 5px; min-width: 0; }
   .hm-row { font-size: .76rem; padding-right: 4px; }
@@ -155,6 +191,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
   <main style="display:flex;flex-direction:column;gap:56px">
     <section class="hero" id="scorecard">
       <div>
+        <p class="intro phone-only">Can people at AI labs speak up? Each square rates what's publicly known about one lab's staff contracts. <b>Tap a square to see the evidence.</b></p>
         <div class="hm-wrap" id="hm-wrap" role="region" aria-label="Ratings by lab and clause"><div class="hm" id="hm"></div></div>
         <p class="scroll-cue" id="scroll-cue" hidden>Scroll sideways to see all five labs. Use the arrow keys when the grid is focused.</p>
         <div class="legend">
@@ -171,7 +208,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
       <div class="side">
         <p>Can people who work at AI labs tell the public when something's wrong? Lab Canary checks what's publicly known about lab contracts and speak-up policies against a simple standard: protect real secrets, never gag criticism or whistleblowing.</p>
         <p id="takeaway"></p>
-        <p class="lead">Click a tile to see the evidence. Click a lab's name for its summary.</p>
+        <p class="lead wide-only">Click a tile to see the evidence. Click a lab's name for its summary.</p>
         <div class="detail" id="detail" aria-live="polite"></div>
         <div class="links">
           <a href="#standard">The standard, in seven clauses →</a>
@@ -184,13 +221,18 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
     <section class="sec" id="standard">
       <h2>The standard</h2>
       <p class="sub">Seven principles a lab's staff contracts should meet. They're the yardstick for this scorecard, not contract wording or legal advice. Employment law differs between countries, so anyone drafting or signing a contract should get their own lawyer.</p>
-      <div class="std" id="std"></div>
+      <details class="fold fold-std" open><summary>Show the seven clauses</summary><div class="std" id="std"></div></details>
     </section>
 
     <section class="sec" id="evidence">
       <h2>The evidence</h2>
-      <div class="filters" id="filters" role="group" aria-label="Filter by lab"></div>
-      <div class="ev-wrap">
+      <p class="sub" id="ev-origin"></p>
+      <div class="ev-bar">
+        <div class="filters" id="filters" role="group" aria-label="Filter by lab"></div>
+        <div class="filters" id="ev-view" role="group" aria-label="Show the evidence as"></div>
+      </div>
+      <div id="tl" hidden></div>
+      <div class="ev-wrap" id="ev-table">
         <table>
           <thead><tr><th scope="col">Lab</th><th scope="col">Clause</th><th scope="col">Rating</th><th scope="col">Evidence</th><th scope="col">Sources and dates</th></tr></thead>
           <tbody id="ev"></tbody>
@@ -211,19 +253,19 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
     <section class="sec" id="questions">
       <h2>Q&amp;A</h2>
       <div class="qa">
-        <div id="about"><h3>“Why did you make this?”</h3><p>Hi, I'm Johnny. I made this after reading a BBC report where a Google DeepMind engineer said, "In principle I'm not allowed to criticise Google for the duration of my life", and wondering how the other labs compare. It's a rough first version that I built quickly with help from Claude. To be upfront: I've applied for jobs and fellowships at Anthropic, OpenAI and Google DeepMind, and nobody pays for this site. Every lab is rated on public evidence under the same rules, and every rating links to its source, but I'll have got some things wrong. If you spot one, <a href="https://github.com/johnny1011/labcanary/issues">open an issue on GitHub</a> with a public source.</p></div>
-        <div><h3>“How is this different from AI Lab Watch, the FLI AI Safety Index or AIWI?”</h3><p>Those mostly look at policies and safety practice. This looks at what’s publicly known about the contracts: non-disparagement, equity, NDAs and confidentiality. AIWI’s Publish Your Policies campaign is the closest, and I cite it a lot.</p></div>
-        <div><h3>“Anthropic and OpenAI are top. Are you tied to them?”</h3><p>Fair question. I’ve applied for jobs and fellowships at Anthropic, OpenAI and Google DeepMind, and I say so in <a href="#about">why I made this</a>. Nobody pays for it, and I don’t own shares in any AI lab. Both are only on 43%, and almost every rating is “Partly”. They’re top because they’ve published more, not because their terms are known to be good.</p></div>
-        <div><h3>“Not public = fail is unfair.”</h3><p>I went back and forth on it. Treating it as neutral rewards publishing nothing. It’s a score for openness, not a finding that the terms are bad, and the labs control what’s published, so they can fix it. The site shows “Not public” separately so you can see the gap.</p></div>
-        <div><h3>“Why these seven clauses?”</h3><p>They’re the bits of a contract that decide whether someone can speak up: what they can say, what they lose if they do, and who they can tell. Happy to hear if one’s unfair or something’s missing.</p></div>
-        <div><h3>“How can you rate contracts you haven’t seen?”</h3><p>Mostly I can’t, and the site says so. 18 of 35 are “Not public”. The rest come from published policies, public statements and reporting, each linked.</p></div>
-        <div><h3>“Why do Anthropic and OpenAI have the same score?”</h3><p>Equal weights. They get to 43% differently, and the site breaks it down.</p></div>
-        <div><h3>“US law already bans some of this.”</h3><p>Some of it, in some places, for some disclosures. A clause can be unenforceable and still stop people talking, because most people won’t test it. Saying it plainly in the contract is the point of C3.</p></div>
-        <div><h3>“What’s the site made of, and where does it run?”</h3><p>One HTML page and two data files, <a href="ratings.json">ratings.json</a> and <a href="criteria.json">criteria.json</a>. There’s no server, database or login. It’s hosted on Cloudflare Pages and the domain is registered with Cloudflare. All the code and every rating are <a href="https://github.com/johnny1011/labcanary">public on GitHub</a> under the MIT licence, with a history of every change. I built it with help from Claude.</p></div>
-        <div><h3>“Who pays for it?”</h3><p>Nobody. I pay for the domain, about $10 a year, and the hosting is free. There are no ads.</p></div>
-        <div><h3>“What do you track?”</h3><p>I want to see how people use the page so I can make it better. Cloudflare Web Analytics and PostHog (hosted in the EU) count visits, and PostHog also records sessions on this page: clicks, scrolling and mouse movement. Neither sets cookies, PostHog doesn’t keep IP addresses, and nothing you type is recorded. Recordings are deleted after 30 days. I don’t sell or share any of it.</p></div>
-        <div><h3>“Can I send you my contract, or a tip?”</h3><p>Please don’t. The point is to get labs to publish their terms, not to collect leaks. I only use public evidence, so I’d delete anything confidential without using it, and sending it to a website probably isn’t legally protected. Worried about your own terms? <a href="https://protect-advice.org.uk">Protect</a> gives free, confidential whistleblowing advice in the UK.</p></div>
-        <div><h3>“How do I get in touch, or fix a mistake?”</h3><p>There’s no contact email, on purpose. This is meant to be one place to see all the public evidence and push the labs to publish more. If something’s wrong or missing, <a href="https://github.com/johnny1011/labcanary/issues">open an issue on GitHub</a> with a link to a public source, so everyone can see the change and why. Labs can do the same, or publish their terms and <a href="#opt-in">opt in</a>.</p></div>
+        <details class="fold" id="about" open><summary><h3>“Why did you make this?”</h3></summary><p>Hi, I'm Johnny. I made this after reading a BBC report where a Google DeepMind engineer said, "In principle I'm not allowed to criticise Google for the duration of my life", and wondering how the other labs compare. It's a rough first version that I built quickly with help from Claude. To be upfront: I've applied for jobs and fellowships at Anthropic, OpenAI and Google DeepMind, and nobody pays for this site. Every lab is rated on public evidence under the same rules, and every rating links to its source, but I'll have got some things wrong. If you spot one, <a href="https://github.com/johnny1011/labcanary/issues">open an issue on GitHub</a> with a public source.</p></details>
+        <details class="fold" open><summary><h3>“How is this different from AI Lab Watch, the FLI AI Safety Index or AIWI?”</h3></summary><p>Those mostly look at policies and safety practice. This looks at what’s publicly known about the contracts: non-disparagement, equity, NDAs and confidentiality. AIWI’s Publish Your Policies campaign is the closest, and I cite it a lot.</p></details>
+        <details class="fold" open><summary><h3>“Anthropic and OpenAI are top. Are you tied to them?”</h3></summary><p>Fair question. I’ve applied for jobs and fellowships at Anthropic, OpenAI and Google DeepMind, and I say so in <a href="#about">why I made this</a>. Nobody pays for it, and I don’t own shares in any AI lab. Both are only on 43%, and almost every rating is “Partly”. They’re top because they’ve published more, not because their terms are known to be good.</p></details>
+        <details class="fold" open><summary><h3>“Not public = fail is unfair.”</h3></summary><p>I went back and forth on it. Treating it as neutral rewards publishing nothing. It’s a score for openness, not a finding that the terms are bad, and the labs control what’s published, so they can fix it. The site shows “Not public” separately so you can see the gap.</p></details>
+        <details class="fold" open><summary><h3>“Why these seven clauses?”</h3></summary><p>They’re the bits of a contract that decide whether someone can speak up: what they can say, what they lose if they do, and who they can tell. Happy to hear if one’s unfair or something’s missing.</p></details>
+        <details class="fold" open><summary><h3>“How can you rate contracts you haven’t seen?”</h3></summary><p>Mostly I can’t, and the site says so. 18 of 35 are “Not public”. The rest come from published policies, public statements and reporting, each linked.</p></details>
+        <details class="fold" open><summary><h3>“Why do Anthropic and OpenAI have the same score?”</h3></summary><p>Equal weights. They get to 43% differently, and the site breaks it down.</p></details>
+        <details class="fold" open><summary><h3>“US law already bans some of this.”</h3></summary><p>Some of it, in some places, for some disclosures. A clause can be unenforceable and still stop people talking, because most people won’t test it. Saying it plainly in the contract is the point of C3.</p></details>
+        <details class="fold" open><summary><h3>“What’s the site made of, and where does it run?”</h3></summary><p>One HTML page and two data files, <a href="ratings.json">ratings.json</a> and <a href="criteria.json">criteria.json</a>. There’s no server, database or login. It’s hosted on Cloudflare Pages and the domain is registered with Cloudflare. All the code and every rating are <a href="https://github.com/johnny1011/labcanary">public on GitHub</a> under the MIT licence, with a history of every change. I built it with help from Claude.</p></details>
+        <details class="fold" open><summary><h3>“Who pays for it?”</h3></summary><p>Nobody. I pay for the domain, about $10 a year, and the hosting is free. There are no ads.</p></details>
+        <details class="fold" open><summary><h3>“What do you track?”</h3></summary><p>I want to see how people use the page so I can make it better. Cloudflare Web Analytics and PostHog (hosted in the EU) count visits, and PostHog also records sessions on this page: clicks, scrolling and mouse movement. Neither sets cookies, PostHog doesn’t keep IP addresses, and nothing you type is recorded. Recordings are deleted after 30 days. I don’t sell or share any of it.</p></details>
+        <details class="fold" open><summary><h3>“Can I send you my contract, or a tip?”</h3></summary><p>Please don’t. The point is to get labs to publish their terms, not to collect leaks. I only use public evidence, so I’d delete anything confidential without using it, and sending it to a website probably isn’t legally protected. Worried about your own terms? <a href="https://protect-advice.org.uk">Protect</a> gives free, confidential whistleblowing advice in the UK.</p></details>
+        <details class="fold" open><summary><h3>“How do I get in touch, or fix a mistake?”</h3></summary><p>There’s no contact email, on purpose. This is meant to be one place to see all the public evidence and push the labs to publish more. If something’s wrong or missing, <a href="https://github.com/johnny1011/labcanary/issues">open an issue on GitHub</a> with a link to a public source, so everyone can see the change and why. Labs can do the same, or publish their terms and <a href="#opt-in">opt in</a>.</p></details>
       </div>
     </section>
   </main>
@@ -282,7 +324,7 @@ function drawHeatmap() {
     b.setAttribute("aria-label", l + " summary");
     b.setAttribute("aria-controls", "detail");
     if (tally(l).optedIn) b.append(el("small", null, "opted in"));
-    b.addEventListener("click", () => { sel = { lab: l }; updateSelection(); drawDetail(); });
+    b.addEventListener("click", () => select({ lab: l }));
     hm.append(b);
   });
   hm.append(el("div", "hm-row", "Publicly evidenced score"));
@@ -309,7 +351,7 @@ function drawHeatmap() {
       b.dataset.clause = c.id;
       b.setAttribute("aria-label", l + ", " + c.name + ": " + r.rating);
       b.setAttribute("aria-controls", "detail");
-      b.addEventListener("click", () => { sel = { lab: l, clause: c.id }; updateSelection(); drawDetail(); });
+      b.addEventListener("click", () => select({ lab: l, clause: c.id }));
       hm.append(b);
     });
   });
@@ -318,8 +360,48 @@ function drawHeatmap() {
   updateScrollCue();
 }
 
+// Phones and narrow windows stack the layout, so the detail panel moves into the grid under the tapped row.
+const narrow = matchMedia("(max-width: 52rem)");
+const track = (event, props) => { try { window.posthog && posthog.capture(event, props); } catch (e) {} };
+const slug = (s) => s.toLowerCase().replace(/\s+/g, "-");
+let detailHome = null;
+
+function select(next, fromLink) {
+  const same = next && sel && sel.lab === next.lab && (sel.clause || "") === (next.clause || "");
+  sel = same && !fromLink ? null : next;
+  updateSelection(); drawDetail(); placeDetail();
+  history.replaceState(null, "", sel ? "#" + slug(sel.lab) + (sel.clause ? "-" + sel.clause.toLowerCase() : "") : location.pathname + location.search);
+  if (sel) track(sel.clause ? "tile_opened" : "lab_opened", { lab: sel.lab, clause: sel.clause || null, narrow: narrow.matches, from_link: Boolean(fromLink) });
+}
+
+function placeDetail() {
+  const d = $("detail"), hm = $("hm");
+  if (!detailHome) detailHome = d.nextElementSibling;
+  d.hidden = narrow.matches && !sel;
+  if (!narrow.matches || !sel) { if (d.parentElement === hm) detailHome.before(d); return; }
+  const row = sel.clause ? [...hm.querySelectorAll(".tile")].filter(b => b.dataset.clause === sel.clause) : [...hm.querySelectorAll(".hm-lab")];
+  row[row.length - 1].after(d);
+  d.scrollIntoView({ block: "nearest", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+}
+
+// Shareable links: #openai opens a lab summary, #openai-c1 opens one tile.
+function selectFromHash() {
+  const h = decodeURIComponent(location.hash.slice(1)).toLowerCase();
+  for (const l of D.labs) {
+    if (h === slug(l)) return select({ lab: l }, true);
+    const c = D.criteria.find(c => h === slug(l) + "-" + c.id.toLowerCase());
+    if (c) return select({ lab: l, clause: c.id }, true);
+  }
+  const target = h && document.getElementById(location.hash.slice(1));
+  if (target && target.closest("details")) target.closest("details").open = true;
+}
+
+function setFolds() {
+  document.querySelectorAll("details.fold").forEach(f => { f.open = !narrow.matches; });
+}
+
 function updateSelection() {
-  $("hm").querySelectorAll("button").forEach(b => {
+  $("hm").querySelectorAll(".tile, .hm-lab").forEach(b => {
     const selected = Boolean(sel && sel.lab === b.dataset.lab && (sel.clause || "") === (b.dataset.clause || ""));
     b.classList.toggle("on", selected);
     b.setAttribute("aria-pressed", String(selected));
@@ -414,14 +496,25 @@ function drawDetail() {
     d.append(el("p", "small", "Standard: " + c.standard), el("p", null, r.evidence));
     const sources = el("div", "small");
     if (appendSources(sources, r)) d.append(sources);
-    return;
+  } else {
+    const t = tally(sel.lab);
+    d.append(el("span", "k", "Lab summary"), el("span", "t", sel.lab));
+    d.append(el("p", null, "Publicly evidenced score " + pct(t.score) + ": " + t.meets + " met, " + t.partly + " partly, " + t.short + " falling short, " + t.np + " not public. " + (t.optedIn ? "Opted in." : "Not opted in.")));
+    const ul = el("ul");
+    D.criteria.forEach(c => { const r = cell(sel.lab, c.id); if (r.url) ul.append(el("li", null, c.name + " (" + r.rating.toLowerCase() + "): " + r.evidence)); });
+    if (ul.childNodes.length) d.append(ul);
   }
-  const t = tally(sel.lab);
-  d.append(el("span", "k", "Lab summary"), el("span", "t", sel.lab));
-  d.append(el("p", null, "Publicly evidenced score " + pct(t.score) + ": " + t.meets + " met, " + t.partly + " partly, " + t.short + " falling short, " + t.np + " not public. " + (t.optedIn ? "Opted in." : "Not opted in.")));
-  const ul = el("ul");
-  D.criteria.forEach(c => { const r = cell(sel.lab, c.id); if (r.url) ul.append(el("li", null, c.name + " (" + r.rating.toLowerCase() + "): " + r.evidence)); });
-  if (ul.childNodes.length) d.append(ul);
+  const actions = el("div", "detail-actions"), share = el("button", "pill-btn", "Share this"), close = el("button", "pill-btn phone-only", "Close");
+  share.addEventListener("click", async () => {
+    track("share_clicked", { lab: sel.lab, clause: sel.clause || null });
+    try {
+      if (navigator.share) await navigator.share({ title: "Lab Canary: " + sel.lab, url: location.href });
+      else { await navigator.clipboard.writeText(location.href); share.textContent = "Link copied"; }
+    } catch (e) {}
+  });
+  close.addEventListener("click", () => select(sel));
+  actions.append(share, close);
+  d.append(actions);
 }
 
 function drawStandard() {
@@ -442,13 +535,108 @@ function drawFilters() {
     b.dataset.lab = l;
     b.setAttribute("aria-pressed", String(labFilter === l));
     b.setAttribute("aria-controls", "ev");
-    b.addEventListener("click", () => {
-      labFilter = l;
-      f.querySelectorAll("button").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.lab === labFilter)));
-      drawEvidence();
-    });
+    b.addEventListener("click", () => setLabFilter(l));
     f.append(b);
   });
+}
+
+function setLabFilter(l) {
+  labFilter = l;
+  $("filters").querySelectorAll("button").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.lab === labFilter)));
+  drawEvidence();
+}
+
+// Evidence can be shown as a timeline (default on phones) or a table.
+let evView = matchMedia("(max-width: 40rem)").matches ? "timeline" : "table", tlAll = false;
+function drawViewSwitch() {
+  const v = $("ev-view");
+  v.textContent = "";
+  ["timeline", "table"].forEach(name => {
+    const b = el("button", null, name === "timeline" ? "Timeline" : "Table");
+    b.setAttribute("aria-pressed", String(evView === name));
+    b.addEventListener("click", () => { evView = name; drawViewSwitch(); track("evidence_view_changed", { view: name }); });
+    v.append(b);
+  });
+  $("tl").hidden = evView !== "timeline";
+  $("ev-table").hidden = evView !== "table";
+}
+
+const year = (s) => { const [y, m, d] = s.split("-").map(Number); return y + (m - 1) / 12 + ((d || 15) - 1) / 365; };
+
+function drawTimeline() {
+  const box = $("tl"), dated = D.ratings.filter(r => r.date);
+  box.textContent = "";
+  // Lanes: one row per lab, a dot per piece of evidence. Filled dots come from the lab itself.
+  const ts = dated.map(r => year(r.date)), x0 = Math.floor(Math.min(...ts)), x1 = Math.max(...ts) + 0.2;
+  // Drawn at the real width, so labels stay readable on phones.
+  const W = Math.max(300, Math.min(640, $("evidence").clientWidth)), small = W < 420, L = small ? 84 : 118, rowH = 30, H = D.labs.length * rowH + 26, sx = (v) => L + (v - x0) / (x1 - x0) * (W - L - 14);
+  const ns = "http://www.w3.org/2000/svg", svg = document.createElementNS(ns, "svg");
+  const svgEl = (tag, attrs, text) => { const e = document.createElementNS(ns, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; return e; };
+  svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+  svg.setAttribute("class", "tl-lanes");
+  svg.setAttribute("aria-label", "When each lab's evidence was published");
+  for (let y = x0; sx(y) < W - 34; y++) {
+    svg.append(svgEl("line", { x1: sx(y), x2: sx(y), y1: 0, y2: H - 22, stroke: "#24314a", "stroke-dasharray": "3 3" }));
+    svg.append(svgEl("text", { x: sx(y) + 4, y: H - 6, fill: "#94a0b8", "font-size": 12 }, y));
+  }
+  D.labs.forEach((l, i) => {
+    const y = 16 + i * rowH, g = svgEl("g", { class: "lane", tabindex: 0, role: "button", "aria-label": "Show " + l + " evidence", "aria-pressed": String(labFilter === l) });
+    g.append(svgEl("rect", { x: 0, y: y - 14, width: W, height: 28, rx: 6, fill: labFilter === l ? "#151f33" : "transparent" }));
+    g.append(svgEl("text", { x: 6, y: y + 4, fill: "#e7eaf0", "font-size": 13, "font-weight": labFilter === l ? 700 : 400 }, small ? l.split(" ").pop() : l));
+    g.append(svgEl("line", { x1: L, x2: W - 8, y1: y, y2: y, stroke: "#24314a" }));
+    const seen = {};
+    dated.filter(r => r.lab === l).forEach(r => {
+      seen[r.date] = (seen[r.date] || 0) + 1;
+      const cx = sx(year(r.date)) + (seen[r.date] - 1) * 9;
+      g.append(r.fromLab ? svgEl("circle", { cx, cy: y, r: 5.5, fill: "#e8b21c" }) : svgEl("circle", { cx, cy: y, r: 4.5, fill: "#0e1626", stroke: "#94a0b8", "stroke-width": 1.5 }));
+    });
+    const pick = () => { setLabFilter(labFilter === l ? "All" : l); track("timeline_lab_picked", { lab: l }); };
+    g.addEventListener("click", pick);
+    g.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(); } });
+    svg.append(g);
+  });
+  box.append(svg);
+  const key = el("div", "tl-key"), dot = (fill, stroke) => { const s = document.createElementNS(ns, "svg"); s.setAttribute("width", 12); s.setAttribute("height", 12); s.append(svgEl("circle", { cx: 6, cy: 6, r: 4.5, fill, stroke: stroke || "none", "stroke-width": 1.5 })); return s; };
+  const k1 = el("span"), k2 = el("span");
+  k1.append(dot("#e8b21c"), "From the lab's own policies or staff");
+  k2.append(dot("#0e1626", "#94a0b8"), "Reported by journalists, ex-staff or watchdogs");
+  key.append(k1, k2, el("span", null, "Tap a lab to filter."));
+  box.append(key);
+
+  // The list, newest first, grouped by year.
+  const list = el("div", "tl-list"), rows = dated.filter(r => labFilter === "All" || r.lab === labFilter).sort((a, b) => b.date.localeCompare(a.date));
+  const shown = labFilter === "All" && !tlAll ? rows.slice(0, 5) : rows;
+  let current = "";
+  shown.forEach(r => {
+    const y = r.date.slice(0, 4), c = D.criteria.find(x => x.id === r.clause);
+    if (y !== current) { current = y; list.append(el("div", "tl-year", y)); }
+    const item = el("div", "tl-item"), rail = el("div", "tl-rail"), card = el("div", "tl-card"), head = el("div", "tl-head");
+    rail.append(el("i", "b-" + CLS[r.rating]));
+    head.append(el("b", null, r.lab), el("span", "badge b-" + CLS[r.rating], r.rating));
+    card.append(head, el("span", "small", r.clause + " · " + (c ? c.name : "")), el("p", null, r.evidence));
+    const src = el("div", "small");
+    appendSources(src, r);
+    src.append(el("span", "source-date", r.fromLab ? "From the lab's own policies or staff" : "Reported by others"));
+    card.append(src);
+    item.append(el("div", "tl-date", fmtDate(r.date).replace(/ \d{4}$/, "")), rail, card);
+    list.append(item);
+  });
+  if (shown.length < rows.length) {
+    const more = el("button", "pill-btn", "Show all " + rows.length);
+    more.style.margin = "10px 0 0 4.6rem";
+    more.addEventListener("click", () => { tlAll = true; drawTimeline(); track("timeline_show_all"); });
+    list.append(more);
+  }
+  if (labFilter !== "All") {
+    const np = D.criteria.length - rows.length;
+    if (np) list.append(el("p", "sub", np + " of " + D.criteria.length + " clauses have no public evidence for " + labFilter + ". Switch to the table to see all seven."));
+  }
+  box.append(list);
+}
+
+function drawOrigin() {
+  const sourced = D.ratings.filter(r => r.url), own = sourced.filter(r => r.fromLab).length;
+  $("ev-origin").textContent = "Of the " + sourced.length + " ratings with a public source, only " + own + " come from the labs' own policies or staff. The other " + (sourced.length - own) + " come from journalists, ex-staff and watchdogs.";
 }
 
 function drawEvidence() {
@@ -466,6 +654,7 @@ function drawEvidence() {
     tb.append(tr);
   });
   if (labFilter === "All") { const tr = el("tr"); const td = el("td", "sub", "Showing every rating with a public source. Pick a lab to see all seven clauses."); td.colSpan = 5; tr.append(td); tb.append(tr); }
+  drawTimeline();
 }
 
 async function load() {
@@ -479,7 +668,15 @@ async function load() {
     let asof = "Ratings last changed " + fmtDate(D.updated) + " · Evidence last checked " + fmtDate(checked);
     if ((Date.now() - new Date(checked)) / 864e5 > 45) asof += ". Not checked for over 45 days, so newer evidence may be missing.";
     $("asof").textContent = asof;
-    drawHeatmap(); drawScoreComparison(); drawTakeaway(); drawDetail(); drawStandard(); drawFilters(); drawEvidence();
+    drawHeatmap(); drawScoreComparison(); drawTakeaway(); drawDetail(); drawStandard(); drawFilters(); drawEvidence(); drawOrigin(); drawViewSwitch();
+    setFolds(); placeDetail(); selectFromHash();
+    narrow.addEventListener("change", () => { setFolds(); placeDetail(); drawTimeline(); });
+    window.addEventListener("hashchange", selectFromHash);
+    document.querySelectorAll("details.fold").forEach(f => f.addEventListener("toggle", () => { if (f.open && narrow.matches) track("section_opened", { title: f.querySelector("summary").textContent.trim().slice(0, 60) }); }));
+    if (typeof IntersectionObserver !== "undefined") {
+      const seen = new IntersectionObserver((entries) => { if (entries.some(e => e.isIntersecting)) { track("evidence_seen", { narrow: narrow.matches }); seen.disconnect(); } });
+      seen.observe($("evidence"));
+    }
     window.addEventListener("resize", updateScrollCue);
     if (typeof ResizeObserver !== "undefined") new ResizeObserver(updateScrollCue).observe($("hm-wrap"));
   } catch (e) {
