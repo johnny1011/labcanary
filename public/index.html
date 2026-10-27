@@ -133,7 +133,7 @@ footer { border-top: 1px solid var(--line); padding-top: 16px; font-size: .82rem
 }
 @media (prefers-reduced-motion: reduce) { .tile { transition: none; } .tile:hover { transform: none; } }
 </style>
-<!-- PostHog analytics: cookieless (memory only), EU-hosted. Records visits and session replays (inputs masked). Disclosed in the Questions section. -->
+<!-- PostHog analytics: cookieless (memory only), EU-hosted. Records visits and session replays (inputs masked). Disclosed in the Q&A section. -->
 <script>
 !function(t,e){var o,n,p,r;e.__SV||(window.posthog&&window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags on onFeatureFlags onSessionId identify setPersonProperties group resetGroups reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
 posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
@@ -149,7 +149,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
 <div class="wrap">
   <header class="top">
     <div class="brand"><span class="brand-dot" aria-hidden="true"></span><div><h1>Lab Canary</h1><small>Speak-up scorecard for AI labs · <span class="draft">Rough first version</span></small></div></div>
-    <nav aria-label="Sections"><a href="#scorecard">Scorecard</a><a href="#standard">The standard</a><a href="#evidence">Evidence</a><a href="#opt-in">Opt in</a><a href="#questions">Questions</a><a href="#about">About</a></nav>
+    <nav aria-label="Sections"><a href="#scorecard">Scorecard</a><a href="#standard">The standard</a><a href="#evidence">Evidence</a><a href="#opt-in">Opt in</a><a href="#questions">Q&amp;A</a></nav>
   </header>
 
   <main style="display:flex;flex-direction:column;gap:56px">
@@ -209,10 +209,11 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
     </section>
 
     <section class="sec" id="questions">
-      <h2>Questions</h2>
+      <h2>Q&amp;A</h2>
       <div class="qa">
+        <div id="about"><h3>“Why did you make this?”</h3><p>Hi, I'm Johnny. I made this after reading a BBC report where a Google DeepMind engineer said, "In principle I'm not allowed to criticise Google for the duration of my life", and wondering how the other labs compare. It's a rough first version that I built quickly with help from Claude. To be upfront: I've applied for jobs and fellowships at Anthropic, OpenAI and Google DeepMind, and nobody pays for this site. Every lab is rated on public evidence under the same rules, and every rating links to its source, but I'll have got some things wrong. If you spot one, <a href="https://github.com/johnny1011/labcanary/issues">open an issue on GitHub</a> with a public source.</p></div>
         <div><h3>“How is this different from AI Lab Watch, the FLI AI Safety Index or AIWI?”</h3><p>Those mostly look at policies and safety practice. This looks at what’s publicly known about the contracts: non-disparagement, equity, NDAs and confidentiality. AIWI’s Publish Your Policies campaign is the closest, and I cite it a lot.</p></div>
-        <div><h3>“Anthropic and OpenAI are top. Are you tied to them?”</h3><p>Fair question. I’ve applied for jobs and fellowships at Anthropic, OpenAI and Google DeepMind, and I say so in the <a href="#about">note at the bottom of this page</a>. Nobody pays for it, and I don’t own shares in any AI lab. Both are only on 43%, and almost every rating is “Partly”. They’re top because they’ve published more, not because their terms are known to be good.</p></div>
+        <div><h3>“Anthropic and OpenAI are top. Are you tied to them?”</h3><p>Fair question. I’ve applied for jobs and fellowships at Anthropic, OpenAI and Google DeepMind, and I say so in <a href="#about">why I made this</a>. Nobody pays for it, and I don’t own shares in any AI lab. Both are only on 43%, and almost every rating is “Partly”. They’re top because they’ve published more, not because their terms are known to be good.</p></div>
         <div><h3>“Not public = fail is unfair.”</h3><p>I went back and forth on it. Treating it as neutral rewards publishing nothing. It’s a score for openness, not a finding that the terms are bad, and the labs control what’s published, so they can fix it. The site shows “Not public” separately so you can see the gap.</p></div>
         <div><h3>“Why these seven clauses?”</h3><p>They’re the bits of a contract that decide whether someone can speak up: what they can say, what they lose if they do, and who they can tell. Happy to hear if one’s unfair or something’s missing.</p></div>
         <div><h3>“How can you rate contracts you haven’t seen?”</h3><p>Mostly I can’t, and the site says so. 18 of 35 are “Not public”. The rest come from published policies, public statements and reporting, each linked.</p></div>
@@ -225,16 +226,11 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
         <div><h3>“How do I get in touch, or fix a mistake?”</h3><p>There’s no contact email, on purpose. This is meant to be one place to see all the public evidence and push the labs to publish more. If something’s wrong or missing, <a href="https://github.com/johnny1011/labcanary/issues">open an issue on GitHub</a> with a link to a public source, so everyone can see the change and why. Labs can do the same, or publish their terms and <a href="#opt-in">opt in</a>.</p></div>
       </div>
     </section>
-
-    <aside class="note" id="about" aria-label="Why I made this">
-      <p class="note-k">Why I made this</p>
-      <p>Hi, I'm Johnny. I made this after reading a BBC report where a Google DeepMind engineer said, "In principle I'm not allowed to criticise Google for the duration of my life", and wondering how the other labs compare. It's a rough first version that I built quickly with help from Claude. To be upfront: I've applied for jobs and fellowships at Anthropic, OpenAI and Google DeepMind, and nobody pays for this site. Every lab is rated on public evidence under the same rules, and every rating links to its source, but I'll have got some things wrong. If you spot one, <a href="https://github.com/johnny1011/labcanary/issues">open an issue on GitHub</a> with a public source.</p>
-    </aside>
   </main>
 
   <footer>
     <p>Made by <a href="https://www.linkedin.com/in/jonathanhind/">Jonathan Hind</a>, built with help from Claude. Ratings use public evidence only. "Not public" scores zero. That's a score for openness, not a finding that a lab's terms are bad. A lab that wants credit can publish its terms. Score = clauses met, plus half for each partly met, out of seven.</p>
-    <p>Privacy: this page counts visits and records sessions (clicks, scrolling and mouse movement, never anything typed) with Cloudflare Web Analytics and PostHog, to help me improve it. No cookies, and nothing is sold. <a href="#questions">More in Questions</a>.</p>
+    <p>Privacy: this page counts visits and records sessions (clicks, scrolling and mouse movement, never anything typed) with Cloudflare Web Analytics and PostHog, to help me improve it. No cookies, and nothing is sold. <a href="#questions">More in the Q&amp;A</a>.</p>
   </footer>
 </div>
 
