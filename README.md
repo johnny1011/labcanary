@@ -44,6 +44,7 @@ Each rating in `public/ratings.json` looks like this:
 - Update `updated` at the top of the file whenever you change a rating.
 - Update `checked` whenever you review the evidence for every lab, even if no rating changes. The site shows both dates, and warns readers when `checked` is more than 45 days old.
 - Add a lab's name to `optedIn` once it has opted in.
+- Add `"fromLab": true` when the main source is the lab's own policy or a statement by its staff. The evidence timeline uses it to show which evidence the labs published themselves.
 
 When a rating combines claims from different documents, keep the main source in `source`, `url` and `date`. Add the other sources in an optional `additionalSources` array:
 

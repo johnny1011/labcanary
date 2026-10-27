@@ -17,7 +17,8 @@
       "evidence": "Its Responsible Scaling Policy commits that any non-disparagement clause won't stop staff or ex-staff publicly raising safety concerns. It doesn't rule out such clauses for other criticism.",
       "source": "Anthropic Responsible Scaling Policy v3.4",
       "url": "https://www-cdn.anthropic.com/files/4zrzovbb/website/0bacdc8440ea96e62a8766d99ebe1d4eea6d5f3a.pdf",
-      "date": "2026-07-08"
+      "date": "2026-07-08",
+      "fromLab": true
     },
     {
       "lab": "Anthropic",
@@ -33,7 +34,8 @@
           "url": "https://www-cdn.anthropic.com/b7a5629e40b391b2adfb4cc8c0888ac9d6bfddf6/RSP%20Noncompliance%20Reporting%20and%20Anti-Retaliation%20Policy.pdf",
           "date": "2026-02"
         }
-      ]
+      ],
+      "fromLab": true
     },
     {
       "lab": "Anthropic",
@@ -42,7 +44,8 @@
       "evidence": "Its reporting policy says nothing in any Anthropic agreement stops staff reporting possible violations of law to government, without permission. That external-reporting clause does not expressly cover other concerns.",
       "source": "Anthropic RSP reporting and anti-retaliation policy",
       "url": "https://www-cdn.anthropic.com/b7a5629e40b391b2adfb4cc8c0888ac9d6bfddf6/RSP%20Noncompliance%20Reporting%20and%20Anti-Retaliation%20Policy.pdf",
-      "date": "2026-02"
+      "date": "2026-02",
+      "fromLab": true
     },
     {
       "lab": "Anthropic",
@@ -63,7 +66,8 @@
           "url": "https://futureoflife.org/wp-content/uploads/2026/07/AI-Safety-Index-Summer-2026-Digital-14-Jul.pdf#page=112",
           "date": "2026-07"
         }
-      ]
+      ],
+      "fromLab": true
     },
     {
       "lab": "Anthropic",
@@ -72,7 +76,8 @@
       "evidence": "Anonymous reporting tool and a no-retaliation rule. Reports can go to an executive outside the safety officer's line, and the board gets quarterly updates. Not fully independent of leadership.",
       "source": "Anthropic Responsible Scaling Policy v3.4",
       "url": "https://www-cdn.anthropic.com/files/4zrzovbb/website/0bacdc8440ea96e62a8766d99ebe1d4eea6d5f3a.pdf",
-      "date": "2026-07-08"
+      "date": "2026-07-08",
+      "fromLab": true
     },
     {
       "lab": "Anthropic",
@@ -81,7 +86,8 @@
       "evidence": "Its Responsible Scaling Policy permits disclosure of a non-disparagement clause's existence. The cited promise does not establish the same right for other types of agreement.",
       "source": "Anthropic Responsible Scaling Policy v3.4",
       "url": "https://www-cdn.anthropic.com/files/4zrzovbb/website/0bacdc8440ea96e62a8766d99ebe1d4eea6d5f3a.pdf",
-      "date": "2026-07-08"
+      "date": "2026-07-08",
+      "fromLab": true
     },
     {
       "lab": "OpenAI",
@@ -122,7 +128,8 @@
           "url": "https://techcrunch.com/2024/07/13/whistleblowers-accuse-openai-of-illegally-restrictive-ndas/",
           "date": "2024-07-13"
         }
-      ]
+      ],
+      "fromLab": true
     },
     {
       "lab": "OpenAI",
@@ -147,7 +154,8 @@
       "evidence": "Anonymous Integrity Line and a no-retaliation rule. Run by OpenAI's Compliance team; AI safety concerns can be escalated to the board's Safety and Security Committee.",
       "source": "OpenAI Raising Concerns Policy",
       "url": "https://cdn.openai.com/policies/openai-raising-concerns-policy.pdf",
-      "date": "2026-01-12"
+      "date": "2026-01-12",
+      "fromLab": true
     },
     {
       "lab": "OpenAI",
