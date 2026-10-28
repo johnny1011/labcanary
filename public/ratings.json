@@ -14,6 +14,7 @@
       "date": "2026-10-24",
       "title": "Google DeepMind: a former researcher posts the non-disparagement clause he signed",
       "text": "Andreas Kirsch, a former Google DeepMind research scientist, posted on X a clause from the agreement he signed with Google in the UK in 2024. It says staff must not make \"any statement\" \"criticising or disparaging Google\", during or after employment, and he says it has no exemption for protected disclosures. \"No gag on criticism\" now cites it as its main source and stays \"Falls short\". A new entry for \"Protected disclosures carved out\" stays \"Not public\", because the rest of the agreement isn't public. Scores are unchanged.",
+      "scores": { "Anthropic": 43, "OpenAI": 43, "Google DeepMind": 7, "xAI": 0, "Meta": 0 },
       "labs": ["Google DeepMind"],
       "link": "#google-deepmind-c1"
     },
@@ -21,6 +22,7 @@
       "date": "2026-10-22",
       "title": "Lab Canary launched",
       "text": "Five labs (Anthropic, OpenAI, Google DeepMind, xAI and Meta) rated on public evidence against seven clauses.",
+      "scores": { "Anthropic": 43, "OpenAI": 43, "Google DeepMind": 7, "xAI": 0, "Meta": 0 },
       "labs": [],
       "link": "#scorecard"
     }

@@ -167,6 +167,15 @@ a.pill-btn { display: inline-flex; align-items: center; text-decoration: none; }
 .tl-card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin: 4px 0; display: flex; flex-direction: column; gap: 6px; font-size: .86rem; min-width: 0; }
 .tl-card .small { font-size: .8rem; color: var(--muted); }
 .tl-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+/* Updates: one small score-over-time chart per lab */
+.brand .checked-top { display: block; }
+.sparks { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr)); gap: 12px; }
+.spark { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.spark-head { display: flex; justify-content: space-between; gap: 8px; font-size: .85rem; font-weight: 600; }
+.spark-head span:last-child { font-variant-numeric: tabular-nums; }
+.spark svg { display: block; width: 100%; height: auto; }
+.spark-axis { display: flex; justify-content: space-between; color: var(--muted); font-size: .7rem; }
+.upd-scores { margin-top: 4px; color: var(--muted); font-size: .82rem; }
 @media (max-width: 52rem) {
   .phone-only { display: revert; }
   .wide-only { display: none; }
@@ -180,6 +189,9 @@ a.pill-btn { display: inline-flex; align-items: center; text-decoration: none; }
   .hm-lab { font-size: .6rem; display: flex; flex-direction: column; align-items: center; }
   .tile { font-size: .6rem; padding: 2px; }
   .hm-score { font-size: .78rem; }
+  .spark { padding: 8px 10px; }
+  .spark-head { font-size: .78rem; white-space: nowrap; }
+  .spark-axis { font-size: .62rem; }
   table { min-width: 0; }
   thead { display: none; }
   tbody tr { display: grid; grid-template-columns: auto auto 1fr; align-items: center; gap: 6px 10px; padding: 12px; border-bottom: 1px solid var(--line); }
@@ -205,7 +217,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
 <body>
 <div class="wrap">
   <header class="top">
-    <div class="brand"><span class="brand-dot" aria-hidden="true"></span><div><h1>Lab Canary</h1><small>Speak-up scorecard for AI labs · <span class="draft">Rough first version</span></small></div></div>
+    <div class="brand"><span class="brand-dot" aria-hidden="true"></span><div><h1>Lab Canary</h1><small>Speak-up scorecard for AI labs · <span class="draft">Rough first version</span></small><small class="checked-top"><span id="checked-top"></span> · <a href="#updates">What's changed</a></small></div></div>
     <nav aria-label="Sections"><a href="#scorecard">Scorecard</a><a href="#standard">The standard</a><a href="#evidence">Evidence</a><a href="#updates">Updates</a><a href="#opt-in">Opt in</a><a href="#questions">Q&amp;A</a></nav>
   </header>
 
@@ -266,6 +278,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
     <section class="sec" id="updates">
       <h2>Updates</h2>
       <p class="sub">Ratings change when labs publish their terms or new evidence comes out. Every change is listed here, newest first.</p>
+      <div class="sparks" id="sparks" role="group" aria-label="Each lab's score over time. Each small chart runs from 0% (solid line) to 100% (dotted)."></div>
       <div class="follow" id="follow">
         <h3>Follow the changes</h3>
         <div class="follow-row">
@@ -561,6 +574,8 @@ function drawUpdates() {
     const li = el("li", "upd"), when = el("time", "upd-date", fmtDate(u.date)), body = el("div");
     when.dateTime = u.date;
     body.append(el("h3", null, u.title), el("p", null, u.text));
+    const prev = all[all.indexOf(u) + 1], moved = prev && u.scores && prev.scores ? D.labs.filter(l => u.scores[l] !== prev.scores[l]) : [];
+    if (moved.length) body.append(el("p", "upd-scores", "Scores: " + moved.map(l => l + " " + prev.scores[l] + "% → " + u.scores[l] + "%").join(", ")));
     if (u.link) {
       const links = el("div", "upd-links"), a = el("a", null, "See it on the scorecard →");
       a.href = u.link;
@@ -809,6 +824,40 @@ function drawTimeline() {
   box.append(list);
 }
 
+// Each entry in D.updates stores every lab's score that day; the last point is today's live score.
+function drawScoreHistory() {
+  const changes = (D.updates || []).filter(u => u.scores).sort((a, b) => b.date.localeCompare(a.date));
+  $("sparks").hidden = !changes.length;
+  if (!changes.length) return;
+  const oldest = changes[changes.length - 1].date, end = D.checked || D.updated;
+  const t0 = year(oldest), t1 = Math.max(year(end), t0 + 1 / 365);
+  const ns = "http://www.w3.org/2000/svg", W = 160, H = 48, sx = (d) => 5 + (year(d) - t0) / (t1 - t0) * (W - 10), sy = (v) => H - 5 - v / 100 * (H - 10);
+  const svgEl = (tag, attrs, text) => { const e = document.createElementNS(ns, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; return e; };
+  const box = $("sparks");
+  box.textContent = "";
+  D.labs.forEach(l => {
+    const now = Math.round(tally(l).score * 100);
+    const pts = changes.slice().reverse().filter(c => c.scores && l in c.scores).map(c => ({ date: c.date, v: c.scores[l] }));
+    pts.push({ date: end, v: now });
+    const card = el("div", "spark"), head = el("div", "spark-head");
+    head.append(el("span", null, l), el("span", null, now + "%"));
+    const svg = svgEl("svg", { viewBox: "0 0 " + W + " " + H, role: "img", "aria-label": l + " score over time: " + pts.map(p => fmtDate(p.date) + " " + p.v + "%").join(", ") });
+    svg.append(svgEl("line", { x1: 0, x2: W, y1: sy(0), y2: sy(0), stroke: "#24314a" }), svgEl("line", { x1: 0, x2: W, y1: sy(100), y2: sy(100), stroke: "#24314a", "stroke-dasharray": "3 3" }));
+    let d = "M" + sx(pts[0].date) + " " + sy(pts[0].v);
+    pts.slice(1).forEach(p => { d += " H" + sx(p.date) + " V" + sy(p.v); });
+    svg.append(svgEl("path", { d, fill: "none", stroke: "#e8b21c", "stroke-width": 2, "stroke-linejoin": "round" }));
+    pts.forEach(p => {
+      const g = svgEl("g");
+      g.append(svgEl("circle", { cx: sx(p.date), cy: sy(p.v), r: 8, fill: "transparent" }), svgEl("circle", { cx: sx(p.date), cy: sy(p.v), r: 3.5, fill: "#e8b21c", stroke: "#151f33", "stroke-width": 2 }), svgEl("title", null, fmtDate(p.date) + ": " + p.v + "%"));
+      svg.append(g);
+    });
+    const axis = el("div", "spark-axis");
+    axis.append(el("span", null, fmtDate(oldest)), el("span", null, fmtDate(end)));
+    card.append(head, svg, axis);
+    box.append(card);
+  });
+}
+
 function drawOrigin() {
   const sourced = D.ratings.filter(r => r.url), own = sourced.filter(r => r.fromLab).length;
   $("ev-origin").textContent = "Of the " + sourced.length + " ratings with a public source, only " + own + " come from the labs' own policies or staff. The other " + (sourced.length - own) + " come from journalists, ex-staff and watchdogs.";
@@ -843,7 +892,8 @@ async function load() {
     let asof = "Ratings last changed " + fmtDate(D.updated) + " · Evidence last checked " + fmtDate(checked);
     if ((Date.now() - new Date(checked)) / 864e5 > 45) asof += ". Not checked for over 45 days, so newer evidence may be missing.";
     $("asof").textContent = asof;
-    drawHeatmap(); drawScoreComparison(); drawTakeaway(); drawDetail(); drawStandard(); drawFilters(); drawEvidence(); drawOrigin(); drawViewSwitch(); drawShareBox(); drawFollow(); drawUpdates();
+    $("checked-top").textContent = asof;
+    drawHeatmap(); drawScoreHistory(); drawScoreComparison(); drawTakeaway(); drawDetail(); drawStandard(); drawFilters(); drawEvidence(); drawOrigin(); drawViewSwitch(); drawShareBox(); drawFollow(); drawUpdates();
     setFolds(); placeDetail(); selectFromHash();
     narrow.addEventListener("change", () => { setFolds(); placeDetail(); drawTimeline(); });
     window.addEventListener("hashchange", () => selectFromHash(true));
