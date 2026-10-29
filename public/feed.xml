@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Lab Canary: rating updates</title>
+  <subtitle>Changes to Lab Canary's ratings of what's publicly known about AI lab staff contracts and speak-up policies.</subtitle>
+  <link rel="self" type="application/atom+xml" href="https://labcanary.com/feed.xml"/>
+  <link rel="alternate" type="text/html" href="https://labcanary.com/"/>
+  <id>https://labcanary.com/feed.xml</id>
+  <updated>2026-10-24T00:00:00Z</updated>
+  <author><name>Jonathan Hind</name></author>
+  <rights>Text and data: CC BY 4.0</rights>
+  <entry>
+    <title>Google DeepMind: a former researcher posts the non-disparagement clause he signed</title>
+    <link rel="alternate" type="text/html" href="https://labcanary.com/#google-deepmind-c1"/>
+    <id>tag:labcanary.com,2026-10-24:google-deepmind-a-former-researcher-posts-the-non-disparagement-clause-he-signed</id>
+    <updated>2026-10-24T00:00:00Z</updated>
+    <category term="Google DeepMind"/>
+    <summary>Andreas Kirsch, a former Google DeepMind research scientist, posted on X a clause from the agreement he signed with Google in the UK in 2024. It says staff must not make &quot;any statement&quot; &quot;criticising or disparaging Google&quot;, during or after employment, and he says it has no exemption for protected disclosures. &quot;No gag on criticism&quot; now cites it as its main source and stays &quot;Falls short&quot;. A new entry for &quot;Protected disclosures carved out&quot; stays &quot;Not public&quot;, because the rest of the agreement isn't public. Scores are unchanged.</summary>
+  </entry>
+  <entry>
+    <title>Lab Canary launched</title>
+    <link rel="alternate" type="text/html" href="https://labcanary.com/#scorecard"/>
+    <id>tag:labcanary.com,2026-10-22:lab-canary-launched</id>
+    <updated>2026-10-22T00:00:00Z</updated>
+    <summary>Five labs (Anthropic, OpenAI, Google DeepMind, xAI and Meta) rated on public evidence against seven clauses.</summary>
+  </entry>
+</feed>

@@ -41,7 +41,7 @@ Each rating in `public/ratings.json` looks like this:
 
 - `rating` is one of `Meets`, `Partly`, `Falls short` or `Not public`.
 - `date` is `YYYY-MM-DD`, or `YYYY-MM` if the source only gives a month.
-- Update `updated` at the top of the file whenever you change a rating.
+- Update `updated` at the top of the file whenever you change a rating, and add an entry to `updates` (see [Updates and feeds](#updates-and-feeds)).
 - Update `checked` whenever you review the evidence for every lab, even if no rating changes. The site shows both dates, and warns readers when `checked` is more than 45 days old.
 - Add a lab's name to `optedIn` once it has opted in.
 - Add `"fromLab": true` when the main source is the lab's own policy or a statement by its staff. The evidence timeline uses it to show which evidence the labs published themselves.
@@ -61,6 +61,42 @@ When a rating combines claims from different documents, keep the main source in 
 The detail panel and evidence table display every source with its date. State whether evidence is a company commitment, a reported allegation, or an independent assessment. Date historical promises and attribute reported policy changes to their source.
 
 When scores or headline wording change, refresh `public/og.png` so social previews stay accurate. The Q&A section on the page quotes the Anthropic and OpenAI scores and the not-public count, so update it too.
+
+## Updates and feeds
+
+People can follow changes in a feed reader: `https://labcanary.com/feed.xml` covers every lab, and `https://labcanary.com/feeds/<lab>.xml` (for example `feeds/openai.xml`) covers one. The "Updates" section on the page lists the same changes.
+
+When a rating or its evidence changes, add an entry to the top of `updates` in `public/ratings.json`:
+
+```json
+{
+  "date": "2026-10-24",
+  "title": "Google DeepMind: a former researcher posts the non-disparagement clause he signed",
+  "text": "A few plain sentences on what changed and why, with the old and new rating.",
+  "labs": ["Google DeepMind"],
+  "link": "#google-deepmind-c1"
+}
+```
+
+- `labs` lists the labs it's about. Leave it empty (`[]`) for news about the whole site; that goes in every lab's feed.
+- `link` is where "See it on the scorecard" goes: `#openai` opens a lab summary, `#openai-c4` opens one rating.
+- Don't change a title once it's live. Feed readers use it to tell updates apart, so an edited title shows up twice.
+
+Then rebuild the feeds and commit them along with `ratings.json`:
+
+```sh
+node scripts/feeds.mjs
+```
+
+A GitHub check runs `node scripts/feeds.mjs --check` on every pull request and push, and fails if the feeds are out of date.
+
+## Sharing
+
+Each lab summary and rating has a "Post on X" button, with Bluesky, LinkedIn, email and copy-link options under "More ways to share". The scorecard has the same buttons beside it. They're plain links, so no social media scripts load on the page. The post text is written by `shareInfo()` in `public/index.html` from the current scores. Keep it under 240 characters so it fits on X and Bluesky with the link.
+
+## Short links
+
+`public/_redirects` holds short links that land on the home page with tracking tags PostHog can read: `/x1` to `/x10` for replies on X, and `/m1` to `/m5` for launch outreach by email or DM (press, organisations, people, policy, other). Outreach links are per group, never per person, so a visit can't be tied to whoever was sent the link.
 
 Changes pushed to `main` go live automatically.
 

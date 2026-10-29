@@ -1,0 +1,13 @@
+# Fails if public/feed.xml or public/feeds/*.xml don't match the "updates" list in public/ratings.json.
+# Fix it by running: node scripts/feeds.mjs
+name: Feeds
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: node scripts/feeds.mjs --check

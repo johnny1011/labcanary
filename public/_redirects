@@ -10,3 +10,9 @@
 /x8  /?utm_source=x&utm_medium=reply&utm_campaign=launch&utm_content=x8  302
 /x9  /?utm_source=x&utm_medium=reply&utm_campaign=launch&utm_content=x9  302
 /x10  /?utm_source=x&utm_medium=reply&utm_campaign=launch&utm_content=x10  302
+# Launch outreach (emails and DMs). One link per group of people, never per person, so a visit can't be tied to whoever was sent it.
+/m1  /?utm_source=outreach&utm_medium=message&utm_campaign=launch&utm_content=press  302
+/m2  /?utm_source=outreach&utm_medium=message&utm_campaign=launch&utm_content=orgs  302
+/m3  /?utm_source=outreach&utm_medium=message&utm_campaign=launch&utm_content=people  302
+/m4  /?utm_source=outreach&utm_medium=message&utm_campaign=launch&utm_content=policy  302
+/m5  /?utm_source=outreach&utm_medium=message&utm_campaign=launch&utm_content=other  302

@@ -16,6 +16,7 @@
 <meta name="twitter:title" content="Lab Canary: can AI lab staff speak up?">
 <meta name="twitter:description" content="A scorecard of what's publicly known about AI lab staff contracts against a simple standard: protect real secrets, never gag criticism or whistleblowing.">
 <meta name="twitter:image" content="https://labcanary.com/og.png?v=20261022-legal">
+<link rel="alternate" type="application/atom+xml" title="Lab Canary: rating updates" href="/feed.xml">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230e1626'/%3E%3Ccircle cx='16' cy='16' r='8' fill='%23e8b21c'/%3E%3C/svg%3E">
 <style>
 /* Layout: one dark page. Heatmap left, explanation and detail panel right; sections stack below. */
@@ -123,6 +124,25 @@ footer { border-top: 1px solid var(--line); padding-top: 16px; font-size: .82rem
 .hm .detail { grid-column: 1 / -1; min-height: 0; margin: 2px 0 8px; }
 .detail-actions { display: flex; gap: 8px; flex-wrap: wrap; }
 .pill-btn, .filters button { font: .82rem var(--sans); padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--fg); cursor: pointer; }
+a.pill-btn { display: inline-flex; align-items: center; text-decoration: none; }
+.pill-btn:hover { border-color: var(--muted); }
+.pill-btn.primary { border-color: var(--accent); }
+/* Sharing and following */
+.share-box { display: flex; flex-direction: column; gap: 8px; }
+.share-box .k { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.share-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.follow { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; max-width: 48rem; }
+.follow h3 { margin: 0; font-size: 1rem; }
+.follow .small { font-size: .82rem; color: var(--muted); max-width: 70ch; }
+.follow-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.follow select { font: .85rem var(--sans); padding: 5px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); }
+.follow code { font-size: .8rem; color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 3px 8px; overflow-wrap: anywhere; }
+.updates { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; max-width: 48rem; }
+.upd { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 4px 14px; padding: 14px 0; border-top: 1px solid var(--line); }
+.upd-date { color: var(--muted); font-size: .82rem; padding-top: 2px; font-variant-numeric: tabular-nums; }
+.upd h3 { margin: 0 0 4px; font-size: 1rem; }
+.upd p { font-size: .9rem; margin-bottom: 6px; }
+.upd-links { display: flex; gap: 14px; flex-wrap: wrap; font-size: .85rem; }
 .fold > summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
 .fold > summary::-webkit-details-marker { display: none; }
 .fold-std > summary { color: var(--link); font-size: .92rem; }
@@ -166,6 +186,7 @@ footer { border-top: 1px solid var(--line); padding-top: 16px; font-size: .82rem
   tbody td { border: 0; padding: 0; }
   tbody td:nth-child(4), tbody td:nth-child(5) { grid-column: 1 / -1; }
   tbody td[colspan] { grid-column: 1 / -1; }
+  .upd { grid-template-columns: minmax(0, 1fr); }
 }
 @media (prefers-reduced-motion: reduce) { .tile { transition: none; } .tile:hover { transform: none; } }
 </style>
@@ -185,7 +206,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
 <div class="wrap">
   <header class="top">
     <div class="brand"><span class="brand-dot" aria-hidden="true"></span><div><h1>Lab Canary</h1><small>Speak-up scorecard for AI labs · <span class="draft">Rough first version</span></small></div></div>
-    <nav aria-label="Sections"><a href="#scorecard">Scorecard</a><a href="#standard">The standard</a><a href="#evidence">Evidence</a><a href="#opt-in">Opt in</a><a href="#questions">Q&amp;A</a></nav>
+    <nav aria-label="Sections"><a href="#scorecard">Scorecard</a><a href="#standard">The standard</a><a href="#evidence">Evidence</a><a href="#updates">Updates</a><a href="#opt-in">Opt in</a><a href="#questions">Q&amp;A</a></nav>
   </header>
 
   <main style="display:flex;flex-direction:column;gap:56px">
@@ -214,7 +235,9 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
           <a href="#standard">The standard, in seven clauses →</a>
           <a href="#evidence">All the evidence and sources →</a>
           <a href="#opt-in">How a lab can opt in →</a>
+          <a href="#follow">Get updates when ratings change →</a>
         </div>
+        <div class="share-box" id="share-scorecard" aria-label="Share the scorecard" role="group"></div>
       </div>
     </section>
 
@@ -240,6 +263,23 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
       </div>
     </section>
 
+    <section class="sec" id="updates">
+      <h2>Updates</h2>
+      <p class="sub">Ratings change when labs publish their terms or new evidence comes out. Every change is listed here, newest first.</p>
+      <div class="follow" id="follow">
+        <h3>Follow the changes</h3>
+        <div class="follow-row">
+          <label for="follow-lab">Follow</label>
+          <select id="follow-lab"><option value="">All labs</option></select>
+          <button type="button" class="pill-btn primary" id="follow-copy">Copy feed link</button>
+          <a class="pill-btn" id="follow-open" href="feed.xml" target="_blank" rel="noopener">Open the feed</a>
+        </div>
+        <code id="follow-url">https://labcanary.com/feed.xml</code>
+        <p class="small">Paste the link into a feed reader, such as Feedly, Inoreader or NetNewsWire, and each change will show up there. There's no sign-up and no email address needed.</p>
+      </div>
+      <ol class="updates" id="updates-list"></ol>
+    </section>
+
     <section class="sec" id="opt-in">
       <h2>How opting in works</h2>
       <div class="steps">
@@ -261,7 +301,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
         <details class="fold" open><summary><h3>“How can you rate contracts you haven’t seen?”</h3></summary><p>Mostly I can’t, and the site says so. 18 of 35 are “Not public”. The rest come from published policies, public statements and reporting, each linked.</p></details>
         <details class="fold" open><summary><h3>“Why do Anthropic and OpenAI have the same score?”</h3></summary><p>Equal weights. They get to 43% differently, and the site breaks it down.</p></details>
         <details class="fold" open><summary><h3>“US law already bans some of this.”</h3></summary><p>Some of it, in some places, for some disclosures. A clause can be unenforceable and still stop people talking, because most people won’t test it. Saying it plainly in the contract is the point of C3.</p></details>
-        <details class="fold" open><summary><h3>“What’s the site made of, and where does it run?”</h3></summary><p>One HTML page and two data files, <a href="ratings.json">ratings.json</a> and <a href="criteria.json">criteria.json</a>. There’s no server, database or login. It’s hosted on Cloudflare Pages and the domain is registered with Cloudflare. All the code and every rating are <a href="https://github.com/johnny1011/labcanary">public on GitHub</a> under the MIT licence, with a history of every change. I built it with help from Claude.</p></details>
+        <details class="fold" open><summary><h3>“What’s the site made of, and where does it run?”</h3></summary><p>One HTML page and two data files, <a href="ratings.json">ratings.json</a> and <a href="criteria.json">criteria.json</a>, plus <a href="#follow">update feeds</a> made from the ratings file. There’s no server, database or login. It’s hosted on Cloudflare Pages and the domain is registered with Cloudflare. All the code and every rating are <a href="https://github.com/johnny1011/labcanary">public on GitHub</a> under the MIT licence, with a history of every change. I built it with help from Claude.</p></details>
         <details class="fold" open><summary><h3>“Who pays for it?”</h3></summary><p>Nobody. I pay for the domain, about $10 a year, and the hosting is free. There are no ads.</p></details>
         <details class="fold" open><summary><h3>“What do you track?”</h3></summary><p>I want to see how people use the page so I can make it better. Cloudflare Web Analytics and PostHog (hosted in the EU) count visits, and PostHog also records sessions on this page: clicks, scrolling and mouse movement. Neither sets cookies, PostHog doesn’t keep IP addresses, and nothing you type is recorded. Recordings are deleted after 30 days. I don’t sell or share any of it.</p></details>
         <details class="fold" open><summary><h3>“Can I send you my contract, or a tip?”</h3></summary><p>Please don’t. The point is to get labs to publish their terms, not to collect leaks. I only use public evidence, so I’d delete anything confidential without using it, and sending it to a website probably isn’t legally protected. Worried about your own terms? <a href="https://protect-advice.org.uk">Protect</a> gives free, confidential whistleblowing advice in the UK.</p></details>
@@ -363,7 +403,8 @@ function drawHeatmap() {
 // Phones and narrow windows stack the layout, so the detail panel moves into the grid under the tapped row.
 const narrow = matchMedia("(max-width: 52rem)");
 const track = (event, props) => { try { window.posthog && posthog.capture(event, props); } catch (e) {} };
-const slug = (s) => s.toLowerCase().replace(/\s+/g, "-");
+// Same slugs as scripts/feeds.mjs: "Google DeepMind" -> "google-deepmind".
+const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 let detailHome = null;
 
 function select(next, fromLink) {
@@ -385,15 +426,19 @@ function placeDetail() {
 }
 
 // Shareable links: #openai opens a lab summary, #openai-c1 opens one tile.
-function selectFromHash() {
+// When a link on the page changes the hash (scroll is true), bring the opened detail into view.
+function selectFromHash(scroll) {
   const h = decodeURIComponent(location.hash.slice(1)).toLowerCase();
   for (const l of D.labs) {
-    if (h === slug(l)) return select({ lab: l }, true);
     const c = D.criteria.find(c => h === slug(l) + "-" + c.id.toLowerCase());
-    if (c) return select({ lab: l, clause: c.id }, true);
+    if (h !== slug(l) && !c) continue;
+    select(c ? { lab: l, clause: c.id } : { lab: l }, true);
+    if (scroll) $("detail").scrollIntoView({ block: "nearest" });
+    return;
   }
   const target = h && document.getElementById(location.hash.slice(1));
   if (target && target.closest("details")) target.closest("details").open = true;
+  if (scroll && target) target.scrollIntoView();
 }
 
 function setFolds() {
@@ -406,6 +451,135 @@ function updateSelection() {
     b.classList.toggle("on", selected);
     b.setAttribute("aria-pressed", String(selected));
   });
+}
+
+// Sharing uses plain links to each network, so no third-party scripts load on the page.
+const SITE = "https://labcanary.com/";
+const enc = encodeURIComponent;
+const NETWORKS = [
+  ["x", "Post on X", (i) => "https://x.com/intent/post?text=" + enc(i.text) + "&url=" + enc(i.url)],
+  ["bluesky", "Bluesky", (i) => "https://bsky.app/intent/compose?text=" + enc(i.text + " " + i.url)],
+  ["linkedin", "LinkedIn", (i) => "https://www.linkedin.com/sharing/share-offsite/?url=" + enc(i.url)],
+  ["email", "Email", (i) => "mailto:?subject=" + enc(i.title) + "&body=" + enc(i.text + "\n\n" + i.url)],
+];
+
+function fullStandardLine() {
+  const full = D.labs.filter(l => tally(l).meets === D.criteria.length).length;
+  return full ? full + (full === 1 ? " lab publicly demonstrates" : " labs publicly demonstrate") + " meeting the full standard." : "No lab publicly demonstrates meeting the full standard.";
+}
+
+// What a post says for the whole scorecard (s is null), a lab summary ({ lab }) or one tile ({ lab, clause }).
+// Kept under 240 characters so it fits on X and Bluesky with the link.
+function shareInfo(s) {
+  if (!s) return { scope: "scorecard", url: SITE, title: "Lab Canary: can AI lab staff speak up?",
+    text: "Can people who work at AI labs tell the public when something's wrong? Lab Canary scores what's publicly known about " + D.labs.length + " labs' staff contracts. " + fullStandardLine() };
+  const url = SITE + "#" + slug(s.lab) + (s.clause ? "-" + s.clause.toLowerCase() : "");
+  if (s.clause) {
+    const r = cell(s.lab, s.clause), c = D.criteria.find(x => x.id === s.clause);
+    return { scope: "tile", url, title: "Lab Canary: " + s.lab + ", " + c.name,
+      text: s.lab + " on “" + c.name + "”: " + r.rating + (r.rating === "Not public" ? ", because there isn't enough public evidence to check." : ", based on public evidence.") + " Lab Canary rates what's publicly known about AI lab staff contracts, with a source for every rating." };
+  }
+  const t = tally(s.lab);
+  return { scope: "lab", url, title: "Lab Canary: " + s.lab,
+    text: s.lab + "'s publicly evidenced score on Lab Canary: " + pct(t.score) + "." + (t.np ? " " + t.np + " of " + D.criteria.length + " clauses lack enough public evidence to check." : "") + " Lab Canary rates what's publicly known about AI lab staff contracts." };
+}
+
+async function copyText(text) {
+  try { await navigator.clipboard.writeText(text); return true; }
+  catch (e) { window.prompt("Copy this link:", text); return false; }
+}
+
+// Share buttons for s (see shareInfo). only limits them to some of: x, bluesky, linkedin, email, copy, native.
+function shareButtons(s, only) {
+  const info = shareInfo(s), want = (k) => !only || only.includes(k), out = [];
+  const props = { scope: info.scope, lab: s ? s.lab : null, clause: (s && s.clause) || null };
+  NETWORKS.filter(([key]) => want(key)).forEach(([key, label, href]) => {
+    const a = el("a", "pill-btn" + (key === "x" ? " primary" : ""), label);
+    a.href = href(info);
+    if (key !== "email") { a.target = "_blank"; a.rel = "noopener"; }
+    a.addEventListener("click", () => track("share_clicked", { ...props, network: key }));
+    out.push(a);
+  });
+  if (want("copy")) {
+    const copy = el("button", "pill-btn", "Copy link");
+    copy.type = "button";
+    copy.addEventListener("click", async () => {
+      track("share_clicked", { ...props, network: "copy" });
+      if (await copyText(info.url)) { copy.textContent = "Link copied"; setTimeout(() => { copy.textContent = "Copy link"; }, 2500); }
+    });
+    out.push(copy);
+  }
+  if (want("native") && navigator.share) {
+    const more = el("button", "pill-btn", "Other apps…");
+    more.type = "button";
+    more.addEventListener("click", async () => {
+      track("share_clicked", { ...props, network: "native" });
+      try { await navigator.share({ title: info.title, text: info.text, url: info.url }); } catch (e) {}
+    });
+    out.push(more);
+  }
+  return out;
+}
+
+function drawShareBox() {
+  const box = $("share-scorecard"), row = el("div", "share-row");
+  box.textContent = "";
+  row.append(...shareButtons(null));
+  box.append(el("span", "k", "Share the scorecard"), row);
+}
+
+// Following: an Atom feed for every lab (feed.xml) and one per lab (feeds/<lab>.xml), built by scripts/feeds.mjs.
+const feedPath = (lab) => lab ? "feeds/" + slug(lab) + ".xml" : "feed.xml";
+function setFollowLab(lab) {
+  $("follow-lab").value = lab || "";
+  $("follow-url").textContent = SITE + feedPath(lab);
+  $("follow-open").href = feedPath(lab);
+}
+function followLab(lab) {
+  setFollowLab(lab);
+  track("follow_clicked", { lab });
+  $("follow").scrollIntoView({ block: "center", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  $("follow-lab").focus({ preventScroll: true });
+}
+function drawFollow() {
+  const pick = $("follow-lab"), copy = $("follow-copy");
+  D.labs.forEach(l => { const o = el("option", null, l); o.value = l; pick.append(o); });
+  pick.addEventListener("change", () => setFollowLab(pick.value));
+  copy.addEventListener("click", async () => {
+    track("follow_copied", { lab: pick.value || null });
+    if (await copyText(SITE + feedPath(pick.value))) { copy.textContent = "Feed link copied"; setTimeout(() => { copy.textContent = "Copy feed link"; }, 2500); }
+  });
+  $("follow-open").addEventListener("click", () => track("follow_opened", { lab: pick.value || null }));
+}
+
+let updAll = false;
+function drawUpdates() {
+  const list = $("updates-list"), all = (D.updates || []).slice().sort((a, b) => b.date.localeCompare(a.date));
+  const shown = updAll ? all : all.slice(0, 5);
+  list.textContent = "";
+  shown.forEach(u => {
+    const li = el("li", "upd"), when = el("time", "upd-date", fmtDate(u.date)), body = el("div");
+    when.dateTime = u.date;
+    body.append(el("h3", null, u.title), el("p", null, u.text));
+    if (u.link) {
+      const links = el("div", "upd-links"), a = el("a", null, "See it on the scorecard →");
+      a.href = u.link;
+      // The same hash again fires no hashchange, so open it directly.
+      a.addEventListener("click", (e) => { track("update_opened", { link: u.link }); if (location.hash === u.link) { e.preventDefault(); selectFromHash(true); } });
+      links.append(a);
+      body.append(links);
+    }
+    li.append(when, body);
+    list.append(li);
+  });
+  if (!all.length) list.append(el("li", "sub", "No changes yet."));
+  if (shown.length < all.length) {
+    const li = el("li"), more = el("button", "pill-btn", "Show all " + all.length);
+    more.style.marginTop = "10px";
+    more.addEventListener("click", () => { updAll = true; drawUpdates(); });
+    li.append(more);
+    list.append(li);
+  }
 }
 
 function drawScoreComparison() {
@@ -479,10 +653,9 @@ function appendSources(container, rating) {
 function drawTakeaway() {
   const cells = D.labs.flatMap(l => D.criteria.map(c => cell(l, c.id)));
   const np = cells.filter(x => x.rating === "Not public").length;
-  const full = D.labs.filter(l => tally(l).meets === D.criteria.length).length;
   const t = $("takeaway");
   t.textContent = "";
-  t.append(full ? full + (full === 1 ? " lab publicly demonstrates" : " labs publicly demonstrate") + " meeting the full standard. " : "No lab publicly demonstrates meeting the full standard. ");
+  t.append(fullStandardLine() + " ");
   t.append(el("b", null, String(np)), " of ", el("b", null, String(cells.length)), " checks lack enough public evidence to assess. “Not public” scores zero. A lab that wants credit can publish its terms.");
 }
 
@@ -504,17 +677,19 @@ function drawDetail() {
     D.criteria.forEach(c => { const r = cell(sel.lab, c.id); if (r.url) ul.append(el("li", null, c.name + " (" + r.rating.toLowerCase() + "): " + r.evidence)); });
     if (ul.childNodes.length) d.append(ul);
   }
-  const actions = el("div", "detail-actions"), share = el("button", "pill-btn", "Share this"), close = el("button", "pill-btn phone-only", "Close");
-  share.addEventListener("click", async () => {
-    track("share_clicked", { lab: sel.lab, clause: sel.clause || null });
-    try {
-      if (navigator.share) await navigator.share({ title: "Lab Canary: " + sel.lab, url: location.href });
-      else { await navigator.clipboard.writeText(location.href); share.textContent = "Link copied"; }
-    } catch (e) {}
-  });
+  // One click to post on X; the other ways to share fold out below.
+  const actions = el("div", "detail-actions"), more = el("button", "pill-btn", "More ways to share"), extra = el("div", "share-row");
+  const follow = el("button", "pill-btn", "Follow " + sel.lab), close = el("button", "pill-btn phone-only", "Close"), lab = sel.lab;
+  extra.id = "detail-share";
+  extra.hidden = true;
+  extra.append(...shareButtons(sel, ["bluesky", "linkedin", "email", "copy", "native"]));
+  more.setAttribute("aria-expanded", "false");
+  more.setAttribute("aria-controls", "detail-share");
+  more.addEventListener("click", () => { extra.hidden = !extra.hidden; more.setAttribute("aria-expanded", String(!extra.hidden)); });
+  follow.addEventListener("click", () => followLab(lab));
   close.addEventListener("click", () => select(sel));
-  actions.append(share, close);
-  d.append(actions);
+  actions.append(...shareButtons(sel, ["x"]), more, follow, close);
+  d.append(actions, extra);
 }
 
 function drawStandard() {
@@ -668,10 +843,10 @@ async function load() {
     let asof = "Ratings last changed " + fmtDate(D.updated) + " · Evidence last checked " + fmtDate(checked);
     if ((Date.now() - new Date(checked)) / 864e5 > 45) asof += ". Not checked for over 45 days, so newer evidence may be missing.";
     $("asof").textContent = asof;
-    drawHeatmap(); drawScoreComparison(); drawTakeaway(); drawDetail(); drawStandard(); drawFilters(); drawEvidence(); drawOrigin(); drawViewSwitch();
+    drawHeatmap(); drawScoreComparison(); drawTakeaway(); drawDetail(); drawStandard(); drawFilters(); drawEvidence(); drawOrigin(); drawViewSwitch(); drawShareBox(); drawFollow(); drawUpdates();
     setFolds(); placeDetail(); selectFromHash();
     narrow.addEventListener("change", () => { setFolds(); placeDetail(); drawTimeline(); });
-    window.addEventListener("hashchange", selectFromHash);
+    window.addEventListener("hashchange", () => selectFromHash(true));
     document.querySelectorAll("details.fold").forEach(f => f.addEventListener("toggle", () => { if (f.open && narrow.matches) track("section_opened", { title: f.querySelector("summary").textContent.trim().slice(0, 60) }); }));
     if (typeof IntersectionObserver !== "undefined") {
       const seen = new IntersectionObserver((entries) => { if (entries.some(e => e.isIntersecting)) { track("evidence_seen", { narrow: narrow.matches }); seen.disconnect(); } });
