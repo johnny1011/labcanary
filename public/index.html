@@ -143,6 +143,7 @@ a.pill-btn { display: inline-flex; align-items: center; text-decoration: none; }
 .follow .small { font-size: .82rem; color: var(--muted); max-width: 70ch; }
 .follow-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
 .follow select { font: .85rem var(--sans); padding: 5px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); }
+.follow input[type=email] { font: .85rem var(--sans); padding: 5px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); min-width: 0; flex: 1 1 14rem; max-width: 20rem; }
 .follow code { font-size: .8rem; color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 3px 8px; overflow-wrap: anywhere; }
 .updates { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; max-width: 48rem; }
 .upd { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 4px 14px; padding: 14px 0; border-top: 1px solid var(--line); }
@@ -295,7 +296,14 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
           <a class="pill-btn" id="follow-inoreader" target="_blank" rel="noopener">Add to Inoreader</a>
         </div>
         <code id="follow-url">https://labcanary.com/feed.xml</code>
-        <p class="small">Paste the link into a feed reader, such as Feedly, Inoreader or NetNewsWire, and each change will show up there. There's no sign-up and no email address needed.</p>
+        <p class="small">Paste the link into a feed reader, such as Feedly, Inoreader or NetNewsWire, and each change will show up there. No email address needed.</p>
+        <!-- Buttondown sign-up; its RSS-to-email automation sends feed.xml entries. Disclosed in the "Do you keep my email?" Q&A. -->
+        <form class="follow-row" id="follow-email" action="https://buttondown.com/api/emails/embed-subscribe/labcanary" method="post" target="_blank">
+          <label for="follow-email-input">Or by email</label>
+          <input type="email" name="email" id="follow-email-input" placeholder="you@example.com" autocomplete="email" required>
+          <button type="submit" class="pill-btn primary">Email me changes</button>
+        </form>
+        <p class="small">One email when a rating changes, nothing else. Any address is fine. You don't need to use a work one. <a href="#keep-email">What happens to my email?</a></p>
       </div>
       <ol class="updates" id="updates-list"></ol>
     </section>
@@ -324,6 +332,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
         <details class="fold" open><summary><h3>“What’s the site made of, and where does it run?”</h3></summary><p>One HTML page and two data files, <a href="ratings.json">ratings.json</a> and <a href="criteria.json">criteria.json</a>, plus <a href="#follow">update feeds</a> made from the ratings file. There’s no server, database or login. It’s hosted on Cloudflare Pages and the domain is registered with Cloudflare. All the code and every rating are <a href="https://github.com/johnny1011/labcanary">public on GitHub</a> under the MIT licence, with a history of every change. I built it with help from Claude.</p></details>
         <details class="fold" open><summary><h3>“Who pays for it?”</h3></summary><p>Nobody. I pay for the domain, about $10 a year, and the hosting is free. There are no ads.</p></details>
         <details class="fold" open><summary><h3>“What do you track?”</h3></summary><p>I want to see how people use the page so I can make it better. Cloudflare Web Analytics and PostHog (hosted in the EU) count visits, and PostHog also records sessions on this page: clicks, scrolling and mouse movement. Neither sets cookies, PostHog doesn’t keep IP addresses, and nothing you type is recorded. Recordings are deleted after 30 days. I don’t sell or share any of it.</p></details>
+        <details class="fold" id="keep-email" open><summary><h3>“Do you keep my email?”</h3></summary><p>Only if you sign up for updates. Your address is stored with <a href="https://buttondown.com/legal/privacy">Buttondown</a>, the newsletter service, and only used to email you when a rating changes. You confirm by email first, every email has an unsubscribe link, and unsubscribing deletes your address. I don’t sell or share it. Use any address you like: you don’t need to use a work one.</p></details>
         <details class="fold" open><summary><h3>“Can I send you my contract, or a tip?”</h3></summary><p>Please don’t. The point is to get labs to publish their terms, not to collect leaks. I only use public evidence, so I’d delete anything confidential without using it, and sending it to a website probably isn’t legally protected. Worried about your own terms? <a href="https://protect-advice.org.uk">Protect</a> gives free, confidential whistleblowing advice in the UK.</p></details>
         <details class="fold" open><summary><h3>“How do I get in touch, or fix a mistake?”</h3></summary><p>Email <a href="mailto:hello@labcanary.com">hello@labcanary.com</a>. Please don’t send contracts or anything confidential. If a rating is wrong or missing, you can also <a href="https://github.com/johnny1011/labcanary/issues">open an issue on GitHub</a> with a link to a public source, so everyone can see the change and why. Labs can do the same, or publish their terms and <a href="#opt-in">opt in</a>.</p></details>
       </div>
@@ -581,6 +590,7 @@ function drawShareBox() {
 }
 
 // Following: an Atom feed for every lab (feed.xml) and one per lab (feeds/<lab>.xml), built by scripts/feeds.mjs.
+$("follow-email").addEventListener("submit", () => track("email_signup_submitted"));
 const feedPath = (lab) => lab ? "feeds/" + slug(lab) + ".xml" : "feed.xml";
 function setFollowLab(lab) {
   $("follow-lab").value = lab || "";
