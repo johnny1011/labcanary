@@ -104,6 +104,9 @@ nav a { color: var(--fg); }
 .std-c h3 { margin: 0; font-size: 1rem; font-weight: 600; }
 .std-c .b { font-size: .88rem; line-height: 1.5; }
 .std-c .w { font-size: .8rem; color: var(--muted); line-height: 1.5; }
+.std-c .m { margin-top: auto; padding-top: 6px; font-size: .8rem; }
+.std-c .m summary { color: var(--link); cursor: pointer; }
+.std-c .m blockquote { margin: 8px 0 0; padding-left: 10px; border-left: 2px solid var(--line); line-height: 1.5; }
 .filters { display: flex; flex-wrap: wrap; gap: 8px; }
 .filters button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
 .ev-wrap { overflow: auto; max-height: 34rem; border: 1px solid var(--line); border-radius: 10px; }
@@ -243,7 +246,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
 
     <section class="sec" id="standard">
       <h2>The standard</h2>
-      <p class="sub">Seven principles a lab's staff contracts should meet. They're the yardstick for this scorecard, not contract wording or legal advice. Employment law differs between countries, so anyone drafting or signing a contract should get their own lawyer.</p>
+      <p class="sub">Seven principles a lab's staff contracts should meet, and the yardstick for this scorecard. Each comes with draft model wording a lab could adopt, so saying yes is easy. The wording hasn't been reviewed by a lawyer yet and isn't legal advice. Employment law differs between countries, so anyone drafting or signing a contract should get their own lawyer.</p>
       <details class="fold fold-std" open><summary>Show the seven clauses</summary><div class="std" id="std"></div></details>
     </section>
 
@@ -698,6 +701,11 @@ function drawStandard() {
   D.criteria.forEach(c => {
     const card = el("div", "std-c");
     card.append(el("span", "n", c.id), el("h3", null, c.name), el("p", "b", c.standard), el("p", "w", c.why));
+    if (c.model) {
+      const m = el("details", "m");
+      m.append(el("summary", null, "Model wording (draft)"), el("blockquote", null, c.model));
+      card.append(m);
+    }
     box.append(card);
   });
 }
