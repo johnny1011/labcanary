@@ -92,7 +92,7 @@ A GitHub check runs `node scripts/feeds.mjs --check` on every pull request and p
 
 ## Sharing
 
-Each lab summary and rating has a "Post on X" button, with Bluesky, LinkedIn, email and copy-link options under "More ways to share". The scorecard has the same buttons beside it. They're plain links, so no social media scripts load on the page. The post text is written by `shareInfo()` in `public/index.html` from the current scores. Keep it under 240 characters so it fits on X and Bluesky with the link.
+Each lab summary and rating, and the scorecard, has one "Share" button. On phones it opens the phone's own share sheet; on computers it opens a small pop-up with Copy link, X, Bluesky, LinkedIn and email. They're plain links, so no social media scripts load on the page. The post text is written by `shareInfo()` in `public/index.html` from the current scores. Keep it under 240 characters so it fits on X and Bluesky with the link.
 
 ## Short links
 
