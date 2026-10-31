@@ -721,8 +721,8 @@ function setLabFilter(l) {
   drawEvidence();
 }
 
-// Evidence can be shown as a timeline (default on phones) or a table.
-let evView = matchMedia("(max-width: 40rem)").matches ? "timeline" : "table", tlAll = false;
+// Evidence can be shown as a timeline (the default) or a table.
+let evView = "timeline", tlAll = false;
 function drawViewSwitch() {
   const v = $("ev-view");
   v.textContent = "";
