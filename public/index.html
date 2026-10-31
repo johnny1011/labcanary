@@ -131,6 +131,9 @@ a.pill-btn { display: inline-flex; align-items: center; text-decoration: none; }
 .share-box { display: flex; flex-direction: column; gap: 8px; }
 .share-box .k { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
 .share-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.share-pop { position: absolute; inset: auto; margin: 0; width: 16rem; max-width: calc(100vw - 16px); box-sizing: border-box; padding: 12px; background: var(--panel); color: var(--fg); border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,.4); }
+.share-pop:popover-open { display: flex; flex-wrap: wrap; gap: 8px; }
+.share-pop > :first-child { flex-basis: 100%; justify-content: center; }
 .follow { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; max-width: 48rem; }
 .follow h3 { margin: 0; font-size: 1rem; }
 .follow .small { font-size: .82rem; color: var(--muted); max-width: 70ch; }
@@ -490,27 +493,26 @@ async function copyText(text) {
   catch (e) { window.prompt("Copy this link:", text); return false; }
 }
 
-// Share buttons for s (see shareInfo). only limits them to some of: x, bluesky, linkedin, email, copy, native.
-function shareButtons(s, only) {
-  const info = shareInfo(s), want = (k) => !only || only.includes(k), out = [];
-  const props = { scope: info.scope, lab: s ? s.lab : null, clause: (s && s.clause) || null };
-  NETWORKS.filter(([key]) => want(key)).forEach(([key, label, href]) => {
-    const a = el("a", "pill-btn" + (key === "x" ? " primary" : ""), label);
+const shareProps = (s) => ({ scope: shareInfo(s).scope, lab: s ? s.lab : null, clause: (s && s.clause) || null });
+
+// Share buttons for s (see shareInfo): Copy link, each network, then the device's own share sheet where there is one.
+function shareButtons(s) {
+  const info = shareInfo(s), props = shareProps(s), out = [];
+  const copy = el("button", "pill-btn primary", "Copy link");
+  copy.type = "button";
+  copy.addEventListener("click", async () => {
+    track("share_clicked", { ...props, network: "copy" });
+    if (await copyText(info.url)) { copy.textContent = "Link copied"; setTimeout(() => { copy.textContent = "Copy link"; }, 2500); }
+  });
+  out.push(copy);
+  NETWORKS.forEach(([key, label, href]) => {
+    const a = el("a", "pill-btn", label);
     a.href = href(info);
     if (key !== "email") { a.target = "_blank"; a.rel = "noopener"; }
     a.addEventListener("click", () => track("share_clicked", { ...props, network: key }));
     out.push(a);
   });
-  if (want("copy")) {
-    const copy = el("button", "pill-btn", "Copy link");
-    copy.type = "button";
-    copy.addEventListener("click", async () => {
-      track("share_clicked", { ...props, network: "copy" });
-      if (await copyText(info.url)) { copy.textContent = "Link copied"; setTimeout(() => { copy.textContent = "Copy link"; }, 2500); }
-    });
-    out.push(copy);
-  }
-  if (want("native") && navigator.share) {
+  if (navigator.share) {
     const more = el("button", "pill-btn", "Other apps…");
     more.type = "button";
     more.addEventListener("click", async () => {
@@ -522,10 +524,36 @@ function shareButtons(s, only) {
   return out;
 }
 
+// One Share button and its pop-up. Phones open their own share sheet straight away; computers get the pop-up.
+function shareMenu(s) {
+  const btn = el("button", "pill-btn primary", "Share"), pop = el("div", "share-pop"), info = shareInfo(s);
+  btn.type = "button";
+  pop.popover = "auto";
+  pop.setAttribute("role", "group");
+  pop.setAttribute("aria-label", "Share");
+  pop.append(...shareButtons(s));
+  const phone = navigator.share && matchMedia("(pointer: coarse)").matches;
+  if (phone) {
+    btn.addEventListener("click", async () => {
+      track("share_clicked", { ...shareProps(s), network: "native" });
+      try { await navigator.share({ title: info.title, text: info.text, url: info.url }); }
+      catch (e) { if (e.name !== "AbortError") pop.showPopover(); }
+    });
+  } else btn.popoverTargetElement = pop;
+  pop.addEventListener("beforetoggle", (e) => {
+    if (e.newState !== "open") return;
+    const r = btn.getBoundingClientRect(), w = Math.min(pop.offsetWidth || 256, innerWidth - 16);
+    pop.style.top = (r.bottom + scrollY + 6) + "px";
+    pop.style.left = (Math.max(8, Math.min(r.left, document.documentElement.clientWidth - 8 - w)) + scrollX) + "px";
+  });
+  pop.addEventListener("toggle", (e) => { if (e.newState === "open") pop.firstChild.focus(); });
+  return [btn, pop];
+}
+
 function drawShareBox() {
   const box = $("share-scorecard"), row = el("div", "share-row");
   box.textContent = "";
-  row.append(...shareButtons(null));
+  row.append(...shareMenu(null));
   box.append(el("span", "k", "Share the scorecard"), row);
 }
 
@@ -680,19 +708,12 @@ function drawDetail() {
     D.criteria.forEach(c => { const r = cell(sel.lab, c.id); if (r.url) ul.append(el("li", null, c.name + " (" + r.rating.toLowerCase() + "): " + r.evidence)); });
     if (ul.childNodes.length) d.append(ul);
   }
-  // One click to post on X; the other ways to share fold out below.
-  const actions = el("div", "detail-actions"), more = el("button", "pill-btn", "More ways to share"), extra = el("div", "share-row");
+  const actions = el("div", "detail-actions");
   const follow = el("button", "pill-btn", "Follow " + sel.lab), close = el("button", "pill-btn phone-only", "Close"), lab = sel.lab;
-  extra.id = "detail-share";
-  extra.hidden = true;
-  extra.append(...shareButtons(sel, ["bluesky", "linkedin", "email", "copy", "native"]));
-  more.setAttribute("aria-expanded", "false");
-  more.setAttribute("aria-controls", "detail-share");
-  more.addEventListener("click", () => { extra.hidden = !extra.hidden; more.setAttribute("aria-expanded", String(!extra.hidden)); });
   follow.addEventListener("click", () => followLab(lab));
   close.addEventListener("click", () => select(sel));
-  actions.append(...shareButtons(sel, ["x"]), more, follow, close);
-  d.append(actions, extra);
+  actions.append(...shareMenu(sel), follow, close);
+  d.append(actions);
 }
 
 function drawStandard() {
