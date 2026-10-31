@@ -2,43 +2,50 @@
   {
     "id": "C1",
     "name": "No gag on criticism",
-    "standard": "No non-disparagement clause, or only a short, mutual one that never covers safety, ethics or legal concerns. Never for life.",
-    "why": "Staff and ex-staff are often the only people who can tell the public a lab is cutting corners."
+    "standard": "No non-disparagement clause when someone joins. On leaving, only a mutual one the person chooses to sign in return for something extra, that never covers safety, ethics or legal concerns and that ends after a set time. Never for life.",
+    "why": "Staff and ex-staff are often the only people who can tell the public a lab is cutting corners.",
+    "model": "Nothing in this agreement stops you from making truthful statements about the Company, including criticism of its conduct, safety practices, ethics or compliance with the law. Any mutual non-disparagement term in a separation agreement is optional, is given in return for benefits you would not otherwise receive, ends [24] months after you leave, and never applies to statements about safety, ethics, risks to the public or compliance with the law."
   },
   {
     "id": "C2",
     "name": "Equity is never hostage",
-    "standard": "Vested equity and pay can't be cancelled, clawed back or blocked from sale because someone spoke out.",
-    "why": "Threatening vested equity turns a contract into a gag."
+    "standard": "Vested equity and pay can't be cancelled, clawed back or blocked from sale because someone raised concerns, criticised the company or made a protected disclosure. Narrow, written-down for-cause terms, like losing shares for selling trade secrets, are fine.",
+    "why": "Threatening vested equity turns a contract into a gag.",
+    "model": "Your vested equity and earned pay will not be forfeited, cancelled, bought back below fair market value, or excluded from any tender offer or sale because you raised a concern, criticised the Company or made a protected disclosure. The Company may only forfeit equity for the specific reasons listed in [section X], and must first give you those reasons in writing and a fair chance to respond."
   },
   {
     "id": "C3",
     "name": "Protected disclosures carved out",
     "standard": "The contract says in plain words that nothing in it stops reporting to regulators, government, law enforcement or a lawyer.",
-    "why": "Builds on legal protections like California SB 53 and the UK's PIDA, so staff don't have to guess."
+    "why": "Builds on legal protections like California SB 53 and the UK's PIDA, so staff don't have to guess.",
+    "model": "Nothing in this agreement or any Company policy stops you from reporting possible breaches of the law, or risks to public health or safety, to any government agency, regulator, legislator, law enforcement body or court; from speaking to a lawyer; or from receiving a reward for information given to a government agency. You don't need to tell the Company or ask its permission first."
   },
   {
     "id": "C4",
     "name": "Whistleblowing policy is public",
     "standard": "The full speak-up / whistleblowing policy is published, not just a code of conduct.",
-    "why": "Lets outsiders check the process actually exists and is any good."
+    "why": "Lets outsiders check the process actually exists and is any good.",
+    "model": "The Company's full whistleblowing policy is published at [public link]. Any change to it will be published within 30 days."
   },
   {
     "id": "C5",
     "name": "Safe internal channel",
     "standard": "An anonymous internal channel, a real anti-retaliation policy, and someone independent of leadership who sees reports.",
-    "why": "Most concerns should be fixable inside the company, if people trust the route."
+    "why": "Most concerns should be fixable inside the company, if people trust the route.",
+    "model": "You can raise concerns through [channel], which accepts anonymous reports. Reports go to [a person or board committee independent of executive leadership]. The Company will not retaliate against anyone who raises a concern in good faith, and treats retaliation as serious misconduct."
   },
   {
     "id": "C6",
     "name": "Secrets means secrets",
     "standard": "Confidentiality covers genuine secrets (model weights, code, unreleased research, customer data), not opinions about how the company behaves.",
-    "why": "Protects what labs legitimately need to protect, and nothing more."
+    "why": "Protects what labs legitimately need to protect, and nothing more.",
+    "model": "\"Confidential Information\" means non-public information such as model weights, source code, unreleased research, security details, and customer or personal data. It does not include your opinions, or information about the Company's conduct, safety practices, working conditions or possible wrongdoing, except where sharing it would also reveal Confidential Information as defined above."
   },
   {
     "id": "C7",
     "name": "No secret NDAs",
     "standard": "Staff can say they signed an agreement and what kind it is.",
-    "why": "A gag you can't admit exists is the worst kind."
+    "why": "A gag you can't admit exists is the worst kind.",
+    "model": "You may tell anyone that you have signed this agreement and what kind of agreement it is, and you may share its full text with your lawyer, financial adviser, immediate family or any government agency. No term of this agreement is itself confidential."
   }
 ]
