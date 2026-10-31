@@ -118,6 +118,7 @@ td.nowrap { white-space: nowrap; }
 .step { border-top: 2px solid var(--accent); padding-top: 12px; display: flex; flex-direction: column; gap: 6px; }
 .step h3 { margin: 0; font-size: 1rem; }
 .step p { font-size: .9rem; color: var(--muted); }
+.goals { margin: 0; padding-left: 1.4rem; max-width: 48rem; display: flex; flex-direction: column; gap: 10px; font-size: .92rem; line-height: 1.55; }
 footer { border-top: 1px solid var(--line); padding-top: 16px; font-size: .82rem; color: var(--muted); display: flex; flex-direction: column; gap: 6px; }
 .sk { background: var(--panel); border-radius: 6px; min-height: 2.75rem; }
 .err { color: #ffb4a8; }
@@ -247,13 +248,13 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
     <section class="sec" id="goals">
       <h2>Goals</h2>
       <p class="sub">The scorecard is a start, not the point. Here's what Lab Canary is pushing for.</p>
-      <div class="steps">
-        <div class="step"><h3>1. Labs publish their terms</h3><p>Every lab publishes its standard employment, exit and equity terms and its speak-up policy, so no one has to guess.</p></div>
-        <div class="step"><h3>2. Labs adopt the standard</h3><p>Every lab meets all seven clauses. The model wording below is there so saying yes is easy.</p></div>
-        <div class="step"><h3>3. Labs say so, and keep saying so</h3><p>Each lab posts a dated statement that it meets the standard and renews it every quarter. If a statement goes missing, that says something too.</p></div>
-        <div class="step"><h3>4. Someone independent checks</h3><p>A whistleblowing lawyer reads each lab's terms and confirms they match what the lab says.</p></div>
-        <div class="step"><h3>5. People ask before they sign</h3><p>Anyone offered a job at a lab can check its terms here and ask about anything that's missing before they sign.</p></div>
-      </div>
+      <ol class="goals">
+        <li><strong>Labs publish their terms.</strong> Every lab publishes its standard employment, exit and equity terms and its speak-up policy, so no one has to guess.</li>
+        <li><strong>Labs adopt the standard.</strong> Every lab meets all seven clauses. The model wording below is there so saying yes is easy.</li>
+        <li><strong>Labs say so, and keep saying so.</strong> Each lab posts a dated statement that it meets the standard and renews it every quarter. If a statement goes missing, that says something too.</li>
+        <li><strong>Someone independent checks.</strong> A whistleblowing lawyer reads each lab's terms and confirms they match what the lab says.</li>
+        <li><strong>People ask before they sign.</strong> Anyone offered a job at a lab can check its terms here and ask about anything that's missing before they sign.</li>
+      </ol>
     </section>
 
     <section class="sec" id="standard">
