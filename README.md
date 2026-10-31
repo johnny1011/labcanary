@@ -73,11 +73,13 @@ When a rating or its evidence changes, add an entry to the top of `updates` in `
   "date": "2026-10-24",
   "title": "Google DeepMind: a former researcher posts the non-disparagement clause he signed",
   "text": "A few plain sentences on what changed and why, with the old and new rating.",
+  "scores": { "Anthropic": 43, "OpenAI": 43, "Google DeepMind": 7, "xAI": 0, "Meta": 0 },
   "labs": ["Google DeepMind"],
   "link": "#google-deepmind-c1"
 }
 ```
 
+- `scores` is every lab's score (percent, rounded) after the change, even when none moved. The Updates section draws each lab's score over time from these, and shows any score that moved, like "Anthropic 43% → 50%".
 - `labs` lists the labs it's about. Leave it empty (`[]`) for news about the whole site; that goes in every lab's feed.
 - `link` is where "See it on the scorecard" goes: `#openai` opens a lab summary, `#openai-c4` opens one rating.
 - Don't change a title once it's live. Feed readers use it to tell updates apart, so an edited title shows up twice.
