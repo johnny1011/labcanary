@@ -133,7 +133,7 @@ a.pill-btn { display: inline-flex; align-items: center; text-decoration: none; }
 .share-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
 .share-pop { position: absolute; inset: auto; margin: 0; width: 16rem; max-width: calc(100vw - 16px); box-sizing: border-box; padding: 12px; background: var(--panel); color: var(--fg); border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,.4); }
 .share-pop:popover-open { display: flex; flex-wrap: wrap; gap: 8px; }
-.share-pop > :first-child { flex-basis: 100%; justify-content: center; }
+.share-pop > :first-child { flex-basis: 100%; }
 .follow { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; max-width: 48rem; }
 .follow h3 { margin: 0; font-size: 1rem; }
 .follow .small { font-size: .82rem; color: var(--muted); max-width: 70ch; }
@@ -275,8 +275,8 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
           <label for="follow-lab">Follow</label>
           <select id="follow-lab"><option value="">All labs</option></select>
           <button type="button" class="pill-btn primary" id="follow-copy">Copy feed link</button>
-          <a class="pill-btn" id="follow-feedly" href="https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Flabcanary.com%2Ffeed.xml" target="_blank" rel="noopener">Add to Feedly</a>
-          <a class="pill-btn" id="follow-inoreader" href="https://www.inoreader.com/?add_feed=https%3A%2F%2Flabcanary.com%2Ffeed.xml" target="_blank" rel="noopener">Add to Inoreader</a>
+          <a class="pill-btn" id="follow-feedly" target="_blank" rel="noopener">Add to Feedly</a>
+          <a class="pill-btn" id="follow-inoreader" target="_blank" rel="noopener">Add to Inoreader</a>
         </div>
         <code id="follow-url">https://labcanary.com/feed.xml</code>
         <p class="small">Paste the link into a feed reader, such as Feedly, Inoreader or NetNewsWire, and each change will show up there. There's no sign-up and no email address needed.</p>
@@ -493,11 +493,11 @@ async function copyText(text) {
   catch (e) { window.prompt("Copy this link:", text); return false; }
 }
 
-const shareProps = (s) => ({ scope: shareInfo(s).scope, lab: s ? s.lab : null, clause: (s && s.clause) || null });
+const shareProps = (s, info) => ({ scope: info.scope, lab: s ? s.lab : null, clause: (s && s.clause) || null });
 
 // Share buttons for s (see shareInfo): Copy link, each network, then the device's own share sheet where there is one.
 function shareButtons(s) {
-  const info = shareInfo(s), props = shareProps(s), out = [];
+  const info = shareInfo(s), props = shareProps(s, info), out = [];
   const copy = el("button", "pill-btn primary", "Copy link");
   copy.type = "button";
   copy.addEventListener("click", async () => {
@@ -535,18 +535,25 @@ function shareMenu(s) {
   const phone = navigator.share && matchMedia("(pointer: coarse)").matches;
   if (phone) {
     btn.addEventListener("click", async () => {
-      track("share_clicked", { ...shareProps(s), network: "native" });
+      track("share_clicked", { ...shareProps(s, info), network: "native" });
       try { await navigator.share({ title: info.title, text: info.text, url: info.url }); }
-      catch (e) { if (e.name !== "AbortError") pop.showPopover(); }
+      // Cancelled, or a second tap while the sheet is already open: nothing to do. Anything else: show the pop-up instead.
+      catch (e) { if (!["AbortError", "InvalidStateError"].includes(e.name)) pop.showPopover({ source: btn }); }
     });
   } else btn.popoverTargetElement = pop;
   pop.addEventListener("beforetoggle", (e) => {
     if (e.newState !== "open") return;
-    const r = btn.getBoundingClientRect(), w = Math.min(pop.offsetWidth || 256, innerWidth - 16);
+    // Closed pop-ups have no size yet, so work out its 16rem width from the page's font size.
+    const vw = document.documentElement.clientWidth, w = Math.min(16 * parseFloat(getComputedStyle(document.documentElement).fontSize), vw - 16);
+    const r = btn.getBoundingClientRect();
     pop.style.top = (r.bottom + scrollY + 6) + "px";
-    pop.style.left = (Math.max(8, Math.min(r.left, document.documentElement.clientWidth - 8 - w)) + scrollX) + "px";
+    pop.style.left = (Math.max(8, Math.min(r.left, vw - 8 - w)) + scrollX) + "px";
   });
-  pop.addEventListener("toggle", (e) => { if (e.newState === "open") pop.firstChild.focus(); });
+  // Focus goes into the pop-up when it opens, and back to Share when it closes (taps on phones don't focus the button).
+  pop.addEventListener("toggle", (e) => {
+    if (e.newState === "open") pop.firstChild.focus();
+    else if (document.activeElement === document.body || pop.contains(document.activeElement)) btn.focus({ preventScroll: true });
+  });
   return [btn, pop];
 }
 
@@ -575,6 +582,7 @@ function followLab(lab) {
 function drawFollow() {
   const pick = $("follow-lab"), copy = $("follow-copy");
   D.labs.forEach(l => { const o = el("option", null, l); o.value = l; pick.append(o); });
+  setFollowLab("");
   pick.addEventListener("change", () => setFollowLab(pick.value));
   copy.addEventListener("click", async () => {
     track("follow_copied", { lab: pick.value || null });
