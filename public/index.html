@@ -209,7 +209,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
 <div class="wrap">
   <header class="top">
     <div class="brand"><span class="brand-dot" aria-hidden="true"></span><div><h1>Lab Canary</h1><small>Speak-up scorecard for AI labs · <span class="draft">Rough first version</span></small></div></div>
-    <nav aria-label="Sections"><a href="#scorecard">Scorecard</a><a href="#standard">The standard</a><a href="#evidence">Evidence</a><a href="#updates">Updates</a><a href="#opt-in">Opt in</a><a href="#questions">Q&amp;A</a></nav>
+    <nav aria-label="Sections"><a href="#scorecard">Scorecard</a><a href="#goals">Goals</a><a href="#standard">The standard</a><a href="#evidence">Evidence</a><a href="#updates">Updates</a><a href="#opt-in">Opt in</a><a href="#questions">Q&amp;A</a></nav>
   </header>
 
   <main style="display:flex;flex-direction:column;gap:56px">
@@ -241,6 +241,18 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
           <a href="#follow">Get updates when ratings change →</a>
         </div>
         <div class="share-box" id="share-scorecard" aria-label="Share the scorecard" role="group"></div>
+      </div>
+    </section>
+
+    <section class="sec" id="goals">
+      <h2>Goals</h2>
+      <p class="sub">The scorecard is a start, not the point. Here's what Lab Canary is pushing for.</p>
+      <div class="steps">
+        <div class="step"><h3>1. Labs publish their terms</h3><p>Every lab publishes its standard employment, exit and equity terms and its speak-up policy, so no one has to guess.</p></div>
+        <div class="step"><h3>2. Labs adopt the standard</h3><p>Every lab meets all seven clauses. The model wording below is there so saying yes is easy.</p></div>
+        <div class="step"><h3>3. Labs say so, and keep saying so</h3><p>Each lab posts a dated statement that it meets the standard and renews it every quarter. If a statement goes missing, that says something too.</p></div>
+        <div class="step"><h3>4. Someone independent checks</h3><p>A whistleblowing lawyer reads each lab's terms and confirms they match what the lab says.</p></div>
+        <div class="step"><h3>5. People ask before they sign</h3><p>Anyone offered a job at a lab can check its terms here and ask about anything that's missing before they sign.</p></div>
       </div>
     </section>
 
@@ -308,13 +320,13 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
         <details class="fold" open><summary><h3>“Who pays for it?”</h3></summary><p>Nobody. I pay for the domain, about $10 a year, and the hosting is free. There are no ads.</p></details>
         <details class="fold" open><summary><h3>“What do you track?”</h3></summary><p>I want to see how people use the page so I can make it better. Cloudflare Web Analytics and PostHog (hosted in the EU) count visits, and PostHog also records sessions on this page: clicks, scrolling and mouse movement. Neither sets cookies, PostHog doesn’t keep IP addresses, and nothing you type is recorded. Recordings are deleted after 30 days. I don’t sell or share any of it.</p></details>
         <details class="fold" open><summary><h3>“Can I send you my contract, or a tip?”</h3></summary><p>Please don’t. The point is to get labs to publish their terms, not to collect leaks. I only use public evidence, so I’d delete anything confidential without using it, and sending it to a website probably isn’t legally protected. Worried about your own terms? <a href="https://protect-advice.org.uk">Protect</a> gives free, confidential whistleblowing advice in the UK.</p></details>
-        <details class="fold" open><summary><h3>“How do I get in touch, or fix a mistake?”</h3></summary><p>There’s no contact email, on purpose. This is meant to be one place to see all the public evidence and push the labs to publish more. If something’s wrong or missing, <a href="https://github.com/johnny1011/labcanary/issues">open an issue on GitHub</a> with a link to a public source, so everyone can see the change and why. Labs can do the same, or publish their terms and <a href="#opt-in">opt in</a>.</p></details>
+        <details class="fold" open><summary><h3>“How do I get in touch, or fix a mistake?”</h3></summary><p>Email <a href="mailto:hello@labcanary.com">hello@labcanary.com</a>. Please don’t send contracts or anything confidential. If a rating is wrong or missing, you can also <a href="https://github.com/johnny1011/labcanary/issues">open an issue on GitHub</a> with a link to a public source, so everyone can see the change and why. Labs can do the same, or publish their terms and <a href="#opt-in">opt in</a>.</p></details>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>Made by <a href="https://www.linkedin.com/in/jonathanhind/">Jonathan Hind</a>, built with help from Claude. Ratings use public evidence only. "Not public" scores zero. That's a score for openness, not a finding that a lab's terms are bad. A lab that wants credit can publish its terms. Score = clauses met, plus half for each partly met, out of seven.</p>
+    <p>Made by <a href="https://www.linkedin.com/in/jonathanhind/">Jonathan Hind</a>, built with help from Claude. Ratings use public evidence only. "Not public" scores zero. That's a score for openness, not a finding that a lab's terms are bad. A lab that wants credit can publish its terms. Score = clauses met, plus half for each partly met, out of seven. Get in touch: <a href="mailto:hello@labcanary.com">hello@labcanary.com</a>.</p>
     <p>Privacy: this page counts visits and records sessions (clicks, scrolling and mouse movement, never anything typed) with Cloudflare Web Analytics and PostHog, to help me improve it. No cookies, and nothing is sold. <a href="#questions">More in the Q&amp;A</a>.</p>
   </footer>
 </div>
