@@ -96,7 +96,7 @@ Each lab summary and rating has a "Post on X" button, with Bluesky, LinkedIn, em
 
 ## Short links
 
-`public/_redirects` holds short links that land on the home page with tracking tags PostHog can read: `/x1` to `/x10` for replies on X, and `/m1` to `/m5` for launch outreach by email or DM (press, organisations, people, policy, other). Outreach links are per group, never per person, so a visit can't be tied to whoever was sent the link.
+`public/_redirects` holds short links that land on the home page with tracking tags PostHog can read: `/x1` to `/x10` for replies on X, and `/m1` to `/m6` for launch outreach by email or DM (press, organisations, people, policy, other, and Pacing the Frontier signers). Outreach links are per group, never per person, so a visit can't be tied to whoever was sent the link.
 
 Changes pushed to `main` go live automatically.
 
