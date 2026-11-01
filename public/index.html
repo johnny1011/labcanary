@@ -143,7 +143,8 @@ a.pill-btn { display: inline-flex; align-items: center; text-decoration: none; }
 .follow .small { font-size: .82rem; color: var(--muted); max-width: 70ch; }
 .follow-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
 .follow select { font: .85rem var(--sans); padding: 5px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); }
-.follow input[type=email] { font: .85rem var(--sans); padding: 5px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); min-width: 0; flex: 1 1 14rem; max-width: 20rem; }
+.email-form { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.email-form input[type=email] { font: .85rem var(--sans); padding: 5px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); min-width: 0; flex: 1 1 14rem; max-width: 20rem; }
 .follow code { font-size: .8rem; color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 3px 8px; overflow-wrap: anywhere; }
 .updates { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; max-width: 48rem; }
 .upd { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 4px 14px; padding: 14px 0; border-top: 1px solid var(--line); }
@@ -243,8 +244,12 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
           <a href="#standard">The standard, in seven clauses →</a>
           <a href="#evidence">All the evidence and sources →</a>
           <a href="#opt-in">How a lab can opt in →</a>
-          <a href="#follow">Get updates when ratings change →</a>
         </div>
+        <form class="email-form" id="hero-email" action="https://buttondown.com/api/emails/embed-subscribe/labcanary" method="post" target="_blank">
+          <label for="hero-email-input">Get an email when a score changes</label>
+          <input type="email" name="email" id="hero-email-input" placeholder="you@example.com" autocomplete="email" required>
+          <button type="submit" class="pill-btn primary">Sign up</button>
+        </form>
         <div class="share-box" id="share-scorecard" aria-label="Share the scorecard" role="group"></div>
       </div>
     </section>
@@ -288,22 +293,22 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
       <p class="sub">Ratings change when labs publish their terms or new evidence comes out. Every change is listed here, newest first.</p>
       <div class="follow" id="follow">
         <h3>Follow the changes</h3>
+        <!-- Buttondown sign-up; its RSS-to-email automation sends feed.xml entries. Disclosed in the "Do you keep my email?" Q&A. -->
+        <form class="email-form" id="follow-email" action="https://buttondown.com/api/emails/embed-subscribe/labcanary" method="post" target="_blank">
+          <label for="follow-email-input">By email</label>
+          <input type="email" name="email" id="follow-email-input" placeholder="you@example.com" autocomplete="email" required>
+          <button type="submit" class="pill-btn primary">Email me changes</button>
+        </form>
+        <p class="small">One email when a rating changes, nothing else. Any address is fine. You don't need to use a work one. <a href="#keep-email">What happens to my email?</a></p>
         <div class="follow-row">
-          <label for="follow-lab">Follow</label>
+          <label for="follow-lab">Or use a feed reader</label>
           <select id="follow-lab"><option value="">All labs</option></select>
-          <button type="button" class="pill-btn primary" id="follow-copy">Copy feed link</button>
+          <button type="button" class="pill-btn" id="follow-copy">Copy feed link</button>
           <a class="pill-btn" id="follow-feedly" target="_blank" rel="noopener">Add to Feedly</a>
           <a class="pill-btn" id="follow-inoreader" target="_blank" rel="noopener">Add to Inoreader</a>
         </div>
         <code id="follow-url">https://labcanary.com/feed.xml</code>
         <p class="small">Paste the link into a feed reader, such as Feedly, Inoreader or NetNewsWire, and each change will show up there. No email address needed.</p>
-        <!-- Buttondown sign-up; its RSS-to-email automation sends feed.xml entries. Disclosed in the "Do you keep my email?" Q&A. -->
-        <form class="follow-row" id="follow-email" action="https://buttondown.com/api/emails/embed-subscribe/labcanary" method="post" target="_blank">
-          <label for="follow-email-input">Or by email</label>
-          <input type="email" name="email" id="follow-email-input" placeholder="you@example.com" autocomplete="email" required>
-          <button type="submit" class="pill-btn primary">Email me changes</button>
-        </form>
-        <p class="small">One email when a rating changes, nothing else. Any address is fine. You don't need to use a work one. <a href="#keep-email">What happens to my email?</a></p>
       </div>
       <ol class="updates" id="updates-list"></ol>
     </section>
@@ -590,7 +595,7 @@ function drawShareBox() {
 }
 
 // Following: an Atom feed for every lab (feed.xml) and one per lab (feeds/<lab>.xml), built by scripts/feeds.mjs.
-$("follow-email").addEventListener("submit", () => track("email_signup_submitted"));
+["hero", "follow"].forEach(where => $(where + "-email").addEventListener("submit", () => track("email_signup_submitted", { where })));
 const feedPath = (lab) => lab ? "feeds/" + slug(lab) + ".xml" : "feed.xml";
 function setFollowLab(lab) {
   $("follow-lab").value = lab || "";
