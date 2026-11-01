@@ -15,7 +15,7 @@
       "title": "Google DeepMind: a former researcher posts the non-disparagement clause he signed",
       "text": "Andreas Kirsch, a former Google DeepMind research scientist, posted on X a clause from the agreement he signed with Google in the UK in 2024. It says staff must not make \"any statement\" \"criticising or disparaging Google\", during or after employment, and he says it has no exemption for protected disclosures. \"No gag on criticism\" now cites it as its main source and stays \"Falls short\". A new entry for \"Protected disclosures carved out\" stays \"Not public\", because the rest of the agreement isn't public. Scores are unchanged.",
       "labs": ["Google DeepMind"],
-      "link": "#google-deepmind-c1"
+      "link": "#google-deepmind-c2"
     },
     {
       "date": "2026-10-22",
@@ -28,7 +28,7 @@
   "ratings": [
     {
       "lab": "Anthropic",
-      "clause": "C1",
+      "clause": "C2",
       "rating": "Partly",
       "evidence": "Its Responsible Scaling Policy commits that any non-disparagement clause won't stop staff or ex-staff publicly raising safety concerns. It doesn't rule out such clauses for other criticism.",
       "source": "Anthropic Responsible Scaling Policy v3.4",
@@ -38,7 +38,7 @@
     },
     {
       "lab": "Anthropic",
-      "clause": "C2",
+      "clause": "C3",
       "rating": "Partly",
       "evidence": "A co-founder said vested equity was never tied to non-disparagement. Its RSP reporting policy prohibits retaliatory pay cuts and interference with earned benefits. These sources don't establish protection against blocked equity sales for all criticism.",
       "source": "Anthropic co-founder Sam McCandlish",
@@ -55,7 +55,7 @@
     },
     {
       "lab": "Anthropic",
-      "clause": "C3",
+      "clause": "C4",
       "rating": "Partly",
       "evidence": "Its reporting policy says nothing in any Anthropic agreement stops staff reporting possible violations of law to government, without permission. That external-reporting clause does not expressly cover other concerns.",
       "source": "Anthropic RSP reporting and anti-retaliation policy",
@@ -65,7 +65,7 @@
     },
     {
       "lab": "Anthropic",
-      "clause": "C4",
+      "clause": "C5",
       "rating": "Partly",
       "evidence": "Published an RSP whistleblowing policy in Dec 2025 and expanded reporting channels in Feb 2026. It covers RSP noncompliance; Anthropic says its broader reporting policy remains internal.",
       "source": "Anthropic RSP reporting and anti-retaliation policy",
@@ -87,7 +87,7 @@
     },
     {
       "lab": "Anthropic",
-      "clause": "C5",
+      "clause": "C6",
       "rating": "Partly",
       "evidence": "Anonymous reporting tool and a no-retaliation rule. Reports can go to an executive outside the safety officer's line, and the board gets quarterly updates. Not fully independent of leadership.",
       "source": "Anthropic Responsible Scaling Policy v3.4",
@@ -97,7 +97,7 @@
     },
     {
       "lab": "Anthropic",
-      "clause": "C7",
+      "clause": "C1",
       "rating": "Partly",
       "evidence": "Its Responsible Scaling Policy permits disclosure of a non-disparagement clause's existence. The cited promise does not establish the same right for other types of agreement.",
       "source": "Anthropic Responsible Scaling Policy v3.4",
@@ -107,7 +107,7 @@
     },
     {
       "lab": "OpenAI",
-      "clause": "C1",
+      "clause": "C2",
       "rating": "Partly",
       "evidence": "Vox reported in May 2024 that OpenAI's exit agreements barred ex-staff from criticising the company for life, at the risk of losing vested equity. OpenAI told Vox it had never cancelled anyone's vested equity. Days later, Bloomberg reported, OpenAI told former staff it would not cancel vested units, would release them from non-disparagement agreements unless the clause was mutual, and would remove the language from exit paperwork.",
       "source": "Bloomberg via BNN (archived)",
@@ -123,7 +123,7 @@
     },
     {
       "lab": "OpenAI",
-      "clause": "C2",
+      "clause": "C3",
       "rating": "Partly",
       "evidence": "In May 2024, OpenAI said it would not cancel vested equity over criticism. That statement does not establish protection against withheld pay or blocked equity sales.",
       "source": "Bloomberg via BNN (archived)",
@@ -132,9 +132,9 @@
     },
     {
       "lab": "OpenAI",
-      "clause": "C3",
+      "clause": "C4",
       "rating": "Partly",
-      "evidence": "Its Jan 2026 policy says staff are always free to report concerns to an outside authority, without telling OpenAI first. In 2024, whistleblowers alleged restrictive agreements hindered SEC reporting; OpenAI said its policy protected disclosures, TechCrunch reported.",
+      "evidence": "Its Jan 2026 policy says staff are always free to report concerns to an outside authority, without telling OpenAI first. It's “Partly” because the policy says it isn't a contract, and it doesn't say that no agreement overrides it or mention speaking to a lawyer. In 2024, whistleblowers alleged restrictive agreements hindered SEC reporting; OpenAI said its policy protected disclosures, TechCrunch reported.",
       "source": "OpenAI Raising Concerns Policy",
       "url": "https://cdn.openai.com/policies/openai-raising-concerns-policy.pdf",
       "date": "2026-01-12",
@@ -149,7 +149,7 @@
     },
     {
       "lab": "OpenAI",
-      "clause": "C4",
+      "clause": "C5",
       "rating": "Meets",
       "evidence": "Published a Raising Concerns Policy in Oct 2024 and an expanded version in Jan 2026.",
       "source": "AIWI",
@@ -165,7 +165,7 @@
     },
     {
       "lab": "OpenAI",
-      "clause": "C5",
+      "clause": "C6",
       "rating": "Partly",
       "evidence": "Anonymous Integrity Line and a no-retaliation rule. Run by OpenAI's Compliance team; AI safety concerns can be escalated to the board's Safety and Security Committee.",
       "source": "OpenAI Raising Concerns Policy",
@@ -175,7 +175,7 @@
     },
     {
       "lab": "OpenAI",
-      "clause": "C6",
+      "clause": "C7",
       "rating": "Not public",
       "evidence": "Contracts aren't public. The Register reported on 2 Oct 2026 that OpenAI had dismissed three staff, saying they mishandled sensitive company information. Some of it was allegedly shared with an outside AI evaluation group. OpenAI says the dismissals weren't about raising safety concerns.",
       "source": "The Register",
@@ -184,7 +184,7 @@
     },
     {
       "lab": "OpenAI",
-      "clause": "C7",
+      "clause": "C1",
       "rating": "Not public",
       "evidence": "Vox reported in 2024 that even admitting the old exit agreement existed counted as a breach. Current terms aren't public.",
       "source": "Vox (Kelsey Piper)",
@@ -193,7 +193,7 @@
     },
     {
       "lab": "Google DeepMind",
-      "clause": "C1",
+      "clause": "C2",
       "rating": "Falls short",
       "evidence": "Andreas Kirsch, a former Google DeepMind research scientist, posted on X a clause from the Confidentiality and Proprietary Information Agreement he signed with Google in the UK in 2024. It says that \"at all times during employment and after the termination of employment\" staff must not make \"any statement\" to anyone \"criticising or disparaging Google\". He says it has no exemption for protected disclosures. Google employees also told the BBC that their contracts stop staff publicly criticising the company, and a research engineer who had just resigned said: \"In principle I'm not allowed to criticise Google for the duration of my life.\" Google's statement to the BBC, as published, said staff have dedicated channels to raise concerns and that it prohibits retaliation. It didn't mention employment contracts. FLI's July 2026 index, partly using Google's private survey answers, gave Google 9 out of 10 for an explicit statement that NDAs and non-disparagement agreements can't stop safety-related whistleblowing.",
       "source": "Andreas Kirsch on X (the clause)",
@@ -219,7 +219,7 @@
     },
     {
       "lab": "Google DeepMind",
-      "clause": "C3",
+      "clause": "C4",
       "rating": "Not public",
       "evidence": "The non-disparagement clause Andreas Kirsch posted from his 2024 Google UK agreement has no exemption for protected disclosures, he says. The rest of the agreement isn't public, so it can't be checked whether another section carves them out.",
       "source": "Andreas Kirsch on X",
@@ -228,7 +228,7 @@
     },
     {
       "lab": "Google DeepMind",
-      "clause": "C4",
+      "clause": "C5",
       "rating": "Falls short",
       "evidence": "FLI's July 2026 review, using evidence up to 3 June, found no public whistleblowing policy. Google's Code of Conduct describes reporting channels and protection from retaliation.",
       "source": "FLI AI Safety Index, Summer 2026 (p. 88)",
@@ -237,7 +237,7 @@
     },
     {
       "lab": "Google DeepMind",
-      "clause": "C5",
+      "clause": "C6",
       "rating": "Partly",
       "evidence": "Google says it has dedicated channels to raise concerns and anti-retaliation policies. Staff told the BBC people fear retaliation.",
       "source": "BBC (republished on Yahoo News)",
@@ -246,7 +246,7 @@
     },
     {
       "lab": "xAI",
-      "clause": "C4",
+      "clause": "C5",
       "rating": "Falls short",
       "evidence": "In July 2026, The Midas Project reported no public whistleblowing policy. It reported that xAI's June framework revision removed earlier language on whistleblower protections and anonymous reporting. The December 2025 framework contained those commitments.",
       "source": "The Midas Project Watchtower",
@@ -262,7 +262,7 @@
     },
     {
       "lab": "Meta",
-      "clause": "C1",
+      "clause": "C2",
       "rating": "Falls short",
       "evidence": "In March 2025, at Meta's request, an arbitrator issued an interim order temporarily barring a former Facebook director of global public policy from promoting her memoir, Careless People, while the arbitration continued. The arbitrator found Meta had a valid argument that she may have breached the non-disparagement agreement she signed when she left in 2017. Meta called the book a mix of out-of-date claims and false accusations. Meta's current terms aren't public.",
       "source": "TechCrunch",
@@ -271,7 +271,7 @@
     },
     {
       "lab": "Meta",
-      "clause": "C4",
+      "clause": "C5",
       "rating": "Falls short",
       "evidence": "FLI's July 2026 review, using evidence up to 3 June, found Meta's full whistleblowing policy was not public. Its October framework says a policy exists and further AI reporting procedures are being developed; it does not publish the full policy.",
       "source": "FLI AI Safety Index, Summer 2026 (p. 88)",
