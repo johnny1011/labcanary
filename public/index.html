@@ -215,7 +215,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
 <div class="wrap">
   <header class="top">
     <div class="brand"><span class="brand-dot" aria-hidden="true"></span><div><h1>Lab Canary</h1><small>Speak-up scorecard for AI labs · <span class="draft">Rough first version</span></small></div></div>
-    <nav aria-label="Sections"><a href="#scorecard">Scorecard</a><a href="#goals">Goals</a><a href="#standard">The standard</a><a href="#evidence">Evidence</a><a href="#updates">Updates</a><a href="#opt-in">Opt in</a><a href="#questions">Q&amp;A</a></nav>
+    <nav aria-label="Sections"><a href="#scorecard">Scorecard</a><a href="#goals">Goals</a><a href="#standard">The standard</a><a href="#evidence">Evidence</a><a href="#updates">Updates</a><a href="#coming-soon">Coming soon</a><a href="#opt-in">Opt in</a><a href="#questions">Q&amp;A</a></nav>
   </header>
 
   <main style="display:flex;flex-direction:column;gap:56px">
@@ -313,6 +313,23 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
       <ol class="updates" id="updates-list"></ol>
     </section>
 
+    <section class="sec" id="coming-soon">
+      <h2>Coming soon</h2>
+      <p class="sub">What I'm working on next. None of this is live yet, and some of it depends on other people saying yes.</p>
+      <ul class="goals">
+        <li><strong>A free contract check for lab staff.</strong> I'm hoping to connect anyone at a lab with whistleblowing lawyers who can look over their NDA for free.</li>
+        <li><strong>A safe way to share your contract.</strong> Contracts would go straight to the lawyers, not to me, so they stay legally protected. I'd only see anonymised findings and update the ratings from those. Until this exists, please still don't send me anything.</li>
+        <li><strong>A lawyer's read of the standard.</strong> Whistleblowing lawyers review the seven clauses and the model wording. That includes the difference between a non-disparagement clause you sign when you join and one in a voluntary exit deal, and when losing equity is fair.</li>
+        <li><strong>A canary statement tracker.</strong> Each lab's dated statement that it meets the standard, shown here, with a flag when one goes missing or out of date.</li>
+        <li><strong>Private checks for labs.</strong> A lab that doesn't want to publish everything could share its terms with an independent lawyer, who confirms here whether they meet the standard.</li>
+        <li><strong>Why this should work.</strong> A short write-up of how a scorecard can lead to better contracts, and what would count as a win.</li>
+        <li><strong>Faster updates.</strong> An automated check for news about each lab's terms, so new evidence shows up here sooner. Every change will still be checked by hand against a public source.</li>
+        <li><strong>Support to keep going.</strong> Funding so I can keep this running for at least the next year, and a copy of the site hosted with a whistleblowing organisation.</li>
+        <li><strong>A way to chip in.</strong> A small tip jar to cover the domain and running costs.</li>
+        <li><strong>A sister site for countries.</strong> Rating countries on their AI policy, with an easy way to write to your MP about it.</li>
+      </ul>
+    </section>
+
     <section class="sec" id="opt-in">
       <h2>How opting in works</h2>
       <div class="steps">
@@ -331,14 +348,14 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
         <details class="fold" open><summary><h3>“Anthropic and OpenAI are top. Are you tied to them?”</h3></summary><p>Fair question. I’ve applied for jobs and fellowships at Anthropic, OpenAI and Google DeepMind, and I say so in <a href="#about">why I made this</a>. Nobody pays for it, and I don’t own shares in any AI lab. Both are only on 43%, and almost every rating is “Partly”. They’re top because they’ve published more, not because their terms are known to be good.</p></details>
         <details class="fold" open><summary><h3>“Not public = fail is unfair.”</h3></summary><p>I went back and forth on it. Treating it as neutral rewards publishing nothing. It’s a score for openness, not a finding that the terms are bad, and the labs control what’s published, so they can fix it. The site shows “Not public” separately so you can see the gap.</p></details>
         <details class="fold" open><summary><h3>“Why these seven clauses?”</h3></summary><p>They’re the bits of a contract that decide whether someone can speak up: what they can say, what they lose if they do, and who they can tell. Happy to hear if one’s unfair or something’s missing.</p></details>
-        <details class="fold" open><summary><h3>“How can you rate contracts you haven’t seen?”</h3></summary><p>Mostly I can’t, and the site says so. 18 of 35 are “Not public”. The rest come from published policies, public statements and reporting, each linked.</p></details>
+        <details class="fold" open><summary><h3>“How can you rate contracts you haven’t seen?”</h3></summary><p>Mostly I can’t, and the site says so. 18 of 35 are “Not public”. The rest come from published policies, public statements and reporting, each linked. Staff who joined or left at different times may have signed different versions, so a rating is about the latest public terms, not every contract still in force.</p></details>
         <details class="fold" open><summary><h3>“Why do Anthropic and OpenAI have the same score?”</h3></summary><p>Equal weights. They get to 43% differently, and the site breaks it down.</p></details>
-        <details class="fold" open><summary><h3>“US law already bans some of this.”</h3></summary><p>Some of it, in some places, for some disclosures. A clause can be unenforceable and still stop people talking, because most people won’t test it. Saying it plainly in the contract is the point of C3.</p></details>
+        <details class="fold" open><summary><h3>“US law already bans some of this.”</h3></summary><p>Some of it, in some places, for some disclosures. A clause can be unenforceable and still stop people talking, because most people won’t test it. Saying it plainly in the contract is the point of C4.</p></details>
         <details class="fold" open><summary><h3>“What’s the site made of, and where does it run?”</h3></summary><p>One HTML page and two data files, <a href="ratings.json">ratings.json</a> and <a href="criteria.json">criteria.json</a>, plus <a href="#follow">update feeds</a> made from the ratings file. There’s no server, database or login. It’s hosted on Cloudflare Pages and the domain is registered with Cloudflare. All the code and every rating are <a href="https://github.com/johnny1011/labcanary">public on GitHub</a> under the MIT licence, with a history of every change. I built it with help from Claude.</p></details>
         <details class="fold" open><summary><h3>“Who pays for it?”</h3></summary><p>Nobody. I pay for the domain, about $10 a year, and the hosting is free. There are no ads.</p></details>
         <details class="fold" open><summary><h3>“What do you track?”</h3></summary><p>I want to see how people use the page so I can make it better. Cloudflare Web Analytics and PostHog (hosted in the EU) count visits, and PostHog also records sessions on this page: clicks, scrolling and mouse movement. Neither sets cookies, PostHog doesn’t keep IP addresses, and nothing you type is recorded. Recordings are deleted after 30 days. I don’t sell or share any of it.</p></details>
         <details class="fold" id="keep-email" open><summary><h3>“Do you keep my email?”</h3></summary><p>Only if you sign up for updates. Your address is stored with <a href="https://buttondown.com/legal/privacy">Buttondown</a>, the newsletter service, and only used to email you when a rating changes. You confirm by email first, every email has an unsubscribe link, and unsubscribing deletes your address. I don’t sell or share it. Use any address you like: you don’t need to use a work one.</p></details>
-        <details class="fold" open><summary><h3>“Can I send you my contract, or a tip?”</h3></summary><p>Please don’t. The point is to get labs to publish their terms, not to collect leaks. I only use public evidence, so I’d delete anything confidential without using it, and sending it to a website probably isn’t legally protected. Worried about your own terms? <a href="https://protect-advice.org.uk">Protect</a> gives free, confidential whistleblowing advice in the UK.</p></details>
+        <details class="fold" open><summary><h3>“Can I send you my contract, or a tip?”</h3></summary><p>Please don’t. The point is to get labs to publish their terms, not to collect leaks. I only use public evidence, so I’d delete anything confidential without using it, and sending it to a website probably isn’t legally protected. Worried about your own terms? <a href="https://protect-advice.org.uk">Protect</a> gives free, confidential whistleblowing advice in the UK, and <a href="https://psst.org">Psst.org</a> offers tech and AI workers a legally privileged conversation with a lawyer.</p></details>
         <details class="fold" open><summary><h3>“How do I get in touch, or fix a mistake?”</h3></summary><p>Email <a href="mailto:hello@labcanary.com">hello@labcanary.com</a>. Please don’t send contracts or anything confidential. If a rating is wrong or missing, you can also <a href="https://github.com/johnny1011/labcanary/issues">open an issue on GitHub</a> with a link to a public source, so everyone can see the change and why. Labs can do the same, or publish their terms and <a href="#opt-in">opt in</a>.</p></details>
       </div>
     </section>
@@ -686,7 +703,7 @@ function drawScoreComparison() {
     " Each clause has equal weight. A total can hide different strengths and gaps in public evidence.");
   box.append(explanation);
 
-  const example = D.criteria.find(c => c.id === "C4");
+  const example = D.criteria.find(c => c.id === "C5");
   if (example && cell(labs[0], example.id).rating !== cell(labs[1], example.id).rating) {
     box.append(el("p", null, "For “" + example.name + "”, Anthropic is rated " + cell(labs[0], example.id).rating + "; OpenAI is rated " + cell(labs[1], example.id).rating + "."));
   }
