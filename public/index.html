@@ -104,6 +104,9 @@ nav a { color: var(--fg); }
 .std-c h3 { margin: 0; font-size: 1rem; font-weight: 600; }
 .std-c .b { font-size: .88rem; line-height: 1.5; }
 .std-c .w { font-size: .8rem; color: var(--muted); line-height: 1.5; }
+.std-c .m { margin-top: auto; padding-top: 6px; font-size: .8rem; }
+.std-c .m summary { color: var(--link); cursor: pointer; }
+.std-c .m blockquote { margin: 8px 0 0; padding-left: 10px; border-left: 2px solid var(--line); line-height: 1.5; }
 .filters { display: flex; flex-wrap: wrap; gap: 8px; }
 .filters button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
 .ev-wrap { overflow: auto; max-height: 34rem; border: 1px solid var(--line); border-radius: 10px; }
@@ -115,6 +118,7 @@ td.nowrap { white-space: nowrap; }
 .step { border-top: 2px solid var(--accent); padding-top: 12px; display: flex; flex-direction: column; gap: 6px; }
 .step h3 { margin: 0; font-size: 1rem; }
 .step p { font-size: .9rem; color: var(--muted); }
+.goals { margin: 0; padding-left: 1.4rem; max-width: 48rem; display: flex; flex-direction: column; gap: 10px; font-size: .92rem; line-height: 1.55; }
 footer { border-top: 1px solid var(--line); padding-top: 16px; font-size: .82rem; color: var(--muted); display: flex; flex-direction: column; gap: 6px; }
 .sk { background: var(--panel); border-radius: 6px; min-height: 2.75rem; }
 .err { color: #ffb4a8; }
@@ -131,11 +135,16 @@ a.pill-btn { display: inline-flex; align-items: center; text-decoration: none; }
 .share-box { display: flex; flex-direction: column; gap: 8px; }
 .share-box .k { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
 .share-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.share-pop { position: absolute; inset: auto; margin: 0; width: 16rem; max-width: calc(100vw - 16px); box-sizing: border-box; padding: 12px; background: var(--panel); color: var(--fg); border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,.4); }
+.share-pop:popover-open { display: flex; flex-wrap: wrap; gap: 8px; }
+.share-pop > :first-child { flex-basis: 100%; }
 .follow { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; max-width: 48rem; }
 .follow h3 { margin: 0; font-size: 1rem; }
 .follow .small { font-size: .82rem; color: var(--muted); max-width: 70ch; }
 .follow-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
 .follow select { font: .85rem var(--sans); padding: 5px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); }
+.email-form { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.email-form input[type=email] { font: .85rem var(--sans); padding: 5px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); min-width: 0; flex: 1 1 14rem; max-width: 20rem; }
 .follow code { font-size: .8rem; color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 3px 8px; overflow-wrap: anywhere; }
 .updates { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; max-width: 48rem; }
 .upd { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 4px 14px; padding: 14px 0; border-top: 1px solid var(--line); }
@@ -218,7 +227,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
 <div class="wrap">
   <header class="top">
     <div class="brand"><span class="brand-dot" aria-hidden="true"></span><div><h1>Lab Canary</h1><small>Speak-up scorecard for AI labs · <span class="draft">Rough first version</span></small><small class="checked-top"><span id="checked-top"></span> · <a href="#updates">What's changed</a></small></div></div>
-    <nav aria-label="Sections"><a href="#scorecard">Scorecard</a><a href="#standard">The standard</a><a href="#evidence">Evidence</a><a href="#updates">Updates</a><a href="#opt-in">Opt in</a><a href="#questions">Q&amp;A</a></nav>
+    <nav aria-label="Sections"><a href="#scorecard">Scorecard</a><a href="#goals">Goals</a><a href="#standard">The standard</a><a href="#evidence">Evidence</a><a href="#updates">Updates</a><a href="#coming-soon">Coming soon</a><a href="#opt-in">Opt in</a><a href="#questions">Q&amp;A</a></nav>
   </header>
 
   <main style="display:flex;flex-direction:column;gap:56px">
@@ -247,15 +256,31 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
           <a href="#standard">The standard, in seven clauses →</a>
           <a href="#evidence">All the evidence and sources →</a>
           <a href="#opt-in">How a lab can opt in →</a>
-          <a href="#follow">Get updates when ratings change →</a>
         </div>
+        <form class="email-form" id="hero-email" action="https://buttondown.com/api/emails/embed-subscribe/labcanary" method="post" target="_blank">
+          <label for="hero-email-input">Get an email when a score changes</label>
+          <input type="email" name="email" id="hero-email-input" placeholder="you@example.com" autocomplete="email" required>
+          <button type="submit" class="pill-btn primary">Sign up</button>
+        </form>
         <div class="share-box" id="share-scorecard" aria-label="Share the scorecard" role="group"></div>
       </div>
     </section>
 
+    <section class="sec" id="goals">
+      <h2>Goals</h2>
+      <p class="sub">The scorecard is a start, not the point. Here's what Lab Canary is pushing for.</p>
+      <ol class="goals">
+        <li><strong>Labs publish their terms.</strong> Every lab publishes its standard employment, exit and equity terms and its speak-up policy, so no one has to guess.</li>
+        <li><strong>Labs adopt the standard.</strong> Every lab meets all seven clauses. The model wording below is there so saying yes is easy.</li>
+        <li><strong>Labs say so, and keep saying so.</strong> Each lab posts a dated statement that it meets the standard and renews it every quarter. If a statement goes missing, that says something too.</li>
+        <li><strong>Someone independent checks.</strong> A whistleblowing lawyer reads each lab's terms and confirms they match what the lab says.</li>
+        <li><strong>People ask before they sign.</strong> Anyone offered a job at a lab can check its terms here and ask about anything that's missing before they sign.</li>
+      </ol>
+    </section>
+
     <section class="sec" id="standard">
       <h2>The standard</h2>
-      <p class="sub">Seven principles a lab's staff contracts should meet. They're the yardstick for this scorecard, not contract wording or legal advice. Employment law differs between countries, so anyone drafting or signing a contract should get their own lawyer.</p>
+      <p class="sub">Seven principles a lab's staff contracts should meet, and the yardstick for this scorecard. Each comes with draft model wording a lab could adopt, so saying yes is easy. The wording hasn't been reviewed by a lawyer yet and isn't legal advice. Employment law differs between countries, so anyone drafting or signing a contract should get their own lawyer.</p>
       <details class="fold fold-std" open><summary>Show the seven clauses</summary><div class="std" id="std"></div></details>
     </section>
 
@@ -281,16 +306,41 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
       <div class="sparks" id="sparks" role="group" aria-label="Each lab's score over time. Each small chart runs from 0% (solid line) to 100% (dotted)."></div>
       <div class="follow" id="follow">
         <h3>Follow the changes</h3>
+        <!-- Buttondown sign-up; its RSS-to-email automation sends feed.xml entries. Disclosed in the "Do you keep my email?" Q&A. -->
+        <form class="email-form" id="follow-email" action="https://buttondown.com/api/emails/embed-subscribe/labcanary" method="post" target="_blank">
+          <label for="follow-email-input">By email</label>
+          <input type="email" name="email" id="follow-email-input" placeholder="you@example.com" autocomplete="email" required>
+          <button type="submit" class="pill-btn primary">Email me changes</button>
+        </form>
+        <p class="small">One email when a rating changes, nothing else. Any address is fine. You don't need to use a work one. <a href="#keep-email">What happens to my email?</a></p>
         <div class="follow-row">
-          <label for="follow-lab">Follow</label>
+          <label for="follow-lab">Or use a feed reader</label>
           <select id="follow-lab"><option value="">All labs</option></select>
-          <button type="button" class="pill-btn primary" id="follow-copy">Copy feed link</button>
-          <a class="pill-btn" id="follow-open" href="feed.xml" target="_blank" rel="noopener">Open the feed</a>
+          <button type="button" class="pill-btn" id="follow-copy">Copy feed link</button>
+          <a class="pill-btn" id="follow-feedly" target="_blank" rel="noopener">Add to Feedly</a>
+          <a class="pill-btn" id="follow-inoreader" target="_blank" rel="noopener">Add to Inoreader</a>
         </div>
         <code id="follow-url">https://labcanary.com/feed.xml</code>
-        <p class="small">Paste the link into a feed reader, such as Feedly, Inoreader or NetNewsWire, and each change will show up there. There's no sign-up and no email address needed.</p>
+        <p class="small">Paste the link into a feed reader, such as Feedly, Inoreader or NetNewsWire, and each change will show up there. No email address needed.</p>
       </div>
       <ol class="updates" id="updates-list"></ol>
+    </section>
+
+    <section class="sec" id="coming-soon">
+      <h2>Coming soon</h2>
+      <p class="sub">What I'm working on next. None of this is live yet, and some of it depends on other people saying yes.</p>
+      <ul class="goals">
+        <li><strong>A free contract check for lab staff.</strong> I'm hoping to connect anyone at a lab with whistleblowing lawyers who can look over their NDA for free.</li>
+        <li><strong>A safe way to share your contract.</strong> Contracts would go straight to the lawyers, not to me, so they stay legally protected. I'd only see anonymised findings and update the ratings from those. Until this exists, please still don't send me anything.</li>
+        <li><strong>A lawyer's read of the standard.</strong> Whistleblowing lawyers review the seven clauses and the model wording. That includes the difference between a non-disparagement clause you sign when you join and one in a voluntary exit deal, and when losing equity is fair.</li>
+        <li><strong>A canary statement tracker.</strong> Each lab's dated statement that it meets the standard, shown here, with a flag when one goes missing or out of date.</li>
+        <li><strong>Private checks for labs.</strong> A lab that doesn't want to publish everything could share its terms with an independent lawyer, who confirms here whether they meet the standard.</li>
+        <li><strong>Why this should work.</strong> A short write-up of how a scorecard can lead to better contracts, and what would count as a win.</li>
+        <li><strong>Faster updates.</strong> An automated check for news about each lab's terms, so new evidence shows up here sooner. Every change will still be checked by hand against a public source.</li>
+        <li><strong>Support to keep going.</strong> Funding so I can keep this running for at least the next year, and a copy of the site hosted with a whistleblowing organisation.</li>
+        <li><strong>A way to chip in.</strong> A small tip jar to cover the domain and running costs.</li>
+        <li><strong>A sister site for countries.</strong> Rating countries on their AI policy, with an easy way to write to your MP about it.</li>
+      </ul>
     </section>
 
     <section class="sec" id="opt-in">
@@ -311,21 +361,22 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
         <details class="fold" open><summary><h3>“Anthropic and OpenAI are top. Are you tied to them?”</h3></summary><p>Fair question. I’ve applied for jobs and fellowships at Anthropic, OpenAI and Google DeepMind, and I say so in <a href="#about">why I made this</a>. Nobody pays for it, and I don’t own shares in any AI lab. Both are only on 43%, and almost every rating is “Partly”. They’re top because they’ve published more, not because their terms are known to be good.</p></details>
         <details class="fold" open><summary><h3>“Not public = fail is unfair.”</h3></summary><p>I went back and forth on it. Treating it as neutral rewards publishing nothing. It’s a score for openness, not a finding that the terms are bad, and the labs control what’s published, so they can fix it. The site shows “Not public” separately so you can see the gap.</p></details>
         <details class="fold" open><summary><h3>“Why these seven clauses?”</h3></summary><p>They’re the bits of a contract that decide whether someone can speak up: what they can say, what they lose if they do, and who they can tell. Happy to hear if one’s unfair or something’s missing.</p></details>
-        <details class="fold" open><summary><h3>“How can you rate contracts you haven’t seen?”</h3></summary><p>Mostly I can’t, and the site says so. 18 of 35 are “Not public”. The rest come from published policies, public statements and reporting, each linked.</p></details>
+        <details class="fold" open><summary><h3>“How can you rate contracts you haven’t seen?”</h3></summary><p>Mostly I can’t, and the site says so. 18 of 35 are “Not public”. The rest come from published policies, public statements and reporting, each linked. Staff who joined or left at different times may have signed different versions, so a rating is about the latest public terms, not every contract still in force.</p></details>
         <details class="fold" open><summary><h3>“Why do Anthropic and OpenAI have the same score?”</h3></summary><p>Equal weights. They get to 43% differently, and the site breaks it down.</p></details>
-        <details class="fold" open><summary><h3>“US law already bans some of this.”</h3></summary><p>Some of it, in some places, for some disclosures. A clause can be unenforceable and still stop people talking, because most people won’t test it. Saying it plainly in the contract is the point of C3.</p></details>
+        <details class="fold" open><summary><h3>“US law already bans some of this.”</h3></summary><p>Some of it, in some places, for some disclosures. A clause can be unenforceable and still stop people talking, because most people won’t test it. Saying it plainly in the contract is the point of C4.</p></details>
         <details class="fold" open><summary><h3>“What’s the site made of, and where does it run?”</h3></summary><p>One HTML page and two data files, <a href="ratings.json">ratings.json</a> and <a href="criteria.json">criteria.json</a>, plus <a href="#follow">update feeds</a> made from the ratings file. There’s no server, database or login. It’s hosted on Cloudflare Pages and the domain is registered with Cloudflare. All the code and every rating are <a href="https://github.com/johnny1011/labcanary">public on GitHub</a> under the MIT licence, with a history of every change. I built it with help from Claude.</p></details>
         <details class="fold" open><summary><h3>“Who pays for it?”</h3></summary><p>Nobody. I pay for the domain, about $10 a year, and the hosting is free. There are no ads.</p></details>
         <details class="fold" open><summary><h3>“What do you track?”</h3></summary><p>I want to see how people use the page so I can make it better. Cloudflare Web Analytics and PostHog (hosted in the EU) count visits, and PostHog also records sessions on this page: clicks, scrolling and mouse movement. Neither sets cookies, PostHog doesn’t keep IP addresses, and nothing you type is recorded. Recordings are deleted after 30 days. I don’t sell or share any of it.</p></details>
-        <details class="fold" open><summary><h3>“Can I send you my contract, or a tip?”</h3></summary><p>Please don’t. The point is to get labs to publish their terms, not to collect leaks. I only use public evidence, so I’d delete anything confidential without using it, and sending it to a website probably isn’t legally protected. Worried about your own terms? <a href="https://protect-advice.org.uk">Protect</a> gives free, confidential whistleblowing advice in the UK.</p></details>
-        <details class="fold" open><summary><h3>“How do I get in touch, or fix a mistake?”</h3></summary><p>There’s no contact email, on purpose. This is meant to be one place to see all the public evidence and push the labs to publish more. If something’s wrong or missing, <a href="https://github.com/johnny1011/labcanary/issues">open an issue on GitHub</a> with a link to a public source, so everyone can see the change and why. Labs can do the same, or publish their terms and <a href="#opt-in">opt in</a>.</p></details>
+        <details class="fold" id="keep-email" open><summary><h3>“Do you keep my email?”</h3></summary><p>Only if you sign up for updates. Your address is stored with <a href="https://buttondown.com/legal/privacy">Buttondown</a>, the newsletter service, and only used to email you when a rating changes. You confirm by email first, every email has an unsubscribe link, and unsubscribing deletes your address. I don’t sell or share it. Use any address you like: you don’t need to use a work one.</p></details>
+        <details class="fold" open><summary><h3>“Can I send you my contract, or a tip?”</h3></summary><p>Please don’t. The point is to get labs to publish their terms, not to collect leaks. I only use public evidence, so I’d delete anything confidential without using it, and sending it to a website probably isn’t legally protected. Worried about your own terms? <a href="https://protect-advice.org.uk">Protect</a> gives free, confidential whistleblowing advice in the UK, and <a href="https://psst.org">Psst.org</a> offers tech and AI workers a legally privileged conversation with a lawyer.</p></details>
+        <details class="fold" open><summary><h3>“How do I get in touch, or fix a mistake?”</h3></summary><p>Email <a href="mailto:hello@labcanary.com">hello@labcanary.com</a>. Please don’t send contracts or anything confidential. If a rating is wrong or missing, you can also <a href="https://github.com/johnny1011/labcanary/issues">open an issue on GitHub</a> with a link to a public source, so everyone can see the change and why. Labs can do the same, or publish their terms and <a href="#opt-in">opt in</a>.</p></details>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>Made by <a href="https://www.linkedin.com/in/jonathanhind/">Jonathan Hind</a>, built with help from Claude. Ratings use public evidence only. "Not public" scores zero. That's a score for openness, not a finding that a lab's terms are bad. A lab that wants credit can publish its terms. Score = clauses met, plus half for each partly met, out of seven.</p>
-    <p>Privacy: this page counts visits and records sessions (clicks, scrolling and mouse movement, never anything typed) with Cloudflare Web Analytics and PostHog, to help me improve it. No cookies, and nothing is sold. <a href="#questions">More in the Q&amp;A</a>.</p>
+    <p>Made by <a href="https://www.linkedin.com/in/jonathanhind/">Jonathan Hind</a>, built with help from Claude. Ratings use public evidence only. "Not public" scores zero. That's a score for openness, not a finding that a lab's terms are bad. A lab that wants credit can publish its terms. Score = clauses met, plus half for each partly met, out of seven. Get in touch: <a href="mailto:hello@labcanary.com">hello@labcanary.com</a>.</p>
+    <p>Privacy: this page counts visits and records sessions (clicks, scrolling and mouse movement, never anything typed) with Cloudflare Web Analytics and PostHog, to help me improve it. If you sign up for email updates, Buttondown keeps your address until you unsubscribe. No cookies, and nothing is sold. <a href="#questions">More in the Q&amp;A</a>.</p>
   </footer>
 </div>
 
@@ -502,27 +553,26 @@ async function copyText(text) {
   catch (e) { window.prompt("Copy this link:", text); return false; }
 }
 
-// Share buttons for s (see shareInfo). only limits them to some of: x, bluesky, linkedin, email, copy, native.
-function shareButtons(s, only) {
-  const info = shareInfo(s), want = (k) => !only || only.includes(k), out = [];
-  const props = { scope: info.scope, lab: s ? s.lab : null, clause: (s && s.clause) || null };
-  NETWORKS.filter(([key]) => want(key)).forEach(([key, label, href]) => {
-    const a = el("a", "pill-btn" + (key === "x" ? " primary" : ""), label);
+const shareProps = (s, info) => ({ scope: info.scope, lab: s ? s.lab : null, clause: (s && s.clause) || null });
+
+// Share buttons for s (see shareInfo): Copy link, each network, then the device's own share sheet where there is one.
+function shareButtons(s) {
+  const info = shareInfo(s), props = shareProps(s, info), out = [];
+  const copy = el("button", "pill-btn primary", "Copy link");
+  copy.type = "button";
+  copy.addEventListener("click", async () => {
+    track("share_clicked", { ...props, network: "copy" });
+    if (await copyText(info.url)) { copy.textContent = "Link copied"; setTimeout(() => { copy.textContent = "Copy link"; }, 2500); }
+  });
+  out.push(copy);
+  NETWORKS.forEach(([key, label, href]) => {
+    const a = el("a", "pill-btn", label);
     a.href = href(info);
     if (key !== "email") { a.target = "_blank"; a.rel = "noopener"; }
     a.addEventListener("click", () => track("share_clicked", { ...props, network: key }));
     out.push(a);
   });
-  if (want("copy")) {
-    const copy = el("button", "pill-btn", "Copy link");
-    copy.type = "button";
-    copy.addEventListener("click", async () => {
-      track("share_clicked", { ...props, network: "copy" });
-      if (await copyText(info.url)) { copy.textContent = "Link copied"; setTimeout(() => { copy.textContent = "Copy link"; }, 2500); }
-    });
-    out.push(copy);
-  }
-  if (want("native") && navigator.share) {
+  if (navigator.share) {
     const more = el("button", "pill-btn", "Other apps…");
     more.type = "button";
     more.addEventListener("click", async () => {
@@ -534,19 +584,55 @@ function shareButtons(s, only) {
   return out;
 }
 
+// One Share button and its pop-up. Phones open their own share sheet straight away; computers get the pop-up.
+function shareMenu(s) {
+  const btn = el("button", "pill-btn primary", "Share"), pop = el("div", "share-pop"), info = shareInfo(s);
+  btn.type = "button";
+  pop.popover = "auto";
+  pop.setAttribute("role", "group");
+  pop.setAttribute("aria-label", "Share");
+  pop.append(...shareButtons(s));
+  const phone = navigator.share && matchMedia("(pointer: coarse)").matches;
+  if (phone) {
+    btn.addEventListener("click", async () => {
+      track("share_clicked", { ...shareProps(s, info), network: "native" });
+      try { await navigator.share({ title: info.title, text: info.text, url: info.url }); }
+      // Cancelled, or a second tap while the sheet is already open: nothing to do. Anything else: show the pop-up instead.
+      catch (e) { if (!["AbortError", "InvalidStateError"].includes(e.name)) pop.showPopover({ source: btn }); }
+    });
+  } else btn.popoverTargetElement = pop;
+  pop.addEventListener("beforetoggle", (e) => {
+    if (e.newState !== "open") return;
+    // Closed pop-ups have no size yet, so work out its 16rem width from the page's font size.
+    const vw = document.documentElement.clientWidth, w = Math.min(16 * parseFloat(getComputedStyle(document.documentElement).fontSize), vw - 16);
+    const r = btn.getBoundingClientRect();
+    pop.style.top = (r.bottom + scrollY + 6) + "px";
+    pop.style.left = (Math.max(8, Math.min(r.left, vw - 8 - w)) + scrollX) + "px";
+  });
+  // Focus goes into the pop-up when it opens, and back to Share when it closes (taps on phones don't focus the button).
+  pop.addEventListener("toggle", (e) => {
+    if (e.newState === "open") pop.firstChild.focus();
+    else if (document.activeElement === document.body || pop.contains(document.activeElement)) btn.focus({ preventScroll: true });
+  });
+  return [btn, pop];
+}
+
 function drawShareBox() {
   const box = $("share-scorecard"), row = el("div", "share-row");
   box.textContent = "";
-  row.append(...shareButtons(null));
+  row.append(...shareMenu(null));
   box.append(el("span", "k", "Share the scorecard"), row);
 }
 
 // Following: an Atom feed for every lab (feed.xml) and one per lab (feeds/<lab>.xml), built by scripts/feeds.mjs.
+["hero", "follow"].forEach(where => $(where + "-email").addEventListener("submit", () => track("email_signup_submitted", { where })));
 const feedPath = (lab) => lab ? "feeds/" + slug(lab) + ".xml" : "feed.xml";
 function setFollowLab(lab) {
   $("follow-lab").value = lab || "";
   $("follow-url").textContent = SITE + feedPath(lab);
-  $("follow-open").href = feedPath(lab);
+  const url = encodeURIComponent(SITE + feedPath(lab));
+  $("follow-feedly").href = "https://feedly.com/i/subscription/feed%2F" + url;
+  $("follow-inoreader").href = "https://www.inoreader.com/?add_feed=" + url;
 }
 function followLab(lab) {
   setFollowLab(lab);
@@ -557,12 +643,13 @@ function followLab(lab) {
 function drawFollow() {
   const pick = $("follow-lab"), copy = $("follow-copy");
   D.labs.forEach(l => { const o = el("option", null, l); o.value = l; pick.append(o); });
+  setFollowLab("");
   pick.addEventListener("change", () => setFollowLab(pick.value));
   copy.addEventListener("click", async () => {
     track("follow_copied", { lab: pick.value || null });
     if (await copyText(SITE + feedPath(pick.value))) { copy.textContent = "Feed link copied"; setTimeout(() => { copy.textContent = "Copy feed link"; }, 2500); }
   });
-  $("follow-open").addEventListener("click", () => track("follow_opened", { lab: pick.value || null }));
+  ["feedly", "inoreader"].forEach(reader => $("follow-" + reader).addEventListener("click", () => track("follow_opened", { lab: pick.value || null, reader })));
 }
 
 let updAll = false;
@@ -631,7 +718,7 @@ function drawScoreComparison() {
     " Each clause has equal weight. A total can hide different strengths and gaps in public evidence.");
   box.append(explanation);
 
-  const example = D.criteria.find(c => c.id === "C4");
+  const example = D.criteria.find(c => c.id === "C5");
   if (example && cell(labs[0], example.id).rating !== cell(labs[1], example.id).rating) {
     box.append(el("p", null, "For “" + example.name + "”, Anthropic is rated " + cell(labs[0], example.id).rating + "; OpenAI is rated " + cell(labs[1], example.id).rating + "."));
   }
@@ -692,19 +779,12 @@ function drawDetail() {
     D.criteria.forEach(c => { const r = cell(sel.lab, c.id); if (r.url) ul.append(el("li", null, c.name + " (" + r.rating.toLowerCase() + "): " + r.evidence)); });
     if (ul.childNodes.length) d.append(ul);
   }
-  // One click to post on X; the other ways to share fold out below.
-  const actions = el("div", "detail-actions"), more = el("button", "pill-btn", "More ways to share"), extra = el("div", "share-row");
+  const actions = el("div", "detail-actions");
   const follow = el("button", "pill-btn", "Follow " + sel.lab), close = el("button", "pill-btn phone-only", "Close"), lab = sel.lab;
-  extra.id = "detail-share";
-  extra.hidden = true;
-  extra.append(...shareButtons(sel, ["bluesky", "linkedin", "email", "copy", "native"]));
-  more.setAttribute("aria-expanded", "false");
-  more.setAttribute("aria-controls", "detail-share");
-  more.addEventListener("click", () => { extra.hidden = !extra.hidden; more.setAttribute("aria-expanded", String(!extra.hidden)); });
   follow.addEventListener("click", () => followLab(lab));
   close.addEventListener("click", () => select(sel));
-  actions.append(...shareButtons(sel, ["x"]), more, follow, close);
-  d.append(actions, extra);
+  actions.append(...shareMenu(sel), follow, close);
+  d.append(actions);
 }
 
 function drawStandard() {
@@ -713,6 +793,11 @@ function drawStandard() {
   D.criteria.forEach(c => {
     const card = el("div", "std-c");
     card.append(el("span", "n", c.id), el("h3", null, c.name), el("p", "b", c.standard), el("p", "w", c.why));
+    if (c.model) {
+      const m = el("details", "m");
+      m.append(el("summary", null, "Model wording (draft)"), el("blockquote", null, c.model));
+      card.append(m);
+    }
     box.append(card);
   });
 }
@@ -736,8 +821,8 @@ function setLabFilter(l) {
   drawEvidence();
 }
 
-// Evidence can be shown as a timeline (default on phones) or a table.
-let evView = matchMedia("(max-width: 40rem)").matches ? "timeline" : "table", tlAll = false;
+// Evidence can be shown as a timeline (the default) or a table.
+let evView = "timeline", tlAll = false;
 function drawViewSwitch() {
   const v = $("ev-view");
   v.textContent = "";
