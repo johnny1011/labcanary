@@ -11,6 +11,14 @@
   "optedIn": [],
   "updates": [
     {
+      "date": "2026-11-10",
+      "title": "Google DeepMind: Google says new hires' non-disparagement terms no longer apply after they leave",
+      "text": "Google told the Washington Post on 3 November that it had recently removed \"the post-termination aspect of non-disparagement clauses\" from its terms for new hires, and that it doesn't enforce non-disparagement clauses after people leave. \"No gag on criticism\" now cites this and stays \"Falls short\": Google only described removing the part that applies after someone leaves, it didn't say existing contracts had changed, and the new wording isn't public. If Google publishes the wording, it will be rated on that wording. Scores are unchanged.",
+      "scores": { "Anthropic": 43, "OpenAI": 43, "Google DeepMind": 7, "xAI": 0, "Meta": 0 },
+      "labs": ["Google DeepMind"],
+      "link": "#google-deepmind-c2"
+    },
+    {
       "date": "2026-11-07",
       "title": "New beta tab: what's public about labs' contracts with outside evaluators",
       "text": "A second tab rates what's public about each lab's contracts with third-party evaluators, using the six terms in GovAI's proposal that these contracts be published: scope, access, publication rights, pay, conflict rules, and term and renewal. Anthropic scores 42% and OpenAI 33%, mostly \"Partly\" from their own announcements; Google DeepMind, xAI and Meta score 0% because nothing is public. No lab has published a full evaluation contract. These scores are separate and don't change the staff-contract scores.",
@@ -205,11 +213,16 @@
       "lab": "Google DeepMind",
       "clause": "C2",
       "rating": "Falls short",
-      "evidence": "Andreas Kirsch, a former Google DeepMind research scientist, posted on X a clause from the Confidentiality and Proprietary Information Agreement he signed with Google in the UK in 2024. It says that \"at all times during employment and after the termination of employment\" staff must not make \"any statement\" to anyone \"criticising or disparaging Google\". He says it has no exemption for protected disclosures. Google employees also told the BBC that their contracts stop staff publicly criticising the company, and a research engineer who had just resigned said: \"In principle I'm not allowed to criticise Google for the duration of my life.\" Google's statement to the BBC, as published, said staff have dedicated channels to raise concerns and that it prohibits retaliation. It didn't mention employment contracts. FLI's July 2026 index, partly using Google's private survey answers, gave Google 9 out of 10 for an explicit statement that NDAs and non-disparagement agreements can't stop safety-related whistleblowing.",
+      "evidence": "Andreas Kirsch, a former Google DeepMind research scientist, posted on X a clause from the Confidentiality and Proprietary Information Agreement he signed with Google in the UK in 2024. It says that \"at all times during employment and after the termination of employment\" staff must not make \"any statement\" to anyone \"criticising or disparaging Google\". He says it has no exemption for protected disclosures. On 3 November 2026, Google told the Washington Post that it had recently removed \"the post-termination aspect of non-disparagement clauses\" from its terms for new hires, and that it doesn't enforce non-disparagement clauses after people leave. It described removing only the part that applies after someone leaves, didn't say existing contracts had changed, and hasn't published the new wording. Google employees also told the BBC that their contracts stop staff publicly criticising the company, and a research engineer who had just resigned said: \"In principle I'm not allowed to criticise Google for the duration of my life.\" Google's statement to the BBC, as published, said staff have dedicated channels to raise concerns and that it prohibits retaliation. It didn't mention employment contracts. FLI's July 2026 index, partly using Google's private survey answers, gave Google 9 out of 10 for an explicit statement that NDAs and non-disparagement agreements can't stop safety-related whistleblowing.",
       "source": "Andreas Kirsch on X (the clause)",
       "url": "https://x.com/BlackHC/status/2112946535877005776",
       "date": "2026-10-21",
       "additionalSources": [
+        {
+          "source": "Washington Post (Google's statement)",
+          "url": "https://www.washingtonpost.com/technology/2026/11/03/google-deepmind-staff-protest-lifetime-ban-criticizing-company/",
+          "date": "2026-11-03"
+        },
         {
           "source": "Andreas Kirsch on X (no protected-disclosure exemption)",
           "url": "https://x.com/BlackHC/status/2112946538074734633",
