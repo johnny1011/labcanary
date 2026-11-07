@@ -2,7 +2,7 @@
 
 Can people who work at AI labs tell the public when something's wrong?
 
-Lab Canary scores AI labs' staff contracts and speak-up policies against a simple standard: protect real secrets, never gag criticism or whistleblowing. Every rating links to a public source.
+Lab Canary scores AI labs' staff contracts and speak-up policies against a simple standard: protect real secrets, never gag criticism or whistleblowing. A beta tab does the same for labs' contracts with outside evaluators. Every rating links to a public source.
 
 Live at **https://labcanary.com**
 
@@ -14,6 +14,24 @@ Live at **https://labcanary.com**
 - Each clause has equal weight. Equal scores can combine different ratings and evidence gaps; they do not mean identical protections. The scorecard explains Anthropic and OpenAI's totals using the current ratings.
 - Both "Falls short" and "Not public" score zero, but mean different things. "Falls short" means the public evidence shows it doesn't meet the clause. "Not public" means there is not enough public evidence to check. A lab that wants credit can publish its terms. Not-public counts appear beside each lab's score.
 - A "Meets" rating needs evidence for the complete criterion, from a written policy or the contract wording. One public statement (an interview comment, or a statement reported in the press) earns "Partly" at most. Use "Partly" when the evidence supports only part of it.
+
+## Evaluator contracts (beta)
+
+A second tab rates what's public about each lab's contracts with outside (third-party) evaluators. It uses the six terms in GovAI's proposal that [third-party AI evaluation contracts should be published](https://www.governance.ai/analysis/third-party-ai-evaluation-contracts-should-be-published): scope, access, publication rights, pay, conflict rules, and term and renewal.
+
+- The terms and their ratings live in [`public/evaluators.json`](public/evaluators.json), in the same shape as `criteria.json` and `ratings.json`. Term ids are `E1`–`E6`; staff clause ids stay `C1`–`C7`, so ids never clash.
+- It's scored the same way (met, plus half for each partly met), out of six, and **separately**. It is never added to the staff score, the score history or the share text for staff contracts.
+- The same evidence rules apply: "Meets" needs published terms or contract wording; one public statement earns "Partly" at most.
+- If `evaluators.json` is missing or invalid, the page hides the tab and the staff scorecard still loads.
+- Links: `#evaluators` opens the tab, `#openai-evaluators` a lab's evaluator summary, and `#openai-e3` one evaluator rating.
+
+## Checking the data
+
+```sh
+node scripts/check-data.mjs
+```
+
+It checks both rating files: known labs and clause ids, valid ratings, a source URL and date for every rating other than "Not public", and no duplicates. A GitHub check runs it on every pull request and push.
 
 ## Suggest a correction
 

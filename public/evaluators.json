@@ -1,0 +1,245 @@
+{
+  "updated": "2026-11-07",
+  "checked": "2026-11-07",
+  "basedOn": {
+    "source": "GovAI: Third-party AI evaluation contracts should be published",
+    "url": "https://www.governance.ai/analysis/third-party-ai-evaluation-contracts-should-be-published",
+    "date": "2026-11-06"
+  },
+  "criteria": [
+    {
+      "id": "E1",
+      "name": "Scope is public",
+      "standard": "For each outside evaluation, the lab publishes what was checked: which risks and claims, which models, and what was left out.",
+      "why": "A clean result means little if you can't see what wasn't looked at.",
+      "model": "The Evaluation covers [risks and claims] for [models]. It does not cover [exclusions]. The Company will publish this scope, including the exclusions, alongside the Evaluator's report."
+    },
+    {
+      "id": "E2",
+      "name": "Access is public",
+      "standard": "Published terms say what evaluators can see (models and checkpoints, internal documents, staff), whether they can ask for more, and when the lab can refuse. Evaluators can say publicly when access was too limited.",
+      "why": "Findings are only as strong as the evidence the evaluator was allowed to see.",
+      "model": "The Evaluator will have access to [models, checkpoints, documents, systems and staff]. The Evaluator may request further information relevant to the Evaluation, and the Company will give written reasons for any refusal. The Evaluator may state publicly what access it had and where it considers that access insufficient."
+    },
+    {
+      "id": "E3",
+      "name": "Evaluators control what they publish",
+      "standard": "The evaluator decides what to publish. The lab can only require redactions in categories agreed before the work starts (like trade secrets, security details or customer data), can't block or soften findings, and the evaluator can say when redactions affected its conclusions. Serious concerns can go to the lab's board or a regulator.",
+      "why": "If the lab can edit or veto the report, the report is partly the lab's.",
+      "model": "The Evaluator has final editorial control over its report. The Company may require redaction only of information in the categories listed in [Schedule X], agreed before the Evaluation began, and may not require changes to the Evaluator's findings or conclusions. The Evaluator may state where and why material was redacted, and whether redactions affected its conclusions. The Evaluator may raise serious concerns directly with the Company's board or a relevant government authority."
+    },
+    {
+      "id": "E4",
+      "name": "Pay doesn't depend on findings",
+      "standard": "Published terms say who pays for the evaluation and how the fee is set, and that no payment depends on what the evaluator finds.",
+      "why": "An evaluator paid more for good news has a reason to find it.",
+      "model": "The Company will pay the Evaluator a fixed fee of [amount], set before the Evaluation begins. No part of the fee, or any future engagement, depends on the Evaluator's findings or conclusions."
+    },
+    {
+      "id": "E5",
+      "name": "Conflict rules are public",
+      "standard": "Published conflict-of-interest rules for evaluators: no equity in the lab, no financial dependence on it, limits on other paid work for the lab, and what must be disclosed or lead to someone stepping aside.",
+      "why": "Readers need to know whether the evaluator has reasons to go easy on the lab.",
+      "model": "The Evaluator and its staff working on the Evaluation hold no equity or debt in the Company. The Evaluator will disclose in its report any other paid work for the Company in the past [two] years, and any staff member with a close personal or financial tie to the Company will step aside from the Evaluation."
+    },
+    {
+      "id": "E6",
+      "name": "Term and renewal are public",
+      "standard": "Published length of each engagement, and how renewal or ending it is decided, including that the lab can't end or decline to renew it because of the findings.",
+      "why": "The threat of losing the next contract can shape a report as much as a veto can.",
+      "model": "This agreement runs from [date] to [date]. The Company may not end this agreement, or decline to renew it, because of the Evaluator's findings. Any decision not to renew will be published with its reasons."
+    }
+  ],
+  "ratings": [
+    {
+      "lab": "Anthropic",
+      "clause": "E1",
+      "rating": "Partly",
+      "evidence": "Anthropic has published what its main outside evaluations cover: Faculty (Accenture's AI business) on red-teaming, alignment assessments and safeguard testing; SecureBio on the chemical and biological weapons chapter of its August 2026 Risk Report; and a METR team embedded inside the company. It's \"Partly\" because these are announcements, not per-evaluation scopes, and they don't list what was left out.",
+      "source": "Anthropic: An update on independent evaluators",
+      "url": "https://www.anthropic.com/news/an-update-on-independent-evaluators",
+      "date": "2026-10-15",
+      "additionalSources": [
+        {
+          "source": "Anthropic: Accenture embedded evaluation",
+          "url": "https://www.anthropic.com/news/accenture-embedded-evaluation",
+          "date": "2026-09-18"
+        }
+      ],
+      "fromLab": true
+    },
+    {
+      "lab": "Anthropic",
+      "clause": "E2",
+      "rating": "Partly",
+      "evidence": "Anthropic describes three tiers of access. At the top tier, six METR staff have company hardware, office space and internal tools, close to its own risk teams, and staff are encouraged to share everything except customer data, privileged legal advice and model architecture. METR may comment on the access it had. It's \"Partly\" because Anthropic sets lower-tier access case by case, says there are no standards yet for what embedded evaluators should see, and hasn't published the agreements.",
+      "source": "Anthropic: An update on independent evaluators",
+      "url": "https://www.anthropic.com/news/an-update-on-independent-evaluators",
+      "date": "2026-10-15",
+      "additionalSources": [
+        {
+          "source": "Anthropic: Accenture embedded evaluation",
+          "url": "https://www.anthropic.com/news/accenture-embedded-evaluation",
+          "date": "2026-09-18"
+        }
+      ],
+      "fromLab": true
+    },
+    {
+      "lab": "Anthropic",
+      "clause": "E3",
+      "rating": "Partly",
+      "evidence": "At its upper two tiers, Anthropic says it can't veto publication and can only require redactions in predefined categories, and evaluators can publish their view on whether redactions were justified. But first-tier findings are published only with Anthropic's approval, Anthropic decides what falls in the redaction categories, and it told Reuters it keeps the right to comment on and approve reports from newer evaluators. No route to the board or a regulator is described.",
+      "source": "Anthropic: An update on independent evaluators",
+      "url": "https://www.anthropic.com/news/an-update-on-independent-evaluators",
+      "date": "2026-10-15",
+      "additionalSources": [
+        {
+          "source": "Reuters (republished by The Star)",
+          "url": "https://www.thestar.com.my/tech/tech-news/2026/10/13/exclusive-behind-ai-industry039s-call-for-independent-reviews-a-fight-over-what-gets-made-public",
+          "date": "2026-10-13"
+        }
+      ],
+      "fromLab": true
+    },
+    {
+      "lab": "Anthropic",
+      "clause": "E4",
+      "rating": "Partly",
+      "evidence": "Anthropic says it funds Faculty's embedded evaluation directly. It hasn't published how the fee is set or said that payment doesn't depend on findings. METR's conflict-of-interest policy says METR hasn't yet been paid for company-identifying risk assessments.",
+      "source": "Anthropic: Accenture embedded evaluation",
+      "url": "https://www.anthropic.com/news/accenture-embedded-evaluation",
+      "date": "2026-09-18",
+      "additionalSources": [
+        {
+          "source": "METR conflict-of-interest policy v1.1",
+          "url": "https://metr.org/coi-policy.pdf",
+          "date": "2026-10-09"
+        }
+      ],
+      "fromLab": true
+    },
+    {
+      "lab": "Anthropic",
+      "clause": "E5",
+      "rating": "Partly",
+      "evidence": "Anthropic says evaluators shouldn't hold equity in the company or be financially or operationally dependent on it, and that METR's embedded team is walled off from METR's other Anthropic work. It hasn't published rules on other paid work for Anthropic or what evaluators must disclose, and it is paying Faculty directly.",
+      "source": "Anthropic: An update on independent evaluators",
+      "url": "https://www.anthropic.com/news/an-update-on-independent-evaluators",
+      "date": "2026-10-15",
+      "fromLab": true
+    },
+    {
+      "lab": "Anthropic",
+      "clause": "E6",
+      "rating": "Not public",
+      "evidence": "No engagement length or renewal terms are public. The \"at least $1 billion over five years\" Anthropic and Accenture announced is an investment plan, not a contract term.",
+      "source": "Anthropic: Accenture embedded evaluation",
+      "url": "https://www.anthropic.com/news/accenture-embedded-evaluation",
+      "date": "2026-09-18",
+      "fromLab": true
+    },
+    {
+      "lab": "OpenAI",
+      "clause": "E1",
+      "rating": "Partly",
+      "evidence": "OpenAI describes the kinds of outside assessment it uses (independent evaluations, methodology reviews and expert probing) and names assessors including METR, SecureBio, Apollo Research and Irregular. For its Hugging Face incident review, METR published the agreed scope and what was out of scope. Scope isn't published for each evaluation as a rule.",
+      "source": "OpenAI: Strengthening safety with external testing",
+      "url": "https://openai.com/index/strengthening-safety-with-external-testing",
+      "date": "2025-11-19",
+      "additionalSources": [
+        {
+          "source": "METR: OpenAI Hugging Face incident investigation",
+          "url": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation",
+          "date": "2026-08-26"
+        }
+      ],
+      "fromLab": true
+    },
+    {
+      "lab": "OpenAI",
+      "clause": "E2",
+      "rating": "Partly",
+      "evidence": "OpenAI says assessors have had early checkpoints, models with fewer safeguards and, for some, direct chain-of-thought access, with public or production models as the default. METR's Hugging Face review spelled out its access: six days on site and over a thousand transcripts, but no direct access to OpenAI's systems. There are no published terms on when more access can be requested or refused.",
+      "source": "OpenAI: Strengthening safety with external testing",
+      "url": "https://openai.com/index/strengthening-safety-with-external-testing",
+      "date": "2025-11-19",
+      "additionalSources": [
+        {
+          "source": "METR: OpenAI Hugging Face incident investigation",
+          "url": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation",
+          "date": "2026-08-26"
+        }
+      ],
+      "fromLab": true
+    },
+    {
+      "lab": "OpenAI",
+      "clause": "E3",
+      "rating": "Partly",
+      "evidence": "Contract excerpts OpenAI published in Nov 2025 say assessors must get OpenAI's written approval before publishing, and OpenAI says it reviews for confidentiality and factual accuracy. In Oct 2026 OpenAI told Reuters it doesn't seek approval over full reports, redacts confidential information, and lets evaluators say when major redactions were made. For its Hugging Face review, METR said OpenAI could redact any non-public information and that it edited tone and emphasis after OpenAI's feedback. Newer contract wording isn't public.",
+      "source": "OpenAI: Strengthening safety with external testing",
+      "url": "https://openai.com/index/strengthening-safety-with-external-testing",
+      "date": "2025-11-19",
+      "additionalSources": [
+        {
+          "source": "Reuters (republished by The Star)",
+          "url": "https://www.thestar.com.my/tech/tech-news/2026/10/13/exclusive-behind-ai-industry039s-call-for-independent-reviews-a-fight-over-what-gets-made-public",
+          "date": "2026-10-13"
+        },
+        {
+          "source": "METR: OpenAI Hugging Face incident investigation",
+          "url": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation",
+          "date": "2026-08-26"
+        }
+      ],
+      "fromLab": true
+    },
+    {
+      "lab": "OpenAI",
+      "clause": "E4",
+      "rating": "Partly",
+      "evidence": "OpenAI says it offers all outside assessors payment, as money, API credits or both, that some decline, and that no payment ever depends on the results. It hasn't published how fees are set. METR says it took no payment for its Hugging Face review, though OpenAI provided free API credits.",
+      "source": "OpenAI: Strengthening safety with external testing",
+      "url": "https://openai.com/index/strengthening-safety-with-external-testing",
+      "date": "2025-11-19",
+      "additionalSources": [
+        {
+          "source": "METR: OpenAI Hugging Face incident investigation",
+          "url": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation",
+          "date": "2026-08-26"
+        }
+      ],
+      "fromLab": true
+    },
+    {
+      "lab": "OpenAI",
+      "clause": "E5",
+      "rating": "Not public",
+      "evidence": "OpenAI's description of its outside assessments doesn't include conflict-of-interest rules for assessors. Some evaluators publish their own, such as METR's policy, but that isn't OpenAI's term.",
+      "source": "OpenAI: Strengthening safety with external testing",
+      "url": "https://openai.com/index/strengthening-safety-with-external-testing",
+      "date": "2025-11-19",
+      "fromLab": true
+    },
+    {
+      "lab": "OpenAI",
+      "clause": "E6",
+      "rating": "Not public",
+      "evidence": "OpenAI says its relationships with assessors are long-running but hasn't published engagement lengths or how renewal is decided.",
+      "source": "OpenAI: Strengthening safety with external testing",
+      "url": "https://openai.com/index/strengthening-safety-with-external-testing",
+      "date": "2025-11-19",
+      "fromLab": true
+    },
+    {
+      "lab": "Google DeepMind",
+      "clause": "E3",
+      "rating": "Not public",
+      "evidence": "Google DeepMind hasn't published terms for outside evaluators. As of Sept 2026 it hadn't committed to embedding them; Demis Hassabis instead proposed an industry standards body to test frontier models, TechCrunch reported.",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com/2026/09/16/anthropic-and-openai-want-to-embed-safety-evaluators-will-they-really-be-independent/",
+      "date": "2026-09-16"
+    }
+  ]
+}
