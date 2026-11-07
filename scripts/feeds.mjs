@@ -33,7 +33,7 @@ function feed(path, title, entries) {
     '<?xml version="1.0" encoding="utf-8"?>',
     '<feed xmlns="http://www.w3.org/2005/Atom">',
     "  <title>" + esc(title) + "</title>",
-    "  <subtitle>Changes to Lab Canary's ratings of what's publicly known about AI lab staff contracts and speak-up policies.</subtitle>",
+    "  <subtitle>Changes to Lab Canary's ratings of what's publicly known about AI lab staff contracts, speak-up policies and contracts with outside evaluators.</subtitle>",
     '  <link rel="self" type="application/atom+xml" href="' + esc(self) + '"/>',
     '  <link rel="alternate" type="text/html" href="' + SITE + '"/>',
     "  <id>" + esc(self) + "</id>",

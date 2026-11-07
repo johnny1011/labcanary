@@ -11,6 +11,14 @@
   "optedIn": [],
   "updates": [
     {
+      "date": "2026-11-07",
+      "title": "New beta tab: what's public about labs' contracts with outside evaluators",
+      "text": "A second tab rates what's public about each lab's contracts with third-party evaluators, using the six terms in GovAI's proposal that these contracts be published: scope, access, publication rights, pay, conflict rules, and term and renewal. Anthropic scores 42% and OpenAI 33%, mostly \"Partly\" from their own announcements; Google DeepMind, xAI and Meta score 0% because nothing is public. No lab has published a full evaluation contract. These scores are separate and don't change the staff-contract scores.",
+      "scores": { "Anthropic": 43, "OpenAI": 43, "Google DeepMind": 7, "xAI": 0, "Meta": 0 },
+      "labs": [],
+      "link": "#evaluators"
+    },
+    {
       "date": "2026-10-24",
       "title": "Google DeepMind: a former researcher posts the non-disparagement clause he signed",
       "text": "Andreas Kirsch, a former Google DeepMind research scientist, posted on X a clause from the agreement he signed with Google in the UK in 2024. It says staff must not make \"any statement\" \"criticising or disparaging Google\", during or after employment, and he says it has no exemption for protected disclosures. \"No gag on criticism\" now cites it as its main source and stays \"Falls short\". A new entry for \"Protected disclosures carved out\" stays \"Not public\", because the rest of the agreement isn't public. Scores are unchanged.",
