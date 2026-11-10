@@ -5,9 +5,17 @@
   <link rel="self" type="application/atom+xml" href="https://labcanary.com/feeds/google-deepmind.xml"/>
   <link rel="alternate" type="text/html" href="https://labcanary.com/"/>
   <id>https://labcanary.com/feeds/google-deepmind.xml</id>
-  <updated>2026-11-07T00:00:00Z</updated>
+  <updated>2026-11-10T00:00:00Z</updated>
   <author><name>Jonathan Hind</name></author>
   <rights>Text and data: CC BY 4.0</rights>
+  <entry>
+    <title>Google DeepMind: Google says new hires' non-disparagement terms no longer apply after they leave</title>
+    <link rel="alternate" type="text/html" href="https://labcanary.com/#google-deepmind-c2"/>
+    <id>tag:labcanary.com,2026-11-10:google-deepmind-google-says-new-hires-non-disparagement-terms-no-longer-apply-after-they-leave</id>
+    <updated>2026-11-10T00:00:00Z</updated>
+    <category term="Google DeepMind"/>
+    <summary>Google told the Washington Post on 3 November that it had recently removed &quot;the post-termination aspect of non-disparagement clauses&quot; from its terms for new hires, and that it doesn't enforce non-disparagement clauses after people leave. &quot;No gag on criticism&quot; now cites this and stays &quot;Falls short&quot;: Google only described removing the part that applies after someone leaves, it didn't say existing contracts had changed, and the new wording isn't public. If Google publishes the wording, it will be rated on that wording. Scores are unchanged.</summary>
+  </entry>
   <entry>
     <title>New beta tab: what's public about labs' contracts with outside evaluators</title>
     <link rel="alternate" type="text/html" href="https://labcanary.com/#evaluators"/>
