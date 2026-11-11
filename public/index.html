@@ -198,9 +198,19 @@ a.pill-btn { display: inline-flex; align-items: center; text-decoration: none; }
 .ev-terms-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .ev-terms-head .beta { font-size: .7rem; padding: 3px 8px; background: var(--panel); border: 1px solid var(--line); }
 /* Example Lab: a made-up lab that meets every clause, and the documents it would publish. */
+/* Six columns get a slimmer first column and lab names, so the grid fits wherever five columns fit. */
+.hm.six { grid-template-columns: minmax(7.5rem, 1.4fr) repeat(var(--cols, 6), minmax(2.75rem, 1fr)); gap: 5px; }
+.hm.six .hm-lab { font-size: .68rem; letter-spacing: -.02em; }
 .hm .ex { margin-left: 6px; }
 .hm-lab.ex { color: var(--accent); }
 .tile.ex, .hm-score.ex { border: 1px dashed rgba(255,255,255,.6); }
+/* Medium-width windows: with the two halves side by side the grid is only about 26rem wide, so six lab names need smaller text. */
+@media (min-width: 52.01rem) and (max-width: 66rem) {
+  .hm.six .hm-lab { font-size: .6rem; letter-spacing: -.03em; }
+  .hm.six .hm-lab small { font-size: .58rem; }
+  .hm .ex { margin-left: 3px; }
+  .hm-score.ex { font-size: .76rem; }
+}
 .detail blockquote { margin: 0; padding-left: 10px; border-left: 2px solid var(--line); font-size: .88rem; line-height: 1.5; }
 .docs { max-width: 52rem; border-bottom: 1px solid var(--line); }
 .doc { border-top: 1px solid var(--line); padding: 14px 0; }
@@ -225,10 +235,10 @@ a.pill-btn { display: inline-flex; align-items: center; text-decoration: none; }
   .hm { grid-template-columns: minmax(6.2rem, 1.2fr) repeat(var(--cols, 5), minmax(2.5rem, 1fr)); gap: 5px; min-width: 0; }
   /* Six columns (five labs and Example Lab) still fit a phone without sideways scrolling. */
   .hm.six { grid-template-columns: minmax(5.8rem, 1.2fr) repeat(var(--cols, 6), minmax(2.1rem, 1fr)); }
-  .hm.six .hm-lab { font-size: .54rem; letter-spacing: -.03em; }
-  .hm.six .hm-lab small { font-size: .52rem; }
+  .hm.six .hm-lab { font-size: .48rem; letter-spacing: -.04em; }
+  .hm.six .hm-lab small { font-size: .48rem; }
   .hm .ex { margin-left: 0; }
-  .hm-score.ex { font-size: .68rem; }
+  .hm-score.ex { font-size: .62rem; }
   .hm-row { font-size: .76rem; padding-right: 4px; }
   .hm-lab { font-size: .6rem; display: flex; flex-direction: column; align-items: center; }
   .tile { font-size: .9rem; padding: 2px; }
