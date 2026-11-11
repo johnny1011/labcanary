@@ -197,6 +197,22 @@ a.pill-btn { display: inline-flex; align-items: center; text-decoration: none; }
 .set-note p { max-width: none; }
 .ev-terms-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .ev-terms-head .beta { font-size: .7rem; padding: 3px 8px; background: var(--panel); border: 1px solid var(--line); }
+/* Example Lab: a made-up lab that meets every clause, and the documents it would publish. */
+.hm .ex { margin-left: 6px; }
+.hm-lab.ex { color: var(--accent); }
+.tile.ex, .hm-score.ex { border: 1px dashed rgba(255,255,255,.6); }
+.detail blockquote { margin: 0; padding-left: 10px; border-left: 2px solid var(--line); font-size: .88rem; line-height: 1.5; }
+.docs { max-width: 52rem; border-bottom: 1px solid var(--line); }
+.doc { border-top: 1px solid var(--line); padding: 14px 0; }
+.doc > summary { cursor: pointer; }
+.doc > summary h3 { display: inline; margin: 0 8px 0 4px; font-size: 1rem; }
+.doc > summary small { color: var(--muted); font-size: .8rem; white-space: nowrap; }
+.doc > p { margin-top: 8px; font-size: .9rem; color: var(--muted); }
+.doc-body { margin-top: 12px; padding: 16px 18px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; font-size: .88rem; line-height: 1.6; display: flex; flex-direction: column; gap: 8px; }
+.doc-body h4 { margin: 8px 0 0; font-size: .88rem; }
+.doc-body h4:first-child { margin-top: 0; }
+.doc-body ol { margin: 0; padding-left: 1.3rem; display: flex; flex-direction: column; gap: 6px; }
+.doc-body .eg { color: var(--muted); font-size: .8rem; }
 @media (max-width: 52rem) {
   .phone-only { display: revert; }
   .wide-only { display: none; }
@@ -207,6 +223,12 @@ a.pill-btn { display: inline-flex; align-items: center; text-decoration: none; }
 @media (max-width: 40rem) {
   .top nav .more { display: none; }
   .hm { grid-template-columns: minmax(6.2rem, 1.2fr) repeat(var(--cols, 5), minmax(2.5rem, 1fr)); gap: 5px; min-width: 0; }
+  /* Six columns (five labs and Example Lab) still fit a phone without sideways scrolling. */
+  .hm.six { grid-template-columns: minmax(5.8rem, 1.2fr) repeat(var(--cols, 6), minmax(2.1rem, 1fr)); }
+  .hm.six .hm-lab { font-size: .54rem; letter-spacing: -.03em; }
+  .hm.six .hm-lab small { font-size: .52rem; }
+  .hm .ex { margin-left: 0; }
+  .hm-score.ex { font-size: .68rem; }
   .hm-row { font-size: .76rem; padding-right: 4px; }
   .hm-lab { font-size: .6rem; display: flex; flex-direction: column; align-items: center; }
   .tile { font-size: .9rem; padding: 2px; }
@@ -240,7 +262,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
 <div class="wrap">
   <header class="top">
     <div class="brand"><span class="brand-dot" aria-hidden="true"></span><div><h1>Lab Canary</h1><small>Can people at AI labs speak up?</small><small class="checked-top"><span id="checked-top"></span> · <a href="#updates">What's changed</a></small></div></div>
-    <nav aria-label="Sections"><a href="#scorecard">Scorecard</a><a class="more" href="#goals">Goals</a><a href="#standard">The standard</a><a class="more" href="#evaluator-terms">Evaluator terms</a><a href="#evidence">Evidence</a><a class="more" href="#updates">Updates</a><a class="more" href="#coming-soon">Coming soon</a><a class="more" href="#opt-in">Opt in</a><a href="#questions">Q&amp;A</a></nav>
+    <nav aria-label="Sections"><a href="#scorecard">Scorecard</a><a class="more" href="#goals">Goals</a><a href="#standard">The standard</a><a class="more" href="#example-lab">Example lab</a><a class="more" href="#evaluator-terms">Evaluator terms</a><a href="#evidence">Evidence</a><a class="more" href="#updates">Updates</a><a class="more" href="#coming-soon">Coming soon</a><a class="more" href="#opt-in">Opt in</a><a href="#questions">Q&amp;A</a></nav>
   </header>
 
   <main style="display:flex;flex-direction:column;gap:56px">
@@ -257,7 +279,8 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
         </div>
         <p class="intro phone-only" id="intro">Each square rates what's publicly known about one lab's staff contracts. <b>Tap a square to see the evidence.</b></p>
         <div class="hm-wrap" id="hm-wrap" role="region" aria-label="Ratings by lab and clause"><div class="hm" id="hm"></div></div>
-        <p class="scroll-cue" id="scroll-cue" hidden>Scroll sideways to see all five labs. Use the arrow keys when the grid is focused.</p>
+        <p class="scroll-cue" id="scroll-cue" hidden>Scroll sideways to see every lab. Use the arrow keys when the grid is focused.</p>
+        <p class="score-method" id="ex-note" hidden>The last column, Example Lab, is made up. It shows what an A on every check, and 100%, looks like. Pick one of its squares to read the wording that earns the A, or <a href="#example-lab">read all five of its documents</a>.</p>
         <div class="legend">
           <span><i style="background:var(--meets)"></i>A Meets</span>
           <span><i style="background:var(--gb)"></i><i style="background:var(--partly)"></i><i style="background:var(--gd)"></i>B, C, D Partly</span>
@@ -278,7 +301,9 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
         <div class="links" id="hero-links">
           <a href="#standard" id="link-standard">The standard, in seven clauses →</a>
           <a href="#evidence" id="link-evidence">All the evidence and sources →</a>
+          <a href="#example-lab">What 100% looks like →</a>
           <a href="#opt-in">How a lab can opt in →</a>
+          <a href="#get-help">Work at a lab and worried about your contract? →</a>
         </div>
         <form class="email-form" id="hero-email" action="https://buttondown.com/api/emails/embed-subscribe/labcanary" method="post" target="_blank">
           <label for="hero-email-input">Get an email when a score changes</label>
@@ -305,6 +330,99 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
       <h2>The standard</h2>
       <p class="sub">Seven principles a lab's staff contracts should meet, and the yardstick for this scorecard. Each comes with draft model wording a lab could adopt, so saying yes is easy. The wording hasn't been reviewed by a lawyer yet and isn't legal advice. Employment law differs between countries, so anyone drafting or signing a contract should get their own lawyer.</p>
       <details class="fold fold-std" open><summary>Show the seven clauses</summary><div class="std" id="std"></div></details>
+    </section>
+
+    <section class="sec" id="example-lab">
+      <div class="ev-terms-head"><h2>What 100% looks like</h2><span class="beta">Made up</span></div>
+      <p class="sub">No real lab meets all seven clauses yet, so the last column of <a href="#scorecard">the scorecard</a> is a made-up one that does. Example Lab doesn't exist. These are the five short documents it would publish to get an A on every check and score 100%. They're built from the model wording above, with the blanks filled in. A real lab is welcome to copy them.</p>
+      <div class="note">
+        <span class="note-k">Draft</span>
+        <p>I'm not a lawyer, and no lawyer has checked these documents yet. They're a starting point, not legal advice. Employment law differs between countries, so a lab adopting them, or anyone signing them, should get their own lawyer.</p>
+      </div>
+      <div class="docs">
+        <details class="doc" id="example-lab-confidentiality">
+          <summary><h3>1. Confidentiality agreement</h3><small>Meets C1, C4 and C7</small></summary>
+          <p>What staff sign when they join. It protects real secrets and nothing else.</p>
+          <div class="doc-body">
+            <h4>1. What counts as confidential</h4>
+            <p>“Confidential Information” means non-public information such as model weights, source code, unreleased research, security details, and customer or personal data. It does not include your opinions, or information about Example Lab's conduct, safety practices, working conditions or possible wrongdoing, except where sharing it would also reveal Confidential Information as defined above.</p>
+            <h4>2. Keeping it confidential</h4>
+            <p>You agree not to share Confidential Information with anyone outside Example Lab, while you work here or afterwards, unless section 3 allows it or Example Lab agrees in writing.</p>
+            <h4>3. What you can always do</h4>
+            <p>Nothing in this agreement or any Example Lab policy stops you from reporting possible breaches of the law, or risks to public health or safety, to any government agency, regulator, legislator, law enforcement body or court; from speaking to a lawyer; or from receiving a reward for information given to a government agency. You don't need to tell Example Lab or ask its permission first. This applies even if the report has to include Confidential Information.</p>
+            <h4>4. This agreement isn't secret</h4>
+            <p>You may tell anyone that you have signed this agreement and what kind of agreement it is, and you may share its full text with your lawyer, financial adviser, immediate family or any government agency. No term of this agreement is itself confidential. Example Lab publishes the standard version at examplelab.example/terms.</p>
+          </div>
+        </details>
+        <details class="doc" id="example-lab-criticism">
+          <summary><h3>2. Criticism and non-disparagement terms</h3><small>Meets C2</small></summary>
+          <p>What the employment contract and any leaving agreement say about criticising the company.</p>
+          <div class="doc-body">
+            <h4>In your employment contract</h4>
+            <p>Nothing in this agreement stops you from making truthful statements about Example Lab, including criticism of its conduct, safety practices, ethics or compliance with the law. Example Lab does not ask anyone to agree to a non-disparagement term when they join or while they work here.</p>
+            <h4>In a separation agreement, only if you choose</h4>
+            <p>When you leave, Example Lab may offer you a separation agreement with a mutual non-disparagement term. Mutual means Example Lab makes the same promise about you. The term is optional, is given in return for benefits you would not otherwise receive, ends 24 months after you leave, and never applies to statements about safety, ethics, risks to the public or compliance with the law. You keep everything you have already earned whether or not you sign.</p>
+          </div>
+        </details>
+        <details class="doc" id="example-lab-equity">
+          <summary><h3>3. Equity terms</h3><small>Meets C3</small></summary>
+          <p>The part of the equity plan that says when shares can be taken back.</p>
+          <div class="doc-body">
+            <h4>1. Your equity can't be used against you</h4>
+            <p>Your vested equity and earned pay will not be forfeited, cancelled, bought back below fair market value, or excluded from any tender offer or sale because you raised a concern, criticised Example Lab or made a protected disclosure. Keeping your vested equity, or taking part in a tender offer or sale, never depends on signing a separation agreement.</p>
+            <h4>2. The only reasons equity can be forfeited</h4>
+            <p>Example Lab may only forfeit vested equity if you (a) sold or deliberately leaked Confidential Information, other than in a report the confidentiality agreement allows, or (b) committed fraud or theft against Example Lab. It must first give you its reasons in writing and a fair chance to respond.</p>
+            <p class="eg">These two reasons are examples. A real lab would list its own, and the list should stay this narrow.</p>
+          </div>
+        </details>
+        <details class="doc" id="example-lab-speak-up">
+          <summary><h3>4. Speak-up policy</h3><small>Meets C5 and C6</small></summary>
+          <p>The whistleblowing policy, published in full, not just summarised in a code of conduct.</p>
+          <div class="doc-body">
+            <h4>1. Who can use it</h4>
+            <p>Anyone who works or has worked for Example Lab: staff, contractors, interns and former staff.</p>
+            <h4>2. What you can raise</h4>
+            <p>Anything you believe is illegal, unsafe or unethical, or a risk to the public. That includes how models are trained, tested and released, and any gap between what Example Lab says publicly about safety and what it does.</p>
+            <h4>3. How to raise it</h4>
+            <p>You can raise concerns through the Speak-Up Line, which accepts anonymous reports. Reports go to the board's Safety and Audit Committee, which is independent of executive leadership. You can also talk to your manager, but you never have to.</p>
+            <h4>4. You can always go outside</h4>
+            <p>You never have to use this policy first. Nothing in it, or in your contract, stops you from reporting to a regulator, government body, law enforcement or a lawyer at any time.</p>
+            <h4>5. No retaliation</h4>
+            <p>Example Lab will not retaliate against anyone who raises a concern in good faith, and treats retaliation as serious misconduct. Retaliation includes dismissal, demotion, cuts to pay or equity, a bad reference and legal threats.</p>
+            <h4>6. What happens next</h4>
+            <p>The committee confirms it has your report within 7 days, looks into it, and tells you the outcome where it can.</p>
+            <h4>7. Keeping it public</h4>
+            <p>This full policy is published at examplelab.example/speak-up. Any change to it will be published within 30 days.</p>
+          </div>
+        </details>
+        <details class="doc" id="example-lab-statement">
+          <summary><h3>5. Dated statement</h3><small>Renewed every three months</small></summary>
+          <p>The canary: a short public statement that everything above is still true. If it isn't renewed, that says something too.</p>
+          <div class="doc-body">
+            <h4>Statement for 1 January to 31 March 2027</h4>
+            <p>Example Lab confirms that, on the date below:</p>
+            <ol>
+              <li>Its standard employment, separation and equity terms and its speak-up policy are published at examplelab.example/terms.</li>
+              <li>Those terms meet all seven clauses of the Lab Canary standard.</li>
+              <li>No current or former member of staff is held to older terms that fall short of the published ones.</li>
+              <li>It has not enforced, or threatened to enforce, any agreement against anyone for raising a concern, criticising the company or making a protected disclosure.</li>
+            </ol>
+            <p>Signed: General Counsel, Example Lab. Date: 1 January 2027. Next statement due: 1 April 2027. If no new statement is published by then, treat this one as expired.</p>
+          </div>
+        </details>
+      </div>
+      <p class="sub">Spotted a problem with the wording? Email <a href="mailto:hello@labcanary.com">hello@labcanary.com</a> or <a href="https://github.com/johnny1011/labcanary/issues">open an issue on GitHub</a>.</p>
+    </section>
+
+    <section class="sec ph-no-capture" id="get-help">
+      <h2>Worried about your own contract?</h2>
+      <p class="sub">If you work at an AI lab, or used to, and you're not sure what your contract lets you say, these groups can help. They're independent of the labs and of Lab Canary. Please don't send your contract to me.</p>
+      <ul class="goals">
+        <li><strong><a href="https://thesignalsnetwork.org/contact/" rel="noreferrer">The Signals Network</a>.</strong> A US non-profit that gives free support, including legal advice, to people thinking about speaking up over something that affects the public. It works in the US and internationally, and has told me it's fine to point lab staff to it. It decides case by case what help it can give.</li>
+        <li><strong><a href="https://psst.org" rel="noreferrer">Psst.org</a>.</strong> Offers tech and AI workers a legally privileged conversation with a lawyer.</li>
+        <li><strong><a href="https://protect-advice.org.uk" rel="noreferrer">Protect</a>.</strong> Free, confidential whistleblowing advice in the UK.</li>
+      </ul>
+      <p class="sub">Use your own phone or computer and a personal account, not anything from work. Clicks in this section aren't logged, and it's blanked out in the session recordings described under “What do you track?” below.</p>
     </section>
 
     <section class="sec" id="evaluator-terms" hidden>
@@ -367,9 +485,9 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
       <h2>Coming soon</h2>
       <p class="sub">What I'm working on next. None of this is live yet, and some of it depends on other people saying yes.</p>
       <ul class="goals">
-        <li><strong>A free contract check for lab staff.</strong> I'm hoping to connect anyone at a lab with whistleblowing lawyers who can look over their NDA for free.</li>
+        <li><strong>A free contract check for lab staff.</strong> The first step is live: The Signals Network has said I can point lab staff to it (see <a href="#get-help">Worried about your own contract?</a>). Next, I'm hoping whistleblowing lawyers will look over an NDA clause by clause for free.</li>
         <li><strong>A safe way to share your contract.</strong> Contracts would go straight to the lawyers, not to me, so they stay legally protected. I'd only see anonymised findings and update the ratings from those. Until this exists, please still don't send me anything.</li>
-        <li><strong>A lawyer's read of the standard.</strong> Whistleblowing lawyers review the seven clauses and the model wording. That includes the difference between a non-disparagement clause you sign when you join and one in a voluntary exit deal, and when losing equity is fair.</li>
+        <li><strong>A lawyer's read of the standard.</strong> Whistleblowing lawyers review the seven clauses, the model wording and the <a href="#example-lab">Example Lab documents</a>. That includes the difference between a non-disparagement clause you sign when you join and one in a voluntary exit deal, and when losing equity is fair.</li>
         <li><strong>A canary statement tracker.</strong> Each lab's dated statement that it meets the standard, shown here, with a flag when one goes missing or out of date.</li>
         <li><strong>Private checks for labs.</strong> A lab that doesn't want to publish everything could share its terms with an independent lawyer, who confirms here whether they meet the standard.</li>
         <li><strong>Why this should work.</strong> A short write-up of how a scorecard can lead to better contracts, and what would count as a win.</li>
@@ -406,7 +524,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
         <details class="fold" open><summary><h3>“Who pays for it?”</h3></summary><p>Nobody. I pay for the domain, about $10 a year, and the hosting is free. There are no ads.</p></details>
         <details class="fold" open><summary><h3>“What do you track?”</h3></summary><p>I want to see how people use the page so I can make it better. Cloudflare Web Analytics and PostHog (hosted in the EU) count visits, and PostHog also records sessions on this page: clicks, scrolling and mouse movement. Neither sets cookies, PostHog doesn’t keep IP addresses, and nothing you type is recorded. Recordings are deleted after 30 days. I don’t sell or share any of it.</p></details>
         <details class="fold" id="keep-email" open><summary><h3>“Do you keep my email?”</h3></summary><p>Only if you sign up for updates. Your address is stored with <a href="https://buttondown.com/legal/privacy">Buttondown</a>, the newsletter service, and only used to email you when a rating changes. You confirm by email first, every email has an unsubscribe link, and unsubscribing deletes your address. I don’t sell or share it. Use any address you like: you don’t need to use a work one.</p></details>
-        <details class="fold" open><summary><h3>“Can I send you my contract, or a tip?”</h3></summary><p>Please don’t. The point is to get labs to publish their terms, not to collect leaks. I only use public evidence, so I’d delete anything confidential without using it, and sending it to a website probably isn’t legally protected. Worried about your own terms? <a href="https://protect-advice.org.uk">Protect</a> gives free, confidential whistleblowing advice in the UK, and <a href="https://psst.org">Psst.org</a> offers tech and AI workers a legally privileged conversation with a lawyer.</p></details>
+        <details class="fold" open><summary><h3>“Can I send you my contract, or a tip?”</h3></summary><p>Please don’t. The point is to get labs to publish their terms, not to collect leaks. I only use public evidence, so I’d delete anything confidential without using it, and sending it to a website probably isn’t legally protected. Worried about your own terms? <a href="#get-help">The Signals Network, Psst.org and Protect can help</a>.</p></details>
         <details class="fold" open><summary><h3>“How do I get in touch, or fix a mistake?”</h3></summary><p>Email <a href="mailto:hello@labcanary.com">hello@labcanary.com</a>. Please don’t send contracts or anything confidential. If a rating is wrong or missing, you can also <a href="https://github.com/johnny1011/labcanary/issues">open an issue on GitHub</a> with a link to a public source, so everyone can see the change and why. Labs can do the same, or publish their terms and <a href="#opt-in">opt in</a>.</p></details>
       </div>
     </section>
@@ -467,7 +585,21 @@ const dataOf = (which) => which === "evaluators" && hasEv() ? D.ev : D;
 const setOf = (clause) => hasEv() && D.ev.criteria.some(c => c.id === clause) ? "evaluators" : "staff";
 const crit = (clause) => dataOf(setOf(clause)).criteria.find(c => c.id === clause);
 
+// Example Lab is made up. It's drawn as the last column of the staff scorecard to show what 100% looks like.
+// It's never in ratings.json, so it stays out of scores, history, feeds and share text. Every check is "Meets", so it shows as an A.
+// Its documents are in the #example-lab section; each clause links to the one that covers it.
+const EXAMPLE = { name: "Example Lab", docs: [
+  { id: "example-lab-confidentiality", title: "Confidentiality agreement", clauses: ["C1", "C4", "C7"] },
+  { id: "example-lab-criticism", title: "Criticism and non-disparagement terms", clauses: ["C2"] },
+  { id: "example-lab-equity", title: "Equity terms", clauses: ["C3"] },
+  { id: "example-lab-speak-up", title: "Speak-up policy", clauses: ["C5", "C6"] },
+  { id: "example-lab-statement", title: "Dated statement", clauses: [] },
+] };
+const isExample = (lab) => lab === EXAMPLE.name;
+const colsOf = (which) => which === "staff" ? [...D.labs, EXAMPLE.name] : D.labs;
+
 function cell(lab, clause) {
+  if (isExample(lab)) return { lab, clause, rating: "Meets", evidence: "", source: "", url: "", date: "" };
   return dataOf(setOf(clause)).ratings.find(r => r.lab === lab && r.clause === clause) ||
     { lab, clause, rating: "Not public", evidence: NOT_PUBLIC.replace("clause", SET_WORDS[setOf(clause)].unit), source: "", url: "", date: "" };
 }
@@ -488,36 +620,41 @@ function drawHeatmap() {
   const d = $("detail");
   if (d.parentElement === hm && detailHome) detailHome.before(d);
   hm.textContent = "";
-  hm.style.setProperty("--cols", D.labs.length);
+  // ex marks the made-up Example Lab column, so it looks different from the real labs.
+  const labs = colsOf(set), ex = (l) => isExample(l) ? " ex" : "", madeUp = (l) => isExample(l) ? " (made up)" : "";
+  hm.style.setProperty("--cols", labs.length);
+  hm.classList.toggle("six", labs.length > 5);
+  $("ex-note").hidden = set !== "staff";
   $("hm-wrap").setAttribute("aria-label", (set === "staff" ? "Staff contracts" : "Evaluator contracts") + ": ratings by lab and " + words.unit);
   hm.append(el("div"));
-  D.labs.forEach(l => {
-    const b = el("button", "hm-lab", l);
+  labs.forEach(l => {
+    const b = el("button", "hm-lab" + ex(l), l);
     b.dataset.lab = l;
-    b.setAttribute("aria-label", l + " summary");
+    b.setAttribute("aria-label", l + madeUp(l) + " summary");
     b.setAttribute("aria-controls", "detail");
-    if (tally(l, set).optedIn) b.append(el("small", null, "opted in"));
+    if (isExample(l)) b.append(el("small", null, "made up"));
+    else if (tally(l, set).optedIn) b.append(el("small", null, "opted in"));
     b.addEventListener("click", () => select({ lab: l }));
     hm.append(b);
   });
   hm.append(el("div", "hm-row", "Publicly evidenced score"));
-  D.labs.forEach(l => {
-    const s = tally(l, set).score, t = el("div", "hm-score", pct(s));
-    t.style.background = scoreColor(s);
+  labs.forEach(l => {
+    const s = tally(l, set).score, t = el("div", "hm-score" + ex(l), pct(s));
+    t.style.background = isExample(l) ? "var(--meets)" : scoreColor(s);
     t.setAttribute("role", "img");
-    t.setAttribute("aria-label", l + " publicly evidenced score for " + words.short + ": " + pct(s));
+    t.setAttribute("aria-label", isExample(l) ? l + " (made up) score: " + pct(s) : l + " publicly evidenced score for " + words.short + ": " + pct(s));
     t.addEventListener("click", () => select({ lab: l }));
     hm.append(t);
   });
   hm.append(el("div", "hm-gap"));
   data.criteria.forEach(c => {
     hm.append(el("div", "hm-row", c.name));
-    D.labs.forEach(l => {
+    labs.forEach(l => {
       const r = cell(l, c.id);
-      const b = el("button", "tile t-" + gradeCls(r), grade(r));
+      const b = el("button", "tile t-" + gradeCls(r) + ex(l), grade(r));
       b.dataset.lab = l;
       b.dataset.clause = c.id;
-      b.setAttribute("aria-label", l + ", " + c.name + ": " + (r.rating === "Not public" ? r.rating : "grade " + grade(r)));
+      b.setAttribute("aria-label", l + madeUp(l) + ", " + c.name + ": " + (r.rating === "Not public" ? r.rating : "grade " + grade(r)));
       b.setAttribute("aria-controls", "detail");
       b.addEventListener("click", () => select({ lab: l, clause: c.id }));
       hm.append(b);
@@ -625,6 +762,14 @@ function selectFromHash(scroll) {
     setSet("evaluators");
     history.replaceState(null, "", "#evaluators");
     if (scroll) $("scorecard").scrollIntoView();
+    return;
+  }
+  // #example-lab-c1 opens one of the made-up lab's tiles. Plain #example-lab is the documents section, handled at the end.
+  const exClause = D.criteria.find(c => h === slug(EXAMPLE.name) + "-" + c.id.toLowerCase());
+  if (exClause) {
+    if (set !== "staff") setSet("staff", { keepSel: true });
+    select({ lab: EXAMPLE.name, clause: exClause.id }, true);
+    if (scroll) $("detail").scrollIntoView({ block: "nearest" });
     return;
   }
   const allCriteria = [...D.criteria, ...(hasEv() ? D.ev.criteria : [])];
@@ -869,6 +1014,7 @@ function drawDetail() {
   const d = $("detail");
   d.textContent = "";
   if (!sel) { d.append(el("span", "k", "Details"), el("p", "small", "Pick a tile to see what's known about that lab and " + SET_WORDS[set].unit + ", with the source.")); return; }
+  if (isExample(sel.lab)) { drawExampleDetail(d); return; }
   const ev = sel.set === "evaluators";
   if (sel.clause) {
     const r = cell(sel.lab, sel.clause), c = crit(sel.clause);
@@ -897,6 +1043,31 @@ function drawDetail() {
   follow.addEventListener("click", () => followLab(lab));
   close.addEventListener("click", () => select(sel));
   actions.append(...shareMenu(sel), follow, close);
+  d.append(actions);
+}
+
+// The made-up lab's panel: the wording that meets the clause and a link to the full document. No share or follow, because it isn't a real lab.
+function drawExampleDetail(d) {
+  const docLink = (doc) => { const a = el("a", null, doc.title); a.href = "#" + doc.id; return a; };
+  if (sel.clause) {
+    const c = crit(sel.clause), full = el("p", "small"), parts = el("ul", "parts");
+    (c.parts || []).forEach(p => parts.append(el("li", null, "✓ " + p)));
+    d.append(el("span", "k", EXAMPLE.name + " (made up) · " + c.id), el("span", "t", c.name), el("span", "badge b-meets", gradeText(cell(sel.lab, c.id))));
+    d.append(el("p", "small", "Standard: " + c.standard));
+    if (c.parts) d.append(el("p", "small", "An A means all " + c.parts.length + " parts are shown:"), parts);
+    d.append(el("p", null, "Example Lab doesn't exist. This is the draft wording that would earn the A:"), el("blockquote", null, c.model));
+    full.append("Read it in full: ", docLink(EXAMPLE.docs.find(x => x.clauses.includes(c.id))), " →");
+    d.append(full);
+  } else {
+    const ul = el("ul");
+    EXAMPLE.docs.forEach(doc => { const li = el("li"); li.append(docLink(doc)); ul.append(li); });
+    d.append(el("span", "k", "Made-up lab"), el("span", "t", EXAMPLE.name));
+    d.append(el("p", null, "Example Lab doesn't exist. It shows what a lab would publish to get an A on all " + D.criteria.length + " checks and score 100%. Its five draft documents:"), ul);
+  }
+  d.append(el("p", "small", "Draft wording. No lawyer has checked it yet."));
+  const actions = el("div", "detail-actions"), close = el("button", "pill-btn phone-only", "Close");
+  close.addEventListener("click", () => select(sel));
+  actions.append(close);
   d.append(actions);
 }
 
