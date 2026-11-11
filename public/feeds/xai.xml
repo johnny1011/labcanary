@@ -5,9 +5,16 @@
   <link rel="self" type="application/atom+xml" href="https://labcanary.com/feeds/xai.xml"/>
   <link rel="alternate" type="text/html" href="https://labcanary.com/"/>
   <id>https://labcanary.com/feeds/xai.xml</id>
-  <updated>2026-11-07T00:00:00Z</updated>
+  <updated>2026-11-11T00:00:00Z</updated>
   <author><name>Jonathan Hind</name></author>
   <rights>Text and data: CC BY 4.0</rights>
+  <entry>
+    <title>Grades now run from A to F</title>
+    <link rel="alternate" type="text/html" href="https://labcanary.com/#scorecard"/>
+    <id>tag:labcanary.com,2026-11-11:grades-now-run-from-a-to-f</id>
+    <updated>2026-11-11T00:00:00Z</updated>
+    <summary>&quot;Partly&quot; was covering too much: 11 of the 17 ratings on staff contracts were &quot;Partly&quot;, including all six of Anthropic's. Each clause is now split into three or four parts. &quot;Meets&quot; is an A and &quot;Falls short&quot; is an F. &quot;Partly&quot; is split into B (one part missing), C (in between) and D (only one part shown). &quot;Not public&quot; shows as &quot;?&quot; and still scores zero. A scores 1, B three quarters, C a half and D a quarter. No evidence changed. Google DeepMind's score moves from 7% to 4% because its &quot;Safe internal channel&quot; grade is a D. The evaluator tab is graded the same way, and Anthropic's score there moves from 42% to 33%.</summary>
+  </entry>
   <entry>
     <title>New beta tab: what's public about labs' contracts with outside evaluators</title>
     <link rel="alternate" type="text/html" href="https://labcanary.com/#evaluators"/>

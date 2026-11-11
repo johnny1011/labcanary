@@ -23,7 +23,7 @@
 :root {
   color-scheme: dark;
   --bg: #0e1626; --panel: #151f33; --line: #24314a; --fg: #e7eaf0; --muted: #94a0b8; --link: #7fb0ff; --accent: #e8b21c;
-  --meets: #646214; --partly: #8c4a12; --short: #7c1f27; --np: #1d2639; --np2: #19212f;
+  --meets: #646214; --gb: #785613; --partly: #8c4a12; --gd: #84341c; --short: #7c1f27; --np: #1d2639; --np2: #19212f;
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 * { box-sizing: border-box; }
@@ -64,14 +64,14 @@ nav a { color: var(--fg); }
 .hm-row { font-size: .85rem; font-weight: 600; display: flex; align-items: center; padding-right: 8px; min-height: 2.75rem; line-height: 1.25; }
 .hm-score { border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .88rem; color: #fff; min-height: 2.75rem; font-variant-numeric: tabular-nums; cursor: pointer; transition: transform .12s ease; }
 .hm-gap { grid-column: 1 / -1; height: 6px; }
-.tile { border: 0; border-radius: 6px; min-height: 2.75rem; cursor: pointer; font: .7rem var(--sans); color: rgba(255,255,255,.9); display: flex; align-items: center; justify-content: center; padding: 4px; outline: 2px solid transparent; outline-offset: 1px; transition: transform .12s ease, outline-color .12s ease; }
+.tile { border: 0; border-radius: 6px; min-height: 2.75rem; cursor: pointer; font: 700 1rem var(--sans); color: #fff; display: flex; align-items: center; justify-content: center; padding: 4px; outline: 2px solid transparent; outline-offset: 1px; transition: transform .12s ease, outline-color .12s ease; }
 .tile:hover, .hm-score:hover { transform: scale(1.04); }
 .tile:focus-visible, .tile.on { outline-color: #fff; }
 .t-meets { background: var(--meets); }
 .t-partly { background: var(--partly); }
 .t-short { background: var(--short); }
 .t-np { background: repeating-linear-gradient(135deg, var(--np) 0 6px, var(--np2) 6px 12px); }
-.tile.t-np { font-size: 0; }
+.tile.t-np { color: var(--muted); }
 .legend { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 12px; font-size: .78rem; color: var(--muted); }
 .legend span { display: inline-flex; align-items: center; gap: 6px; }
 .legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
@@ -87,6 +87,10 @@ nav a { color: var(--fg); }
 .source-date { display: block; color: var(--muted); font-size: .78rem; }
 .badge { display: inline-flex; align-items: center; white-space: nowrap; font-size: .75rem; font-weight: 600; padding: 3px 9px; border-radius: 999px; width: fit-content; color: #fff; }
 .b-meets { background: var(--meets); } .b-partly { background: var(--partly); } .b-short { background: var(--short); } .b-np { background: #2d374d; }
+/* "Partly" splits into B, C and D. C keeps the Partly colour; B leans towards Meets and D towards Falls short. */
+.g-B { background: var(--gb); } .g-D { background: var(--gd); }
+.detail .parts { list-style: none; padding: 0; gap: 4px; font-size: .84rem; }
+.parts .no { color: var(--muted); }
 .links { display: flex; flex-direction: column; gap: 8px; font-size: .92rem; }
 .sec { display: flex; flex-direction: column; gap: 18px; }
 .sec h2 { font-size: 1.6rem; }
@@ -97,6 +101,7 @@ nav a { color: var(--fg); }
 .std-c h3 { margin: 0; font-size: 1rem; font-weight: 600; }
 .std-c .b { font-size: .88rem; line-height: 1.5; }
 .std-c .w { font-size: .8rem; color: var(--muted); line-height: 1.5; }
+.std-c ol.w { margin: 0; padding-left: 18px; }
 .std-c .m { margin-top: auto; padding-top: 6px; font-size: .8rem; }
 .std-c .m summary { color: var(--link); cursor: pointer; }
 .std-c .m blockquote { margin: 8px 0 0; padding-left: 10px; border-left: 2px solid var(--line); line-height: 1.5; }
@@ -204,7 +209,7 @@ a.pill-btn { display: inline-flex; align-items: center; text-decoration: none; }
   .hm { grid-template-columns: minmax(6.2rem, 1.2fr) repeat(var(--cols, 5), minmax(2.5rem, 1fr)); gap: 5px; min-width: 0; }
   .hm-row { font-size: .76rem; padding-right: 4px; }
   .hm-lab { font-size: .6rem; display: flex; flex-direction: column; align-items: center; }
-  .tile { font-size: .6rem; padding: 2px; }
+  .tile { font-size: .9rem; padding: 2px; }
   .hm-score { font-size: .78rem; }
   .spark { padding: 8px 10px; }
   .spark-head { font-size: .78rem; white-space: nowrap; }
@@ -254,13 +259,14 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
         <div class="hm-wrap" id="hm-wrap" role="region" aria-label="Ratings by lab and clause"><div class="hm" id="hm"></div></div>
         <p class="scroll-cue" id="scroll-cue" hidden>Scroll sideways to see all five labs. Use the arrow keys when the grid is focused.</p>
         <div class="legend">
-          <span><i style="background:var(--meets)"></i>Meets</span>
-          <span><i style="background:var(--partly)"></i>Partly</span>
-          <span><i style="background:var(--short)"></i>Falls short</span>
-          <span><i style="background:repeating-linear-gradient(135deg,var(--np) 0 3px,var(--np2) 3px 6px);border:1px solid var(--line)"></i>Not public</span>
+          <span><i style="background:var(--meets)"></i>A Meets</span>
+          <span><i style="background:var(--gb)"></i><i style="background:var(--partly)"></i><i style="background:var(--gd)"></i>B, C, D Partly</span>
+          <span><i style="background:var(--short)"></i>F Falls short</span>
+          <span><i style="background:repeating-linear-gradient(135deg,var(--np) 0 3px,var(--np2) 3px 6px);border:1px solid var(--line)"></i>? Not public</span>
         </div>
+        <p class="score-method">Each check is split into three or four parts. A means the public evidence shows every part. B means one part is missing, D means only one part is shown, and C is in between. F means none, or evidence of the opposite. Open a square to see which parts.</p>
         <p class="score-method" id="score-method"></p>
-        <p class="score-method">“Meets” needs a written policy or the contract wording. One public statement, such as an interview comment or a statement reported in the press, earns “Partly” at most. “Falls short” can rest on credible reporting, such as a news report quoting staff. When it does, the evidence says so and includes the lab’s response.</p>
+        <p class="score-method">An A needs a written policy or the contract wording. One public statement, such as an interview comment or a statement reported in the press, earns B at most. An F can rest on credible reporting, such as a news report quoting staff. When it does, the evidence says so and includes the lab’s response.</p>
         <p class="hm-foot" id="asof">Public evidence only</p>
         </div>
       </div>
@@ -306,7 +312,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
       <p class="sub" id="ev-terms-intro">Outside evaluators are meant to check labs’ safety claims. How far you can trust what they report depends on the contract they work under: what they can see, what they can publish, how they’re paid and whether they’re independent. These six terms come from <a id="ev-terms-source" href="https://www.governance.ai/analysis/third-party-ai-evaluation-contracts-should-be-published">GovAI’s proposal</a> that evaluation contracts be published. Each comes with draft model wording a lab and an evaluator could put in their agreement. It hasn’t been reviewed by a lawyer and isn’t legal advice.</p>
       <details class="fold fold-std" open><summary>Show the six terms</summary><div class="std" id="std-ev"></div></details>
       <h3 style="margin:8px 0 0;font-size:1.1rem">Evaluator evidence</h3>
-      <p class="sub">Every evaluator rating with a public source. Anything not listed is “Not public”. The same rules apply as for staff contracts: “Meets” needs published terms or contract wording, and one public statement earns “Partly” at most.</p>
+      <p class="sub">Every evaluator rating with a public source. Anything not listed is “Not public”. The same rules apply as for staff contracts: an A needs published terms or contract wording, and one public statement earns B at most.</p>
       <div class="ev-wrap">
         <table>
           <thead><tr><th scope="col">Lab</th><th scope="col">Term</th><th scope="col">Rating</th><th scope="col">Evidence</th><th scope="col">Sources and dates</th></tr></thead>
@@ -389,8 +395,8 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
       <div class="qa">
         <details class="fold" id="about" open><summary><h3>“Why did you make this?”</h3></summary><p>Hi, I'm Johnny. I made this after reading a BBC report where a Google DeepMind engineer said, "In principle I'm not allowed to criticise Google for the duration of my life", and wondering how the other labs compare. It's a rough first version that I built quickly with help from Claude. To be upfront: I've applied for jobs and fellowships at Anthropic, OpenAI and Google DeepMind, and nobody pays for this site. Every lab is rated on public evidence under the same rules, and every rating links to its source, but I'll have got some things wrong. If you spot one, <a href="https://github.com/johnny1011/labcanary/issues">open an issue on GitHub</a> with a public source.</p></details>
         <details class="fold" open><summary><h3>“How is this different from AI Lab Watch, the FLI AI Safety Index or AIWI?”</h3></summary><p>Those mostly look at policies and safety practice. This looks at what’s publicly known about the contracts: non-disparagement, equity, NDAs and confidentiality. AIWI’s Publish Your Policies campaign is the closest, and I cite it a lot.</p></details>
-        <details class="fold" open><summary><h3>“Anthropic and OpenAI are top. Are you tied to them?”</h3></summary><p>Fair question. I’ve applied for jobs and fellowships at Anthropic, OpenAI and Google DeepMind, and I say so in <a href="#about">why I made this</a>. Nobody pays for it, and I don’t own shares in any AI lab. Both are only on 43%, and almost every rating is “Partly”. They’re top because they’ve published more, not because their terms are known to be good.</p></details>
-        <details class="fold" open><summary><h3>“Not public = fail is unfair.”</h3></summary><p>I went back and forth on it. Treating it as neutral rewards publishing nothing. It’s a score for openness, not a finding that the terms are bad, and the labs control what’s published, so they can fix it. The site shows “Not public” separately so you can see the gap.</p></details>
+        <details class="fold" open><summary><h3>“Anthropic and OpenAI are top. Are you tied to them?”</h3></summary><p>Fair question. I’ve applied for jobs and fellowships at Anthropic, OpenAI and Google DeepMind, and I say so in <a href="#about">why I made this</a>. Nobody pays for it, and I don’t own shares in any AI lab. Both are only on 43%, and almost every grade is a B, C or D. They’re top because they’ve published more, not because their terms are known to be good.</p></details>
+        <details class="fold" open><summary><h3>“Not public = fail is unfair.”</h3></summary><p>I went back and forth on it. Treating it as neutral rewards publishing nothing. It’s a score for openness, not a finding that the terms are bad, and the labs control what’s published, so they can fix it. The site shows “Not public” as a “?”, not an F, so you can see the gap.</p></details>
         <details class="fold" open><summary><h3>“Why these seven clauses?”</h3></summary><p>They’re the bits of a contract that decide whether someone can speak up: what they can say, what they lose if they do, and who they can tell. Happy to hear if one’s unfair or something’s missing.</p></details>
         <details class="fold" id="why-evaluators" open><summary><h3>“Why rate evaluator contracts too?”</h3></summary><p>It’s the same question one step out. Staff contracts decide whether people inside a lab can speak up; evaluator contracts decide whether the outsiders checking a lab can say what they find. Labs are starting to bring in independent evaluators, some with near-employee access, but the terms they work under are mostly private. The <a href="#evaluator-terms">six evaluator terms</a> follow <a href="https://www.governance.ai/analysis/third-party-ai-evaluation-contracts-should-be-published">GovAI’s proposal</a> that those contracts be published. It’s a beta, scored separately, and never added to the staff score.</p></details>
         <details class="fold" open><summary><h3>“How can you rate contracts you haven’t seen?”</h3></summary><p>Mostly I can’t, and the site says so. 18 of 35 are “Not public”. The rest come from published policies, public statements and reporting, each linked. Staff who joined or left at different times may have signed different versions, so a rating is about the latest public terms, not every contract still in force.</p></details>
@@ -408,7 +414,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
 
   <footer>
     <nav aria-label="All sections"><a href="#scorecard">Scorecard</a><a href="#goals">Goals</a><a href="#standard">The standard</a><a href="#evaluator-terms">Evaluator terms</a><a href="#evidence">Evidence</a><a href="#updates">Updates</a><a href="#coming-soon">Coming soon</a><a href="#opt-in">Opt in</a><a href="#questions">Q&amp;A</a></nav>
-    <p>Made by <a href="https://www.linkedin.com/in/jonathanhind/">Jonathan Hind</a>, built with help from Claude. Ratings use public evidence only. "Not public" scores zero. That's a score for openness, not a finding that a lab's terms are bad. A lab that wants credit can publish its terms. Score = clauses met, plus half for each partly met, out of seven. Evaluator contracts (beta) are scored the same way out of six, separately. Get in touch: <a href="mailto:hello@labcanary.com">hello@labcanary.com</a>.</p>
+    <p>Made by <a href="https://www.linkedin.com/in/jonathanhind/">Jonathan Hind</a>, built with help from Claude. Ratings use public evidence only. "Not public" scores zero. That's a score for openness, not a finding that a lab's terms are bad. A lab that wants credit can publish its terms. Each clause gets a grade: A scores 1, B ¾, C ½, D ¼ and F 0. The score is the total out of seven. Evaluator contracts (beta) are scored the same way out of six, separately. Get in touch: <a href="mailto:hello@labcanary.com">hello@labcanary.com</a>.</p>
     <p>Privacy: this page counts visits and records sessions (clicks, scrolling and mouse movement, never anything typed) with Cloudflare Web Analytics and PostHog, to help me improve it. If you sign up for email updates, Buttondown keeps your address until you unsubscribe. No cookies, and nothing is sold. <a href="#questions">More in the Q&amp;A</a>.</p>
   </footer>
 </div>
@@ -418,6 +424,16 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
 
 const CLS = { "Meets": "meets", "Partly": "partly", "Falls short": "short", "Not public": "np" };
 const NOT_PUBLIC = "There isn't enough public evidence to assess this clause.";
+// Grades: Meets is A, Falls short is F and Not public is "?". Partly splits into B, C or D by how many of the
+// clause's parts (criteria "parts") the public evidence shows (rating "met"): one missing is B, only one is D.
+const POINTS = { A: 1, B: 0.75, C: 0.5, D: 0.25, F: 0, "?": 0 };
+function grade(r) {
+  if (r.rating !== "Partly") return { "Meets": "A", "Falls short": "F", "Not public": "?" }[r.rating];
+  const n = (crit(r.clause).parts || []).length, k = (r.met || []).length;
+  return k <= 1 ? "D" : k >= n - 1 ? "B" : "C";
+}
+const gradeCls = (r) => CLS[r.rating] + (r.rating === "Partly" ? " g-" + grade(r) : "");
+const gradeText = (r) => r.rating === "Not public" ? r.rating : grade(r) + " · " + r.rating;
 let D = null, sel = null, labFilter = "All";
 
 const $ = (id) => document.getElementById(id);
@@ -458,10 +474,10 @@ function cell(lab, clause) {
 // which defaults to staff, so the staff-only parts of the page (comparison, history, takeaway) are unaffected.
 function tally(lab, which = "staff") {
   const criteria = dataOf(which).criteria;
-  const cells = criteria.map(c => cell(lab, c.id));
-  const n = (s) => cells.filter(x => x.rating === s).length;
-  const t = { meets: n("Meets"), partly: n("Partly"), short: n("Falls short"), np: n("Not public"), total: criteria.length };
-  t.score = (t.meets + 0.5 * t.partly) / criteria.length;
+  const grades = criteria.map(c => grade(cell(lab, c.id)));
+  const n = (g) => grades.filter(x => x === g).length;
+  const t = { grades, meets: n("A"), np: n("?"), total: criteria.length };
+  t.score = grades.reduce((sum, g) => sum + POINTS[g], 0) / criteria.length;
   t.optedIn = which === "staff" && (D.optedIn || []).includes(lab);
   return t;
 }
@@ -498,17 +514,17 @@ function drawHeatmap() {
     hm.append(el("div", "hm-row", c.name));
     D.labs.forEach(l => {
       const r = cell(l, c.id);
-      const b = el("button", "tile t-" + CLS[r.rating], r.rating);
+      const b = el("button", "tile t-" + gradeCls(r), grade(r));
       b.dataset.lab = l;
       b.dataset.clause = c.id;
-      b.setAttribute("aria-label", l + ", " + c.name + ": " + r.rating);
+      b.setAttribute("aria-label", l + ", " + c.name + ": " + (r.rating === "Not public" ? r.rating : "grade " + grade(r)));
       b.setAttribute("aria-controls", "detail");
       b.addEventListener("click", () => select({ lab: l, clause: c.id }));
       hm.append(b);
     });
   });
   updateSelection();
-  $("score-method").textContent = "Publicly evidenced score = (Meets + ½ × Partly) ÷ " + data.criteria.length + " × 100%, rounded to the nearest whole percent. “Not public” means there isn’t enough public evidence to check; “Falls short” means the public evidence shows it doesn’t meet the " + words.unit + ". Both score zero." + (set === "evaluators" ? " This score is separate from the staff-contracts score and isn’t added to it." : "");
+  $("score-method").textContent = "Publicly evidenced score: A scores 1, B ¾, C ½, D ¼, and F and “?” score 0. Add them up, divide by " + data.criteria.length + " and round to the nearest whole percent. “?” means there isn’t enough public evidence to check; F means the public evidence shows it doesn’t meet the " + words.unit + "." + (set === "evaluators" ? " This score is separate from the staff-contracts score and isn’t added to it." : "");
   updateScrollCue();
 }
 
@@ -669,7 +685,7 @@ function shareInfo(s) {
   if (s.clause) {
     const r = cell(s.lab, s.clause), c = crit(s.clause);
     return { scope: "tile", url, title: "Lab Canary: " + s.lab + ", " + c.name,
-      text: s.lab + " on “" + c.name + "”: " + r.rating + (r.rating === "Not public" ? ", because there isn't enough public evidence to check." : ", based on public evidence.") + " Lab Canary rates what's publicly known about " + about + ", with a source for every rating." };
+      text: s.lab + " on “" + c.name + "”: " + (r.rating === "Not public" ? "Not public, because there isn't enough public evidence to check." : "grade " + grade(r) + ", based on public evidence.") + " Lab Canary rates what's publicly known about " + about + ", with a source for every rating." };
   }
   const t = tally(s.lab, s.set), words = SET_WORDS[s.set];
   return { scope: "lab", url, title: "Lab Canary: " + s.lab + (ev ? ", evaluator contracts" : ""),
@@ -856,16 +872,24 @@ function drawDetail() {
   const ev = sel.set === "evaluators";
   if (sel.clause) {
     const r = cell(sel.lab, sel.clause), c = crit(sel.clause);
-    d.append(el("span", "k", sel.lab + " · " + c.id + (ev ? " · Evaluator contracts" : "")), el("span", "t", c.name), el("span", "badge b-" + CLS[r.rating], r.rating));
-    d.append(el("p", "small", "Standard: " + c.standard), el("p", null, r.evidence));
+    d.append(el("span", "k", sel.lab + " · " + c.id + (ev ? " · Evaluator contracts" : "")), el("span", "t", c.name), el("span", "badge b-" + gradeCls(r), gradeText(r)));
+    d.append(el("p", "small", "Standard: " + c.standard));
+    if (r.rating === "Partly" && c.parts) {
+      const met = r.met || [], ul = el("ul", "parts");
+      c.parts.forEach((p, i) => { const on = met.includes(i + 1); ul.append(el("li", on ? null : "no", (on ? "✓ " : "✗ ") + p)); });
+      d.append(el("p", "small", "Public evidence shows " + met.length + " of " + c.parts.length + " parts:"), ul);
+    }
+    d.append(el("p", null, r.evidence));
     const sources = el("div", "small");
     if (appendSources(sources, r)) d.append(sources);
   } else {
     const t = tally(sel.lab, sel.set);
     d.append(el("span", "k", ev ? "Lab summary · Evaluator contracts" : "Lab summary"), el("span", "t", sel.lab));
-    d.append(el("p", null, "Publicly evidenced score " + pct(t.score) + ": " + t.meets + " met, " + t.partly + " partly, " + t.short + " falling short, " + t.np + " not public." + (ev ? "" : " " + (t.optedIn ? "Opted in." : "Not opted in."))));
+    const counts = ["A", "B", "C", "D", "F"].map(g => [t.grades.filter(x => x === g).length, g]).filter(([n]) => n).map(([n, g]) => n + " " + g);
+    if (t.np) counts.push(t.np + " not public");
+    d.append(el("p", null, "Publicly evidenced score " + pct(t.score) + ": " + counts.join(", ") + "." + (ev ? "" : " " + (t.optedIn ? "Opted in." : "Not opted in."))));
     const ul = el("ul");
-    dataOf(sel.set).criteria.forEach(c => { const r = cell(sel.lab, c.id); if (r.url) ul.append(el("li", null, c.name + " (" + r.rating.toLowerCase() + "): " + r.evidence)); });
+    dataOf(sel.set).criteria.forEach(c => { const r = cell(sel.lab, c.id); if (r.url) ul.append(el("li", null, c.name + " (" + grade(r) + "): " + r.evidence)); });
     if (ul.childNodes.length) d.append(ul);
   }
   const actions = el("div", "detail-actions");
@@ -889,7 +913,7 @@ function drawEvaluatorTerms() {
     a.href = "#" + slug(r.lab) + "-" + r.clause.toLowerCase();
     lab.append(a);
     tr.append(lab, term);
-    const st = el("td"); st.append(el("span", "badge b-" + CLS[r.rating], r.rating)); tr.append(st);
+    const st = el("td"); st.append(el("span", "badge b-" + gradeCls(r), gradeText(r))); tr.append(st);
     tr.append(el("td", null, r.evidence));
     const src = el("td");
     if (!appendSources(src, r)) src.textContent = "—";
@@ -904,6 +928,11 @@ function drawStandard(id = "std", criteria = D.criteria) {
   criteria.forEach(c => {
     const card = el("div", "std-c");
     card.append(el("span", "n", c.id), el("h3", null, c.name), el("p", "b", c.standard), el("p", "w", c.why));
+    if (c.parts) {
+      const ol = el("ol", "w");
+      c.parts.forEach(p => ol.append(el("li", null, p)));
+      card.append(el("p", "w", "Graded on " + c.parts.length + " parts:"), ol);
+    }
     if (c.model) {
       const m = el("details", "m");
       m.append(el("summary", null, "Model wording (draft)"), el("blockquote", null, c.model));
@@ -997,8 +1026,8 @@ function drawTimeline() {
     const y = r.date.slice(0, 4), c = D.criteria.find(x => x.id === r.clause);
     if (y !== current) { current = y; list.append(el("div", "tl-year", y)); }
     const item = el("div", "tl-item"), rail = el("div", "tl-rail"), card = el("div", "tl-card"), head = el("div", "tl-head");
-    rail.append(el("i", "b-" + CLS[r.rating]));
-    head.append(el("b", null, r.lab), el("span", "badge b-" + CLS[r.rating], r.rating));
+    rail.append(el("i", "b-" + gradeCls(r)));
+    head.append(el("b", null, r.lab), el("span", "badge b-" + gradeCls(r), gradeText(r)));
     card.append(head, el("span", "small", r.clause + " · " + (c ? c.name : "")), el("p", null, r.evidence));
     const src = el("div", "small");
     appendSources(src, r);
@@ -1066,7 +1095,7 @@ function drawEvidence() {
   rows.forEach(r => {
     const tr = el("tr");
     tr.append(el("td", "nowrap", r.lab), el("td", null, r.clause));
-    const st = el("td"); st.append(el("span", "badge b-" + CLS[r.rating], r.rating)); tr.append(st);
+    const st = el("td"); st.append(el("span", "badge b-" + gradeCls(r), gradeText(r))); tr.append(st);
     tr.append(el("td", null, r.evidence));
     const src = el("td");
     if (!appendSources(src, r)) src.textContent = "—";
