@@ -26,6 +26,18 @@ A second tab rates what's public about each lab's contracts with outside (third-
 - If `evaluators.json` is missing or invalid, the page hides the tab and the staff scorecard still loads.
 - Links: `#evaluators` opens the tab, `#openai-evaluators` a lab's evaluator summary, and `#openai-e3` one evaluator rating.
 
+## Example Lab
+
+Example Lab is a made-up lab that meets all seven clauses. It's the last column of the staff scorecard, marked "made up", with an A on every check, so readers can compare the real labs with 100%. Each of its squares lists the clause's parts, shows the model wording for that clause and links to the document that covers it. The "What 100% looks like" section holds the five documents it would publish: a confidentiality agreement, criticism and non-disparagement terms, equity terms, a speak-up policy and a dated statement.
+
+- The column is drawn by the page from `EXAMPLE` in [`public/index.html`](public/index.html). It isn't in `ratings.json`, so it never counts in scores, score history, feeds, share text or the evaluator tab.
+- The documents are plain HTML in the `#example-lab` section. If you rename a document's `id`, update `EXAMPLE.docs` to match.
+- Links: `#example-lab-c1` opens one of its squares, and `#example-lab` goes to the documents.
+- The documents reuse the model wording in `criteria.json` with the blanks filled in. When a clause's `model` changes, update the matching Example Lab document too.
+- They're drafts. Keep the "no lawyer has checked these" note until a lawyer has, then say who checked them and when.
+
+The "Worried about your own contract?" section (`#get-help`) has the class `ph-no-capture`, so PostHog doesn't log clicks in it and blanks it out in session recordings. Keep that class if you edit the section.
+
 ## Checking the data
 
 ```sh
