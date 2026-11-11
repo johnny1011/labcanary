@@ -37,13 +37,15 @@ p { margin: 0; }
 h1, h2 { margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
 .wrap { max-width: 78rem; margin: 0 auto; padding-block: clamp(20px, 4vw, 44px); padding-left: max(16px, 4vw); padding-right: max(16px, 4vw); display: flex; flex-direction: column; gap: 56px; }
 .top { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 16px; }
-.brand { display: flex; align-items: center; gap: 10px; }
-.brand-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(232,178,28,.18); flex: none; }
+.brand { display: grid; grid-template-columns: auto 1fr; align-items: center; column-gap: 10px; }
+.brand > div { display: contents; }
+.brand-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(232,178,28,.18); flex: none; animation: pulse 2.4s ease-out infinite; }
+@keyframes pulse { from { box-shadow: 0 0 0 4px rgba(232,178,28,.18), 0 0 0 0 rgba(232,178,28,.5); } 70%, to { box-shadow: 0 0 0 4px rgba(232,178,28,.18), 0 0 0 11px rgba(232,178,28,0); } }
 .brand h1 { font-size: 1.5rem; font-weight: 700; }
-.brand small { color: var(--muted); font-size: .85rem; }
+.brand small { grid-column: 2; color: var(--muted); font-size: .85rem; }
 nav { display: flex; gap: 20px; font-size: .9rem; flex-wrap: wrap; }
 nav a { color: var(--fg); }
-.draft { color: var(--accent); font-weight: 600; white-space: nowrap; }
+.live { color: var(--accent); font-weight: 600; }
 .note { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px; display: flex; flex-direction: column; gap: 4px; }
 .note p { max-width: 75ch; }
 .qa { display: flex; flex-direction: column; gap: 20px; max-width: 75ch; }
@@ -223,7 +225,7 @@ a.pill-btn { display: inline-flex; align-items: center; text-decoration: none; }
   tbody td[colspan] { grid-column: 1 / -1; }
   .upd { grid-template-columns: minmax(0, 1fr); }
 }
-@media (prefers-reduced-motion: reduce) { .tile { transition: none; } .tile:hover { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .brand-dot { animation: none; } .tile { transition: none; } .tile:hover { transform: none; } }
 </style>
 <!-- PostHog analytics: cookieless (memory only), EU-hosted. Records visits and session replays (inputs masked). Disclosed in the Q&A section. -->
 <script>
@@ -240,7 +242,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
 <body>
 <div class="wrap">
   <header class="top">
-    <div class="brand"><span class="brand-dot" aria-hidden="true"></span><div><h1>Lab Canary</h1><small>Speak-up scorecard for AI labs · <span class="draft">Rough first version</span></small><small class="checked-top"><span id="checked-top"></span> · <a href="#updates">What's changed</a></small></div></div>
+    <div class="brand"><span class="brand-dot" aria-hidden="true"></span><div><h1>Lab Canary</h1><small>Speak-up scorecard for AI labs</small><small class="checked-top"><span id="checked-top" class="live"></span> · <a href="#updates">What's changed</a></small></div></div>
     <nav aria-label="Sections"><a href="#scorecard">Scorecard</a><a href="#goals">Goals</a><a href="#standard">The standard</a><a href="#evaluator-terms">Evaluator terms</a><a href="#evidence">Evidence</a><a href="#updates">Updates</a><a href="#coming-soon">Coming soon</a><a href="#opt-in">Opt in</a><a href="#questions">Q&amp;A</a></nav>
   </header>
 
@@ -1141,7 +1143,7 @@ async function load() {
     ]);
     D = { criteria, ...ratings, ev };
     const checked = D.checked || D.updated;
-    let asof = "Ratings last changed " + fmtDate(D.updated) + " · Evidence last checked " + fmtDate(checked);
+    let asof = "Last checked " + fmtDate(checked);
     if ((Date.now() - new Date(checked)) / 864e5 > 45) asof += ". Not checked for over 45 days, so newer evidence may be missing.";
     $("checked-top").textContent = asof;
     drawTabs(); drawSetCopy();
