@@ -35,7 +35,7 @@ a:focus-visible, button:focus-visible, [tabindex="0"]:focus-visible { outline: 2
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 p { margin: 0; }
 h1, h2 { margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
-.wrap { max-width: 78rem; margin: 0 auto; padding-block: clamp(20px, 4vw, 44px); padding-left: max(16px, 4vw); padding-right: max(16px, 4vw); display: flex; flex-direction: column; gap: 56px; }
+.wrap { max-width: 78rem; margin: 0 auto; padding-block: clamp(20px, 4vw, 44px); padding-left: max(16px, 4vw); padding-right: max(16px, 4vw); display: flex; flex-direction: column; gap: 24px; }
 .top { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 16px; }
 .brand { display: grid; grid-template-columns: auto 1fr; align-items: center; column-gap: 10px; }
 .brand > div { display: contents; }
@@ -45,7 +45,6 @@ h1, h2 { margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
 .brand small { grid-column: 2; color: var(--muted); font-size: .85rem; }
 nav { display: flex; gap: 20px; font-size: .9rem; flex-wrap: wrap; }
 nav a { color: var(--fg); }
-.live { color: var(--accent); font-weight: 600; }
 .note { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px; display: flex; flex-direction: column; gap: 4px; }
 .note p { max-width: 75ch; }
 .qa { display: flex; flex-direction: column; gap: 20px; max-width: 75ch; }
@@ -70,11 +69,11 @@ nav a { color: var(--fg); }
 .hm-lab:hover, .hm-lab.on { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
 .hm-lab small { display: block; color: var(--accent); font-weight: 600; font-size: .65rem; }
 .hm-row { font-size: .85rem; font-weight: 600; display: flex; align-items: center; padding-right: 8px; min-height: 2.75rem; line-height: 1.25; }
-.hm-score { border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .88rem; color: #fff; min-height: 2.75rem; font-variant-numeric: tabular-nums; }
+.hm-score { border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .88rem; color: #fff; min-height: 2.75rem; font-variant-numeric: tabular-nums; cursor: pointer; transition: transform .12s ease; }
 .hm-unknown { position: relative; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: .78rem; font-variant-numeric: tabular-nums; }
 .hm-gap { grid-column: 1 / -1; height: 6px; }
 .tile { border: 0; border-radius: 6px; min-height: 2.75rem; cursor: pointer; font: .7rem var(--sans); color: rgba(255,255,255,.9); display: flex; align-items: center; justify-content: center; padding: 4px; outline: 2px solid transparent; outline-offset: 1px; transition: transform .12s ease, outline-color .12s ease; }
-.tile:hover { transform: scale(1.04); }
+.tile:hover, .hm-score:hover { transform: scale(1.04); }
 .tile:focus-visible, .tile.on { outline-color: #fff; }
 .t-meets { background: var(--meets); }
 .t-partly { background: var(--partly); }
@@ -121,7 +120,7 @@ td.nowrap { white-space: nowrap; }
 .step h3 { margin: 0; font-size: 1rem; }
 .step p { font-size: .9rem; color: var(--muted); }
 .goals { margin: 0; padding-left: 1.4rem; max-width: 48rem; display: flex; flex-direction: column; gap: 10px; font-size: .92rem; line-height: 1.55; }
-footer { border-top: 1px solid var(--line); padding-top: 16px; font-size: .82rem; color: var(--muted); display: flex; flex-direction: column; gap: 6px; }
+footer { margin-top: 32px; border-top: 1px solid var(--line); padding-top: 16px; font-size: .82rem; color: var(--muted); display: flex; flex-direction: column; gap: 6px; }
 .sk { background: var(--panel); border-radius: 6px; min-height: 2.75rem; }
 .err { color: #ffb4a8; }
 /* Phones: the detail panel opens inside the grid, under the row that was tapped. */
@@ -209,6 +208,7 @@ a.pill-btn { display: inline-flex; align-items: center; text-decoration: none; }
 }
 @media (min-width: 52.01rem) { .fold-std > summary { display: none; } }
 @media (max-width: 40rem) {
+  .top nav .more { display: none; }
   .hm { grid-template-columns: minmax(6.2rem, 1.2fr) repeat(var(--cols, 5), minmax(2.5rem, 1fr)); gap: 5px; min-width: 0; }
   .hm-row { font-size: .76rem; padding-right: 4px; }
   .hm-lab { font-size: .6rem; display: flex; flex-direction: column; align-items: center; }
@@ -225,7 +225,7 @@ a.pill-btn { display: inline-flex; align-items: center; text-decoration: none; }
   tbody td[colspan] { grid-column: 1 / -1; }
   .upd { grid-template-columns: minmax(0, 1fr); }
 }
-@media (prefers-reduced-motion: reduce) { .brand-dot { animation: none; } .tile { transition: none; } .tile:hover { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .brand-dot { animation: none; } .tile, .hm-score { transition: none; } .tile:hover, .hm-score:hover { transform: none; } }
 </style>
 <!-- PostHog analytics: cookieless (memory only), EU-hosted. Records visits and session replays (inputs masked). Disclosed in the Q&A section. -->
 <script>
@@ -242,8 +242,8 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
 <body>
 <div class="wrap">
   <header class="top">
-    <div class="brand"><span class="brand-dot" aria-hidden="true"></span><div><h1>Lab Canary</h1><small>Speak-up scorecard for AI labs</small><small class="checked-top"><span id="checked-top" class="live"></span> · <a href="#updates">What's changed</a></small></div></div>
-    <nav aria-label="Sections"><a href="#scorecard">Scorecard</a><a href="#goals">Goals</a><a href="#standard">The standard</a><a href="#evaluator-terms">Evaluator terms</a><a href="#evidence">Evidence</a><a href="#updates">Updates</a><a href="#coming-soon">Coming soon</a><a href="#opt-in">Opt in</a><a href="#questions">Q&amp;A</a></nav>
+    <div class="brand"><span class="brand-dot" aria-hidden="true"></span><div><h1>Lab Canary</h1><small>Can people at AI labs speak up?</small><small class="checked-top"><span id="checked-top"></span> · <a href="#updates">What's changed</a></small></div></div>
+    <nav aria-label="Sections"><a href="#scorecard">Scorecard</a><a class="more" href="#goals">Goals</a><a href="#standard">The standard</a><a class="more" href="#evaluator-terms">Evaluator terms</a><a href="#evidence">Evidence</a><a class="more" href="#updates">Updates</a><a class="more" href="#coming-soon">Coming soon</a><a class="more" href="#opt-in">Opt in</a><a href="#questions">Q&amp;A</a></nav>
   </header>
 
   <main style="display:flex;flex-direction:column;gap:56px">
@@ -258,7 +258,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
           <span class="note-k">Beta</span>
           <p>Can outside evaluators check AI labs freely and say what they find? This tab rates what's public about labs' contracts with third-party evaluators, using the six terms in <a id="set-note-source" href="#evaluator-terms">GovAI's proposal</a> that these contracts be published. It's scored separately from staff contracts and never added to that score.</p>
         </div>
-        <p class="intro phone-only" id="intro">Can people at AI labs speak up? Each square rates what's publicly known about one lab's staff contracts. <b>Tap a square to see the evidence.</b></p>
+        <p class="intro phone-only" id="intro">Each square rates what's publicly known about one lab's staff contracts. <b>Tap a square to see the evidence.</b></p>
         <div class="hm-wrap" id="hm-wrap" role="region" aria-label="Ratings by lab and clause"><div class="hm" id="hm"></div></div>
         <p class="scroll-cue" id="scroll-cue" hidden>Scroll sideways to see all five labs. Use the arrow keys when the grid is focused.</p>
         <div class="legend">
@@ -276,7 +276,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
       <div class="side">
         <p id="side-intro">Can people who work at AI labs tell the public when something's wrong? Lab Canary checks what's publicly known about lab contracts and speak-up policies against a simple standard: protect real secrets, never gag criticism or whistleblowing.</p>
         <p id="takeaway"></p>
-        <p class="lead wide-only">Click a tile to see the evidence. Click a lab's name for its summary.</p>
+        <p class="lead wide-only">Click a tile to see the evidence. Click a lab's name or score for its summary.</p>
         <div class="detail" id="detail" aria-live="polite"></div>
         <div class="links" id="hero-links">
           <a href="#standard" id="link-standard">The standard, in seven clauses →</a>
@@ -416,6 +416,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
   </main>
 
   <footer>
+    <nav aria-label="All sections"><a href="#scorecard">Scorecard</a><a href="#goals">Goals</a><a href="#standard">The standard</a><a href="#evaluator-terms">Evaluator terms</a><a href="#evidence">Evidence</a><a href="#updates">Updates</a><a href="#coming-soon">Coming soon</a><a href="#opt-in">Opt in</a><a href="#questions">Q&amp;A</a></nav>
     <p>Made by <a href="https://www.linkedin.com/in/jonathanhind/">Jonathan Hind</a>, built with help from Claude. Ratings use public evidence only. "Not public" scores zero. That's a score for openness, not a finding that a lab's terms are bad. A lab that wants credit can publish its terms. Score = clauses met, plus half for each partly met, out of seven. Evaluator contracts (beta) are scored the same way out of six, separately. Get in touch: <a href="mailto:hello@labcanary.com">hello@labcanary.com</a>.</p>
     <p>Privacy: this page counts visits and records sessions (clicks, scrolling and mouse movement, never anything typed) with Cloudflare Web Analytics and PostHog, to help me improve it. If you sign up for email updates, Buttondown keeps your address until you unsubscribe. No cookies, and nothing is sold. <a href="#questions">More in the Q&amp;A</a>.</p>
   </footer>
@@ -498,6 +499,7 @@ function drawHeatmap() {
     t.style.background = scoreColor(s);
     t.setAttribute("role", "img");
     t.setAttribute("aria-label", l + " publicly evidenced score for " + words.short + ": " + pct(s));
+    t.addEventListener("click", () => select({ lab: l }));
     hm.append(t);
   });
   hm.append(el("div", "hm-row", "Not public"));
@@ -529,7 +531,7 @@ function drawHeatmap() {
 function drawSetCopy() {
   const ev = set === "evaluators";
   $("set-note").hidden = !ev;
-  $("intro").replaceChildren(ev ? "Each square rates what's public about one lab's contracts with outside evaluators. " :"Can people at AI labs speak up? Each square rates what's publicly known about one lab's staff contracts. ", el("b", null, "Tap a square to see the evidence."));
+  $("intro").replaceChildren(ev ? "Each square rates what's public about one lab's contracts with outside evaluators. " :"Each square rates what's publicly known about one lab's staff contracts. ", el("b", null, "Tap a square to see the evidence."));
   $("side-intro").textContent = ev
     ? "Outside evaluators are meant to check labs' safety claims. How far you can trust what they report depends on the contract they work under: what they can see, what they can publish, how they're paid and whether they're independent. This tab rates what's public about those contracts."
     : "Can people who work at AI labs tell the public when something's wrong? Lab Canary checks what's publicly known about lab contracts and speak-up policies against a simple standard: protect real secrets, never gag criticism or whistleblowing.";
