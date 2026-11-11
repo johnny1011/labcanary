@@ -10,17 +10,18 @@ Live at **https://labcanary.com**
 
 - **The standard** is seven clauses, in [`public/criteria.json`](public/criteria.json).
 - **The ratings** are in [`public/ratings.json`](public/ratings.json): one entry for each lab and clause where there's public evidence. Anything not listed shows as "Not public".
-- **The publicly evidenced score** is clauses met, plus half for each one partly met, out of seven.
-- Each clause has equal weight. Equal scores can combine different ratings and evidence gaps; they do not mean identical protections. The scorecard explains Anthropic and OpenAI's totals using the current ratings.
-- Both "Falls short" and "Not public" score zero, but mean different things. "Falls short" means the public evidence shows it doesn't meet the clause. "Not public" means there is not enough public evidence to check. A lab that wants credit can publish its terms. Not-public counts appear beside each lab's score.
-- A "Meets" rating needs evidence for the complete criterion, from a written policy or the contract wording. One public statement (an interview comment, or a statement reported in the press) earns "Partly" at most. Use "Partly" when the evidence supports only part of it.
+- **Grades run from A to F.** Each clause is split into three or four parts (`parts` in `criteria.json`). A ("Meets") means the public evidence shows every part. "Partly" is a B when one part is missing, a D when only one part is shown, and a C in between. F ("Falls short") means none, or evidence of the opposite. "Not public" shows as "?".
+- **The publicly evidenced score** adds up the grades (A 1, B ¾, C ½, D ¼, F and "?" 0) and divides by seven.
+- Each clause has equal weight. Equal scores can combine different ratings and evidence gaps; they do not mean identical protections.
+- Both "Falls short" and "Not public" score zero, but mean different things. "Falls short" means the public evidence shows it doesn't meet the clause. "Not public" means there is not enough public evidence to check. A lab that wants credit can publish its terms.
+- A "Meets" rating needs evidence for the complete criterion, from a written policy or the contract wording. One public statement (an interview comment, or a statement reported in the press) earns "Partly" at most, so a B. Use "Partly" when the evidence supports only part of it, and list the parts it does support in `met`.
 
 ## Evaluator contracts (beta)
 
 A second tab rates what's public about each lab's contracts with outside (third-party) evaluators. It uses the six terms in GovAI's proposal that [third-party AI evaluation contracts should be published](https://www.governance.ai/analysis/third-party-ai-evaluation-contracts-should-be-published): scope, access, publication rights, pay, conflict rules, and term and renewal.
 
 - The terms and their ratings live in [`public/evaluators.json`](public/evaluators.json), in the same shape as `criteria.json` and `ratings.json`. Term ids are `E1`–`E6`; staff clause ids stay `C1`–`C7`, so ids never clash.
-- It's scored the same way (met, plus half for each partly met), out of six, and **separately**. It is never added to the staff score, the score history or the share text for staff contracts.
+- It's graded and scored the same way, out of six, and **separately**. It is never added to the staff score, the score history or the share text for staff contracts.
 - The same evidence rules apply: "Meets" needs published terms or contract wording; one public statement earns "Partly" at most.
 - If `evaluators.json` is missing or invalid, the page hides the tab and the staff scorecard still loads.
 - Links: `#evaluators` opens the tab, `#openai-evaluators` a lab's evaluator summary, and `#openai-e3` one evaluator rating.
@@ -31,7 +32,7 @@ A second tab rates what's public about each lab's contracts with outside (third-
 node scripts/check-data.mjs
 ```
 
-It checks both rating files: known labs and clause ids, valid ratings, a source URL and date for every rating other than "Not public", and no duplicates. A GitHub check runs it on every pull request and push.
+It checks both rating files: known labs and clause ids, valid ratings, parts for every clause, `met` for every "Partly" rating, a source URL and date for every rating other than "Not public", and no duplicates. A GitHub check runs it on every pull request and push.
 
 ## Suggest a correction
 
@@ -50,6 +51,7 @@ Each rating in `public/ratings.json` looks like this:
   "lab": "OpenAI",
   "clause": "C2",
   "rating": "Partly",
+  "met": [2, 4],
   "evidence": "One or two plain sentences on what the source shows.",
   "source": "Name of the source",
   "url": "https://...",
@@ -57,7 +59,8 @@ Each rating in `public/ratings.json` looks like this:
 }
 ```
 
-- `rating` is one of `Meets`, `Partly`, `Falls short` or `Not public`.
+- `rating` is one of `Meets`, `Partly`, `Falls short` or `Not public`. The page shows them as A, B to D, F and "?".
+- `met` is only for `Partly`. It lists which of the clause's `parts` (numbered from 1, in `criteria.json`) the evidence shows. The page works out B, C or D from it and shows the parts with ticks and crosses.
 - `date` is `YYYY-MM-DD`, or `YYYY-MM` if the source only gives a month.
 - Update `updated` at the top of the file whenever you change a rating, and add an entry to `updates` (see [Updates and feeds](#updates-and-feeds)).
 - Update `checked` whenever you review the evidence for every lab, even if no rating changes. The site shows both dates, and warns readers when `checked` is more than 45 days old.
@@ -91,7 +94,7 @@ When a rating or its evidence changes, add an entry to the top of `updates` in `
   "date": "2026-10-24",
   "title": "Google DeepMind: a former researcher posts the non-disparagement clause he signed",
   "text": "A few plain sentences on what changed and why, with the old and new rating.",
-  "scores": { "Anthropic": 43, "OpenAI": 43, "Google DeepMind": 7, "xAI": 0, "Meta": 0 },
+  "scores": { "Anthropic": 43, "OpenAI": 43, "Google DeepMind": 7, "xAI / SpaceXSI": 0, "Meta": 0 },
   "labs": ["Google DeepMind"],
   "link": "#google-deepmind-c1"
 }

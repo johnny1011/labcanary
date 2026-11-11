@@ -5,9 +5,48 @@
   <link rel="self" type="application/atom+xml" href="https://labcanary.com/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://labcanary.com/"/>
   <id>https://labcanary.com/feed.xml</id>
-  <updated>2026-11-10T00:00:00Z</updated>
+  <updated>2026-11-11T00:00:00Z</updated>
   <author><name>Jonathan Hind</name></author>
   <rights>Text and data: CC BY 4.0</rights>
+  <entry>
+    <title>OpenAI: new speak-up policy sends AI safety concerns to a board committee</title>
+    <link rel="alternate" type="text/html" href="https://labcanary.com/#openai-c6"/>
+    <id>tag:labcanary.com,2026-11-11:openai-new-speak-up-policy-sends-ai-safety-concerns-to-a-board-committee</id>
+    <updated>2026-11-11T00:00:00Z</updated>
+    <category term="OpenAI"/>
+    <summary>OpenAI replaced its Raising Concerns Policy on 30 October 2026. Staff can now take an AI safety concern straight to the Safety and Security Committee of the OpenAI Foundation's board, safety concerns raised through the anonymous Integrity Line are passed to that committee, and the policy says the committee has &quot;full authority&quot; to address them. &quot;Safe internal channel&quot; moves from B to A, so OpenAI's score goes from 43% to 46%. &quot;Protected disclosures carved out&quot; stays a C: the policy now covers former staff, but it still says it isn't a contract and doesn't say that no agreement overrides it.</summary>
+  </entry>
+  <entry>
+    <title>Anthropic: IPO filing makes its staff stock plan public</title>
+    <link rel="alternate" type="text/html" href="https://labcanary.com/#anthropic-c3"/>
+    <id>tag:labcanary.com,2026-11-11:anthropic-ipo-filing-makes-its-staff-stock-plan-public</id>
+    <updated>2026-11-11T00:00:00Z</updated>
+    <category term="Anthropic"/>
+    <summary>Anthropic filed to go public on 26 October 2026, and the filing includes its staff stock plan. The plan says anyone fired &quot;for Cause&quot; loses all their unexercised stock options and all their restricted stock units, vested ones included. &quot;Cause&quot; includes &quot;intentional material damage to the Company's business, property or reputation&quot;, and the company's decision on it is &quot;final and binding&quot;. &quot;Equity is never hostage&quot; now cites the plan and stays a D: the plan has no stated exception for criticism or protected disclosures, but losing equity under it takes a for-Cause firing. &quot;Protected disclosures carved out&quot; also cites a severance agreement for executives from the same filing and stays a B. Scores are unchanged.</summary>
+  </entry>
+  <entry>
+    <title>Google DeepMind: former staff say raising the non-disparagement clause through formal routes changed nothing</title>
+    <link rel="alternate" type="text/html" href="https://labcanary.com/#google-deepmind-c6"/>
+    <id>tag:labcanary.com,2026-11-11:google-deepmind-former-staff-say-raising-the-non-disparagement-clause-through-formal-routes-changed-nothing</id>
+    <updated>2026-11-11T00:00:00Z</updated>
+    <category term="Google DeepMind"/>
+    <summary>&quot;Safe internal channel&quot; now cites two accounts. Former research engineer Sofia Liguori told openDemocracy that an employee's attempts to raise the clause through internal channels led to no change. Andreas Kirsch has said he raised it in a formal protected disclosure in September 2026 and nothing changed, IBTimes UK reported. The grade stays a D. &quot;Protected disclosures carved out&quot; now notes that UK law voids a contract term so far as it tries to stop a protected disclosure, and stays &quot;Not public&quot;. Scores are unchanged.</summary>
+  </entry>
+  <entry>
+    <title>xAI is now listed as xAI / SpaceXSI</title>
+    <link rel="alternate" type="text/html" href="https://labcanary.com/#xai-spacexsi-c5"/>
+    <id>tag:labcanary.com,2026-11-11:xai-is-now-listed-as-xai-spacexsi</id>
+    <updated>2026-11-11T00:00:00Z</updated>
+    <category term="xAI / SpaceXSI"/>
+    <summary>xAI now calls itself SpaceXSI (SpaceX Super Intelligence LLC); its terms of service, last updated on 27 October 2026, use that name. The scorecard now lists it as &quot;xAI / SpaceXSI&quot;. Its page links and feed address changed with the name, and the old feed address redirects to the new one. No grade changed: &quot;Whistleblowing policy is public&quot; stays an F.</summary>
+  </entry>
+  <entry>
+    <title>Grades now run from A to F</title>
+    <link rel="alternate" type="text/html" href="https://labcanary.com/#scorecard"/>
+    <id>tag:labcanary.com,2026-11-11:grades-now-run-from-a-to-f</id>
+    <updated>2026-11-11T00:00:00Z</updated>
+    <summary>&quot;Partly&quot; was covering too much: 11 of the 17 ratings on staff contracts were &quot;Partly&quot;, including all six of Anthropic's. Each clause is now split into three or four parts. &quot;Meets&quot; is an A and &quot;Falls short&quot; is an F. &quot;Partly&quot; is split into B (one part missing), C (in between) and D (only one part shown). &quot;Not public&quot; shows as &quot;?&quot; and still scores zero. A scores 1, B three quarters, C a half and D a quarter. No evidence changed. Google DeepMind's score moves from 7% to 4% because its &quot;Safe internal channel&quot; grade is a D. The evaluator tab is graded the same way, and Anthropic's score there moves from 42% to 33%.</summary>
+  </entry>
   <entry>
     <title>Google DeepMind: Google says new hires' non-disparagement terms no longer apply after they leave</title>
     <link rel="alternate" type="text/html" href="https://labcanary.com/#google-deepmind-c2"/>

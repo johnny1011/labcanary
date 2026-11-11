@@ -17,3 +17,5 @@
 /m4  /?utm_source=outreach&utm_medium=message&utm_campaign=launch&utm_content=policy  302
 /m5  /?utm_source=outreach&utm_medium=message&utm_campaign=launch&utm_content=other  302
 /m6  /?utm_source=outreach&utm_medium=message&utm_campaign=launch&utm_content=pacing-signers  302
+# xAI is now listed as "xAI / SpaceXSI", so its feed moved. Keep the old address working.
+/feeds/xai.xml  /feeds/xai-spacexsi.xml  301
