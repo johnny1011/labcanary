@@ -1,20 +1,52 @@
 {
   "updated": "2026-11-11",
-  "checked": "2026-11-10",
+  "checked": "2026-11-11",
   "labs": [
     "Anthropic",
     "OpenAI",
     "Google DeepMind",
-    "xAI",
+    "xAI / SpaceXSI",
     "Meta"
   ],
   "optedIn": [],
   "updates": [
     {
       "date": "2026-11-11",
+      "title": "OpenAI: new speak-up policy sends AI safety concerns to a board committee",
+      "text": "OpenAI replaced its Raising Concerns Policy on 30 October 2026. Staff can now take an AI safety concern straight to the Safety and Security Committee of the OpenAI Foundation's board, safety concerns raised through the anonymous Integrity Line are passed to that committee, and the policy says the committee has \"full authority\" to address them. \"Safe internal channel\" moves from B to A, so OpenAI's score goes from 43% to 46%. \"Protected disclosures carved out\" stays a C: the policy now covers former staff, but it still says it isn't a contract and doesn't say that no agreement overrides it.",
+      "scores": { "Anthropic": 43, "OpenAI": 46, "Google DeepMind": 4, "xAI / SpaceXSI": 0, "Meta": 0 },
+      "labs": ["OpenAI"],
+      "link": "#openai-c6"
+    },
+    {
+      "date": "2026-11-11",
+      "title": "Anthropic: IPO filing makes its staff stock plan public",
+      "text": "Anthropic filed to go public on 26 October 2026, and the filing includes its staff stock plan. The plan says anyone fired \"for Cause\" loses all their unexercised stock options and all their restricted stock units, vested ones included. \"Cause\" includes \"intentional material damage to the Company's business, property or reputation\", and the company's decision on it is \"final and binding\". \"Equity is never hostage\" now cites the plan and stays a D: the plan has no stated exception for criticism or protected disclosures, but losing equity under it takes a for-Cause firing. \"Protected disclosures carved out\" also cites a severance agreement for executives from the same filing and stays a B. Scores are unchanged.",
+      "scores": { "Anthropic": 43, "OpenAI": 43, "Google DeepMind": 4, "xAI / SpaceXSI": 0, "Meta": 0 },
+      "labs": ["Anthropic"],
+      "link": "#anthropic-c3"
+    },
+    {
+      "date": "2026-11-11",
+      "title": "Google DeepMind: former staff say raising the non-disparagement clause through formal routes changed nothing",
+      "text": "\"Safe internal channel\" now cites two accounts. Former research engineer Sofia Liguori told openDemocracy that an employee's attempts to raise the clause through internal channels led to no change. Andreas Kirsch has said he raised it in a formal protected disclosure in September 2026 and nothing changed, IBTimes UK reported. The grade stays a D. \"Protected disclosures carved out\" now notes that UK law voids a contract term so far as it tries to stop a protected disclosure, and stays \"Not public\". Scores are unchanged.",
+      "scores": { "Anthropic": 43, "OpenAI": 43, "Google DeepMind": 4, "xAI / SpaceXSI": 0, "Meta": 0 },
+      "labs": ["Google DeepMind"],
+      "link": "#google-deepmind-c6"
+    },
+    {
+      "date": "2026-11-11",
+      "title": "xAI is now listed as xAI / SpaceXSI",
+      "text": "xAI now calls itself SpaceXSI (SpaceX Super Intelligence LLC); its terms of service, last updated on 27 October 2026, use that name. The scorecard now lists it as \"xAI / SpaceXSI\". Its page links and feed address changed with the name, and the old feed address redirects to the new one. No grade changed: \"Whistleblowing policy is public\" stays an F.",
+      "scores": { "Anthropic": 43, "OpenAI": 43, "Google DeepMind": 4, "xAI / SpaceXSI": 0, "Meta": 0 },
+      "labs": ["xAI / SpaceXSI"],
+      "link": "#xai-spacexsi-c5"
+    },
+    {
+      "date": "2026-11-11",
       "title": "Grades now run from A to F",
       "text": "\"Partly\" was covering too much: 11 of the 17 ratings on staff contracts were \"Partly\", including all six of Anthropic's. Each clause is now split into three or four parts. \"Meets\" is an A and \"Falls short\" is an F. \"Partly\" is split into B (one part missing), C (in between) and D (only one part shown). \"Not public\" shows as \"?\" and still scores zero. A scores 1, B three quarters, C a half and D a quarter. No evidence changed. Google DeepMind's score moves from 7% to 4% because its \"Safe internal channel\" grade is a D. The evaluator tab is graded the same way, and Anthropic's score there moves from 42% to 33%.",
-      "scores": { "Anthropic": 43, "OpenAI": 43, "Google DeepMind": 4, "xAI": 0, "Meta": 0 },
+      "scores": { "Anthropic": 43, "OpenAI": 43, "Google DeepMind": 4, "xAI / SpaceXSI": 0, "Meta": 0 },
       "labs": [],
       "link": "#scorecard"
     },
@@ -22,7 +54,7 @@
       "date": "2026-11-10",
       "title": "Google DeepMind: Google says new hires' non-disparagement terms no longer apply after they leave",
       "text": "Google told the Washington Post on 3 November that it had recently removed \"the post-termination aspect of non-disparagement clauses\" from its terms for new hires, and that it doesn't enforce non-disparagement clauses after people leave. \"No gag on criticism\" now cites this and stays \"Falls short\": Google only described removing the part that applies after someone leaves, it didn't say existing contracts had changed, and the new wording isn't public. If Google publishes the wording, it will be rated on that wording. Scores are unchanged.",
-      "scores": { "Anthropic": 43, "OpenAI": 43, "Google DeepMind": 7, "xAI": 0, "Meta": 0 },
+      "scores": { "Anthropic": 43, "OpenAI": 43, "Google DeepMind": 7, "xAI / SpaceXSI": 0, "Meta": 0 },
       "labs": ["Google DeepMind"],
       "link": "#google-deepmind-c2"
     },
@@ -30,7 +62,7 @@
       "date": "2026-11-07",
       "title": "New beta tab: what's public about labs' contracts with outside evaluators",
       "text": "A second tab rates what's public about each lab's contracts with third-party evaluators, using the six terms in GovAI's proposal that these contracts be published: scope, access, publication rights, pay, conflict rules, and term and renewal. Anthropic scores 42% and OpenAI 33%, mostly \"Partly\" from their own announcements; Google DeepMind, xAI and Meta score 0% because nothing is public. No lab has published a full evaluation contract. These scores are separate and don't change the staff-contract scores.",
-      "scores": { "Anthropic": 43, "OpenAI": 43, "Google DeepMind": 7, "xAI": 0, "Meta": 0 },
+      "scores": { "Anthropic": 43, "OpenAI": 43, "Google DeepMind": 7, "xAI / SpaceXSI": 0, "Meta": 0 },
       "labs": [],
       "link": "#evaluators"
     },
@@ -38,7 +70,7 @@
       "date": "2026-10-24",
       "title": "Google DeepMind: a former researcher posts the non-disparagement clause he signed",
       "text": "Andreas Kirsch, a former Google DeepMind research scientist, posted on X a clause from the agreement he signed with Google in the UK in 2024. It says staff must not make \"any statement\" \"criticising or disparaging Google\", during or after employment, and he says it has no exemption for protected disclosures. \"No gag on criticism\" now cites it as its main source and stays \"Falls short\". A new entry for \"Protected disclosures carved out\" stays \"Not public\", because the rest of the agreement isn't public. Scores are unchanged.",
-      "scores": { "Anthropic": 43, "OpenAI": 43, "Google DeepMind": 7, "xAI": 0, "Meta": 0 },
+      "scores": { "Anthropic": 43, "OpenAI": 43, "Google DeepMind": 7, "xAI / SpaceXSI": 0, "Meta": 0 },
       "labs": ["Google DeepMind"],
       "link": "#google-deepmind-c2"
     },
@@ -46,7 +78,7 @@
       "date": "2026-10-22",
       "title": "Lab Canary launched",
       "text": "Five labs (Anthropic, OpenAI, Google DeepMind, xAI and Meta) rated on public evidence against seven clauses.",
-      "scores": { "Anthropic": 43, "OpenAI": 43, "Google DeepMind": 7, "xAI": 0, "Meta": 0 },
+      "scores": { "Anthropic": 43, "OpenAI": 43, "Google DeepMind": 7, "xAI / SpaceXSI": 0, "Meta": 0 },
       "labs": [],
       "link": "#scorecard"
     }
@@ -68,7 +100,7 @@
       "clause": "C3",
       "rating": "Partly",
       "met": [3],
-      "evidence": "A co-founder said vested equity was never tied to non-disparagement. Its RSP reporting policy prohibits retaliatory pay cuts and interference with earned benefits. These sources don't establish protection against blocked equity sales for all criticism.",
+      "evidence": "A co-founder said vested equity was never tied to non-disparagement. Its RSP reporting policy prohibits retaliatory pay cuts and interference with earned benefits. Its stock plan, made public in its IPO filing on 26 Oct 2026, says anyone fired \"for Cause\" loses all their unexercised stock options and all their restricted stock units, vested ones included. \"Cause\" includes \"intentional material damage to the Company's business, property or reputation\", and the plan says the company decides this \"in good faith\" and its decision is \"final and binding\". The plan has no stated exception for criticism or protected disclosures. These sources don't establish protection against blocked equity sales for all criticism.",
       "source": "Anthropic co-founder Sam McCandlish",
       "url": "https://www.lesswrong.com/posts/EQJfdqSaMcJyR5k73/habryka-s-shortform-feed?commentId=ppZsFLzf8quBDwwRw",
       "date": "2024-07-04",
@@ -77,6 +109,11 @@
           "source": "Anthropic RSP reporting and anti-retaliation policy",
           "url": "https://www-cdn.anthropic.com/b7a5629e40b391b2adfb4cc8c0888ac9d6bfddf6/RSP%20Noncompliance%20Reporting%20and%20Anti-Retaliation%20Policy.pdf",
           "date": "2026-02"
+        },
+        {
+          "source": "Anthropic 2021 Stock Plan and award agreements (IPO filing, Exhibit 10.4)",
+          "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/exhibit104-sx1.htm",
+          "date": "2026-10-26"
         }
       ],
       "fromLab": true
@@ -86,10 +123,17 @@
       "clause": "C4",
       "rating": "Partly",
       "met": [1, 2, 3],
-      "evidence": "Its reporting policy says nothing in any Anthropic agreement stops staff reporting possible violations of law to government, without permission. That external-reporting clause does not expressly cover other concerns.",
+      "evidence": "Its reporting policy says nothing in any Anthropic agreement stops staff reporting possible violations of law to government, without permission. That external-reporting clause does not expressly cover other concerns. A form of severance agreement for executives, in its IPO filing of 26 Oct 2026, says nothing in it stops the executive disclosing conduct they have reason to believe is unlawful. It covers executives only, and the confidentiality agreement it refers to isn't public.",
       "source": "Anthropic RSP reporting and anti-retaliation policy",
       "url": "https://www-cdn.anthropic.com/b7a5629e40b391b2adfb4cc8c0888ac9d6bfddf6/RSP%20Noncompliance%20Reporting%20and%20Anti-Retaliation%20Policy.pdf",
       "date": "2026-02",
+      "additionalSources": [
+        {
+          "source": "Anthropic form of executive severance agreement (IPO filing, Exhibit 10.5)",
+          "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/exhibit105-sx1.htm",
+          "date": "2026-10-26"
+        }
+      ],
       "fromLab": true
     },
     {
@@ -169,10 +213,10 @@
       "clause": "C4",
       "rating": "Partly",
       "met": [1, 3],
-      "evidence": "Its Jan 2026 policy says staff are always free to report concerns to an outside authority, without telling OpenAI first. It's “Partly” because the policy says it isn't a contract, and it doesn't say that no agreement overrides it or mention speaking to a lawyer. In 2024, whistleblowers alleged restrictive agreements hindered SEC reporting; OpenAI said its policy protected disclosures, TechCrunch reported.",
+      "evidence": "Its policy, last revised on 30 Oct 2026, says staff and former staff are always free to report concerns to an outside authority, without telling OpenAI first, and bans retaliation for giving information to any government body. It's “Partly” because the policy says it isn't a contract, and it doesn't say that no agreement overrides it or mention speaking to a lawyer. In 2024, whistleblowers alleged restrictive agreements hindered SEC reporting; OpenAI said its policy protected disclosures, TechCrunch reported.",
       "source": "OpenAI Raising Concerns Policy",
       "url": "https://cdn.openai.com/policies/openai-raising-concerns-policy.pdf",
-      "date": "2026-01-12",
+      "date": "2026-10-30",
       "additionalSources": [
         {
           "source": "TechCrunch on the 2024 SEC complaint",
@@ -186,7 +230,7 @@
       "lab": "OpenAI",
       "clause": "C5",
       "rating": "Meets",
-      "evidence": "Published a Raising Concerns Policy in Oct 2024 and an expanded version in Jan 2026.",
+      "evidence": "Published a Raising Concerns Policy in Oct 2024, an expanded version in Jan 2026 and a revised version on 30 Oct 2026.",
       "source": "AIWI",
       "url": "https://aiwi.org/openai-whistleblowing-policy-aiwi-commentary/",
       "date": "2026-01-27",
@@ -194,29 +238,35 @@
         {
           "source": "OpenAI Raising Concerns Policy",
           "url": "https://cdn.openai.com/policies/openai-raising-concerns-policy.pdf",
-          "date": "2026-01-12"
+          "date": "2026-10-30"
         }
       ]
     },
     {
       "lab": "OpenAI",
       "clause": "C6",
-      "rating": "Partly",
-      "met": [1, 2],
-      "evidence": "Anonymous Integrity Line and a no-retaliation rule. Run by OpenAI's Compliance team; AI safety concerns can be escalated to the board's Safety and Security Committee.",
+      "rating": "Meets",
+      "evidence": "Anonymous Integrity Line, hosted by an outside provider, and a no-retaliation rule. Under the policy as revised on 30 Oct 2026, staff can take an AI safety concern straight to the Safety and Security Committee of the OpenAI Foundation's board, and safety concerns raised through the Integrity Line are passed to that committee, which has \"full authority\" to address them. Other reports go to OpenAI's Compliance team, which the policy says reports independently to the board's Audit Committee.",
       "source": "OpenAI Raising Concerns Policy",
       "url": "https://cdn.openai.com/policies/openai-raising-concerns-policy.pdf",
-      "date": "2026-01-12",
+      "date": "2026-10-30",
       "fromLab": true
     },
     {
       "lab": "OpenAI",
       "clause": "C7",
       "rating": "Not public",
-      "evidence": "Contracts aren't public. The Register reported on 2 Oct 2026 that OpenAI had dismissed three staff, saying they mishandled sensitive company information. Some of it was allegedly shared with an outside AI evaluation group. OpenAI says the dismissals weren't about raising safety concerns.",
+      "evidence": "Contracts aren't public. The Register reported on 2 Oct 2026 that OpenAI had dismissed three staff, saying they mishandled sensitive company information. Some of it was allegedly shared with an outside AI evaluation group. OpenAI says the dismissals weren't about raising safety concerns. On 29 Oct 2026, 20 House Democrats wrote to OpenAI saying the three deny sharing confidential information, and asked what was shared and for a commitment not to fire whistleblowers.",
       "source": "The Register",
       "url": "https://www.theregister.com/ai-and-ml/2026/10/02/openai-shows-three-staff-the-door-over-alleged-information-misuse/5300820",
-      "date": "2026-10-02"
+      "date": "2026-10-02",
+      "additionalSources": [
+        {
+          "source": "Letter to OpenAI from Rep. Greg Casar and 19 other House Democrats",
+          "url": "https://casar.house.gov/sites/evo-subsites/casar.house.gov/files/evo-media-document/openai-employee-firing_cyber-security-follow-up_0.pdf",
+          "date": "2026-10-29"
+        }
+      ]
     },
     {
       "lab": "OpenAI",
@@ -262,10 +312,17 @@
       "lab": "Google DeepMind",
       "clause": "C4",
       "rating": "Not public",
-      "evidence": "The non-disparagement clause Andreas Kirsch posted from his 2024 Google UK agreement has no exemption for protected disclosures, he says. The rest of the agreement isn't public, so it can't be checked whether another section carves them out.",
+      "evidence": "The non-disparagement clause Andreas Kirsch posted from his 2024 Google UK agreement has no exemption for protected disclosures, he says. The rest of the agreement isn't public, so it can't be checked whether another section carves them out. Under UK law, a contract term is void so far as it tries to stop a worker making a protected disclosure (Employment Rights Act 1996, section 43J), but the wording that's public doesn't tell staff that.",
       "source": "Andreas Kirsch on X",
       "url": "https://x.com/BlackHC/status/2112946538074734633",
-      "date": "2026-10-21"
+      "date": "2026-10-21",
+      "additionalSources": [
+        {
+          "source": "Employment Rights Act 1996, section 43J (in force since July 1999)",
+          "url": "https://www.legislation.gov.uk/ukpga/1996/18/section/43J",
+          "date": "1999-07-02"
+        }
+      ]
     },
     {
       "lab": "Google DeepMind",
@@ -281,20 +338,37 @@
       "clause": "C6",
       "rating": "Partly",
       "met": [2],
-      "evidence": "Google says it has dedicated channels to raise concerns and anti-retaliation policies. Staff told the BBC people fear retaliation.",
+      "evidence": "Google says it has dedicated channels to raise concerns and anti-retaliation policies. Staff told the BBC people fear retaliation. Former research engineer Sofia Liguori told openDemocracy that an employee's attempts to raise the non-disparagement clause through internal channels led to no change. Andreas Kirsch has said he raised it in a formal protected disclosure in September 2026 and nothing changed, IBTimes UK reported.",
       "source": "BBC (republished on Yahoo News)",
       "url": "https://www.yahoo.com/news/us/articles/google-experiences-resignation-backlash-over-154646801.html",
-      "date": "2026-10-21"
+      "date": "2026-10-21",
+      "additionalSources": [
+        {
+          "source": "openDemocracy (interview with Sofia Liguori)",
+          "url": "https://www.opendemocracy.net/nice-face-of-the-devil-google-whistleblower-on-ai-gaza-and-breaking-nda/",
+          "date": "2026-11-06"
+        },
+        {
+          "source": "IBTimes UK",
+          "url": "https://www.ibtimes.co.uk/google-deepmind-staff-lifetime-criticism-ban-1830419",
+          "date": "2026-11-05"
+        }
+      ]
     },
     {
-      "lab": "xAI",
+      "lab": "xAI / SpaceXSI",
       "clause": "C5",
       "rating": "Falls short",
-      "evidence": "In July 2026, The Midas Project reported no public whistleblowing policy. It reported that xAI's June framework revision removed earlier language on whistleblower protections and anonymous reporting. The December 2025 framework contained those commitments.",
+      "evidence": "xAI now calls itself SpaceXSI (SpaceX Super Intelligence LLC); its terms of service, last updated on 27 October 2026, use that name. In July 2026, The Midas Project reported no public whistleblowing policy. It reported that xAI's June framework revision removed earlier language on whistleblower protections and anonymous reporting. The December 2025 framework contained those commitments.",
       "source": "The Midas Project Watchtower",
       "url": "https://www.themidasproject.com/watchtower/xai-07112026",
       "date": "2026-07-11",
       "additionalSources": [
+        {
+          "source": "SpaceXSI Terms of Service",
+          "url": "https://x.ai/legal/terms-of-service",
+          "date": "2026-10-27"
+        },
         {
           "source": "xAI Frontier AI Framework, December 2025",
           "url": "https://data.x.ai/2025-12-31-xai-frontier-artificial-intelligence-framework.pdf",

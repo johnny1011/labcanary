@@ -94,7 +94,7 @@ When a rating or its evidence changes, add an entry to the top of `updates` in `
   "date": "2026-10-24",
   "title": "Google DeepMind: a former researcher posts the non-disparagement clause he signed",
   "text": "A few plain sentences on what changed and why, with the old and new rating.",
-  "scores": { "Anthropic": 43, "OpenAI": 43, "Google DeepMind": 7, "xAI": 0, "Meta": 0 },
+  "scores": { "Anthropic": 43, "OpenAI": 43, "Google DeepMind": 7, "xAI / SpaceXSI": 0, "Meta": 0 },
   "labs": ["Google DeepMind"],
   "link": "#google-deepmind-c1"
 }

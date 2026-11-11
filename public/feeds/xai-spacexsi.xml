@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Lab Canary: xAI updates</title>
+  <title>Lab Canary: xAI / SpaceXSI updates</title>
   <subtitle>Changes to Lab Canary's ratings of what's publicly known about AI lab staff contracts, speak-up policies and contracts with outside evaluators.</subtitle>
-  <link rel="self" type="application/atom+xml" href="https://labcanary.com/feeds/xai.xml"/>
+  <link rel="self" type="application/atom+xml" href="https://labcanary.com/feeds/xai-spacexsi.xml"/>
   <link rel="alternate" type="text/html" href="https://labcanary.com/"/>
-  <id>https://labcanary.com/feeds/xai.xml</id>
+  <id>https://labcanary.com/feeds/xai-spacexsi.xml</id>
   <updated>2026-11-11T00:00:00Z</updated>
   <author><name>Jonathan Hind</name></author>
   <rights>Text and data: CC BY 4.0</rights>
+  <entry>
+    <title>xAI is now listed as xAI / SpaceXSI</title>
+    <link rel="alternate" type="text/html" href="https://labcanary.com/#xai-spacexsi-c5"/>
+    <id>tag:labcanary.com,2026-11-11:xai-is-now-listed-as-xai-spacexsi</id>
+    <updated>2026-11-11T00:00:00Z</updated>
+    <category term="xAI / SpaceXSI"/>
+    <summary>xAI now calls itself SpaceXSI (SpaceX Super Intelligence LLC); its terms of service, last updated on 27 October 2026, use that name. The scorecard now lists it as &quot;xAI / SpaceXSI&quot;. Its page links and feed address changed with the name, and the old feed address redirects to the new one. No grade changed: &quot;Whistleblowing policy is public&quot; stays an F.</summary>
+  </entry>
   <entry>
     <title>Grades now run from A to F</title>
     <link rel="alternate" type="text/html" href="https://labcanary.com/#scorecard"/>
