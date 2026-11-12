@@ -11,6 +11,14 @@
   "optedIn": [],
   "updates": [
     {
+      "date": "2026-11-12",
+      "title": "Evaluator contracts: Transluce's published agreement with Anthropic, OpenAI and Google DeepMind added",
+      "text": "Transluce published the template of the agreement it signed with Anthropic, OpenAI and Google DeepMind for its August 2026 study of how AI systems respond to users in a mental health crisis. The evaluator page now cites it. Under it, Transluce has the final say on publishing its evaluation findings, each side pays its own costs, and either side can end it with seven business days' notice. It has no conflict-of-interest rules and no route to a lab's board or a regulator. Google DeepMind's evaluator score goes from 0% to 21%. Anthropic's and OpenAI's go from 33% to 38%, because \"Term and renewal are public\" moves from \"Not public\" to a D. It's one study, not a safety evaluation, and Transluce published the agreement, not the labs. Staff-contract scores are unchanged.",
+      "scores": { "Anthropic": 43, "OpenAI": 46, "Google DeepMind": 4, "xAI / SpaceXSI": 0, "Meta": 0 },
+      "labs": ["Anthropic", "OpenAI", "Google DeepMind"],
+      "link": "#evaluators"
+    },
+    {
       "date": "2026-11-11",
       "title": "OpenAI: new speak-up policy sends AI safety concerns to a board committee",
       "text": "OpenAI replaced its Raising Concerns Policy on 30 October 2026. Staff can now take an AI safety concern straight to the Safety and Security Committee of the OpenAI Foundation's board, safety concerns raised through the anonymous Integrity Line are passed to that committee, and the policy says the committee has \"full authority\" to address them. \"Safe internal channel\" moves from B to A, so OpenAI's score goes from 43% to 46%. \"Protected disclosures carved out\" stays a C: the policy now covers former staff, but it still says it isn't a contract and doesn't say that no agreement overrides it.",

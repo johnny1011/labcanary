@@ -18,7 +18,7 @@ Live at **https://labcanary.com**
 
 ## Evaluator contracts (beta)
 
-A second tab rates what's public about each lab's contracts with outside (third-party) evaluators. It uses the six terms in GovAI's proposal that [third-party AI evaluation contracts should be published](https://www.governance.ai/analysis/third-party-ai-evaluation-contracts-should-be-published): scope, access, publication rights, pay, conflict rules, and term and renewal.
+A second tab rates what's public about each lab's contracts with outside (third-party) evaluators. It uses the six terms in Jacob Charnock's GovAI post, [Third-party AI evaluation contracts should be published](https://www.governance.ai/analysis/third-party-ai-evaluation-contracts-should-be-published): scope, access, publication rights, pay, conflict rules, and term and renewal. The post lists them as terms to disclose. What counts as meeting each one is Lab Canary's own.
 
 - The terms and their ratings live in [`public/evaluators.json`](public/evaluators.json), in the same shape as `criteria.json` and `ratings.json`. Term ids are `E1`–`E6`; staff clause ids stay `C1`–`C7`, so ids never clash.
 - It's graded and scored the same way, out of six, and **separately**. It is never added to the staff score, the score history or the share text for staff contracts.
