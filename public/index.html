@@ -130,6 +130,32 @@ td.nowrap { white-space: nowrap; }
 .step h3 { margin: 0; font-size: 1rem; }
 .step p { font-size: .9rem; color: var(--muted); }
 .goals { margin: 0; padding-left: 1.4rem; max-width: 48rem; display: flex; flex-direction: column; gap: 10px; font-size: .92rem; line-height: 1.55; }
+/* Goals: the loop. Four steps in a square, read clockwise from the top left. The arrows sit in the gaps between the cards. */
+.loop { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 44rem; }
+.loop li { position: relative; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; font-size: .88rem; line-height: 1.5; color: var(--muted); }
+.loop li b { display: block; color: var(--fg); font-size: .95rem; margin-bottom: 2px; }
+/* Each step has a tag saying where it stands today (the grade colours: green is live, orange is part-way, grey is not yet) and one link. */
+.loop li .badge { display: flex; margin-bottom: 8px; }
+.loop li a { display: block; margin-top: 6px; }
+.loop-cap .badge { margin-left: 4px; vertical-align: 1px; }
+.goal-line { font-size: 1.3rem; font-weight: 600; line-height: 1.35; max-width: 44rem; text-wrap: balance; }
+.loop li:nth-child(3) { grid-area: 2 / 2; }
+.loop li:nth-child(4) { grid-area: 2 / 1; }
+.loop li::after { position: absolute; display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 1.3rem; line-height: 1; }
+.loop li:nth-child(odd)::after { top: 0; bottom: 0; width: 40px; }
+.loop li:nth-child(even)::after { left: 0; right: 0; height: 40px; }
+.loop li:nth-child(1)::after { content: "→"; left: 100%; }
+.loop li:nth-child(2)::after { content: "↓"; top: 100%; }
+.loop li:nth-child(3)::after { content: "←"; right: 100%; }
+.loop li:nth-child(4)::after { content: "↑"; bottom: 100%; }
+.loop-cap { font-size: .92rem; max-width: 44rem; }
+@media (max-width: 40rem) {
+  .loop { gap: 28px; }
+  .loop li { padding: 10px 12px; font-size: .8rem; }
+  .loop li b { font-size: .86rem; }
+  .loop li:nth-child(odd)::after { width: 28px; }
+  .loop li:nth-child(even)::after { height: 28px; }
+}
 footer { margin-top: 32px; border-top: 1px solid var(--line); padding-top: 16px; font-size: .82rem; color: var(--muted); display: flex; flex-direction: column; gap: 6px; }
 .sk { background: var(--panel); border-radius: 6px; min-height: 2.75rem; }
 .err { color: #ffb4a8; }
@@ -207,6 +233,8 @@ a.pill-btn { display: inline-flex; align-items: center; text-decoration: none; }
 .set-note { margin-bottom: 14px; font-size: .88rem; }
 /* These set display themselves, so make the hidden attribute win. */
 .set-tabs[hidden], .note[hidden], .sec[hidden] { display: none; }
+/* Two pages in one file. Anything marked data-only shows on that page alone; the rest is on both. */
+body:not(.ev) [data-only="evaluators"], body.ev [data-only="staff"] { display: none !important; }
 .set-note p { max-width: none; }
 .ev-terms-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .ev-terms-head .beta { font-size: .7rem; padding: 3px 8px; background: var(--panel); border: 1px solid var(--line); }
@@ -284,8 +312,8 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
 <body>
 <div class="wrap">
   <header class="top">
-    <div class="brand"><span class="brand-dot" aria-hidden="true"></span><div><h1>Lab Canary</h1><small>Can people at AI labs speak up?</small><small class="checked-top"><span id="checked-top"></span> · <a href="#updates">What's changed</a></small></div></div>
-    <nav aria-label="Sections"><a href="#scorecard">Scorecard</a><a class="more" href="#goals">Goals</a><a href="#standard">The standard</a><a class="more" href="#example-lab">Example lab</a><a class="more" href="#evaluator-terms">Evaluator terms</a><a href="#evidence">Evidence</a><a class="more" href="#updates">Updates</a><a class="more" href="#coming-soon">Coming soon</a><a class="more" href="#opt-in">Opt in</a><a href="#questions">Q&amp;A</a></nav>
+    <div class="brand"><span class="brand-dot" aria-hidden="true"></span><div><h1>Lab Canary</h1><small><span data-only="staff">Can people at AI labs speak up?</span><span data-only="evaluators">Can outside evaluators say what they find?</span></small><small class="checked-top"><span id="checked-top"></span> · <a href="#updates">What's changed</a></small></div></div>
+    <nav aria-label="Sections"><a href="#scorecard">Scorecard</a><a class="more" href="#goals" data-only="staff">Goals</a><a href="#standard" data-only="staff">The standard</a><a class="more" href="#example-lab" data-only="staff">Example lab</a><a class="more" href="#evaluator-goals" data-only="evaluators">Goals</a><a href="#evaluator-terms" data-only="evaluators">The standard</a><a class="more" href="#evaluator-example" data-only="evaluators">Example lab</a><a href="#evidence">Evidence</a><a class="more" href="#updates">Updates</a><a class="more" href="#coming-soon" data-only="staff">Coming soon</a><a class="more" href="#opt-in" data-only="staff">Opt in</a><a class="more" href="#evaluator-opt-in" data-only="evaluators">Opt in</a><a href="#questions">Q&amp;A</a></nav>
   </header>
 
   <main style="display:flex;flex-direction:column;gap:56px">
@@ -298,7 +326,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
         <div id="set-panel" role="tabpanel" aria-labelledby="tab-staff">
         <div class="note set-note" id="set-note" hidden>
           <span class="note-k">Beta</span>
-          <p>Can outside evaluators check AI labs freely and say what they find? This tab rates what's public about labs' contracts with third-party evaluators, using the six terms in <a id="set-note-source" href="#evaluator-terms">GovAI's proposal</a> that these contracts be published. It's scored separately from staff contracts and never added to that score.</p>
+          <p>Can outside evaluators check AI labs freely and say what they find? This page rates what's public about labs' contracts with third-party evaluators, using the six terms in <a id="set-note-source" href="#evaluator-terms">GovAI's proposal</a> that these contracts be published.</p>
         </div>
         <p class="intro phone-only" id="intro">Each square rates what's publicly known about one lab's staff contracts. <b>Tap a square to see the evidence.</b></p>
         <div class="hm-wrap" id="hm-wrap" role="region" aria-label="Ratings by lab and clause"><div class="hm" id="hm"></div></div>
@@ -331,11 +359,14 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
         <p class="lead wide-only">Click a tile to see the evidence. Click a lab's name or score for its summary.</p>
         <div class="detail" id="detail" aria-live="polite"></div>
         <div class="links" id="hero-links">
-          <a href="#standard" id="link-standard">The standard, in seven clauses →</a>
-          <a href="#evidence" id="link-evidence">All the evidence and sources →</a>
-          <a href="#example-lab">What 100% looks like →</a>
-          <a href="#opt-in">How a lab can opt in →</a>
-          <a href="#get-help">Work at a lab and worried about your contract? →</a>
+          <a href="#standard" data-only="staff">The standard, in seven clauses →</a>
+          <a href="#evaluator-terms" data-only="evaluators">The standard, in six terms →</a>
+          <a href="#evidence">All the evidence and sources →</a>
+          <a href="#example-lab" data-only="staff">What 100% looks like →</a>
+          <a href="#evaluator-example" data-only="evaluators">What 100% looks like →</a>
+          <a href="#opt-in" data-only="staff">How a lab can opt in →</a>
+          <a href="#evaluator-opt-in" data-only="evaluators">How a lab can opt in →</a>
+          <a href="#get-help" data-only="staff">Work at a lab and worried about your contract? →</a>
         </div>
         <form class="email-form" id="hero-email" action="https://buttondown.com/api/emails/embed-subscribe/labcanary" method="post" target="_blank">
           <label for="hero-email-input">Get an email when a score changes</label>
@@ -346,25 +377,100 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
       </div>
     </section>
 
-    <section class="sec" id="goals">
+    <section class="sec" id="goals" data-only="staff">
       <h2>Goals</h2>
-      <p class="sub">The scorecard is a start, not the point. Here's what Lab Canary is pushing for.</p>
+      <p class="goal-line">Contracts that let lab staff speak out when they're worried.</p>
+      <p class="sub">This is the loop Lab Canary is trying to get turning. Each step shows where it stands today.</p>
+      <p class="loop-cap"><strong>First:</strong> whistleblowing lawyers check the seven clauses and the model wording. <span class="badge b-np">Not yet</span></p>
+      <ol class="loop">
+        <li><span class="badge b-partly">Started</span><b>1. Staff get their contract checked</b>An independent lawyer reads it, not me. <a href="#get-help">Who can help →</a></li>
+        <li><span class="badge b-np">Not yet</span><b>2. The finding goes on Lab Canary</b>The lawyer passes on what they safely can. <a href="#coming-soon">What's coming →</a></li>
+        <li><span class="badge b-meets">Live</span><b>3. People push the lab</b>Journalists, staff and job candidates point to the gap. <a href="#evidence">See the evidence →</a></li>
+        <li><span class="badge b-partly">Draft ready</span><b>4. The lab copies the model wording</b>The fix is already written. Then it starts again. <a href="#standard">See the wording →</a></li>
+      </ol>
+      <p class="loop-cap"><strong>Where it ends up:</strong></p>
+      <ul class="goals">
+        <li><strong>Labs say so, and keep saying so.</strong> Each lab publishes its terms and a dated statement that it meets the standard, renewed every quarter.</li>
+        <li><strong>The wording is ready for law.</strong> When governments write rules on lab contracts, the wording is there to copy.</li>
+      </ul>
+    </section>
+
+    <section class="sec" id="evaluator-goals" data-only="evaluators">
+      <h2>Goals</h2>
+      <p class="sub">Here's what this page is pushing for.</p>
       <ol class="goals">
-        <li><strong>Labs publish their terms.</strong> Every lab publishes its standard employment, exit and equity terms and its speak-up policy, so no one has to guess.</li>
-        <li><strong>Labs adopt the standard.</strong> Every lab meets all seven clauses. The model wording below is there so saying yes is easy.</li>
-        <li><strong>Labs say so, and keep saying so.</strong> Each lab posts a dated statement that it meets the standard and renews it every quarter. If a statement goes missing, that says something too.</li>
-        <li><strong>Someone independent checks.</strong> A whistleblowing lawyer reads each lab's terms and confirms they match what the lab says.</li>
-        <li><strong>People ask before they sign.</strong> Anyone offered a job at a lab can check its terms here and ask about anything that's missing before they sign.</li>
+        <li><strong>Labs publish their evaluation contracts.</strong> Every lab publishes the contracts it signs with outside evaluators, with real secrets redacted, so no one has to guess what an evaluator could see or say.</li>
+        <li><strong>Labs and evaluators adopt the standard.</strong> Every evaluation contract meets all six terms. The model wording below is there so saying yes is easy.</li>
+        <li><strong>Labs keep them up to date.</strong> When a contract changes, or a lab brings in a new evaluator, the new terms are published too.</li>
+        <li><strong>Evaluators ask before they sign.</strong> Any evaluator offered a contract can check it against the six terms here and ask about anything that's missing before they sign.</li>
       </ol>
     </section>
 
-    <section class="sec" id="standard">
+    <section class="sec" id="standard" data-only="staff">
       <h2>The standard</h2>
       <p class="sub">Seven principles a lab's staff contracts should meet, and the yardstick for this scorecard. Each comes with draft model wording a lab could adopt, so saying yes is easy. The wording hasn't been reviewed by a lawyer yet and isn't legal advice. Employment law differs between countries, so anyone drafting or signing a contract should get their own lawyer.</p>
       <details class="fold fold-std" open><summary>Show the seven clauses</summary><div class="std" id="std"></div></details>
     </section>
 
-    <section class="sec" id="example-lab">
+    <section class="sec" id="evaluator-terms" data-only="evaluators">
+      <div class="ev-terms-head"><h2>The standard</h2><span class="beta">Beta</span></div>
+      <p class="sub">Six terms a lab's contracts with outside evaluators should meet, and the yardstick for this scorecard. They come from <a id="ev-terms-source" href="https://www.governance.ai/analysis/third-party-ai-evaluation-contracts-should-be-published">GovAI’s proposal</a> that evaluation contracts be published. Each comes with draft model wording a lab and an evaluator could put in their agreement. The wording hasn’t been reviewed by a lawyer yet and isn’t legal advice.</p>
+      <details class="fold fold-std" open><summary>Show the six terms</summary><div class="std" id="std-ev"></div></details>
+    </section>
+
+    <section class="sec" id="evaluator-example" data-only="evaluators">
+      <div class="ev-terms-head"><h2>What 100% looks like</h2><span class="beta">Made up</span></div>
+      <p class="sub">No real lab meets all six terms yet, so the last column of <a href="#scorecard">the scorecard</a> is a made-up one that does. Example Lab doesn't exist. These are the three short documents it would publish to get an A on every check and score 100%. They're built from the model wording above, with the blanks filled in. A real lab and its evaluators are welcome to copy them.</p>
+      <div class="note">
+        <span class="note-k">Draft</span>
+        <p>I'm not a lawyer, and no lawyer has checked these documents yet. They're a starting point, not legal advice. Contract law differs between countries, so a lab or an evaluator adopting them should get their own lawyer.</p>
+      </div>
+      <div class="docs">
+        <details class="doc" id="example-lab-evaluation-agreement">
+          <summary><h3>1. Evaluation agreement</h3><small>Meets E2, E3, E4 and E6</small></summary>
+          <p>The contract between Example Lab and an outside evaluator, published in full.</p>
+          <div class="doc-body">
+            <h4>1. What the Evaluator can see</h4>
+            <p>The Evaluator will have access to the Example-1 model and its pre-release checkpoints, with and without safeguards; the internal safety documents listed in Schedule A; and the staff who wrote them. The Evaluator may request further information relevant to the Evaluation. Example Lab may refuse only where sharing would break the law or reveal customer or personal data, and will give written reasons for any refusal. The Evaluator may state publicly what access it had and where it considers that access insufficient.</p>
+            <h4>2. What the Evaluator can publish</h4>
+            <p>The Evaluator has final editorial control over its report. Example Lab may require redaction only of information in the categories listed in Schedule B, agreed before the Evaluation began: model weights and source code, unpatched security details, and customer or personal data. Example Lab may not require changes to the Evaluator's findings or conclusions. The Evaluator may state where and why material was redacted, and whether redactions affected its conclusions. The Evaluator may raise serious concerns directly with Example Lab's board or a relevant government authority.</p>
+            <h4>3. Payment</h4>
+            <p>Example Lab will pay the Evaluator a fixed fee of $400,000, worked out from the Evaluator's published day rates and set before the Evaluation begins. No part of the fee, or any future engagement, depends on the Evaluator's findings or conclusions.</p>
+            <h4>4. How long it lasts</h4>
+            <p>This agreement runs from 1 January 2027 to 31 December 2028. Example Lab may not end this agreement, or decline to renew it, because of the Evaluator's findings. Any decision not to renew will be published with its reasons.</p>
+            <h4>5. This agreement is public</h4>
+            <p>Example Lab publishes this agreement at examplelab.example/evaluations, with only Schedule B information redacted. Any change to it will be published within 30 days.</p>
+            <p class="eg">The fee, the dates and the reasons for refusing access are examples. A real lab and evaluator would set their own.</p>
+          </div>
+        </details>
+        <details class="doc" id="example-lab-conflicts">
+          <summary><h3>2. Conflict-of-interest rules</h3><small>Meets E5</small></summary>
+          <p>The rules every outside evaluator agrees to, published next to the agreement.</p>
+          <div class="doc-body">
+            <h4>1. No stake in Example Lab</h4>
+            <p>The Evaluator and its staff working on the Evaluation hold no equity or debt in Example Lab.</p>
+            <h4>2. Not dependent on Example Lab</h4>
+            <p>No more than 10% of the Evaluator's income in any year comes from Example Lab.</p>
+            <h4>3. Other paid work</h4>
+            <p>The Evaluator will not take other paid work from Example Lab during the Evaluation or for 12 months afterwards. It will disclose in its report any other paid work for Example Lab in the past two years.</p>
+            <h4>4. Stepping aside</h4>
+            <p>Any staff member with a close personal or financial tie to Example Lab will say so and step aside from the Evaluation.</p>
+            <p class="eg">The 10% and the 12 months are examples. A real lab and evaluator would set their own.</p>
+          </div>
+        </details>
+        <details class="doc" id="example-lab-scope">
+          <summary><h3>3. Scope notice</h3><small>Meets E1</small></summary>
+          <p>Published with every outside evaluation, next to the evaluator's report.</p>
+          <div class="doc-body">
+            <h4>Scope of the Example-1 pre-release evaluation</h4>
+            <p>The Evaluation covers Example Lab's claims that Example-1 gives no meaningful help to someone trying to make a biological or chemical weapon, and that its safeguards against this hold up under attack. It covers Example-1 and the two checkpoints tested before release. It does not cover cyber-attack risks, loss-of-control risks, or models used only inside Example Lab. Example Lab will publish this scope, including what was left out, alongside the Evaluator's report.</p>
+          </div>
+        </details>
+      </div>
+      <p class="sub">Spotted a problem with the wording? Email <a href="mailto:hello@labcanary.com">hello@labcanary.com</a> or <a href="https://github.com/johnny1011/labcanary/issues">open an issue on GitHub</a>.</p>
+    </section>
+
+    <section class="sec" id="example-lab" data-only="staff">
       <div class="ev-terms-head"><h2>What 100% looks like</h2><span class="beta">Made up</span></div>
       <p class="sub">No real lab meets all seven clauses yet, so the last column of <a href="#scorecard">the scorecard</a> is a made-up one that does. Example Lab doesn't exist. These are the five short documents it would publish to get an A on every check and score 100%. They're built from the model wording above, with the blanks filled in. A real lab is welcome to copy them.</p>
       <div class="note">
@@ -446,7 +552,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
       <p class="sub">Spotted a problem with the wording? Email <a href="mailto:hello@labcanary.com">hello@labcanary.com</a> or <a href="https://github.com/johnny1011/labcanary/issues">open an issue on GitHub</a>.</p>
     </section>
 
-    <section class="sec ph-no-capture" id="get-help">
+    <section class="sec ph-no-capture" id="get-help" data-only="staff">
       <h2>Worried about your own contract?</h2>
       <p class="sub">If you work at an AI lab, or used to, and you're not sure what your contract lets you say, these groups can help. They're independent of the labs and of Lab Canary. Please don't send your contract to me.</p>
       <ul class="goals">
@@ -455,20 +561,6 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
         <li><strong><a href="https://protect-advice.org.uk" rel="noreferrer">Protect</a>.</strong> Free, confidential whistleblowing advice in the UK.</li>
       </ul>
       <p class="sub">Use your own phone or computer and a personal account, not anything from work. Clicks in this section aren't logged, and it's blanked out in the session recordings described under “What do you track?” below.</p>
-    </section>
-
-    <section class="sec" id="evaluator-terms" hidden>
-      <div class="ev-terms-head"><h2>Evaluator contracts</h2><span class="beta">Beta</span></div>
-      <p class="sub" id="ev-terms-intro">Outside evaluators are meant to check labs’ safety claims. How far you can trust what they report depends on the contract they work under: what they can see, what they can publish, how they’re paid and whether they’re independent. These six terms come from <a id="ev-terms-source" href="https://www.governance.ai/analysis/third-party-ai-evaluation-contracts-should-be-published">GovAI’s proposal</a> that evaluation contracts be published. Each comes with draft model wording a lab and an evaluator could put in their agreement. It hasn’t been reviewed by a lawyer and isn’t legal advice.</p>
-      <details class="fold fold-std" open><summary>Show the six terms</summary><div class="std" id="std-ev"></div></details>
-      <h3 style="margin:8px 0 0;font-size:1.1rem">Evaluator evidence</h3>
-      <p class="sub">Every evaluator rating with a public source. Anything not listed is “Not public”. The same rules apply as for staff contracts: an A needs published terms or contract wording, and one public statement earns B at most.</p>
-      <div class="ev-wrap">
-        <table>
-          <thead><tr><th scope="col">Lab</th><th scope="col">Term</th><th scope="col">Rating</th><th scope="col">Evidence</th><th scope="col">Sources and dates</th></tr></thead>
-          <tbody id="ev-eval"></tbody>
-        </table>
-      </div>
     </section>
 
     <section class="sec" id="evidence">
@@ -481,7 +573,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
       <div id="tl" hidden></div>
       <div class="ev-wrap" id="ev-table">
         <table>
-          <thead><tr><th scope="col">Lab</th><th scope="col">Clause</th><th scope="col">Rating</th><th scope="col">Evidence</th><th scope="col">Sources and dates</th></tr></thead>
+          <thead><tr><th scope="col">Lab</th><th scope="col" id="ev-unit">Clause</th><th scope="col">Rating</th><th scope="col">Evidence</th><th scope="col">Sources and dates</th></tr></thead>
           <tbody id="ev"></tbody>
         </table>
       </div>
@@ -490,7 +582,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
     <section class="sec" id="updates">
       <h2>Updates</h2>
       <p class="sub">Ratings change when labs publish their terms or new evidence comes out. Every change is listed here, newest first.</p>
-      <div class="sparks" id="sparks" role="group" aria-label="Each lab's score over time. Each small chart runs from 0% (solid line) to 100% (dotted)."></div>
+      <div class="sparks" id="sparks" data-only="staff" role="group" aria-label="Each lab's score over time. Each small chart runs from 0% (solid line) to 100% (dotted)."></div>
       <div class="follow" id="follow">
         <h3>Follow the changes</h3>
         <!-- Buttondown sign-up; its RSS-to-email automation sends feed.xml entries. Disclosed in the "Do you keep my email?" Q&A. -->
@@ -513,7 +605,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
       <ol class="updates" id="updates-list"></ol>
     </section>
 
-    <section class="sec" id="coming-soon">
+    <section class="sec" id="coming-soon" data-only="staff">
       <h2>Coming soon</h2>
       <p class="sub">What I'm working on next. None of this is live yet, and some of it depends on other people saying yes.</p>
       <ul class="goals">
@@ -530,7 +622,7 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
       </ul>
     </section>
 
-    <section class="sec" id="opt-in">
+    <section class="sec" id="opt-in" data-only="staff">
       <h2>How opting in works</h2>
       <div class="steps">
         <div class="step"><h3>1. Publish your terms</h3><p>A lab shares its standard employment, exit and equity terms (redacted is fine) plus its speak-up policy.</p></div>
@@ -540,31 +632,44 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
       <p><a href="https://github.com/johnny1011/labcanary/issues/new" id="submit-terms">Submit your published terms →</a></p>
     </section>
 
+    <section class="sec" id="evaluator-opt-in" data-only="evaluators">
+      <h2>How opting in works</h2>
+      <div class="steps">
+        <div class="step"><h3>1. Publish your contracts</h3><p>A lab shares the contracts it signs with outside evaluators, or the standard terms it offers them (redacted is fine).</p></div>
+        <div class="step"><h3>2. Get scored</h3><p>Each term gets a rating, with the exact wording that earned it.</p></div>
+        <div class="step"><h3>3. Shown here</h3><p>Each rating links to the published contract. Everyone else stays rated on public evidence only.</p></div>
+      </div>
+      <p><a href="https://github.com/johnny1011/labcanary/issues/new">Submit your published contracts →</a></p>
+    </section>
+
     <section class="sec" id="questions">
       <h2>Q&amp;A</h2>
       <div class="qa">
         <details class="fold" id="about" open><summary><h3>“Why did you make this?”</h3></summary><p>Hi, I'm Johnny. I made this after reading a BBC report where a Google DeepMind engineer said, "In principle I'm not allowed to criticise Google for the duration of my life", and wondering how the other labs compare. It's a rough first version that I built quickly with help from Claude. To be upfront: I've applied for jobs and fellowships at Anthropic, OpenAI and Google DeepMind, and nobody pays for this site. Every lab is rated on public evidence under the same rules, and every rating links to its source, but I'll have got some things wrong. If you spot one, <a href="https://github.com/johnny1011/labcanary/issues">open an issue on GitHub</a> with a public source.</p></details>
-        <details class="fold" open><summary><h3>“How is this different from AI Lab Watch, the FLI AI Safety Index or AIWI?”</h3></summary><p>Those mostly look at policies and safety practice. This looks at what’s publicly known about the contracts: non-disparagement, equity, NDAs and confidentiality. AIWI’s Publish Your Policies campaign is the closest, and I cite it a lot.</p></details>
-        <details class="fold" open><summary><h3>“Anthropic and OpenAI are top. Are you tied to them?”</h3></summary><p>Fair question. I’ve applied for jobs and fellowships at Anthropic, OpenAI and Google DeepMind, and I say so in <a href="#about">why I made this</a>. Nobody pays for it, and I don’t own shares in any AI lab. They’re only on 43% and 46%, and most of their grades are a B, C or D. They’re top because they’ve published more, not because their terms are known to be good.</p></details>
+        <details class="fold" data-only="staff" open><summary><h3>“How is this different from AI Lab Watch, the FLI AI Safety Index or AIWI?”</h3></summary><p>Those mostly look at policies and safety practice. This looks at what’s publicly known about the contracts: non-disparagement, equity, NDAs and confidentiality. AIWI’s Publish Your Policies campaign is the closest, and I cite it a lot.</p></details>
+        <details class="fold" data-only="evaluators" open><summary><h3>“Why rate evaluator contracts?”</h3></summary><p>Labs are starting to bring in independent evaluators to check their safety claims, some with near-employee access. But the terms they work under are mostly private, so you can’t tell what an evaluator was allowed to see or say. The <a href="#evaluator-terms">six terms</a> follow <a href="https://www.governance.ai/analysis/third-party-ai-evaluation-contracts-should-be-published">GovAI’s proposal</a> that those contracts be published. It’s a beta.</p></details>
+        <details class="fold" open><summary><h3>“Anthropic and OpenAI are top. Are you tied to them?”</h3></summary><p>Fair question. I’ve applied for jobs and fellowships at Anthropic, OpenAI and Google DeepMind, and I say so in <a href="#about">why I made this</a>. Nobody pays for it, and I don’t own shares in any AI lab. <span data-only="staff">They’re only on 43% and 46%, and most of their grades are a B, C or D. They’re top because they’ve published more, not because their terms are known to be good.</span><span data-only="evaluators">They’re top because they’ve said more in public about their evaluators, not because their contracts are known to be good.</span></p></details>
         <details class="fold" open><summary><h3>“Not public = fail is unfair.”</h3></summary><p>I went back and forth on it. Treating it as neutral rewards publishing nothing. It’s a score for openness, not a finding that the terms are bad, and the labs control what’s published, so they can fix it. The site shows “Not public” as a “?”, not an F, so you can see the gap.</p></details>
-        <details class="fold" open><summary><h3>“Why these seven clauses?”</h3></summary><p>They’re the bits of a contract that decide whether someone can speak up: what they can say, what they lose if they do, and who they can tell. Happy to hear if one’s unfair or something’s missing.</p></details>
-        <details class="fold" id="why-evaluators" open><summary><h3>“Why rate evaluator contracts too?”</h3></summary><p>It’s the same question one step out. Staff contracts decide whether people inside a lab can speak up; evaluator contracts decide whether the outsiders checking a lab can say what they find. Labs are starting to bring in independent evaluators, some with near-employee access, but the terms they work under are mostly private. The <a href="#evaluator-terms">six evaluator terms</a> follow <a href="https://www.governance.ai/analysis/third-party-ai-evaluation-contracts-should-be-published">GovAI’s proposal</a> that those contracts be published. It’s a beta, scored separately, and never added to the staff score.</p></details>
-        <details class="fold" open><summary><h3>“How can you rate contracts you haven’t seen?”</h3></summary><p>Mostly I can’t, and the site says so. 18 of 35 are “Not public”. The rest come from published policies, public statements and reporting, each linked. Staff who joined or left at different times may have signed different versions, so a rating is about the latest public terms, not every contract still in force.</p></details>
-        <details class="fold" open><summary><h3>“Why are Anthropic and OpenAI so close?”</h3></summary><p>Equal weights. They get there differently: Anthropic has six grades, all B or D. OpenAI has five, and two are As. Click a lab’s score to see them.</p></details>
-        <details class="fold" open><summary><h3>“US law already bans some of this.”</h3></summary><p>Some of it, in some places, for some disclosures. A clause can be unenforceable and still stop people talking, because most people won’t test it. Saying it plainly in the contract is the point of C4.</p></details>
+        <details class="fold" data-only="staff" open><summary><h3>“Why these seven clauses?”</h3></summary><p>They’re the bits of a contract that decide whether someone can speak up: what they can say, what they lose if they do, and who they can tell. Happy to hear if one’s unfair or something’s missing.</p></details>
+        <details class="fold" data-only="evaluators" open><summary><h3>“Why these six terms?”</h3></summary><p>They’re the parts of a contract that decide how far you can trust an evaluator’s report: what was checked, what they could see, what they can publish, how they’re paid, whether they’re independent, and whether they can be dropped for bad news. They come from <a href="https://www.governance.ai/analysis/third-party-ai-evaluation-contracts-should-be-published">GovAI’s proposal</a>. Happy to hear if one’s unfair or something’s missing.</p></details>
+        <details class="fold" data-only="evaluators" open><summary><h3>“How can you rate contracts you haven’t seen?”</h3></summary><p>Mostly I can’t, and the page says so: most checks are “Not public”. The rest come from what labs and evaluators have said in public and from reporting, each linked. A rating is about what’s been said in public, not every contract a lab has signed.</p></details>
+        <details class="fold" id="why-evaluators" data-only="staff" open><summary><h3>“Why rate evaluator contracts too?”</h3></summary><p>It’s the same question one step out. Staff contracts decide whether people inside a lab can speak up; evaluator contracts decide whether the outsiders checking a lab can say what they find. Labs are starting to bring in independent evaluators, some with near-employee access, but the terms they work under are mostly private. The <a href="#evaluator-terms">six evaluator terms</a> follow <a href="https://www.governance.ai/analysis/third-party-ai-evaluation-contracts-should-be-published">GovAI’s proposal</a> that those contracts be published. It’s a beta, scored separately, and never added to the staff score.</p></details>
+        <details class="fold" data-only="staff" open><summary><h3>“How can you rate contracts you haven’t seen?”</h3></summary><p>Mostly I can’t, and the site says so. 18 of 35 are “Not public”. The rest come from published policies, public statements and reporting, each linked. Staff who joined or left at different times may have signed different versions, so a rating is about the latest public terms, not every contract still in force.</p></details>
+        <details class="fold" data-only="staff" open><summary><h3>“Why are Anthropic and OpenAI so close?”</h3></summary><p>Equal weights. They get there differently: Anthropic has six grades, all B or D. OpenAI has five, and two are As. Click a lab’s score to see them.</p></details>
+        <details class="fold" data-only="staff" open><summary><h3>“US law already bans some of this.”</h3></summary><p>Some of it, in some places, for some disclosures. A clause can be unenforceable and still stop people talking, because most people won’t test it. Saying it plainly in the contract is the point of C4.</p></details>
         <details class="fold" open><summary><h3>“What’s the site made of, and where does it run?”</h3></summary><p>One HTML page and three data files, <a href="ratings.json">ratings.json</a> and <a href="criteria.json">criteria.json</a> for staff contracts and <a href="evaluators.json">evaluators.json</a> for evaluator contracts, plus <a href="#follow">update feeds</a> made from the ratings file. There’s no server, database or login. It’s hosted on Cloudflare Pages and the domain is registered with Cloudflare. All the code and every rating are <a href="https://github.com/johnny1011/labcanary">public on GitHub</a> under the MIT licence, with a history of every change. I built it with help from Claude.</p></details>
         <details class="fold" open><summary><h3>“Who pays for it?”</h3></summary><p>Nobody. I pay for the domain, about $10 a year, and the hosting is free. There are no ads.</p></details>
         <details class="fold" open><summary><h3>“What do you track?”</h3></summary><p>I want to see how people use the page so I can make it better. Cloudflare Web Analytics and PostHog (hosted in the EU) count visits, and PostHog also records sessions on this page: clicks, scrolling and mouse movement. Neither sets cookies, PostHog doesn’t keep IP addresses, and nothing you type is recorded. Recordings are deleted after 30 days. I don’t sell or share any of it.</p></details>
         <details class="fold" id="keep-email" open><summary><h3>“Do you keep my email?”</h3></summary><p>Only if you sign up for updates. Your address is stored with <a href="https://buttondown.com/legal/privacy">Buttondown</a>, the newsletter service, and only used to email you when a rating changes. You confirm by email first, every email has an unsubscribe link, and unsubscribing deletes your address. I don’t sell or share it. Use any address you like: you don’t need to use a work one.</p></details>
-        <details class="fold" open><summary><h3>“Can I send you my contract, or a tip?”</h3></summary><p>Please don’t. The point is to get labs to publish their terms, not to collect leaks. I only use public evidence, so I’d delete anything confidential without using it, and sending it to a website probably isn’t legally protected. Worried about your own terms? <a href="#get-help">The Signals Network, Psst.org and Protect can help</a>.</p></details>
-        <details class="fold" open><summary><h3>“How do I get in touch, or fix a mistake?”</h3></summary><p>Email <a href="mailto:hello@labcanary.com">hello@labcanary.com</a>. Please don’t send contracts or anything confidential. If a rating is wrong or missing, you can also <a href="https://github.com/johnny1011/labcanary/issues">open an issue on GitHub</a> with a link to a public source, so everyone can see the change and why. Labs can do the same, or publish their terms and <a href="#opt-in">opt in</a>.</p></details>
+        <details class="fold" data-only="staff" open><summary><h3>“Can I send you my contract, or a tip?”</h3></summary><p>Please don’t. The point is to get labs to publish their terms, not to collect leaks. I only use public evidence, so I’d delete anything confidential without using it, and sending it to a website probably isn’t legally protected. Worried about your own terms? <a href="#get-help">The Signals Network, Psst.org and Protect can help</a>.</p></details>
+        <details class="fold" open><summary><h3>“How do I get in touch, or fix a mistake?”</h3></summary><p>Email <a href="mailto:hello@labcanary.com">hello@labcanary.com</a>. Please don’t send contracts or anything confidential. If a rating is wrong or missing, you can also <a href="https://github.com/johnny1011/labcanary/issues">open an issue on GitHub</a> with a link to a public source, so everyone can see the change and why. <span data-only="staff">Labs can do the same, or publish their terms and <a href="#opt-in">opt in</a>.</span><span data-only="evaluators">Labs can do the same, or publish their evaluation contracts and <a href="#evaluator-opt-in">opt in</a>.</span></p></details>
       </div>
     </section>
   </main>
 
   <footer>
-    <nav aria-label="All sections"><a href="#scorecard">Scorecard</a><a href="#goals">Goals</a><a href="#standard">The standard</a><a href="#evaluator-terms">Evaluator terms</a><a href="#evidence">Evidence</a><a href="#updates">Updates</a><a href="#coming-soon">Coming soon</a><a href="#opt-in">Opt in</a><a href="#questions">Q&amp;A</a></nav>
-    <p>Made by <a href="https://www.linkedin.com/in/jonathanhind/">Jonathan Hind</a>, built with help from Claude. Ratings use public evidence only. "Not public" scores zero. That's a score for openness, not a finding that a lab's terms are bad. A lab that wants credit can publish its terms. Each clause gets a grade: A scores 1, B ¾, C ½, D ¼ and F 0. The score is the total out of seven. Evaluator contracts (beta) are scored the same way out of six, separately. Get in touch: <a href="mailto:hello@labcanary.com">hello@labcanary.com</a>.</p>
+    <nav aria-label="All sections"><a href="#scorecard">Scorecard</a><a href="#goals" data-only="staff">Goals</a><a href="#standard" data-only="staff">The standard</a><a href="#evaluator-goals" data-only="evaluators">Goals</a><a href="#evaluator-terms" data-only="evaluators">The standard</a><a href="#evaluator-example" data-only="evaluators">Example lab</a><a href="#evidence">Evidence</a><a href="#updates">Updates</a><a href="#coming-soon" data-only="staff">Coming soon</a><a href="#opt-in" data-only="staff">Opt in</a><a href="#evaluator-opt-in" data-only="evaluators">Opt in</a><a href="#questions">Q&amp;A</a></nav>
+    <p>Made by <a href="https://www.linkedin.com/in/jonathanhind/">Jonathan Hind</a>, built with help from Claude. Ratings use public evidence only. "Not public" scores zero. That's a score for openness, not a finding that a lab's terms are bad. <span data-only="staff">A lab that wants credit can publish its terms. Each clause gets a grade: A scores 1, B ¾, C ½, D ¼ and F 0. The score is the total out of seven.</span><span data-only="evaluators">A lab that wants credit can publish its evaluation contracts. Each term gets a grade: A scores 1, B ¾, C ½, D ¼ and F 0. The score is the total out of six.</span> Get in touch: <a href="mailto:hello@labcanary.com">hello@labcanary.com</a>.</p>
     <p>Privacy: this page counts visits and records sessions (clicks, scrolling and mouse movement, never anything typed) with Cloudflare Web Analytics and PostHog, to help me improve it. If you sign up for email updates, Buttondown keeps your address until you unsubscribe. No cookies, and nothing is sold. <a href="#questions">More in the Q&amp;A</a>.</p>
   </footer>
 </div>
@@ -603,32 +708,37 @@ function mix(a, b, t) {
 // Both ends of this gradient have at least 6.7:1 contrast with white text.
 const scoreColor = (v) => mix("#7c1f27", "#8c4a12", Math.min(1, v / 0.5));
 
-// Two sets of ratings, each scored on its own and never added together:
+// Two pages in this one file, each with its own ratings, scored on its own and never added together:
 //   "staff"      staff contracts: criteria.json + ratings.json (D.criteria, D.ratings)
 //   "evaluators" contracts with outside evaluators (beta): evaluators.json (D.ev.criteria, D.ev.ratings)
 // Staff ids are C1..., evaluator ids E1..., so a tile link like #openai-e3 always names one set.
+// The tabs switch page. Sections marked data-only in the HTML show on one page alone; the scorecard,
+// evidence, updates and Q&A are on both and are drawn from whichever set is showing.
 let set = "staff";
 const SET_WORDS = {
-  staff: { unit: "clause", units: "clauses", short: "staff contracts", tab: "Staff contracts" },
-  evaluators: { unit: "term", units: "terms", short: "evaluator contracts", tab: "Evaluator contracts" },
+  staff: { unit: "clause", units: "clauses", short: "staff contracts", own: "From the lab's own policies or staff", others: "Reported by journalists, ex-staff or watchdogs" },
+  evaluators: { unit: "term", units: "terms", short: "evaluator contracts", own: "From the lab's own announcements", others: "Reported by journalists, evaluators or watchdogs" },
 };
+const numWord = (n) => ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"][n] || String(n);
 const hasEv = () => Boolean(D && D.ev && D.ev.criteria && D.ev.criteria.length);
 const dataOf = (which) => which === "evaluators" && hasEv() ? D.ev : D;
 const setOf = (clause) => hasEv() && D.ev.criteria.some(c => c.id === clause) ? "evaluators" : "staff";
 const crit = (clause) => dataOf(setOf(clause)).criteria.find(c => c.id === clause);
 
-// Example Lab is made up. It's drawn as the last column of the staff scorecard to show what 100% looks like.
-// It's never in ratings.json, so it stays out of scores, history, feeds and share text. Every check is "Meets", so it shows as an A.
-// Its documents are in the #example-lab section; each clause links to the one that covers it.
+// Example Lab is made up. It's drawn as the last column of each scorecard to show what 100% looks like.
+// It's never in ratings.json or evaluators.json, so it stays out of scores, history, feeds and share text. Every check is "Meets", so it shows as an A.
+// Its documents are in the #example-lab (staff) and #evaluator-example sections; each clause or term links to the one that covers it.
 const EXAMPLE = { name: "Example Lab", docs: [
-  { id: "example-lab-confidentiality", title: "Confidentiality agreement", clauses: ["C1", "C4", "C7"] },
-  { id: "example-lab-criticism", title: "Criticism and non-disparagement terms", clauses: ["C2"] },
-  { id: "example-lab-equity", title: "Equity terms", clauses: ["C3"] },
-  { id: "example-lab-speak-up", title: "Speak-up policy", clauses: ["C5", "C6"] },
-  { id: "example-lab-statement", title: "Dated statement", clauses: [] },
+  { set: "staff", id: "example-lab-confidentiality", title: "Confidentiality agreement", clauses: ["C1", "C4", "C7"] },
+  { set: "staff", id: "example-lab-criticism", title: "Criticism and non-disparagement terms", clauses: ["C2"] },
+  { set: "staff", id: "example-lab-equity", title: "Equity terms", clauses: ["C3"] },
+  { set: "staff", id: "example-lab-speak-up", title: "Speak-up policy", clauses: ["C5", "C6"] },
+  { set: "staff", id: "example-lab-statement", title: "Dated statement", clauses: [] },
+  { set: "evaluators", id: "example-lab-evaluation-agreement", title: "Evaluation agreement", clauses: ["E2", "E3", "E4", "E6"] },
+  { set: "evaluators", id: "example-lab-conflicts", title: "Conflict-of-interest rules", clauses: ["E5"] },
+  { set: "evaluators", id: "example-lab-scope", title: "Scope notice", clauses: ["E1"] },
 ] };
 const isExample = (lab) => lab === EXAMPLE.name;
-const colsOf = (which) => which === "staff" ? [...D.labs, EXAMPLE.name] : D.labs;
 
 function cell(lab, clause) {
   if (isExample(lab)) return { lab, clause, rating: "Meets", evidence: "", source: "", url: "", date: "" };
@@ -653,7 +763,7 @@ function drawHeatmap() {
   if (d.parentElement === hm && detailHome) detailHome.before(d);
   hm.textContent = "";
   // ex marks the made-up Example Lab column, so it looks different from the real labs.
-  const labs = colsOf(set), ex = (l) => isExample(l) ? " ex" : "", madeUp = (l) => isExample(l) ? " (made up)" : "";
+  const labs = [...D.labs, EXAMPLE.name], ex = (l) => isExample(l) ? " ex" : "", madeUp = (l) => isExample(l) ? " (made up)" : "";
   hm.style.setProperty("--cols", labs.length);
   hm.classList.toggle("six", labs.length > 5);
   $("hm-wrap").setAttribute("aria-label", (set === "staff" ? "Staff contracts" : "Evaluator contracts") + ": ratings by lab and " + words.unit);
@@ -696,18 +806,18 @@ function drawHeatmap() {
   updateScrollCue();
 }
 
-// The copy around the grid that changes with the tab.
+// Which page is showing, and the copy that changes with it.
 function drawSetCopy() {
   const ev = set === "evaluators";
+  document.body.classList.toggle("ev", ev);
+  const checked = dataOf(set).checked || dataOf(set).updated;
+  $("checked-top").textContent = "Last checked " + fmtDate(checked) + ((Date.now() - new Date(checked)) / 864e5 > 45 ? ". Not checked for over 45 days, so newer evidence may be missing." : "");
+  $("ev-unit").textContent = ev ? "Term" : "Clause";
   $("set-note").hidden = !ev;
   $("intro").replaceChildren(ev ? "Each square rates what's public about one lab's contracts with outside evaluators. " :"Each square rates what's publicly known about one lab's staff contracts. ", el("b", null, "Tap a square to see the evidence."));
   $("side-intro").textContent = ev
-    ? "Outside evaluators are meant to check labs' safety claims. How far you can trust what they report depends on the contract they work under: what they can see, what they can publish, how they're paid and whether they're independent. This tab rates what's public about those contracts."
+    ? "Outside evaluators are meant to check labs' safety claims. How far you can trust what they report depends on the contract they work under: what they can see, what they can publish, how they're paid and whether they're independent. This page rates what's public about those contracts."
     : "Can people who work at AI labs tell the public when something's wrong? Lab Canary checks what's publicly known about lab contracts and speak-up policies against a simple standard: protect real secrets, never gag criticism or whistleblowing.";
-  $("link-standard").textContent = ev ? "The six evaluator terms →" : "The standard, in seven clauses →";
-  $("link-standard").href = ev ? "#evaluator-terms" : "#standard";
-  $("link-evidence").textContent = ev ? "All the evaluator evidence and sources →" : "All the evidence and sources →";
-  $("link-evidence").href = ev ? "#evaluator-terms" : "#evidence";
 }
 
 // Tabs follow the WAI-ARIA pattern: arrow keys move between them, Home/End jump to the ends.
@@ -729,7 +839,7 @@ function drawTabs() {
   });
 }
 
-// Switch tabs. Clears any open tile, since tiles belong to one set. keepSel is used when a link opens a tile in the other set.
+// Switch page. Clears any open tile, since tiles belong to one set. keepSel is used when a link opens a tile in the other set.
 function setSet(next, opts = {}) {
   if (next === "evaluators" && !hasEv()) next = "staff";
   const changed = next !== set;
@@ -742,6 +852,7 @@ function setSet(next, opts = {}) {
   });
   if (!opts.keepSel || (sel && sel.set !== set)) sel = null;
   drawSetCopy(); drawHeatmap(); drawTakeaway(); drawDetail(); drawShareBox(); placeDetail();
+  if (changed) { drawOrigin(); drawEvidence(); drawUpdates(); }
   if (opts.user) {
     history.replaceState(null, "", set === "evaluators" ? "#evaluators" : location.pathname + location.search);
     if (changed) track("set_changed", { set });
@@ -791,15 +902,15 @@ function selectFromHash(scroll) {
     if (scroll) $("scorecard").scrollIntoView();
     return;
   }
-  // #example-lab-c1 opens one of the made-up lab's tiles. Plain #example-lab is the documents section, handled at the end.
-  const exClause = D.criteria.find(c => h === slug(EXAMPLE.name) + "-" + c.id.toLowerCase());
+  const allCriteria = [...D.criteria, ...(hasEv() ? D.ev.criteria : [])];
+  // #example-lab-c1 or #example-lab-e1 opens one of the made-up lab's tiles. Plain #example-lab is a documents section, handled at the end.
+  const exClause = allCriteria.find(c => h === slug(EXAMPLE.name) + "-" + c.id.toLowerCase());
   if (exClause) {
-    if (set !== "staff") setSet("staff", { keepSel: true });
+    if (setOf(exClause.id) !== set) setSet(setOf(exClause.id), { keepSel: true });
     select({ lab: EXAMPLE.name, clause: exClause.id }, true);
     if (scroll) $("detail").scrollIntoView({ block: "nearest" });
     return;
   }
-  const allCriteria = [...D.criteria, ...(hasEv() ? D.ev.criteria : [])];
   for (const l of D.labs) {
     const c = allCriteria.find(c => h === slug(l) + "-" + c.id.toLowerCase());
     const evSummary = hasEv() && h === slug(l) + "-evaluators";
@@ -810,9 +921,16 @@ function selectFromHash(scroll) {
     if (scroll) $("detail").scrollIntoView({ block: "nearest" });
     return;
   }
-  const target = h && document.getElementById(location.hash.slice(1));
-  if (target && target.closest("details")) target.closest("details").open = true;
-  if (scroll && target) target.scrollIntoView();
+  // Anything else is a section. One that only the other page has (data-only) switches page first.
+  // On the evaluator page, a section both pages have is linked as #evaluator-<its id>, so a reload or a shared link comes back to this page.
+  const id = location.hash.slice(1), alias = hasEv() && h.startsWith("evaluator-") && !document.getElementById(id);
+  const target = h && document.getElementById(alias ? id.slice(10) : id);
+  if (!target) return;
+  const only = target.closest("[data-only]"), want = only ? only.dataset.only : (alias ? "evaluators" : set), moved = want !== set;
+  if (moved) setSet(want);
+  if (!only && set === "evaluators") history.replaceState(null, "", "#evaluator-" + target.id);
+  if (target.closest("details")) target.closest("details").open = true;
+  if (scroll || moved || alias) target.scrollIntoView();
 }
 
 function setFolds() {
@@ -968,16 +1086,20 @@ function drawFollow() {
   ["feedly", "inoreader"].forEach(reader => $("follow-" + reader).addEventListener("click", () => track("follow_opened", { lab: pick.value || null, reader })));
 }
 
+// An update belongs to the evaluator page when its link opens that page (#evaluators, #openai-e3, #openai-evaluators, #evaluator-terms).
+// The staff page lists every update; the evaluator page lists only its own, without the staff scores.
+const evLink = (link) => /^#evaluator|-e\d+$|-evaluators$/.test(link || "");
 let updAll = false;
 function drawUpdates() {
-  const list = $("updates-list"), all = (D.updates || []).slice().sort((a, b) => b.date.localeCompare(a.date));
+  const ev = set === "evaluators";
+  const list = $("updates-list"), all = (D.updates || []).filter(u => !ev || evLink(u.link)).sort((a, b) => b.date.localeCompare(a.date));
   const shown = updAll ? all : all.slice(0, 5);
   list.textContent = "";
   shown.forEach(u => {
     const li = el("li", "upd"), when = el("time", "upd-date", fmtDate(u.date)), body = el("div");
     when.dateTime = u.date;
     body.append(el("h3", null, u.title), el("p", null, u.text));
-    const prev = all[all.indexOf(u) + 1], moved = prev && u.scores && prev.scores ? D.labs.filter(l => u.scores[l] !== prev.scores[l]) : [];
+    const prev = all[all.indexOf(u) + 1], moved = !ev && prev && u.scores && prev.scores ? D.labs.filter(l => u.scores[l] !== prev.scores[l]) : [];
     if (moved.length) body.append(el("p", "upd-scores", "Scores: " + moved.map(l => l + " " + prev.scores[l] + "% → " + u.scores[l] + "%").join(", ")));
     if (u.link) {
       const links = el("div", "upd-links"), a = el("a", null, "See it on the scorecard →");
@@ -1080,10 +1202,10 @@ function drawExampleDetail(d) {
     full.append("Read it in full: ", docLink(EXAMPLE.docs.find(x => x.clauses.includes(c.id))), " →");
     d.append(full);
   } else {
-    const ul = el("ul");
-    EXAMPLE.docs.forEach(doc => { const li = el("li"); li.append(docLink(doc)); ul.append(li); });
+    const ul = el("ul"), docs = EXAMPLE.docs.filter(doc => doc.set === sel.set);
+    docs.forEach(doc => { const li = el("li"); li.append(docLink(doc)); ul.append(li); });
     d.append(el("span", "k", "Made-up lab"), el("span", "t", EXAMPLE.name));
-    d.append(el("p", null, "Example Lab doesn't exist. It shows what a lab would publish to get an A on all " + D.criteria.length + " checks and score 100%. Its five draft documents:"), ul);
+    d.append(el("p", null, "Example Lab doesn't exist. It shows what a lab would publish to get an A on all " + dataOf(sel.set).criteria.length + " checks and score 100%. Its " + numWord(docs.length) + " draft documents:"), ul);
   }
   d.append(el("p", "small", "Draft wording. No lawyer has checked it yet."));
   const actions = el("div", "detail-actions"), close = el("button", "pill-btn phone-only", "Close");
@@ -1092,26 +1214,11 @@ function drawExampleDetail(d) {
   d.append(actions);
 }
 
-// The evaluator terms section: the six terms as cards, then every evaluator rating with a source.
+// The evaluator page's standard: the six terms as cards.
 function drawEvaluatorTerms() {
-  $("evaluator-terms").hidden = !hasEv();
   if (!hasEv()) return;
   if (D.ev.basedOn && D.ev.basedOn.url) { $("ev-terms-source").href = D.ev.basedOn.url; $("set-note-source").href = D.ev.basedOn.url; }
   drawStandard("std-ev", D.ev.criteria);
-  const tb = $("ev-eval"), order = (r) => D.labs.indexOf(r.lab) * 100 + D.ev.criteria.findIndex(c => c.id === r.clause);
-  tb.textContent = "";
-  D.ev.ratings.slice().sort((a, b) => order(a) - order(b)).forEach(r => {
-    const tr = el("tr"), lab = el("td", "nowrap"), a = el("a", null, r.lab), term = el("td", null, r.clause + " · " + crit(r.clause).name);
-    a.href = "#" + slug(r.lab) + "-" + r.clause.toLowerCase();
-    lab.append(a);
-    tr.append(lab, term);
-    const st = el("td"); st.append(el("span", "badge b-" + gradeCls(r), gradeText(r))); tr.append(st);
-    tr.append(el("td", null, r.evidence));
-    const src = el("td");
-    if (!appendSources(src, r)) src.textContent = "—";
-    tr.append(src);
-    tb.append(tr);
-  });
 }
 
 function drawStandard(id = "std", criteria = D.criteria) {
@@ -1171,7 +1278,7 @@ function drawViewSwitch() {
 const year = (s) => { const [y, m, d] = s.split("-").map(Number); return y + (m - 1) / 12 + ((d || 15) - 1) / 365; };
 
 function drawTimeline() {
-  const box = $("tl"), dated = D.ratings.filter(r => r.date);
+  const box = $("tl"), data = dataOf(set), words = SET_WORDS[set], dated = data.ratings.filter(r => r.date);
   box.textContent = "";
   // Lanes: one row per lab, a dot per piece of evidence. Filled dots come from the lab itself.
   const ts = dated.map(r => year(r.date)), x0 = Math.floor(Math.min(...ts)), x1 = Math.max(...ts) + 0.2;
@@ -1205,8 +1312,8 @@ function drawTimeline() {
   box.append(svg);
   const key = el("div", "tl-key"), dot = (fill, stroke) => { const s = document.createElementNS(ns, "svg"); s.setAttribute("width", 12); s.setAttribute("height", 12); s.append(svgEl("circle", { cx: 6, cy: 6, r: 4.5, fill, stroke: stroke || "none", "stroke-width": 1.5 })); return s; };
   const k1 = el("span"), k2 = el("span");
-  k1.append(dot("#e8b21c"), "From the lab's own policies or staff");
-  k2.append(dot("#0e1626", "#94a0b8"), "Reported by journalists, ex-staff or watchdogs");
+  k1.append(dot("#e8b21c"), words.own);
+  k2.append(dot("#0e1626", "#94a0b8"), words.others);
   key.append(k1, k2, el("span", null, "Tap a lab to filter."));
   box.append(key);
 
@@ -1215,7 +1322,7 @@ function drawTimeline() {
   const shown = labFilter === "All" && !tlAll ? rows.slice(0, 5) : rows;
   let current = "";
   shown.forEach(r => {
-    const y = r.date.slice(0, 4), c = D.criteria.find(x => x.id === r.clause);
+    const y = r.date.slice(0, 4), c = data.criteria.find(x => x.id === r.clause);
     if (y !== current) { current = y; list.append(el("div", "tl-year", y)); }
     const item = el("div", "tl-item"), rail = el("div", "tl-rail"), card = el("div", "tl-card"), head = el("div", "tl-head");
     rail.append(el("i", "b-" + gradeCls(r)));
@@ -1223,7 +1330,7 @@ function drawTimeline() {
     card.append(head, el("span", "small", r.clause + " · " + (c ? c.name : "")), el("p", null, r.evidence));
     const src = el("div", "small");
     appendSources(src, r);
-    src.append(el("span", "source-date", r.fromLab ? "From the lab's own policies or staff" : "Reported by others"));
+    src.append(el("span", "source-date", r.fromLab ? words.own : "Reported by others"));
     card.append(src);
     item.append(el("div", "tl-date", fmtDate(r.date).replace(/ \d{4}$/, "")), rail, card);
     list.append(item);
@@ -1235,8 +1342,8 @@ function drawTimeline() {
     list.append(more);
   }
   if (labFilter !== "All") {
-    const np = D.criteria.length - rows.length;
-    if (np) list.append(el("p", "sub", np + " of " + D.criteria.length + " clauses have no public evidence for " + labFilter + ". Switch to the table to see all seven."));
+    const np = data.criteria.length - rows.length;
+    if (np) list.append(el("p", "sub", np + " of " + data.criteria.length + " " + words.units + " have no public evidence for " + labFilter + ". Switch to the table to see all " + numWord(data.criteria.length) + "."));
   }
   box.append(list);
 }
@@ -1276,14 +1383,16 @@ function drawScoreHistory() {
 }
 
 function drawOrigin() {
-  const sourced = D.ratings.filter(r => r.url), own = sourced.filter(r => r.fromLab).length;
-  $("ev-origin").textContent = "Of the " + sourced.length + " ratings with a public source, only " + own + " come from the labs' own policies or staff. The other " + (sourced.length - own) + " come from journalists, ex-staff and watchdogs.";
+  const sourced = dataOf(set).ratings.filter(r => r.url), own = sourced.filter(r => r.fromLab).length;
+  $("ev-origin").textContent = set === "evaluators"
+    ? "Of the " + sourced.length + " ratings with a public source, " + own + " come from the labs' own announcements."
+    : "Of the " + sourced.length + " ratings with a public source, only " + own + " come from the labs' own policies or staff. The other " + (sourced.length - own) + " come from journalists, ex-staff and watchdogs.";
 }
 
 function drawEvidence() {
   const tb = $("ev");
   tb.textContent = "";
-  const rows = labFilter === "All" ? D.ratings : D.criteria.map(c => cell(labFilter, c.id));
+  const data = dataOf(set), rows = labFilter === "All" ? data.ratings : data.criteria.map(c => cell(labFilter, c.id));
   rows.forEach(r => {
     const tr = el("tr");
     tr.append(el("td", "nowrap", r.lab), el("td", null, r.clause));
@@ -1294,7 +1403,7 @@ function drawEvidence() {
     tr.append(src);
     tb.append(tr);
   });
-  if (labFilter === "All") { const tr = el("tr"); const td = el("td", "sub", "Showing every rating with a public source. Pick a lab to see all seven clauses."); td.colSpan = 5; tr.append(td); tb.append(tr); }
+  if (labFilter === "All") { const tr = el("tr"); const td = el("td", "sub", "Showing every rating with a public source. Pick a lab to see all " + numWord(data.criteria.length) + " " + SET_WORDS[set].units + "."); td.colSpan = 5; tr.append(td); tb.append(tr); }
   drawTimeline();
 }
 
@@ -1308,10 +1417,6 @@ async function load() {
       getJSON("evaluators.json").catch(() => null),
     ]);
     D = { criteria, ...ratings, ev };
-    const checked = D.checked || D.updated;
-    let asof = "Last checked " + fmtDate(checked);
-    if ((Date.now() - new Date(checked)) / 864e5 > 45) asof += ". Not checked for over 45 days, so newer evidence may be missing.";
-    $("checked-top").textContent = asof;
     drawTabs(); drawSetCopy();
     drawHeatmap(); drawScoreHistory(); drawTakeaway(); drawDetail(); drawStandard(); drawEvaluatorTerms(); drawFilters(); drawEvidence(); drawOrigin(); drawViewSwitch(); drawShareBox(); drawFollow(); drawUpdates();
     setFolds(); placeDetail(); selectFromHash();
