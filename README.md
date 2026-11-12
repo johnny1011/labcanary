@@ -26,14 +26,26 @@ A second tab rates what's public about each lab's contracts with outside (third-
 - If `evaluators.json` is missing or invalid, the page hides the tab and the staff scorecard still loads.
 - Links: `#evaluators` opens the tab, `#openai-evaluators` a lab's evaluator summary, and `#openai-e3` one evaluator rating.
 
+### Two pages in one file
+
+The tab works like a separate page. Everything below the scorecard switches with it, so the evaluator page says nothing about staff contracts: it has its own goals, standard, "What 100% looks like", evidence, opt-in steps and Q&A.
+
+- In `public/index.html`, anything marked `data-only="staff"` or `data-only="evaluators"` shows on that page alone. Anything without it is on both.
+- The scorecard, evidence, updates and Q&A are on both pages. The page draws the first three from whichever set is showing, and single Q&A answers are marked `data-only`.
+- The evaluator page lists only the updates whose `link` opens that page (`#evaluators`, `#openai-e3`, `#openai-evaluators`, `#evaluator-terms`). The staff page lists every update.
+- A link to a section only one page has switches to that page. On the evaluator page, a section both pages have is linked as `#evaluator-` plus its id (for example `#evaluator-evidence`), so a reload or a shared link comes back to the same page.
+- New text for one page goes in a `data-only` element. Check the other page afterwards to make sure it didn't leak in.
+
 ## Example Lab
 
 Example Lab is a made-up lab that meets all seven clauses. It's the last column of the staff scorecard, marked "made up", with an A on every check, so readers can compare the real labs with 100%. Each of its squares lists the clause's parts, shows the model wording for that clause and links to the document that covers it. The "What 100% looks like" section holds the five documents it would publish: a confidentiality agreement, criticism and non-disparagement terms, equity terms, a speak-up policy and a dated statement.
 
-- The column is drawn by the page from `EXAMPLE` in [`public/index.html`](public/index.html). It isn't in `ratings.json`, so it never counts in scores, score history, feeds, share text or the evaluator tab.
-- The documents are plain HTML in the `#example-lab` section. If you rename a document's `id`, update `EXAMPLE.docs` to match.
-- Links: `#example-lab-c1` opens one of its squares, and `#example-lab` goes to the documents.
-- The documents reuse the model wording in `criteria.json` with the blanks filled in. When a clause's `model` changes, update the matching Example Lab document too.
+The evaluator page has the same thing for the six terms: Example Lab is its last column, and its "What 100% looks like" section (`#evaluator-example`) holds three documents: an evaluation agreement, conflict-of-interest rules and a scope notice.
+
+- The column is drawn by the page from `EXAMPLE` in [`public/index.html`](public/index.html). It isn't in `ratings.json` or `evaluators.json`, so it never counts in scores, score history, feeds or share text.
+- The documents are plain HTML in the `#example-lab` and `#evaluator-example` sections. If you rename a document's `id`, update `EXAMPLE.docs` to match.
+- Links: `#example-lab-c1` or `#example-lab-e1` opens one of its squares, and `#example-lab` or `#evaluator-example` goes to the documents.
+- The documents reuse the model wording in `criteria.json` and `evaluators.json` with the blanks filled in. When a clause's or term's `model` changes, update the matching Example Lab document too.
 - They're drafts. Keep the "no lawyer has checked these" note until a lawyer has, then say who checked them and when.
 
 The "Worried about your own contract?" section (`#get-help`) has the class `ph-no-capture`, so PostHog doesn't log clicks in it and blanks it out in session recordings. Keep that class if you edit the section.
