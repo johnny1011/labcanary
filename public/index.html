@@ -55,7 +55,6 @@ nav a { color: var(--fg); }
 @media (max-width: 52rem) { .hero { grid-template-columns: minmax(0, 1fr); } }
 .hero > div { min-width: 0; }
 .hm-wrap { overflow-x: auto; max-width: 100%; padding: 3px; margin: -3px; }
-.scroll-cue { margin-top: 10px; color: var(--fg); font-size: .8rem; text-align: center; }
 .score-method { margin-top: 12px; color: var(--muted); font-size: .8rem; }
 .hm { display: grid; grid-template-columns: minmax(8.5rem, 1.4fr) repeat(var(--cols, 5), minmax(3.2rem, 1fr)); gap: 6px; min-width: 26rem; }
 .hm-lab { font: 600 .74rem/1.2 var(--sans); text-align: center; align-self: end; color: var(--fg); padding: 0 0 6px; cursor: pointer; background: none; border: 0; }
@@ -72,10 +71,24 @@ nav a { color: var(--fg); }
 .t-short { background: var(--short); }
 .t-np { background: repeating-linear-gradient(135deg, var(--np) 0 6px, var(--np2) 6px 12px); }
 .tile.t-np { color: var(--muted); }
-.legend { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 12px; font-size: .78rem; color: var(--muted); }
-.legend span { display: inline-flex; align-items: center; gap: 6px; }
-.legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
-.hm-foot { margin-top: 8px; text-align: center; font-size: .78rem; font-style: italic; color: var(--muted); }
+/* Under the scorecard: a one-line legend, then the full grade table folded under "How grades work".
+   The table stays a real table on phones too, so its rules outrank the evidence table's phone layout. */
+.legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; margin-top: 14px; font-size: .8rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 4px; }
+.legend span b:last-of-type { margin-right: 3px; }
+.how { margin-top: 10px; font-size: .8rem; text-align: center; }
+.how > summary { color: var(--link); cursor: pointer; }
+.how > :not(summary) { text-align: left; }
+.key { min-width: 0; margin-top: 12px; font-size: .8rem; color: var(--muted); }
+.key thead { display: table-header-group; }
+.key tbody tr { display: table-row; padding: 0; border: 0; }
+.key th, .key tbody td { padding: 4px 8px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.key th { position: static; background: none; text-transform: none; letter-spacing: 0; }
+.key td:first-child { white-space: nowrap; }
+.key th:last-child, .key td:last-child { text-align: right; }
+.legend b, .key b { display: inline-flex; align-items: center; justify-content: center; width: 1.5rem; height: 1.5rem; border-radius: 4px; color: #fff; }
+.key b { margin-right: 8px; }
+.legend b.t-np, .key b.t-np { color: var(--muted); }
 .side { display: flex; flex-direction: column; gap: 16px; }
 .side .lead { font-weight: 600; }
 .detail { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; min-height: 11rem; }
@@ -289,18 +302,27 @@ posthog.init('phc_seNqsyF9yPmtNoLkbkV7ckgtjkYDBBEtM9Sf4AKpfutU', {
         </div>
         <p class="intro phone-only" id="intro">Each square rates what's publicly known about one lab's staff contracts. <b>Tap a square to see the evidence.</b></p>
         <div class="hm-wrap" id="hm-wrap" role="region" aria-label="Ratings by lab and clause"><div class="hm" id="hm"></div></div>
-        <p class="scroll-cue" id="scroll-cue" hidden>Scroll sideways to see every lab. Use the arrow keys when the grid is focused.</p>
-        <p class="score-method" id="ex-note" hidden>The last column, Example Lab, is made up. It shows what an A on every check, and 100%, looks like. Pick one of its squares to read the wording that earns the A, or <a href="#example-lab">read all five of its documents</a>.</p>
-        <div class="legend">
-          <span><i style="background:var(--meets)"></i>A Meets</span>
-          <span><i style="background:var(--gb)"></i><i style="background:var(--partly)"></i><i style="background:var(--gd)"></i>B, C, D Partly</span>
-          <span><i style="background:var(--short)"></i>F Falls short</span>
-          <span><i style="background:repeating-linear-gradient(135deg,var(--np) 0 3px,var(--np2) 3px 6px);border:1px solid var(--line)"></i>? Not public</span>
-        </div>
-        <p class="score-method">Each check is split into three or four parts. A means the public evidence shows every part. B means one part is missing, D means only one part is shown, and C is in between. F means none, or evidence of the opposite. Open a square to see which parts.</p>
-        <p class="score-method" id="score-method"></p>
-        <p class="score-method">An A needs a written policy or the contract wording. One public statement, such as an interview comment or a statement reported in the press, earns B at most. An F can rest on credible reporting, such as a news report quoting staff. When it does, the evidence says so and includes the lab’s response.</p>
-        <p class="hm-foot" id="asof">Public evidence only</p>
+        <p class="legend">
+          <span><b class="t-meets">A</b>Meets</span>
+          <span><b class="t-partly g-B">B</b><b class="t-partly">C</b><b class="t-partly g-D">D</b>Partly</span>
+          <span><b class="t-short">F</b>Falls short</span>
+          <span><b class="t-np">?</b>Not public</span>
+        </p>
+        <details class="how">
+        <summary>How grades work</summary>
+        <table class="key">
+          <thead><tr><th scope="col">Grade</th><th scope="col">Public evidence shows</th><th scope="col">Points</th></tr></thead>
+          <tbody>
+            <tr><td><b class="t-meets">A</b>Meets</td><td>Every part of the check</td><td>1</td></tr>
+            <tr><td><b class="t-partly g-B">B</b>Partly</td><td>All but one part</td><td>¾</td></tr>
+            <tr><td><b class="t-partly">C</b>Partly</td><td>In between</td><td>½</td></tr>
+            <tr><td><b class="t-partly g-D">D</b>Partly</td><td>Only one part</td><td>¼</td></tr>
+            <tr><td><b class="t-short">F</b>Falls short</td><td>No part, or the opposite</td><td>0</td></tr>
+            <tr><td><b class="t-np">?</b>Not public</td><td>Not enough to check</td><td>0</td></tr>
+          </tbody>
+        </table>
+        <p class="score-method">The score is the points added up, divided by <span id="score-n">7</span>, as a percent. An A needs a written policy or the contract wording. One public statement earns B at most. An F can rest on credible reporting, and the evidence then includes the lab’s response.</p>
+        </details>
         </div>
       </div>
       <div class="side">
@@ -634,7 +656,6 @@ function drawHeatmap() {
   const labs = colsOf(set), ex = (l) => isExample(l) ? " ex" : "", madeUp = (l) => isExample(l) ? " (made up)" : "";
   hm.style.setProperty("--cols", labs.length);
   hm.classList.toggle("six", labs.length > 5);
-  $("ex-note").hidden = set !== "staff";
   $("hm-wrap").setAttribute("aria-label", (set === "staff" ? "Staff contracts" : "Evaluator contracts") + ": ratings by lab and " + words.unit);
   hm.append(el("div"));
   labs.forEach(l => {
@@ -671,7 +692,7 @@ function drawHeatmap() {
     });
   });
   updateSelection();
-  $("score-method").textContent = "Publicly evidenced score: A scores 1, B ¾, C ½, D ¼, and F and “?” score 0. Add them up, divide by " + data.criteria.length + " and round to the nearest whole percent. “?” means there isn’t enough public evidence to check; F means the public evidence shows it doesn’t meet the " + words.unit + "." + (set === "evaluators" ? " This score is separate from the staff-contracts score and isn’t added to it." : "");
+  $("score-n").textContent = data.criteria.length;
   updateScrollCue();
 }
 
@@ -687,10 +708,6 @@ function drawSetCopy() {
   $("link-standard").href = ev ? "#evaluator-terms" : "#standard";
   $("link-evidence").textContent = ev ? "All the evaluator evidence and sources →" : "All the evidence and sources →";
   $("link-evidence").href = ev ? "#evaluator-terms" : "#evidence";
-  const src = ev ? D.ev : D, checked = src.checked || src.updated;
-  let asof = (ev ? "Evaluator ratings last changed " : "Ratings last changed ") + fmtDate(src.updated) + " · Evidence last checked " + fmtDate(checked);
-  if ((Date.now() - new Date(checked)) / 864e5 > 45) asof += ". Not checked for over 45 days, so newer evidence may be missing.";
-  $("asof").textContent = asof;
 }
 
 // Tabs follow the WAI-ARIA pattern: arrow keys move between them, Home/End jump to the ends.
@@ -983,16 +1000,10 @@ function drawUpdates() {
   }
 }
 
+// When the grid is wider than its box, make the box focusable so the arrow keys can scroll it.
 function updateScrollCue() {
-  const wrap = $("hm-wrap"), overflows = wrap.scrollWidth > wrap.clientWidth + 1;
-  $("scroll-cue").hidden = !overflows;
-  if (overflows) {
-    wrap.setAttribute("tabindex", "0");
-    wrap.setAttribute("aria-describedby", "scroll-cue");
-  } else {
-    wrap.removeAttribute("tabindex");
-    wrap.removeAttribute("aria-describedby");
-  }
+  const wrap = $("hm-wrap");
+  if (wrap.scrollWidth > wrap.clientWidth + 1) wrap.setAttribute("tabindex", "0"); else wrap.removeAttribute("tabindex");
 }
 
 function appendSources(container, rating) {
