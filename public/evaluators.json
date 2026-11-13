@@ -1,8 +1,8 @@
 {
-  "updated": "2026-11-11",
+  "updated": "2026-11-13",
   "checked": "2026-11-07",
   "basedOn": {
-    "source": "GovAI: Third-party AI evaluation contracts should be published",
+    "source": "Jacob Charnock (GovAI): Third-party AI evaluation contracts should be published",
     "url": "https://www.governance.ai/analysis/third-party-ai-evaluation-contracts-should-be-published",
     "date": "2026-11-06"
   },
@@ -61,8 +61,8 @@
       "lab": "Anthropic",
       "clause": "E1",
       "rating": "Partly",
-      "met": [2],
-      "evidence": "Anthropic has published what its main outside evaluations cover: Faculty (Accenture's AI business) on red-teaming, alignment assessments and safeguard testing; SecureBio on the chemical and biological weapons chapter of its August 2026 Risk Report; and a METR team embedded inside the company. It's \"Partly\" because these are announcements, not per-evaluation scopes, and they don't list what was left out.",
+      "met": [2, 3],
+      "evidence": "Anthropic has published what its main outside evaluations cover: Faculty (Accenture's AI business) on red-teaming, alignment assessments and safeguard testing; SecureBio on the chemical and biological weapons chapter of its August 2026 Risk Report; and a METR team embedded inside the company. For one evaluation the full scope is public: in Transluce's August 2026 mental health study, the published agreement says which behaviours were checked and Transluce's report lists the Claude models tested. It's \"Partly\" because the rest are announcements, not per-evaluation scopes, and they don't list what was left out.",
       "source": "Anthropic: An update on independent evaluators",
       "url": "https://www.anthropic.com/news/an-update-on-independent-evaluators",
       "date": "2026-10-15",
@@ -71,6 +71,11 @@
           "source": "Anthropic: Accenture embedded evaluation",
           "url": "https://www.anthropic.com/news/accenture-embedded-evaluation",
           "date": "2026-09-18"
+        },
+        {
+          "source": "Transluce: Mental Health Behavior Report",
+          "url": "https://behaviors.transluce.org/mental-health",
+          "date": "2026-08-31"
         }
       ],
       "fromLab": true
@@ -98,7 +103,7 @@
       "clause": "E3",
       "rating": "Partly",
       "met": [2, 3],
-      "evidence": "At its upper two tiers, Anthropic says it can't veto publication and can only require redactions in predefined categories, and evaluators can publish their view on whether redactions were justified. But first-tier findings are published only with Anthropic's approval, Anthropic decides what falls in the redaction categories, and it told Reuters it keeps the right to comment on and approve reports from newer evaluators. No route to the board or a regulator is described.",
+      "evidence": "At its upper two tiers, Anthropic says it can't veto publication and can only require redactions in predefined categories, and evaluators can publish their view on whether redactions were justified. But first-tier findings are published only with Anthropic's approval, Anthropic decides what falls in the redaction categories, and it told Reuters it keeps the right to comment on and approve reports from newer evaluators. No route to the board or a regulator is described. In the agreement Transluce published for its August 2026 mental health study, Transluce had the final say on publishing its evaluation findings, and Anthropic could block the validation results only on listed grounds, not for poor performance. SecureBio says it can publish its review of a chapter of Anthropic's August 2026 Risk Report without Anthropic's approval, that Anthropic can mark sensitive material for redaction at its discretion, and that its report will say whether redactions affected its findings. METR says its contract wording lets it disclose any publishing limits or redaction steps it's under, though not all its past work meets that bar, and that it's starting to add terms for taking findings to a lab's board.",
       "source": "Anthropic: An update on independent evaluators",
       "url": "https://www.anthropic.com/news/an-update-on-independent-evaluators",
       "date": "2026-10-15",
@@ -107,6 +112,21 @@
           "source": "Reuters (republished by The Star)",
           "url": "https://www.thestar.com.my/tech/tech-news/2026/10/13/exclusive-behind-ai-industry039s-call-for-independent-reviews-a-fight-over-what-gets-made-public",
           "date": "2026-10-13"
+        },
+        {
+          "source": "SecureBio: Response to Anthropic's update on independent evaluators",
+          "url": "https://securebio.substack.com/p/response-to-anthropics-update-on",
+          "date": "2026-10-16"
+        },
+        {
+          "source": "METR: Our approach to working with AI companies",
+          "url": "https://metr.org/blog/2026-10-14-our-approach-to-risk-assessment/",
+          "date": "2026-10-14"
+        },
+        {
+          "source": "Transluce: template evaluation agreement (mental health study)",
+          "url": "https://transluce.org/Transluce-Template-Mental-Health-Evaluation-Agreement.pdf",
+          "date": "2026-08"
         }
       ],
       "fromLab": true
@@ -143,19 +163,26 @@
     {
       "lab": "Anthropic",
       "clause": "E6",
-      "rating": "Not public",
-      "evidence": "No engagement length or renewal terms are public. The \"at least $1 billion over five years\" Anthropic and Accenture announced is an investment plan, not a contract term.",
-      "source": "Anthropic: Accenture embedded evaluation",
-      "url": "https://www.anthropic.com/news/accenture-embedded-evaluation",
-      "date": "2026-09-18",
-      "fromLab": true
+      "rating": "Partly",
+      "met": [2],
+      "evidence": "The agreement Anthropic signed with Transluce for its August 2026 mental health study, which Transluce published, runs until the study is finished. Either side can end it with seven business days' notice, and Transluce's right to publish survives if it's ended. It's \"Partly\" because nothing stops Anthropic ending it over the findings, and no length or renewal terms are public for its safety evaluators. The \"at least $1 billion over five years\" Anthropic and Accenture announced is an investment plan, not a contract term.",
+      "source": "Transluce: template evaluation agreement (mental health study)",
+      "url": "https://transluce.org/Transluce-Template-Mental-Health-Evaluation-Agreement.pdf",
+      "date": "2026-08",
+      "additionalSources": [
+        {
+          "source": "Anthropic: Accenture embedded evaluation",
+          "url": "https://www.anthropic.com/news/accenture-embedded-evaluation",
+          "date": "2026-09-18"
+        }
+      ]
     },
     {
       "lab": "OpenAI",
       "clause": "E1",
       "rating": "Partly",
-      "met": [2, 4],
-      "evidence": "OpenAI describes the kinds of outside assessment it uses (independent evaluations, methodology reviews and expert probing) and names assessors including METR, SecureBio, Apollo Research and Irregular. For its Hugging Face incident review, METR published the agreed scope and what was out of scope. Scope isn't published for each evaluation as a rule.",
+      "met": [2, 3, 4],
+      "evidence": "OpenAI describes the kinds of outside assessment it uses (independent evaluations, methodology reviews and expert probing) and names assessors including METR, SecureBio, Apollo Research and Irregular. For its Hugging Face incident review, METR published the agreed scope and what was out of scope. In Transluce's August 2026 mental health study, the published agreement says which behaviours were checked and Transluce's report lists the OpenAI models tested. Scope isn't published for each evaluation as a rule.",
       "source": "OpenAI: Strengthening safety with external testing",
       "url": "https://openai.com/index/strengthening-safety-with-external-testing",
       "date": "2025-11-19",
@@ -164,6 +191,11 @@
           "source": "METR: OpenAI Hugging Face incident investigation",
           "url": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation",
           "date": "2026-08-26"
+        },
+        {
+          "source": "Transluce: Mental Health Behavior Report",
+          "url": "https://behaviors.transluce.org/mental-health",
+          "date": "2026-08-31"
         }
       ],
       "fromLab": true
@@ -191,11 +223,16 @@
       "clause": "E3",
       "rating": "Partly",
       "met": [3],
-      "evidence": "Contract excerpts OpenAI published in Nov 2025 say assessors must get OpenAI's written approval before publishing, and OpenAI says it reviews for confidentiality and factual accuracy. In Oct 2026 OpenAI told Reuters it doesn't seek approval over full reports, redacts confidential information, and lets evaluators say when major redactions were made. For its Hugging Face review, METR said OpenAI could redact any non-public information and that it edited tone and emphasis after OpenAI's feedback. Newer contract wording isn't public.",
+      "evidence": "Contract excerpts OpenAI published in Nov 2025 say assessors must get OpenAI's written approval before publishing, and OpenAI says it reviews for confidentiality and factual accuracy. In Oct 2026 OpenAI told Reuters it doesn't seek approval over full reports, redacts confidential information, and lets evaluators say when major redactions were made. For its Hugging Face review, METR said OpenAI could redact any non-public information and that it edited tone and emphasis after OpenAI's feedback. Newer contract wording for its safety assessors isn't public. In the agreement Transluce published for its August 2026 mental health study, Transluce had the final say on publishing its evaluation findings, and OpenAI could block the validation results only on listed grounds, not for poor performance. METR says its contract wording lets it disclose any publishing limits or redaction steps it's under, though not all its past work meets that bar, and that it's starting to add terms for taking findings to a lab's board. It doesn't name the labs.",
       "source": "OpenAI: Strengthening safety with external testing",
       "url": "https://openai.com/index/strengthening-safety-with-external-testing",
       "date": "2025-11-19",
       "additionalSources": [
+        {
+          "source": "METR: Our approach to working with AI companies",
+          "url": "https://metr.org/blog/2026-10-14-our-approach-to-risk-assessment/",
+          "date": "2026-10-14"
+        },
         {
           "source": "Reuters (republished by The Star)",
           "url": "https://www.thestar.com.my/tech/tech-news/2026/10/13/exclusive-behind-ai-industry039s-call-for-independent-reviews-a-fight-over-what-gets-made-public",
@@ -205,6 +242,11 @@
           "source": "METR: OpenAI Hugging Face incident investigation",
           "url": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation",
           "date": "2026-08-26"
+        },
+        {
+          "source": "Transluce: template evaluation agreement (mental health study)",
+          "url": "https://transluce.org/Transluce-Template-Mental-Health-Evaluation-Agreement.pdf",
+          "date": "2026-08"
         }
       ],
       "fromLab": true
@@ -240,21 +282,123 @@
     {
       "lab": "OpenAI",
       "clause": "E6",
-      "rating": "Not public",
-      "evidence": "OpenAI says its relationships with assessors are long-running but hasn't published engagement lengths or how renewal is decided.",
-      "source": "OpenAI: Strengthening safety with external testing",
-      "url": "https://openai.com/index/strengthening-safety-with-external-testing",
-      "date": "2025-11-19",
-      "fromLab": true
+      "rating": "Partly",
+      "met": [2],
+      "evidence": "The agreement OpenAI signed with Transluce for its August 2026 mental health study, which Transluce published, runs until the study is finished. Either side can end it with seven business days' notice, and Transluce's right to publish survives if it's ended. It's \"Partly\" because nothing stops OpenAI ending it over the findings. OpenAI says its relationships with safety assessors are long-running but hasn't published their lengths or how renewal is decided.",
+      "source": "Transluce: template evaluation agreement (mental health study)",
+      "url": "https://transluce.org/Transluce-Template-Mental-Health-Evaluation-Agreement.pdf",
+      "date": "2026-08",
+      "additionalSources": [
+        {
+          "source": "OpenAI: Strengthening safety with external testing",
+          "url": "https://openai.com/index/strengthening-safety-with-external-testing",
+          "date": "2025-11-19"
+        }
+      ]
+    },
+    {
+      "lab": "Google DeepMind",
+      "clause": "E1",
+      "rating": "Partly",
+      "met": [2, 3],
+      "evidence": "Google DeepMind hasn't published the scope of any outside evaluation. For one evaluation the scope is public anyway: Transluce's August 2026 study of how AI systems respond to users in a mental health crisis. The agreement Google DeepMind signed, which Transluce published, says which behaviours the study checks, and Transluce's report lists the Gemini models it tested. It's \"Partly\" because that's one study, published by Transluce and not Google, and it isn't one of Google DeepMind's safety evaluations.",
+      "source": "Transluce: template evaluation agreement (mental health study)",
+      "url": "https://transluce.org/Transluce-Template-Mental-Health-Evaluation-Agreement.pdf",
+      "date": "2026-08",
+      "additionalSources": [
+        {
+          "source": "Transluce: Mental Health Behavior Report",
+          "url": "https://behaviors.transluce.org/mental-health",
+          "date": "2026-08-31"
+        }
+      ]
+    },
+    {
+      "lab": "Google DeepMind",
+      "clause": "E2",
+      "rating": "Partly",
+      "met": [1, 4],
+      "evidence": "For one evaluation, what the evaluator could see is public. For its August 2026 mental health study, Transluce says Google DeepMind gave it testing access at no cost, through a nonpublic API meant to match the Gemini app, and signed a confidentiality agreement so it could receive privileged information about its systems' behaviour and safeguards. Transluce also says deeper access, like chains of thought and model internals, would allow more. The agreement itself says only that the developer \"may provide the Evaluator with privileged system access as necessary\". It's \"Partly\" because nothing says whether Transluce could ask for more or when Google could refuse, and no access terms are public for Google DeepMind's safety evaluators.",
+      "source": "Transluce: mental health report, independence and transparency disclosure",
+      "url": "https://behaviors.transluce.org/mental-health?detail=page:app_I_aef_1",
+      "date": "2026-08-31",
+      "additionalSources": [
+        {
+          "source": "Transluce: Announcing Transluce's Mental Health Evaluation",
+          "url": "https://transluce.org/announcing-mental-health-evaluation",
+          "date": "2026-08-31"
+        },
+        {
+          "source": "Transluce: template evaluation agreement (mental health study)",
+          "url": "https://transluce.org/Transluce-Template-Mental-Health-Evaluation-Agreement.pdf",
+          "date": "2026-08"
+        }
+      ]
     },
     {
       "lab": "Google DeepMind",
       "clause": "E3",
+      "rating": "Partly",
+      "met": [1, 2],
+      "evidence": "In the one contract that's public, the evaluator has the final say. Under the agreement Google DeepMind signed with Transluce for its August 2026 mental health study, Google sees a draft 30 days before publication and can give feedback, but Transluce has \"final discretion to redact or publish\" the findings. Transluce's own disclosure says the same: the labs got early access to results, \"but not control\" over them. It's \"Partly\" because this is one study, and Transluce published the agreement, not Google. It doesn't say Transluce can flag redactions that affected its conclusions, and there's no route to Google's board or a regulator. Google DeepMind hasn't published terms for its safety evaluators. As of Sept 2026 it hadn't committed to embedding them; Demis Hassabis instead proposed an industry standards body to test frontier models, TechCrunch reported.",
+      "source": "Transluce: template evaluation agreement (mental health study)",
+      "url": "https://transluce.org/Transluce-Template-Mental-Health-Evaluation-Agreement.pdf",
+      "date": "2026-08",
+      "additionalSources": [
+        {
+          "source": "Transluce: mental health report, independence and transparency disclosure",
+          "url": "https://behaviors.transluce.org/mental-health?detail=page:app_I_aef_1",
+          "date": "2026-08-31"
+        },
+        {
+          "source": "TechCrunch",
+          "url": "https://techcrunch.com/2026/09/16/anthropic-and-openai-want-to-embed-safety-evaluators-will-they-really-be-independent/",
+          "date": "2026-09-16"
+        }
+      ]
+    },
+    {
+      "lab": "Google DeepMind",
+      "clause": "E4",
+      "rating": "Partly",
+      "met": [1],
+      "evidence": "Under the agreement Google DeepMind signed with Transluce for its August 2026 mental health study, each side pays its own costs, and Transluce says it took no payment from the labs it tested. Transluce also says it never takes pay that depends on its findings, but that's Transluce's own policy, not a term Google has published. It's \"Partly\" because that's one study, and nothing public says how Google DeepMind pays its other evaluators.",
+      "source": "Transluce: template evaluation agreement (mental health study)",
+      "url": "https://transluce.org/Transluce-Template-Mental-Health-Evaluation-Agreement.pdf",
+      "date": "2026-08",
+      "additionalSources": [
+        {
+          "source": "Transluce: mental health report, independence and transparency disclosure",
+          "url": "https://behaviors.transluce.org/mental-health?detail=page:app_I_aef_1",
+          "date": "2026-08-31"
+        }
+      ]
+    },
+    {
+      "lab": "Google DeepMind",
+      "clause": "E5",
       "rating": "Not public",
-      "evidence": "Google DeepMind hasn't published terms for outside evaluators. As of Sept 2026 it hadn't committed to embedding them; Demis Hassabis instead proposed an industry standards body to test frontier models, TechCrunch reported.",
-      "source": "TechCrunch",
-      "url": "https://techcrunch.com/2026/09/16/anthropic-and-openai-want-to-embed-safety-evaluators-will-they-really-be-independent/",
-      "date": "2026-09-16"
+      "evidence": "No conflict-of-interest rules for Google DeepMind's outside evaluators are public. The one contract that's public, its agreement with Transluce for an August 2026 mental health study, doesn't have any. Transluce publishes its own conflict policy and says staff who hold Google shares were kept off the Google tests, but that's Transluce's rule, not Google's.",
+      "source": "Transluce: template evaluation agreement (mental health study)",
+      "url": "https://transluce.org/Transluce-Template-Mental-Health-Evaluation-Agreement.pdf",
+      "date": "2026-08",
+      "additionalSources": [
+        {
+          "source": "Transluce: mental health report, independence and transparency disclosure",
+          "url": "https://behaviors.transluce.org/mental-health?detail=page:app_I_aef_1",
+          "date": "2026-08-31"
+        }
+      ]
+    },
+    {
+      "lab": "Google DeepMind",
+      "clause": "E6",
+      "rating": "Partly",
+      "met": [2],
+      "evidence": "The agreement Google DeepMind signed with Transluce for its August 2026 mental health study, which Transluce published, runs until the study is finished. Either side can end it with seven business days' notice, and Transluce's right to publish survives if it's ended. It's \"Partly\" because nothing stops Google ending it over the findings, and no terms are public for Google DeepMind's other evaluators.",
+      "source": "Transluce: template evaluation agreement (mental health study)",
+      "url": "https://transluce.org/Transluce-Template-Mental-Health-Evaluation-Agreement.pdf",
+      "date": "2026-08"
     }
   ]
 }
