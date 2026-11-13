@@ -11,9 +11,9 @@
   "optedIn": [],
   "updates": [
     {
-      "date": "2026-11-12",
+      "date": "2026-11-13",
       "title": "Evaluator contracts: Transluce's published agreement with Anthropic, OpenAI and Google DeepMind added",
-      "text": "Transluce published the template of the agreement it signed with Anthropic, OpenAI and Google DeepMind for its August 2026 study of how AI systems respond to users in a mental health crisis. The evaluator page now cites it. Under it, Transluce has the final say on publishing its evaluation findings, each side pays its own costs, and either side can end it with seven business days' notice. It has no conflict-of-interest rules and no route to a lab's board or a regulator. Google DeepMind's evaluator score goes from 0% to 21%. Anthropic's and OpenAI's go from 33% to 38%, because \"Term and renewal are public\" moves from \"Not public\" to a D. It's one study, not a safety evaluation, and Transluce published the agreement, not the labs. Staff-contract scores are unchanged.",
+      "text": "Transluce published the template of the agreement it signed with Anthropic, OpenAI and Google DeepMind for its August 2026 study of how AI systems respond to users in a mental health crisis, along with a disclosure of the conditions it worked under. The evaluator page now cites both. Transluce had the final say on publishing its evaluation findings, each side paid its own costs, and either side could end the agreement with seven business days' notice. The agreement has no conflict-of-interest rules and no route to a lab's board or a regulator. Google DeepMind's evaluator score goes from 0% to 33%, and Anthropic's and OpenAI's from 33% to 42%. It's one study, not a safety evaluation, and Transluce published it, not the labs. Anthropic's and OpenAI's entries on publishing now also cite what SecureBio and METR have said about their own terms, with no change to those grades. The page has three new Q&As, and says the six headings come from Jacob Charnock's GovAI post and the pass marks are Lab Canary's. Staff-contract scores are unchanged.",
       "scores": { "Anthropic": 43, "OpenAI": 46, "Google DeepMind": 4, "xAI / SpaceXSI": 0, "Meta": 0 },
       "labs": ["Anthropic", "OpenAI", "Google DeepMind"],
       "link": "#evaluators"
