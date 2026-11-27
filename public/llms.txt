@@ -1,0 +1,26 @@
+# Lab Canary
+
+> Free, open-source public scorecard tracking whether staff contracts and third-party evaluator agreements at major AI labs let people speak up about safety risks.
+
+- Live site: https://labcanary.com/
+- Evaluator contracts page: https://labcanary.com/#evaluators
+- Source code & public evidence data (MIT / CC BY 4.0): https://github.com/johnny1011/labcanary
+- Atom feed of rating updates: https://labcanary.com/feed.xml
+- Raw criteria (JSON): https://labcanary.com/criteria.json
+- Raw staff ratings (JSON): https://labcanary.com/ratings.json
+- Raw evaluator ratings (JSON): https://labcanary.com/evaluators.json
+
+## Labs covered
+Anthropic, OpenAI, Google DeepMind, xAI, and Meta.
+
+## Standard
+Seven clauses for staff contracts (protect real secrets, never gag criticism or whistleblowing):
+1. No secret NDAs
+2. No gag on criticism
+3. Equity is never hostage
+4. Protected disclosures carved out
+5. Whistleblowing policy is public
+6. Safe internal channel
+7. Secrets means secrets
+
+Every rating links to a dated public source. Missing public evidence is marked "Not public" and earns zero points until the lab publishes its terms.
